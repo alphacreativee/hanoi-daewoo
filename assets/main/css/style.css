@@ -9,6 +9,14 @@
   --color-gold: #b39c79;
 }
 
+.font-heading {
+  font-family: var(--font-heading);
+}
+
+.font-body {
+  font-family: var(--font-body);
+}
+
 .heading-1 {
   font-size: 40px;
   line-height: 1.4;

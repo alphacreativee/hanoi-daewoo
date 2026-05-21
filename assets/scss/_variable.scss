@@ -12,6 +12,12 @@
   //
 }
 // font variable
+.font-heading {
+  font-family: var(--font-heading);
+}
+.font-body {
+  font-family: var(--font-body);
+}
 .heading-1 {
   font-size: 40px;
   line-height: 1.4;
@@ -57,6 +63,7 @@
   font-weight: bold;
 }
 // color variable
+
 .color-black {
   color: var(--color-black);
 }
