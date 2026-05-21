@@ -258,15 +258,23 @@ body {
   color: var(--color-white);
 }
 
-.hover-underline-white {
+.hover-underline-white,
+.hover-underline-black {
   display: inline-block;
   position: relative;
 }
-.hover-underline-white:hover::before {
+.hover-underline-white:hover::before,
+.hover-underline-black:hover::before {
   transform: scaleX(1);
   transform-origin: bottom left;
 }
-.hover-underline-white::before {
+.hover-underline-white.active::before,
+.hover-underline-black.active::before {
+  transform: scaleX(1);
+  transform-origin: bottom left;
+}
+.hover-underline-white::before,
+.hover-underline-black::before {
   content: "";
   position: absolute;
   width: 100%;
@@ -279,9 +287,53 @@ body {
   transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
+.hover-underline-black::before {
+  background-color: var(--color-black);
+}
+
 #header {
   z-index: 999;
-  transition: background-color 0.3s ease;
+  transition: background-color 0.3s ease, transform 0.3s ease;
+  --header-top-height: 104px;
+}
+#header.header-theme-light-active {
+  transform: translateY(calc(-1 * var(--header-top-height)));
+}
+#header.header-theme-light-active .header-main {
+  background-color: var(--color-white);
+}
+#header.header-theme-light-active .header-main-menu > ul > li > a {
+  color: var(--color-black);
+}
+#header.header-theme-light-active .header-main-menu > ul > li > a:hover {
+  color: var(--color-black);
+}
+#header.header-theme-light-active .header-main-menu > ul > li.menu-item-has-children > a .icon svg {
+  color: var(--color-black);
+}
+#header.header-theme-light-active .hover-underline-white::before {
+  background-color: var(--color-black);
+}
+#header.header-theme-light-active .header-hamburger span {
+  background-color: var(--color-black);
+}
+#header.header-theme-light-active .header-logo-small {
+  opacity: 1 !important;
+  visibility: visible !important;
+}
+#header.header-theme-light-active .header-lang .lang-icon svg,
+#header.header-theme-light-active .header-lang .icon svg {
+  color: var(--color-black) !important;
+}
+#header.header-theme-light-active .header-lang .value-select span {
+  color: var(--color-black) !important;
+}
+#header.header-theme-light-active .header-book .btn-global {
+  background-color: var(--color-dark-blue);
+  color: var(--color-white);
+}
+#header.header-theme-light-active .header-book .btn-global:hover {
+  background-color: var(--color-gold);
 }
 #header .header-top {
   padding: 12px 0;
@@ -299,6 +351,7 @@ body {
   grid-template-columns: 1fr auto 1fr;
   align-items: center;
   gap: 0 40px;
+  transition: background-color 0.3s ease;
 }
 #header .header-main--left {
   gap: 0 24px;
@@ -307,6 +360,11 @@ body {
   width: 1px;
   height: 14px;
   background-color: rgba(255, 255, 255, 0.1);
+}
+#header .header-main--left .header-logo-small {
+  opacity: 0;
+  visibility: hidden;
+  transition: all 0.3s ease;
 }
 #header .header-main--right {
   display: flex;
@@ -321,6 +379,9 @@ body {
 }
 #header .header-main-menu ul li.menu-item-has-children {
   position: relative;
+}
+#header .header-main-menu ul li.menu-item-has-children .icon svg {
+  transition: stroke 0.3s ease;
 }
 #header .header-main-menu ul li.menu-item-has-children::before {
   content: "";
@@ -358,6 +419,12 @@ body {
   align-items: flex-start;
   gap: 12px;
 }
+#header .header-main-menu ul li.menu-item-has-children > .sub-menu > ul li a {
+  transition: all 0.3s ease;
+}
+#header .header-main-menu ul li.menu-item-has-children > .sub-menu > ul li a:hover {
+  color: var(--color-black);
+}
 #header .header-main-menu ul li.menu-item-has-children > a {
   display: flex;
   align-items: center;
@@ -365,6 +432,10 @@ body {
 }
 #header .header-main-menu ul li a:hover {
   color: var(--color-white);
+}
+#header .header-main-menu ul li a.active span::before {
+  transform: scaleX(1);
+  transform-origin: bottom left;
 }
 #header .header-lang {
   display: flex;
@@ -377,7 +448,8 @@ body {
   line-height: 24px;
   font-weight: 600;
 }
-#header .header-lang .lang-icon svg {
+#header .header-lang .lang-icon svg,
+#header .header-lang .icon svg {
   color: var(--color-white);
 }
 #header .header-lang .value-select {

@@ -53,10 +53,53 @@ gsap.ticker.lagSmoothing(0);
 //     );
 //   },
 // );
+function headerScroll() {
+  const header = document.getElementById("header");
+  const headerTop = document.querySelector(".header-top");
+  if (!header) return null;
+
+  if (!header || header.classList.contains("without-home")) return;
+
+  // if (header.classList.contains("header-theme-light-first")) return;
+
+  gsap.to(header, {
+    scrollTrigger: {
+      trigger: "body",
+      start: "top -10px",
+      end: "+=100",
+      onEnter: () => header.classList.add("header-theme-light-active"),
+      onLeaveBack: () => header.classList.remove("header-theme-light-active"),
+    },
+  });
+  // let lastScroll = 0;
+
+  // const trigger = ScrollTrigger.create({
+  //   start: "top top",
+  //   end: 9999,
+  //   onUpdate: (self) => {
+  //     const currentScroll = self.scroll();
+
+  //     if (currentScroll <= 0) {
+  //       header.classList.remove("scrolled");
+  //     } else if (currentScroll > lastScroll) {
+  //       // Scroll down
+  //       header.classList.add("scrolled");
+  //     } else {
+  //       // Scroll up
+  //       header.classList.remove("scrolled");
+  //     }
+
+  //     lastScroll = currentScroll;
+  //   },
+  // });
+
+  // return trigger;
+}
 const init = () => {
   gsap.registerPlugin(ScrollTrigger);
   customDropdown();
   createFilterTab();
+  headerScroll();
 };
 document.addEventListener("DOMContentLoaded", () => {
   init();

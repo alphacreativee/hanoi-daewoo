@@ -13,10 +13,17 @@
     color: var(--color-white);
   }
 }
-.hover-underline-white {
+.hover-underline-white,
+.hover-underline-black {
   display: inline-block;
   position: relative;
   &:hover {
+    &::before {
+      transform: scaleX(1);
+      transform-origin: bottom left;
+    }
+  }
+  &.active {
     &::before {
       transform: scaleX(1);
       transform-origin: bottom left;
@@ -33,5 +40,10 @@
     transform: scaleX(0);
     transform-origin: bottom right;
     transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  }
+}
+.hover-underline-black {
+  &::before {
+    background-color: var(--color-black);
   }
 }
