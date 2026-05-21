@@ -95,11 +95,71 @@ function headerScroll() {
 
   // return trigger;
 }
+function heroSection() {
+  if (!document.querySelector(".swiper-hero")) return;
+
+  var interleaveOffset = 0.9;
+
+  var swiperBanner = new Swiper(".swiper-hero", {
+    loop: true,
+    speed: 1500,
+    grabCursor: true,
+    watchSlidesProgress: true,
+    mousewheelControl: true,
+    keyboardControl: true,
+    // autoplay: {
+    //   delay: 3500,
+    //   disableOnInteraction: true,
+    // },
+    navigation: {
+      nextEl: ".swiper-button-next",
+      prevEl: ".swiper-button-prev",
+    },
+    on: {
+      progress: function (swiper) {
+        if (!swiper?.slides?.length) return;
+
+        swiper.slides.forEach(function (slide) {
+          var slideProgress = slide.progress || 0;
+          var innerOffset = swiper.width * interleaveOffset;
+          var innerTranslate = slideProgress * innerOffset;
+          if (!isNaN(innerTranslate)) {
+            var slideInner = slide.querySelector(".hero-slider-image");
+            if (slideInner) {
+              slideInner.style.transform =
+                "translate3d(" + innerTranslate + "px, 0, 0)";
+            }
+          }
+        });
+      },
+      touchStart: function (swiper) {
+        if (!swiper?.slides?.length) return; // ← thêm
+
+        swiper.slides.forEach(function (slide) {
+          slide.style.transition = "";
+        });
+      },
+      setTransition: function (swiper, speed) {
+        if (!swiper?.slides?.length) return;
+
+        var easing = "cubic-bezier(0.25, 0.1, 0.25, 1)";
+        swiper.slides.forEach(function (slide) {
+          slide.style.transition = speed + "ms " + easing;
+          var slideInner = slide.querySelector(".hero-slider-image");
+          if (slideInner) {
+            slideInner.style.transition = speed + "ms " + easing;
+          }
+        });
+      },
+    },
+  });
+}
 const init = () => {
   gsap.registerPlugin(ScrollTrigger);
   customDropdown();
   createFilterTab();
   headerScroll();
+  heroSection();
 };
 document.addEventListener("DOMContentLoaded", () => {
   init();

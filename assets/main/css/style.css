@@ -542,3 +542,41 @@ body {
 #header .header-hamburger span:nth-child(3) {
   top: 15px;
 }
+
+section.hero {
+  position: relative;
+  width: 100%;
+  height: 100svh;
+  overflow: hidden;
+}
+section.hero::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 40%;
+  background: linear-gradient(to top, rgba(0, 0, 0, 0) 0%, rgb(0, 0, 0) 54%);
+  opacity: 0.5;
+  z-index: 2;
+  pointer-events: none;
+}
+section.hero .swiper-arrow {
+  margin: 0;
+  width: auto;
+  height: auto;
+}
+section.hero .swiper-arrow::after {
+  font-size: 0;
+  content: unset;
+}
+section.hero .swiper-arrow.swiper-button-next {
+  right: 24px;
+}
+section.hero .swiper-arrow.swiper-button-prev {
+  left: 24px;
+}
+section.hero .swiper-arrow svg {
+  width: 8px;
+  height: 32px;
+}
