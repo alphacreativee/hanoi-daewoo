@@ -5,15 +5,75 @@
   // color
   --color-black: #000000;
   --color-white: #ffffff;
+  --color-blue: #003c77;
+  --color-gray: #76787a;
+  --color-dark-blue: #1b1c4c;
+  --color-gold: #b39c79;
   //
 }
 // font variable
+.heading-1 {
+  font-size: 40px;
+  line-height: 1.4;
+}
+.heading-2 {
+  font-size: 32px;
+  line-height: 44px;
+}
+.heading-3 {
+  font-size: 23px;
+  line-height: 34px;
+}
+.b1-font {
+  font-size: 16px;
+  line-height: 28px;
+}
+.b2-font {
+  font-size: 14px;
+  line-height: 24px;
+}
+.btn-font {
+  font-size: 13px;
+  line-height: 24px;
+}
+.b3-font {
+  font-size: 12px;
+  line-height: 18px;
+}
+.b0-font {
+  font-size: 10px;
+  line-height: 14px;
+}
+.fw-regular {
+  font-weight: 400;
+}
+.fw-medium {
+  font-weight: 500;
+}
+.fw-semibold {
+  font-weight: 600;
+}
+.fw-bold {
+  font-weight: bold;
+}
 // color variable
 .color-black {
   color: var(--color-black);
 }
 .color-white {
   color: var(--color-white);
+}
+.color-blue {
+  color: var(--color-blue);
+}
+.color-gray {
+  color: var(--color-gray);
+}
+.color-dark-blue {
+  color: var(--color-dark-blue);
+}
+.color-gold {
+  color: var(--color-gold);
 }
 .limit-width {
   max-width: 1440px;
