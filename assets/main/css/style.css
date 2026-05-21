@@ -1,6 +1,6 @@
 :root {
-  --font-heading: "", sans-serif;
-  --font-body: "", sans-serif;
+  --font-heading: "VNF-Optima", sans-serif;
+  --font-body: "Open Sans", sans-serif;
   --color-black: #000000;
   --color-white: #ffffff;
 }
@@ -155,4 +155,5 @@ body {
   text-rendering: optimizeLegibility !important;
   -webkit-font-smoothing: auto !important;
   -moz-osx-font-smoothing: grayscale !important;
+  font-family: var(--font-body);
 }
