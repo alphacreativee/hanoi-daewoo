@@ -295,6 +295,226 @@ body {
   background-color: var(--color-black);
 }
 
+.booking-form {
+  position: absolute;
+  bottom: 40px;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 2;
+  background-color: var(--color-white);
+  max-width: 66.6666666667%;
+  width: 100%;
+}
+.booking-form-container {
+  padding: 10px 20px;
+}
+.booking-form-container form {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr auto;
+  gap: 24px;
+}
+.booking-form input {
+  border: none;
+  box-shadow: none;
+  outline: none;
+  font-size: 16px;
+  line-height: 28px;
+}
+.booking-form label {
+  font-size: 12px;
+  line-height: 18px;
+  font-weight: 400;
+  color: var(--color-black);
+}
+.booking-form .booking-item {
+  gap: 12px;
+  border-right: 1px solid rgba(27, 28, 76, 0.2);
+}
+.booking-form .booking-item button {
+  border: 1px solid var(--color-dark-blue);
+  padding: 10px 20px;
+  font-size: 13px;
+  line-height: 24px;
+  font-weight: 600;
+  text-transform: uppercase;
+  transition: all 0.3s ease;
+}
+.booking-form .booking-item button:hover {
+  background-color: var(--color-gold);
+  border: 1px solid var(--color-gold);
+  color: var(--color-white);
+}
+.booking-form .booking-item:last-child, .booking-form .booking-item:nth-last-child(2) {
+  border-right: none;
+}
+.booking-form .booking-field input[type=number] {
+  width: 35px;
+}
+.booking-form .select-people .select-box {
+  top: 100%;
+  transform: translateY(0);
+  margin-top: 18px;
+  border-radius: 0 0 12px 12px;
+}
+@media (max-width: 991px) {
+  .booking-form .select-people .select-box {
+    margin-top: 12px;
+    padding: 12px;
+  }
+}
+.booking-form .select-people {
+  position: relative;
+}
+.booking-form .select-people .select-box {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 200px;
+  background-color: var(--color-white);
+  margin-top: -20px;
+  padding: 24px;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  border-radius: 12px 12px 0 0;
+  opacity: 0;
+  visibility: hidden;
+  transition: all 0.3s ease;
+  transform: translateY(-100%);
+  z-index: 3;
+}
+@media (max-width: 991px) {
+  .booking-form .select-people .select-box {
+    background-color: var(--color-gray-1);
+    border-radius: unset !important;
+  }
+}
+.booking-form .select-people .select-box.active {
+  opacity: 1;
+  visibility: visible;
+}
+.booking-form .select-people .select-box .select {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+.booking-form .select-people .select-box .select .min,
+.booking-form .select-people .select-box .select .plus {
+  width: 24px;
+  height: 24px;
+  border: 1px solid var(--color-black);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+  transition: all 0.4s ease;
+}
+.booking-form .select-people .select-box .select .min:hover,
+.booking-form .select-people .select-box .select .plus:hover {
+  opacity: 0.4;
+}
+.booking-form .select-people .select-box .select .val {
+  width: 10px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 15px;
+  font-weight: 500;
+}
+.booking-form .select-people .select-box .adult,
+.booking-form .select-people .select-box .child {
+  display: flex;
+  justify-content: space-between;
+  gap: 12px;
+}
+.booking-form .select-people .label {
+  font-size: 15px;
+  line-height: 25px;
+  font-family: var(--font-body);
+  color: var(--color-gray-2);
+  font-weight: 500;
+}
+
+.lightpick {
+  box-shadow: none;
+  border-radius: 0;
+  padding: 12px;
+}
+.lightpick > * {
+  font-family: var(--font-body);
+}
+.lightpick .lightpick__month-title {
+  font-family: var(--font-heading);
+  margin-left: 0;
+  padding-left: 0;
+}
+.lightpick .lightpick__day.is-end-date.is-in-range.is-flipped,
+.lightpick .lightpick__day.is-start-date.is-in-range,
+.lightpick .lightpick__day.is-end-date.is-in-range,
+.lightpick .lightpick__day.is-start-date.is-in-range.is-flipped {
+  background-color: var(--color-gold);
+}
+.lightpick .lightpick__day.is-start-date.is-end-date {
+  background-image: none;
+}
+.lightpick .lightpick__day.is-today {
+  background-image: none;
+  color: var(--color-black);
+}
+.lightpick .lightpick__day.is-in-range {
+  background-color: rgba(179, 156, 121, 0.2);
+}
+.lightpick .lightpick__day.is-end-date.is-in-range.is-flipped,
+.lightpick .lightpick__day.is-start-date.is-in-range,
+.lightpick .lightpick__day.is-end-date.is-in-range,
+.lightpick .lightpick__day.is-start-date.is-in-range.is-flipped {
+  border-radius: 0;
+  color: var(--color-white);
+}
+.lightpick .lightpick__day.is-next-month,
+.lightpick .lightpick__day.is-previous-month,
+.lightpick .lightpick__day.is-disabled {
+  opacity: 1;
+  color: rgba(0, 0, 0, 0.4);
+}
+.lightpick .lightpick__days {
+  display: grid !important;
+  grid-template-columns: repeat(7, 1fr) !important;
+  border-top: 1px solid #e0e0e0 !important;
+  border-left: 1px solid #e0e0e0 !important;
+}
+.lightpick .lightpick__day {
+  margin: 0 !important;
+  border: none !important;
+  box-shadow: 1px 1px 0 0 #e0e0e0 !important;
+}
+.lightpick .lightpick__day.is-end-date,
+.lightpick .lightpick__day.is-end-date:hover,
+.lightpick .lightpick__day.is-start-date,
+.lightpick .lightpick__day.is-start-date:hover,
+.lightpick .lightpick__day:not(.is-disabled):hover {
+  background-image: none;
+  background-color: var(--color-gold);
+  color: var(--color-white);
+  font-weight: bold;
+}
+.lightpick .lightpick__day--empty {
+  margin: 0 !important;
+  border: none !important;
+  box-shadow: 1px 1px 0 0 #e0e0e0 !important;
+}
+.lightpick .lightpick__days {
+  display: grid !important;
+  grid-template-columns: repeat(7, 1fr) !important;
+  border-top: 1px solid #e0e0e0 !important;
+  border-left: 1px solid #e0e0e0 !important;
+}
+.lightpick .lightpick__days > * {
+  margin: 0 !important;
+  border: none !important;
+  box-shadow: 1px 1px 0 0 #e0e0e0 !important;
+}
+
 .section-title .desc {
   margin-top: 24px;
 }
@@ -764,6 +984,10 @@ section.hero::before {
   z-index: 2;
   pointer-events: none;
 }
+section.hero .hero-slider {
+  width: 100%;
+  height: 100%;
+}
 section.hero .swiper-arrow {
   margin: 0;
   width: auto;
@@ -782,6 +1006,19 @@ section.hero .swiper-arrow.swiper-button-prev {
 section.hero .swiper-arrow svg {
   width: 8px;
   height: 32px;
+}
+section.hero .video {
+  width: 100%;
+  height: 100%;
+  position: relative;
+}
+section.hero .video iframe {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
 }
 
 .moreInfo-container {

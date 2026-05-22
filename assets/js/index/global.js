@@ -264,3 +264,80 @@ export function sliderParallax() {
     }
   });
 }
+
+export function initGuestSelector() {
+  document
+    .querySelectorAll(".booking-form .select-people")
+    .forEach((container) => {
+      const adultDisplay = container.querySelector(".adult-value");
+      const childDisplay = container.querySelector(".child-value");
+
+      const selectBox = container.querySelector(".select-box");
+
+      const adultValElem = selectBox.querySelector(".adult .val");
+      const childValElem = selectBox.querySelector(".child .val");
+
+      const adultMinus = selectBox.querySelector(".adult .min");
+      const adultPlus = selectBox.querySelector(".adult .plus");
+      const childMinus = selectBox.querySelector(".child .min");
+      const childPlus = selectBox.querySelector(".child .plus");
+
+      let adults = parseInt(adultValElem.textContent) || 1;
+      let children = parseInt(childValElem.textContent) || 0;
+
+      function updateDisplay() {
+        adultValElem.textContent = adults;
+        childValElem.textContent = children;
+
+        adultDisplay.textContent = adults;
+        childDisplay.textContent = children;
+
+        adultMinus.style.opacity = adults <= 1 ? "0.4" : "1";
+        adultMinus.style.pointerEvents = adults <= 1 ? "none" : "auto";
+
+        childMinus.style.opacity = children <= 0 ? "0.4" : "1";
+        childMinus.style.pointerEvents = children <= 0 ? "none" : "auto";
+      }
+
+      adultMinus.addEventListener("click", () => {
+        if (adults > 1) {
+          adults--;
+          updateDisplay();
+        }
+      });
+
+      adultPlus.addEventListener("click", () => {
+        adults++;
+        updateDisplay();
+      });
+
+      childMinus.addEventListener("click", () => {
+        if (children > 0) {
+          children--;
+          updateDisplay();
+        }
+      });
+
+      childPlus.addEventListener("click", () => {
+        children++;
+        updateDisplay();
+      });
+
+      updateDisplay();
+
+      const displayArea = container.querySelector(".select-people-wrapper");
+      if (displayArea) {
+        displayArea.addEventListener("click", (e) => {
+          if (!e.target.closest(".select-box")) {
+            selectBox.classList.toggle("active");
+          }
+        });
+      }
+
+      document.addEventListener("click", (e) => {
+        if (!container.contains(e.target)) {
+          selectBox.classList.remove("active");
+        }
+      });
+    });
+}
