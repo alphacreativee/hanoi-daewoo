@@ -72,6 +72,75 @@
       visibility: visible !important;
     }
   }
+  &.without-home {
+    .header-top {
+      display: none !important;
+    }
+    .header-main {
+      background-color: var(--color-white);
+      &-menu {
+        & > ul > li > a {
+          color: var(--color-black);
+          &:hover {
+            color: var(--color-black);
+          }
+        }
+        & > ul {
+          & > li {
+            &.menu-item-has-children {
+              & > a {
+                .icon {
+                  svg {
+                    color: var(--color-black);
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+    .hover-underline-white {
+      &::before {
+        background-color: var(--color-black);
+      }
+    }
+    .header-hamburger {
+      span {
+        background-color: var(--color-black);
+      }
+    }
+    .header-logo-small {
+      opacity: 1 !important;
+      visibility: visible !important;
+    }
+    .header-lang {
+      .lang-icon,
+      .icon {
+        svg {
+          color: var(--color-black) !important;
+        }
+      }
+      .value-select {
+        span {
+          color: var(--color-black) !important;
+        }
+      }
+    }
+    .header-book {
+      .btn-global {
+        background-color: var(--color-dark-blue);
+        color: var(--color-white);
+        &:hover {
+          background-color: var(--color-gold);
+        }
+      }
+    }
+    .col-space {
+      opacity: 1 !important;
+      visibility: visible !important;
+    }
+  }
   .header {
     &-top {
       padding: 12px 0;

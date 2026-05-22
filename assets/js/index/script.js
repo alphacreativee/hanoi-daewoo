@@ -178,7 +178,7 @@ function headerScroll() {
 
   if (!header || header.classList.contains("without-home")) return;
 
-  // if (header.classList.contains("header-theme-light-first")) return;
+  if (header.classList.contains("header-theme-light-active")) return;
 
   gsap.to(header, {
     scrollTrigger: {
@@ -189,27 +189,6 @@ function headerScroll() {
       onLeaveBack: () => header.classList.remove("header-theme-light-active"),
     },
   });
-  // let lastScroll = 0;
-
-  // const trigger = ScrollTrigger.create({
-  //   start: "top top",
-  //   end: 9999,
-  //   onUpdate: (self) => {
-  //     const currentScroll = self.scroll();
-
-  //     if (currentScroll <= 0) {
-  //       header.classList.remove("scrolled");
-  //     } else if (currentScroll > lastScroll) {
-  //       // Scroll down
-  //       header.classList.add("scrolled");
-  //     } else {
-  //       // Scroll up
-  //       header.classList.remove("scrolled");
-  //     }
-
-  //     lastScroll = currentScroll;
-  //   },
-  // });
 
   // return trigger;
 }
