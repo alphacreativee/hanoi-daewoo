@@ -44,16 +44,30 @@
 
           .desc {
             margin-top: 8px;
+
+            overflow: hidden;
+            display: -webkit-box;
+            -webkit-line-clamp: 2;
+            line-clamp: 2;
+            -webkit-box-orient: vertical;
+
+            opacity: 0;
+            transition:
+              opacity 1s ease,
+              max-height 0.5s ease;
+            max-height: 0;
           }
         }
 
         &-cta {
           position: absolute;
           z-index: 2;
-          bottom: 22px;
+          bottom: 0;
           left: 50%;
           transform: translateX(-50%);
           color: var(--color-white) !important;
+          transition: all 0.5s ease;
+          opacity: 0;
 
           &::after {
             content: "";
@@ -64,6 +78,24 @@
             left: 0;
             background-color: rgba($color: #fff, $alpha: 0.2);
           }
+        }
+      }
+
+      &:hover {
+        .item-cta .btn-font::before {
+          transform: scaleX(1);
+          transform-origin: bottom left;
+          transition-delay: 0.2s;
+        }
+
+        .desc {
+          max-height: 56px;
+          opacity: 1;
+        }
+
+        .item-cta {
+          bottom: 22px;
+          opacity: 1;
         }
       }
     }
