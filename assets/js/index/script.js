@@ -438,6 +438,41 @@ function sliderDining() {
   //   },
   // });
 }
+function animationText() {
+  gsap.registerPlugin(ScrollTrigger);
+
+  document.querySelectorAll(".tl-text").forEach((el) => {
+    const tlTextOne = el.querySelectorAll(".tl-text-one");
+    const tlTextTwo = el.querySelectorAll(".tl-text-two");
+    const tlTextThree = el.querySelectorAll(".tl-text-three");
+    const tlTextFour = el.querySelectorAll(".tl-text-four");
+    const tlTextFive = el.querySelectorAll(".tl-text-five");
+
+    const tl = gsap.timeline({
+      scrollTrigger: {
+        trigger: el,
+        start: "top 70%",
+        once: true,
+        // markers: true,
+      },
+    });
+
+    const animFrom = { y: 20, opacity: 0 };
+    const animTo = {
+      y: 0,
+      opacity: 1,
+      duration: 0.6,
+      ease: "power2.out",
+    };
+
+    if (tlTextOne.length) tl.fromTo(tlTextOne, animFrom, animTo);
+    if (tlTextTwo.length) tl.fromTo(tlTextTwo, animFrom, animTo, "-=0.4");
+    if (tlTextThree.length) tl.fromTo(tlTextThree, animFrom, animTo, "-=0.4");
+    if (tlTextFour.length) tl.fromTo(tlTextFour, animFrom, animTo, "-=0.4");
+    if (tlTextFive.length) tl.fromTo(tlTextFive, animFrom, animTo, "-=0.4");
+  });
+}
+
 const init = () => {
   gsap.registerPlugin(ScrollTrigger);
   customDropdown();
@@ -450,6 +485,7 @@ const init = () => {
   readMore();
   imageZoom();
   sliderDining();
+  animationText();
 };
 document.addEventListener("DOMContentLoaded", () => {
   init();
