@@ -1121,3 +1121,21 @@ section.hero .video iframe {
 .intro .btn-read-more {
   cursor: pointer;
 }
+
+.image-zoom {
+  width: 100%;
+  height: 800px;
+  overflow: hidden;
+  position: relative;
+}
+.image-zoom .image-zoom-inner {
+  width: 100%;
+  height: 100%;
+  position: relative;
+}
+.image-zoom .image-zoom-inner img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transform: scale(1.2);
+}

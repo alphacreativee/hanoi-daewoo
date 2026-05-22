@@ -325,6 +325,27 @@ function readMore() {
     }
   });
 }
+function imageZoom() {
+  gsap.registerPlugin(ScrollTrigger);
+
+  const imageZoom = document.querySelector(".image-zoom img");
+  if (!imageZoom) return;
+
+  gsap.to(
+    imageZoom,
+
+    {
+      scale: 1,
+      duration: 0.8,
+      ease: "none",
+      scrollTrigger: {
+        trigger: imageZoom,
+        start: "top 70%",
+        end: "top 70%",
+      },
+    },
+  );
+}
 
 const init = () => {
   gsap.registerPlugin(ScrollTrigger);
@@ -335,6 +356,7 @@ const init = () => {
   getTime();
   initGuestSelector();
   readMore();
+  imageZoom();
 };
 document.addEventListener("DOMContentLoaded", () => {
   init();
