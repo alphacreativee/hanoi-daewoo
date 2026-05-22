@@ -1,3 +1,7 @@
+body {
+  font-family: var(--font-body);
+}
+
 .btn-global {
   display: inline-block;
   padding: 10px 20px;
@@ -305,3 +309,8 @@
 //   border-color: #9ca3af !important; /* Màu xanh nổi bật */
 // }
 //
+.section-title {
+  .desc {
+    margin-top: 24px;
+  }
+}
