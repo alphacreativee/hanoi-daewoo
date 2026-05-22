@@ -1,0 +1,44 @@
+.weddings {
+  &-container {
+    padding: 120px 40px;
+    background-color: #f2f2f2;
+  }
+
+  &-list {
+    display: flex;
+    align-items: flex-start;
+    gap: 40px;
+    margin-top: 60px;
+
+    &__item {
+      width: calc(calc(100% - 40px) / 2);
+
+      .item {
+        &-media {
+          .swiper {
+            width: 100%;
+            aspect-ratio: 660 / 470;
+          }
+        }
+
+        &-content {
+          margin: 24px auto 0;
+          width: 100%;
+          max-width: 66%;
+
+          .desc {
+            margin-top: 16px;
+          }
+
+          .title {
+            transition: all 0.4s ease;
+
+            &:hover {
+              color: var(--color-gold);
+            }
+          }
+        }
+      }
+    }
+  }
+}

@@ -1,4 +1,8 @@
-import { customDropdown, createFilterTab } from "../../main/js/global.min.js";
+import {
+  customDropdown,
+  createFilterTab,
+  sliderParallax
+} from "../../main/js/global.min.js";
 ("use strict");
 $ = jQuery;
 
@@ -68,8 +72,8 @@ function headerScroll() {
       start: "top -10px",
       end: "+=100",
       onEnter: () => header.classList.add("header-theme-light-active"),
-      onLeaveBack: () => header.classList.remove("header-theme-light-active"),
-    },
+      onLeaveBack: () => header.classList.remove("header-theme-light-active")
+    }
   });
   // let lastScroll = 0;
 
@@ -113,7 +117,7 @@ function heroSection() {
     // },
     navigation: {
       nextEl: ".swiper-button-next",
-      prevEl: ".swiper-button-prev",
+      prevEl: ".swiper-button-prev"
     },
     on: {
       progress: function (swiper) {
@@ -150,8 +154,8 @@ function heroSection() {
             slideInner.style.transition = speed + "ms " + easing;
           }
         });
-      },
-    },
+      }
+    }
   });
 }
 const init = () => {
@@ -160,6 +164,7 @@ const init = () => {
   createFilterTab();
   headerScroll();
   heroSection();
+  sliderParallax();
 };
 document.addEventListener("DOMContentLoaded", () => {
   init();
