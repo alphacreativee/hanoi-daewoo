@@ -348,6 +348,38 @@ function imageZoom() {
   );
 }
 
+function accommodationSlider() {
+  if ($(".accommodations-slider").length < 1) return;
+
+  $(".accommodations-slider").each(function () {
+    const $slider = $(this);
+
+    const nextBtn = $slider.find(".swiper-button-next")[0];
+    const prevBtn = $slider.find(".swiper-button-prev")[0];
+    const pagination = $slider.find(".swiper-pagination")[0];
+
+    new Swiper(this, {
+      slidesPerView: 1,
+      effect: "fade",
+      allowTouchMove: false,
+
+      fadeEffect: {
+        crossFade: true
+      },
+
+      pagination: {
+        el: pagination,
+        type: "fraction"
+      },
+
+      navigation: {
+        nextEl: nextBtn,
+        prevEl: prevBtn
+      }
+    });
+  });
+}
+
 const init = () => {
   gsap.registerPlugin(ScrollTrigger);
   customDropdown();
@@ -359,6 +391,7 @@ const init = () => {
   initGuestSelector();
   readMore();
   imageZoom();
+  accommodationSlider();
 };
 document.addEventListener("DOMContentLoaded", () => {
   init();
