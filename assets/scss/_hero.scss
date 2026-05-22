@@ -29,18 +29,19 @@ section.hero {
     height: 100%;
   }
   .swiper-arrow {
-    margin: 0;
+    margin-top: -24px;
     width: auto;
     height: auto;
+    padding: 24px;
     &::after {
       font-size: 0;
       content: unset;
     }
     &.swiper-button-next {
-      right: 24px;
+      right: 0;
     }
     &.swiper-button-prev {
-      left: 24px;
+      left: 0;
     }
     svg {
       width: 8px;
