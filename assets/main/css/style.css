@@ -310,7 +310,8 @@ body {
 }
 .booking-form-container form {
   display: grid;
-  grid-template-columns: 1fr 1fr 1fr 1fr;
+  grid-template-columns: 1fr 1fr 1fr auto;
+  gap: 24px;
 }
 .booking-form input {
   border: none;
@@ -327,6 +328,24 @@ body {
 }
 .booking-form .booking-item {
   gap: 12px;
+  border-right: 1px solid rgba(27, 28, 76, 0.2);
+}
+.booking-form .booking-item button {
+  border: 1px solid var(--color-dark-blue);
+  padding: 10px 20px;
+  font-size: 13px;
+  line-height: 24px;
+  font-weight: 600;
+  text-transform: uppercase;
+  transition: all 0.3s ease;
+}
+.booking-form .booking-item button:hover {
+  background-color: var(--color-gold);
+  border: 1px solid var(--color-gold);
+  color: var(--color-white);
+}
+.booking-form .booking-item:last-child, .booking-form .booking-item:nth-last-child(2) {
+  border-right: none;
 }
 .booking-form .booking-field input[type=number] {
   width: 35px;
