@@ -47,3 +47,261 @@
     background-color: var(--color-black);
   }
 }
+
+.booking-form {
+  position: absolute;
+  bottom: 40px;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 2;
+  background-color: var(--color-white);
+  max-width: calc(calc(8 / 12) * 100%);
+  width: 100%;
+  &-container {
+    padding: 10px 20px;
+    form {
+      display: grid;
+      grid-template-columns: 1fr 1fr 1fr 1fr;
+    }
+  }
+  input {
+    border: none;
+    box-shadow: none;
+    outline: none;
+    font-size: 16px;
+    line-height: 28px;
+  }
+  label {
+    font-size: 12px;
+    line-height: 18px;
+    font-weight: 400;
+    color: var(--color-black);
+  }
+  .booking-item {
+    gap: 12px;
+  }
+  .booking-field input[type="number"] {
+    width: 35px;
+  }
+  .select-people {
+    .select-box {
+      top: 100%;
+      transform: translateY(0);
+      margin-top: 18px;
+      border-radius: 0 0 12px 12px;
+      @media (max-width: 991px) {
+        margin-top: 12px;
+        padding: 12px;
+      }
+    }
+  }
+  .select-people {
+    position: relative;
+    .select-box {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 200px;
+      background-color: var(--color-white);
+      margin-top: -20px;
+      padding: 24px;
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+      border-radius: 12px 12px 0 0;
+      opacity: 0;
+      visibility: hidden;
+      transition: all 0.3s ease;
+      transform: translateY(-100%);
+      z-index: 3;
+      @media (max-width: 991px) {
+        // border: 1px solid rgba(64, 64, 64, 0.3);
+        background-color: var(--color-gray-1);
+        border-radius: unset !important;
+      }
+      &.active {
+        opacity: 1;
+        visibility: visible;
+      }
+      .select {
+        display: flex;
+        align-items: center;
+        gap: 8px;
+        .min,
+        .plus {
+          width: 24px;
+          height: 24px;
+          border: 1px solid var(--color-black);
+          display: flex;
+          justify-content: center;
+          align-items: center;
+          cursor: pointer;
+          transition: all 0.4s ease;
+
+          &:hover {
+            // border-color: var(--color-primary-3);
+            // background-color: var(--color-primary-3);
+            // color: var(--color-white);
+            opacity: 0.4;
+          }
+        }
+        .val {
+          width: 10px;
+          display: flex;
+          justify-content: center;
+          align-items: center;
+          font-size: 15px;
+          font-weight: 500;
+        }
+      }
+      .adult,
+      .child {
+        display: flex;
+        justify-content: space-between;
+        gap: 12px;
+      }
+    }
+    .label {
+      font-size: 15px;
+      line-height: 25px;
+      font-family: var(--font-body);
+      color: var(--color-gray-2);
+      font-weight: 500;
+    }
+  }
+}
+.lightpick {
+  box-shadow: none;
+  border-radius: 0;
+  padding: 12px;
+  & > * {
+    font-family: var(--font-body);
+  }
+  .lightpick__month-title {
+    font-family: var(--font-heading);
+    margin-left: 0;
+    padding-left: 0;
+  }
+  .lightpick__day.is-end-date.is-in-range.is-flipped,
+  .lightpick__day.is-start-date.is-in-range,
+  .lightpick__day.is-end-date.is-in-range,
+  .lightpick__day.is-start-date.is-in-range.is-flipped {
+    background-color: var(--color-gold);
+  }
+  .lightpick__day.is-start-date.is-end-date {
+    background-image: none;
+  }
+  .lightpick__day.is-today {
+    background-image: none;
+    color: var(--color-black);
+  }
+  .lightpick__day.is-in-range {
+    background-color: rgba(179, 156, 121, 0.2);
+  }
+  // .lightpick__days {
+  //   border: 1px solid black;
+  // }
+  .lightpick__day.is-end-date.is-in-range.is-flipped,
+  .lightpick__day.is-start-date.is-in-range,
+  .lightpick__day.is-end-date.is-in-range,
+  .lightpick__day.is-start-date.is-in-range.is-flipped {
+    border-radius: 0;
+    color: var(--color-white);
+  }
+  .lightpick__day.is-next-month,
+  .lightpick__day.is-previous-month,
+  .lightpick__day.is-disabled {
+    opacity: 1;
+    color: rgba(0, 0, 0, 0.4);
+  }
+  .lightpick__days {
+    display: grid !important;
+    grid-template-columns: repeat(7, 1fr) !important;
+    border-top: 1px solid #e0e0e0 !important;
+    border-left: 1px solid #e0e0e0 !important;
+  }
+
+  .lightpick__day {
+    margin: 0 !important;
+    border: none !important;
+    box-shadow: 1px 1px 0 0 #e0e0e0 !important;
+  }
+  .lightpick__day.is-end-date,
+  .lightpick__day.is-end-date:hover,
+  .lightpick__day.is-start-date,
+  .lightpick__day.is-start-date:hover,
+  .lightpick__day:not(.is-disabled):hover {
+    background-image: none;
+    background-color: var(--color-gold);
+    color: var(--color-white);
+    font-weight: bold;
+  }
+  .lightpick__day--empty {
+    margin: 0 !important;
+    border: none !important;
+    box-shadow: 1px 1px 0 0 #e0e0e0 !important;
+  }
+  .lightpick__days {
+    display: grid !important;
+    grid-template-columns: repeat(7, 1fr) !important;
+    border-top: 1px solid #e0e0e0 !important;
+    border-left: 1px solid #e0e0e0 !important;
+  }
+
+  .lightpick__days > * {
+    margin: 0 !important;
+    border: none !important;
+    box-shadow: 1px 1px 0 0 #e0e0e0 !important;
+  }
+}
+// .daterangepicker {
+//   & > * {
+//     font-family: var(--font-body);
+//   }
+// }
+// .daterangepicker th.month {
+//   font-family: var(--font-heading);
+//   font-size: 16px;
+// }
+// .daterangepicker td.active,
+// .daterangepicker td.active:hover {
+//   background-color: var(--color-gold) !important;
+//   border-radius: 0;
+// }
+// .daterangepicker .calendar-table th,
+// .daterangepicker .calendar-table td {
+//   width: 36px;
+//   height: 36px;
+// }
+// .daterangepicker td.in-range {
+//   background-color: rgba(179, 156, 121, 0.2);
+// }
+// .daterangepicker td.off,
+// .daterangepicker td.off.in-range,
+// .daterangepicker td.off.start-date,
+// .daterangepicker td.off.end-date {
+//   background-color: transparent !important;
+// }
+// /* Border cho tất cả các ô ngày trong daterangepicker */
+// .daterangepicker .calendar-table td {
+//   border: 1px solid #9ca3af !important; /* Màu border nhạt */
+//   height: 36px;
+//   vertical-align: middle;
+// }
+
+// /* Border cho header ngày (Su, Mo, Tu...) */
+// .daterangepicker .calendar-table th {
+//   border-bottom: 1px solid #9ca3af !important;
+//   padding: 8px 0;
+// }
+
+// /* Làm nổi bật border khi hover và active */
+// .daterangepicker .calendar-table td:hover {
+//   border-color: #9ca3af !important;
+// }
+
+// .daterangepicker .calendar-table td.active,
+// .daterangepicker .calendar-table td.in-range {
+//   border-color: #9ca3af !important; /* Màu xanh nổi bật */
+// }
+//

@@ -17,7 +17,9 @@
   <link rel="stylesheet" href="./assets/libs/bootstrap.min.css" />
   <link rel="stylesheet" href="./assets/libs/lenis.css" />
   <link rel="stylesheet" href="./assets/libs/swiper-bundle.min.css" />
+  <link rel="stylesheet" href="./assets/libs/lightpick.min.css">
   <link rel="stylesheet" href="./assets/libs/daterangepicker.css">
+
   <!-- end meta -->
   <!-- link custom css page -->
   <link rel="stylesheet" href="./assets/fonts/VNF-Optima/font.css">
@@ -92,7 +94,7 @@
   <main>
     <section class="hero">
       <!-- option slider -->
-      <div class="hero-slider">
+      <div class="hero-slider ">
         <div class="swiper swiper-hero">
           <div class="swiper-wrapper">
             <div class="swiper-slide overflow-hidden">
@@ -129,8 +131,80 @@
           </div>
         </div>
       </div>
+      <!-- option video -->
+      <div class="video d-none">
+        <iframe title="vimeo-player"
+          src="https://player.vimeo.com/video/1082441138?h=9ec1257b5f&controls=0&autoplay=1&loop=1&muted=1&playsinline=1"
+          width="640" height="360" frameborder="0" allowfullscreen></iframe>
+      </div>
+      <!-- end option video -->
+      <!-- booking -->
+      <div class="booking-form">
+        <div class="booking-form-container">
+          <form action="">
+            <div class="booking-item d-flex align-items-center">
+              <div class="icon">
+                <img src="./assets/images/use/icon-calendar.svg" alt="">
+              </div>
+              <div class="booking-field">
+                <label for="">Check-in</label>
+                <input type="text" id="startDate" name="startDate" readonly />
+              </div>
+            </div>
+            <div class="booking-item d-flex align-items-center">
+              <div class="icon">
+                <img src="./assets/images/use/icon-calendar.svg" alt="">
+              </div>
+              <div class="booking-field">
+                <label for="">Check-out</label>
+                <input type="text" id="endDate" name="endDate" readonly />
+              </div>
+            </div>
+            <div class="booking-item d-flex align-items-center">
+              <div class="icon">
+                <img src="./assets/images/use/icon-user.svg" alt="">
+              </div>
+              <div class="booking-field">
+                <label for="">Guests</label>
+                <div class="select-people">
+                  <div class="select-people-wrapper d-flex align-items-center gap-2">
+
+                    <div class="label">
+                      <span class="adult-value">1</span> Adult,
+                      <span class="child-value">0</span> Children
+                    </div>
+                  </div>
+                  <div class="select-box">
+                    <div class="adult">
+                      <div class="label">Adult</div>
+                      <div class="select">
+                        <div class="min">-</div>
+                        <div class="val">1</div>
+                        <div class="plus">+</div>
+                      </div>
+                    </div>
+                    <div class="child">
+                      <div class="label">Children</div>
+                      <div class="select">
+                        <div class="min">-</div>
+                        <div class="val">0</div>
+                        <div class="plus">+</div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="booking-item d-flex align-items-center">
+              <button>Book now</button>
+            </div>
+          </form>
+        </div>
+      </div>
+      <!-- booking -->
     </section>
     <!-- <input type="text" name="date"> -->
+    <div class="spacing" style="height:100vh"></div>
   </main>
   <!-- layout -->
   <!-- footer -->
@@ -156,6 +230,7 @@
   <script src="./assets/libs/swiper-bundle.min.js"></script>
   <script src="./assets/libs/moment.min.js"></script>
   <script src="./assets/libs/daterangepicker.min.js"></script>
+  <script src="./assets/libs/lightpick.min.js"></script>
   <!-- import custom js -->
   <script type="module" src="./assets/main/js/script.min.js"></script>
 
