@@ -252,6 +252,80 @@ function heroSection() {
     },
   });
 }
+function readMore() {
+  const btnViewMore = document.querySelector(".intro .btn-read-more");
+  if (!btnViewMore) return;
+  const moreContent = document.querySelector(".intro-description-more");
+  if (!moreContent) return;
+
+  const textMore = btnViewMore.dataset.readMore;
+  const textLess = btnViewMore.dataset.readLess;
+  const duration = 300;
+
+  // Khởi tạo text ban đầu
+  btnViewMore.textContent = textMore;
+
+  function checkScreenSize() {
+    const windowWidth = window.innerWidth;
+
+    if (windowWidth >= 768 && windowWidth <= 991) {
+      moreContent.classList.add("is-open");
+      moreContent.style.height = "auto";
+      moreContent.style.overflow = "visible";
+      btnViewMore.style.display = "none";
+    } else {
+      btnViewMore.style.display = "";
+
+      if (!moreContent.classList.contains("is-open")) {
+        moreContent.style.overflow = "hidden";
+        moreContent.style.height = "0";
+        moreContent.style.transition = `height ${duration}ms ease`;
+      }
+    }
+  }
+
+  checkScreenSize();
+  window.addEventListener("resize", checkScreenSize);
+
+  btnViewMore.addEventListener("click", function (e) {
+    e.preventDefault();
+
+    const windowWidth = window.innerWidth;
+    if (windowWidth >= 768 && windowWidth <= 991) return;
+
+    const isOpen = moreContent.classList.contains("is-open");
+    btnViewMore.classList.toggle("active");
+
+    if (!isOpen) {
+      // OPEN
+      moreContent.classList.add("is-open");
+      const fullHeight = moreContent.scrollHeight;
+      moreContent.style.overflow = "hidden";
+      moreContent.style.transition = `height ${duration}ms ease`;
+      moreContent.style.height = fullHeight + "px";
+
+      setTimeout(() => {
+        moreContent.style.height = "auto";
+      }, duration);
+
+      btnViewMore.textContent = textLess; // ✅
+    } else {
+      // CLOSE
+      const currentHeight = moreContent.scrollHeight;
+      moreContent.style.height = currentHeight + "px";
+      moreContent.offsetHeight; // force reflow
+      moreContent.style.transition = `height ${duration}ms ease`;
+      moreContent.style.height = "0";
+
+      setTimeout(() => {
+        moreContent.classList.remove("is-open");
+      }, duration);
+
+      btnViewMore.textContent = textMore; // ✅
+    }
+  });
+}
+
 const init = () => {
   gsap.registerPlugin(ScrollTrigger);
   customDropdown();
@@ -260,6 +334,7 @@ const init = () => {
   heroSection();
   getTime();
   initGuestSelector();
+  readMore();
 };
 document.addEventListener("DOMContentLoaded", () => {
   init();
