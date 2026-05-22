@@ -29,6 +29,10 @@
     li {
       gap: 8px;
     }
+
+    ul {
+      gap: 4px;
+    }
   }
 
   &-social {
@@ -69,7 +73,7 @@
 
     ul {
       display: grid;
-      gap: 8px 50px;
+      gap: 8px 20px;
       grid-template-columns: repeat(4, 1fr);
     }
   }
@@ -109,7 +113,6 @@
           background-color: var(--color-dark-blue);
           padding: 0 8px;
         }
-
         &:focus-visible,
         &:not(:placeholder-shown) {
           & + label {
