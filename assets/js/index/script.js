@@ -366,7 +366,78 @@ function imageZoom() {
     },
   );
 }
+function sliderDining() {
+  if (!document.querySelector(".dining-swiper")) return;
 
+  const titleService = document.querySelectorAll(
+    ".dining-list-title .dining-title",
+  );
+  let activeElms = titleService[0];
+
+  function setActiveTitle(index) {
+    if (activeElms) activeElms.classList.remove("active");
+    activeElms = titleService[index];
+    if (activeElms) activeElms.classList.add("active");
+  }
+
+  const swiperService = new Swiper(".dining-swiper", {
+    effect: "fade",
+    // slidesPerView: 1,
+    // spaceBetween: 0,
+    loop: true,
+    speed: 1500,
+
+    on: {
+      slideChange: function () {
+        setActiveTitle(this.realIndex);
+      },
+    },
+  });
+
+  setActiveTitle(0);
+
+  titleService.forEach((el, index) => {
+    el.addEventListener("mouseover", function () {
+      swiperService.slideToLoop(index);
+      setActiveTitle(index);
+    });
+  });
+
+  const allSplitLines = [];
+  // titleService.forEach((el) => {
+  //   const split = new SplitText(el, {
+  //     type: "lines",
+  //     linesClass: "line",
+  //     mask: "lines",
+  //   });
+  //   allSplitLines.push(...split.lines);
+  //   gsap.set(split.lines, { yPercent: 100 });
+  // });
+
+  // ScrollTrigger.create({
+  //   trigger: ".amigo-service-wrapper",
+  //   start: "top 70%",
+  //   once: true,
+  //   onEnter: () => {
+  //     if (swiperEl) {
+  //       gsap.to(swiperEl, {
+  //         autoAlpha: 1,
+  //         y: 0,
+  //         ease: "power2.out",
+  //         duration: 0.8,
+  //       });
+  //     }
+
+  //     gsap.to(allSplitLines, {
+  //       yPercent: 0,
+  //       ease: "power3.out",
+  //       duration: 0.8,
+  //       stagger: 0.1,
+  //       delay: 0.2,
+  //     });
+  //   },
+  // });
+}
 const init = () => {
   gsap.registerPlugin(ScrollTrigger);
   customDropdown();
@@ -378,6 +449,7 @@ const init = () => {
   initGuestSelector();
   readMore();
   imageZoom();
+  sliderDining();
 };
 document.addEventListener("DOMContentLoaded", () => {
   init();
