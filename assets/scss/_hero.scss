@@ -2,7 +2,7 @@ section.hero {
   position: relative;
   width: 100%;
   height: 100svh;
-  overflow: hidden;
+
   &::before {
     content: "";
     position: absolute;
@@ -18,6 +18,11 @@ section.hero {
     opacity: 0.5;
     z-index: 2;
     pointer-events: none;
+  }
+  .hero-inner {
+    width: 100%;
+    height: 100svh;
+    overflow: hidden;
   }
   .hero-slider {
     width: 100%;

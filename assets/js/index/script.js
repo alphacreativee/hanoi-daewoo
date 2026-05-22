@@ -2,7 +2,7 @@ import {
   customDropdown,
   createFilterTab,
   sliderParallax,
-  initGuestSelector
+  initGuestSelector,
 } from "../../main/js/global.min.js";
 ("use strict");
 $ = jQuery;
@@ -42,15 +42,15 @@ function getTime() {
       nextMonth: "Tháng sau",
       tooltip: {
         one: "ngày",
-        other: "ngày"
+        other: "ngày",
       },
       button: {
         prev: "&#8249;",
         next: "&#8250;",
         close: "&#10005;",
         reset: "Xoá",
-        apply: "Áp dụng"
-      }
+        apply: "Áp dụng",
+      },
     },
     onSelect: function (start, end) {
       if (start) {
@@ -75,7 +75,26 @@ function getTime() {
           pickerEl.style.top = rect.bottom + window.scrollY + 8 + "px";
         }
       }
-    }
+    },
+  });
+
+  gsap.registerPlugin(ScrollTrigger);
+
+  const container = document.querySelector(".booking-form-container");
+  const selectBox = document.querySelector(".select-box");
+  if (!container || !selectBox) return;
+
+  ScrollTrigger.create({
+    trigger: container,
+    start: "bottom center", // bottom của container chạm center viewport
+    end: "top top", // top của container chạm top viewport
+
+    onEnter: () => selectBox.classList.add("is-bottom"), // scroll xuống vào vùng
+    onLeave: () => selectBox.classList.remove("is-bottom"), // scroll xuống qua vùng
+    onEnterBack: () => selectBox.classList.add("is-bottom"), // scroll lên vào vùng
+    onLeaveBack: () => selectBox.classList.remove("is-bottom"), // scroll lên khỏi vùng
+
+    // markers: true, // bật để debug
   });
 }
 
@@ -167,8 +186,8 @@ function headerScroll() {
       start: "top -10px",
       end: "+=100",
       onEnter: () => header.classList.add("header-theme-light-active"),
-      onLeaveBack: () => header.classList.remove("header-theme-light-active")
-    }
+      onLeaveBack: () => header.classList.remove("header-theme-light-active"),
+    },
   });
   // let lastScroll = 0;
 
@@ -212,7 +231,7 @@ function heroSection() {
     // },
     navigation: {
       nextEl: ".swiper-button-next",
-      prevEl: ".swiper-button-prev"
+      prevEl: ".swiper-button-prev",
     },
     on: {
       progress: function (swiper) {
@@ -249,8 +268,8 @@ function heroSection() {
             slideInner.style.transition = speed + "ms " + easing;
           }
         });
-      }
-    }
+      },
+    },
   });
 }
 function readMore() {
@@ -342,9 +361,9 @@ function imageZoom() {
       scrollTrigger: {
         trigger: imageZoom,
         start: "top 70%",
-        end: "top 70%"
-      }
-    }
+        end: "top 70%",
+      },
+    },
   );
 }
 

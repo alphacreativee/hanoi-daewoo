@@ -350,18 +350,6 @@ body {
 .booking-form .booking-field input[type=number] {
   width: 35px;
 }
-.booking-form .select-people .select-box {
-  top: 100%;
-  transform: translateY(0);
-  margin-top: 18px;
-  border-radius: 0 0 12px 12px;
-}
-@media (max-width: 991px) {
-  .booking-form .select-people .select-box {
-    margin-top: 12px;
-    padding: 12px;
-  }
-}
 .booking-form .select-people {
   position: relative;
 }
@@ -371,17 +359,23 @@ body {
   left: 0;
   width: 200px;
   background-color: var(--color-white);
-  margin-top: -20px;
+  margin-top: -35px;
   padding: 24px;
   display: flex;
   flex-direction: column;
   gap: 8px;
-  border-radius: 12px 12px 0 0;
+  border-radius: 0;
   opacity: 0;
   visibility: hidden;
   transition: all 0.3s ease;
   transform: translateY(-100%);
   z-index: 3;
+}
+.booking-form .select-people .select-box.is-bottom {
+  top: 100%;
+  transform: translateY(0);
+  margin-top: 11px;
+  border-radius: 0;
 }
 @media (max-width: 991px) {
   .booking-form .select-people .select-box {
@@ -439,6 +433,21 @@ body {
   box-shadow: none;
   border-radius: 0;
   padding: 12px;
+}
+.lightpick .lightpick__months {
+  gap: 0;
+  border-radius: 0;
+}
+.lightpick .lightpick__next-action,
+.lightpick .lightpick__previous-action {
+  font-size: 0;
+  background-image: url("../../images/use/icon-arrow.svg");
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: 15%;
+}
+.lightpick .lightpick__previous-action {
+  transform: rotate(180deg);
 }
 .lightpick > * {
   font-family: var(--font-body);
@@ -1006,7 +1015,6 @@ section.hero {
   position: relative;
   width: 100%;
   height: 100svh;
-  overflow: hidden;
 }
 section.hero::before {
   content: "";
@@ -1019,6 +1027,11 @@ section.hero::before {
   opacity: 0.5;
   z-index: 2;
   pointer-events: none;
+}
+section.hero .hero-inner {
+  width: 100%;
+  height: 100svh;
+  overflow: hidden;
 }
 section.hero .hero-slider {
   width: 100%;
