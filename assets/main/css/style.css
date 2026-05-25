@@ -1099,6 +1099,14 @@ section.hero .hero-slider {
   width: 100%;
   height: 100%;
 }
+section.hero .hero-slider-image {
+  height: 100svh;
+}
+section.hero .hero-slider-image img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
 section.hero .swiper-arrow {
   margin-top: -24px;
   width: auto;
@@ -1147,7 +1155,7 @@ section.hero .video iframe {
   max-height: 85px;
 }
 .moreInfo-container {
-  padding: 60px 40px;
+  padding: 120px 40px;
   background-color: var(--color-white);
 }
 .moreInfo-list {
