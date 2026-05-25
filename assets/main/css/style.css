@@ -1479,6 +1479,7 @@ section.hero .video iframe {
   flex-direction: column;
   align-items: flex-end;
   gap: 32px;
+  cursor: pointer;
 }
 .dining .dining-list-title .dining-title {
   opacity: 0.5;
