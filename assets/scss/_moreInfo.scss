@@ -1,4 +1,27 @@
 .moreInfo {
+  &.related-offers {
+    .moreInfo-list {
+      grid-template-columns: repeat(3, 1fr);
+
+      .item-image {
+        aspect-ratio: 440 / 480;
+      }
+
+      .item-content .desc {
+        -webkit-line-clamp: 3;
+        line-clamp: 3;
+      }
+
+      &__item {
+        &:hover {
+          .desc {
+            max-height: 85px;
+          }
+        }
+      }
+    }
+  }
+
   &-container {
     padding: 60px 40px;
     background-color: var(--color-white);

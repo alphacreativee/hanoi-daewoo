@@ -1124,6 +1124,19 @@ section.hero .video iframe {
   object-fit: cover;
 }
 
+.moreInfo.related-offers .moreInfo-list {
+  grid-template-columns: repeat(3, 1fr);
+}
+.moreInfo.related-offers .moreInfo-list .item-image {
+  aspect-ratio: 440/480;
+}
+.moreInfo.related-offers .moreInfo-list .item-content .desc {
+  -webkit-line-clamp: 3;
+  line-clamp: 3;
+}
+.moreInfo.related-offers .moreInfo-list__item:hover .desc {
+  max-height: 85px;
+}
 .moreInfo-container {
   padding: 60px 40px;
   background-color: var(--color-white);
