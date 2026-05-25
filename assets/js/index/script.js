@@ -429,18 +429,18 @@ function animationText() {
     const tlTextFour = el.querySelectorAll(".tl-text-four");
     const tlTextFive = el.querySelectorAll(".tl-text-five");
 
-    [tlTextOne, tlTextTwo, tlTextThree, tlTextFour, tlTextFive].forEach(
-      (group) => {
-        if (group.length) gsap.set(group, { y: 20, opacity: 0 });
-      },
-    );
+    // [tlTextOne, tlTextTwo, tlTextThree, tlTextFour, tlTextFive].forEach(
+    //   (group) => {
+    //     if (group.length) gsap.set(group, { y: 20, opacity: 0 });
+    //   },
+    // );
 
     const tl = gsap.timeline({
       scrollTrigger: {
         trigger: el,
         start: "top 65%",
         once: true,
-        markers: true,
+        // markers: true,
       },
     });
 
@@ -448,7 +448,7 @@ function animationText() {
     const animTo = {
       y: 0,
       opacity: 1,
-      duration: 0.8,
+      duration: 0.6,
       ease: "power2.out",
     };
 
@@ -465,28 +465,68 @@ function accommodationSlider() {
 
   $(".accommodations-slider").each(function () {
     const $slider = $(this);
-
     const nextBtn = $slider.find(".swiper-button-next")[0];
     const prevBtn = $slider.find(".swiper-button-prev")[0];
     const pagination = $slider.find(".swiper-pagination")[0];
+    const sliderEl = this;
 
-    new Swiper(this, {
+    function resetSlideText(slide) {
+      const groups = [
+        slide.querySelectorAll(".ac-text-one"),
+        slide.querySelectorAll(".ac-text-two"),
+        slide.querySelectorAll(".ac-text-three"),
+        slide.querySelectorAll(".ac-text-four"),
+        slide.querySelectorAll(".ac-text-five"),
+      ];
+      groups.forEach((group) => {
+        if (group.length) gsap.set(group, { y: 20, opacity: 0 });
+      });
+    }
+
+    function animateSlideText(slide) {
+      const acTextOne = slide.querySelectorAll(".ac-text-one");
+      const acTextTwo = slide.querySelectorAll(".ac-text-two");
+      const acTextThree = slide.querySelectorAll(".ac-text-three");
+      const acTextFour = slide.querySelectorAll(".ac-text-four");
+      const acTextFive = slide.querySelectorAll(".ac-text-five");
+
+      const animFrom = { y: 20, opacity: 0 };
+      const animTo = { y: 0, opacity: 1, duration: 0.6, ease: "power2.out" };
+
+      const tl = gsap.timeline();
+      if (acTextOne.length) tl.fromTo(acTextOne, animFrom, animTo);
+      if (acTextTwo.length) tl.fromTo(acTextTwo, animFrom, animTo, "-=0.4");
+      if (acTextThree.length) tl.fromTo(acTextThree, animFrom, animTo, "-=0.4");
+      if (acTextFour.length) tl.fromTo(acTextFour, animFrom, animTo, "-=0.4");
+      if (acTextFive.length) tl.fromTo(acTextFive, animFrom, animTo, "-=0.4");
+    }
+
+    const swiper = new Swiper(this, {
       slidesPerView: 1,
       effect: "fade",
       allowTouchMove: false,
+      fadeEffect: { crossFade: true },
+      pagination: { el: pagination, type: "fraction" },
+      navigation: { nextEl: nextBtn, prevEl: prevBtn },
+      on: {
+        init(swiper) {
+          swiper.slides.forEach((slide) => resetSlideText(slide));
 
-      fadeEffect: {
-        crossFade: true,
-      },
-
-      pagination: {
-        el: pagination,
-        type: "fraction",
-      },
-
-      navigation: {
-        nextEl: nextBtn,
-        prevEl: prevBtn,
+          ScrollTrigger.create({
+            trigger: sliderEl,
+            start: "top 65%",
+            once: true,
+            onEnter: () => {
+              animateSlideText(swiper.slides[swiper.activeIndex]);
+            },
+          });
+        },
+        slideChangeTransitionStart(swiper) {
+          resetSlideText(swiper.slides[swiper.activeIndex]);
+        },
+        slideChangeTransitionEnd(swiper) {
+          animateSlideText(swiper.slides[swiper.activeIndex]);
+        },
       },
     });
   });
