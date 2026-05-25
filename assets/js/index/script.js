@@ -448,7 +448,7 @@ function animationText() {
     const animTo = {
       y: 0,
       opacity: 1,
-      duration: 0.8,
+      duration: 0.6,
       ease: "power2.out",
     };
 
@@ -491,7 +491,7 @@ function accommodationSlider() {
       const acTextFive = slide.querySelectorAll(".ac-text-five");
 
       const animFrom = { y: 20, opacity: 0 };
-      const animTo = { y: 0, opacity: 1, duration: 0.8, ease: "power2.out" };
+      const animTo = { y: 0, opacity: 1, duration: 0.6, ease: "power2.out" };
 
       const tl = gsap.timeline();
       if (acTextOne.length) tl.fromTo(acTextOne, animFrom, animTo);
