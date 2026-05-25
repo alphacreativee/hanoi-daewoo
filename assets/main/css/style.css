@@ -348,6 +348,11 @@ body {
 .booking-form .booking-item:last-child, .booking-form .booking-item:nth-last-child(2) {
   border-right: none;
 }
+.booking-form .booking-field {
+  display: flex;
+  flex-direction: column;
+  gap: 0px;
+}
 .booking-form .booking-field input[type=number] {
   width: 35px;
 }
@@ -622,6 +627,9 @@ body {
   text-transform: uppercase;
   font-weight: 600;
   position: relative;
+}
+.btn-overlay-line.color-gold-hover:hover {
+  color: var(--color-gold);
 }
 .btn-overlay-line:hover::before {
   transform: scaleX(1);

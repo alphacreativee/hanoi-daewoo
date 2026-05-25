@@ -104,6 +104,11 @@ body {
       border-right: none;
     }
   }
+  .booking-field {
+    display: flex;
+    flex-direction: column;
+    gap: 0px;
+  }
   .booking-field input[type="number"] {
     width: 35px;
   }
@@ -454,6 +459,11 @@ body {
   text-transform: uppercase;
   font-weight: 600;
   position: relative;
+  &.color-gold-hover {
+    &:hover {
+      color: var(--color-gold);
+    }
+  }
   &:hover {
     &::before {
       transform: scaleX(1);
