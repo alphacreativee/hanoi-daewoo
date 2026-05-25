@@ -429,12 +429,18 @@ function animationText() {
     const tlTextFour = el.querySelectorAll(".tl-text-four");
     const tlTextFive = el.querySelectorAll(".tl-text-five");
 
+    [tlTextOne, tlTextTwo, tlTextThree, tlTextFour, tlTextFive].forEach(
+      (group) => {
+        if (group.length) gsap.set(group, { y: 20, opacity: 0 });
+      },
+    );
+
     const tl = gsap.timeline({
       scrollTrigger: {
         trigger: el,
-        start: "top 70%",
+        start: "top 65%",
         once: true,
-        // markers: true,
+        markers: true,
       },
     });
 
@@ -442,7 +448,7 @@ function animationText() {
     const animTo = {
       y: 0,
       opacity: 1,
-      duration: 0.6,
+      duration: 0.8,
       ease: "power2.out",
     };
 
@@ -534,9 +540,9 @@ const init = () => {
   readMore();
   imageZoom();
   sliderDining();
-  animationText();
   accommodationSlider();
   eventSlider();
+  animationText();
 };
 document.addEventListener("DOMContentLoaded", () => {
   init();
