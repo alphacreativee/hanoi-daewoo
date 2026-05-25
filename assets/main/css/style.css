@@ -658,6 +658,15 @@ body {
   transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
+.tl-text-one,
+.tl-text-two,
+.tl-text-three,
+.tl-text-four,
+.tl-text-five {
+  opacity: 0;
+  transform: translateY(20px);
+}
+
 #header {
   z-index: 999;
   transition: background-color 0.3s ease, transform 0.3s ease;
