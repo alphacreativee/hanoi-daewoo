@@ -1357,7 +1357,7 @@ section.hero .video iframe {
 .accommodations-main .filter-item .swiper-action {
   display: flex;
   align-items: center;
-  gap: 40px;
+  gap: 16px;
   position: absolute;
   bottom: 0;
   right: 0;
@@ -1608,4 +1608,85 @@ section.hero .video iframe {
   width: 100%;
   height: 100%;
   object-fit: cover;
+}
+
+.event {
+  padding: 120px 0 0px;
+  background-color: rgb(242, 242, 242);
+}
+.event-inner {
+  display: grid;
+  grid-template-columns: 5fr 7fr;
+  position: relative;
+}
+.event-inner::before {
+  content: "";
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background-color: var(--color-white);
+  height: calc(50% + 164px);
+  z-index: 1;
+}
+.event-left {
+  padding-left: 40px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  z-index: 2;
+  padding-right: calc(8.3333333333% + 20px);
+}
+.event-right {
+  min-width: 0;
+  padding-bottom: 50px;
+}
+.event-content {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+.event-content a {
+  width: max-content;
+}
+.event .moreInfo-list__item .item-image {
+  aspect-ratio: 440/560;
+}
+.event .swiper-arrows {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+.event .swiper-arrow-custom {
+  position: static;
+  height: auto;
+  margin: 0;
+}
+.event .swiper-arrow-custom::after {
+  content: unset;
+  font-size: 0;
+}
+.event .swiper-arrow-custom svg {
+  color: var(--color-black);
+}
+.event .swiper-nav {
+  display: flex;
+  align-items: center;
+  gap: 48px;
+  margin-top: 50px;
+  padding-right: 40px;
+}
+.event .swiper-fraction {
+  white-space: nowrap;
+  z-index: 2;
+}
+.event .swiper-pagination {
+  position: static;
+  top: auto;
+  bottom: 0;
+  height: 1px;
+  background-color: rgba(0, 0, 0, 0.2);
+}
+.event .swiper-pagination .swiper-pagination-progressbar-fill {
+  background-color: var(--color-black);
 }
