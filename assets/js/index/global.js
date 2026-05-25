@@ -182,7 +182,7 @@ export function sliderParallax() {
         el: $pagination[0],
         dynamicBullets: true,
         clickable: true,
-        dynamicMainBullets: 5
+        dynamicMainBullets: 1
       },
 
       autoplay: hasAutoplay
