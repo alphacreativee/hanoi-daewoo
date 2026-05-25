@@ -2,7 +2,7 @@ import {
   customDropdown,
   createFilterTab,
   sliderParallax,
-  initGuestSelector
+  initGuestSelector,
 } from "../../main/js/global.min.js";
 ("use strict");
 $ = jQuery;
@@ -42,15 +42,15 @@ function getTime() {
       nextMonth: "Tháng sau",
       tooltip: {
         one: "ngày",
-        other: "ngày"
+        other: "ngày",
       },
       button: {
         prev: "&#8249;",
         next: "&#8250;",
         close: "&#10005;",
         reset: "Xoá",
-        apply: "Áp dụng"
-      }
+        apply: "Áp dụng",
+      },
     },
     onSelect: function (start, end) {
       if (start) {
@@ -75,7 +75,7 @@ function getTime() {
           pickerEl.style.top = rect.bottom + window.scrollY + 8 + "px";
         }
       }
-    }
+    },
   });
 
   gsap.registerPlugin(ScrollTrigger);
@@ -92,7 +92,7 @@ function getTime() {
     onEnter: () => selectBox.classList.add("is-bottom"), // scroll xuống vào vùng
     onLeave: () => selectBox.classList.remove("is-bottom"), // scroll xuống qua vùng
     onEnterBack: () => selectBox.classList.add("is-bottom"), // scroll lên vào vùng
-    onLeaveBack: () => selectBox.classList.remove("is-bottom") // scroll lên khỏi vùng
+    onLeaveBack: () => selectBox.classList.remove("is-bottom"), // scroll lên khỏi vùng
 
     // markers: true, // bật để debug
   });
@@ -186,8 +186,8 @@ function headerScroll() {
       start: "top -10px",
       end: "+=100",
       onEnter: () => header.classList.add("header-theme-light-active"),
-      onLeaveBack: () => header.classList.remove("header-theme-light-active")
-    }
+      onLeaveBack: () => header.classList.remove("header-theme-light-active"),
+    },
   });
 
   // return trigger;
@@ -210,7 +210,7 @@ function heroSection() {
     // },
     navigation: {
       nextEl: ".swiper-button-next",
-      prevEl: ".swiper-button-prev"
+      prevEl: ".swiper-button-prev",
     },
     on: {
       progress: function (swiper) {
@@ -247,8 +247,8 @@ function heroSection() {
             slideInner.style.transition = speed + "ms " + easing;
           }
         });
-      }
-    }
+      },
+    },
   });
 }
 function readMore() {
@@ -256,12 +256,12 @@ function readMore() {
   if (!btnViewMore) return;
   const moreContent = document.querySelector(".intro-description-more");
   if (!moreContent) return;
+  const introRight = document.querySelector(".intro-right");
 
   const textMore = btnViewMore.dataset.readMore;
   const textLess = btnViewMore.dataset.readLess;
   const duration = 300;
 
-  // Khởi tạo text ban đầu
   btnViewMore.textContent = textMore;
 
   function checkScreenSize() {
@@ -298,6 +298,7 @@ function readMore() {
     if (!isOpen) {
       // OPEN
       moreContent.classList.add("is-open");
+      // introRight?.classList.add("sticky-col");
       const fullHeight = moreContent.scrollHeight;
       moreContent.style.overflow = "hidden";
       moreContent.style.transition = `height ${duration}ms ease`;
@@ -307,12 +308,13 @@ function readMore() {
         moreContent.style.height = "auto";
       }, duration);
 
-      btnViewMore.textContent = textLess; // ✅
+      btnViewMore.textContent = textLess;
     } else {
       // CLOSE
+      // introRight?.classList.remove("sticky-col");
       const currentHeight = moreContent.scrollHeight;
       moreContent.style.height = currentHeight + "px";
-      moreContent.offsetHeight; // force reflow
+      moreContent.offsetHeight;
       moreContent.style.transition = `height ${duration}ms ease`;
       moreContent.style.height = "0";
 
@@ -320,7 +322,7 @@ function readMore() {
         moreContent.classList.remove("is-open");
       }, duration);
 
-      btnViewMore.textContent = textMore; // ✅
+      btnViewMore.textContent = textMore;
     }
   });
 }
@@ -340,16 +342,16 @@ function imageZoom() {
       scrollTrigger: {
         trigger: imageZoom,
         start: "top 70%",
-        end: "top 70%"
-      }
-    }
+        end: "top 70%",
+      },
+    },
   );
 }
 function sliderDining() {
   if (!document.querySelector(".dining-swiper")) return;
 
   const titleService = document.querySelectorAll(
-    ".dining-list-title .dining-title"
+    ".dining-list-title .dining-title",
   );
   let activeElms = titleService[0];
 
@@ -369,8 +371,8 @@ function sliderDining() {
     on: {
       slideChange: function () {
         setActiveTitle(this.realIndex);
-      }
-    }
+      },
+    },
   });
 
   setActiveTitle(0);
@@ -431,9 +433,9 @@ function animationText() {
       scrollTrigger: {
         trigger: el,
         start: "top 70%",
-        once: true
+        once: true,
         // markers: true,
-      }
+      },
     });
 
     const animFrom = { y: 20, opacity: 0 };
@@ -441,7 +443,7 @@ function animationText() {
       y: 0,
       opacity: 1,
       duration: 0.6,
-      ease: "power2.out"
+      ease: "power2.out",
     };
 
     if (tlTextOne.length) tl.fromTo(tlTextOne, animFrom, animTo);
@@ -468,18 +470,18 @@ function accommodationSlider() {
       allowTouchMove: false,
 
       fadeEffect: {
-        crossFade: true
+        crossFade: true,
       },
 
       pagination: {
         el: pagination,
-        type: "fraction"
+        type: "fraction",
       },
 
       navigation: {
         nextEl: nextBtn,
-        prevEl: prevBtn
-      }
+        prevEl: prevBtn,
+      },
     });
   });
 }

@@ -13,6 +13,11 @@
   }
   &-right {
     padding-left: 80px;
+    // &.sticky-col {
+    //   height: max-content;
+    //   position: sticky;
+    //   top: 60px;
+    // }
     ul {
       display: flex;
       flex-direction: column;
