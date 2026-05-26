@@ -802,7 +802,7 @@ body {
   display: flex;
   align-items: center;
   justify-content: flex-end;
-  gap: 14px;
+  gap: 24px;
 }
 #header .header-main-menu ul {
   display: flex;
