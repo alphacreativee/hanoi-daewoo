@@ -2,7 +2,7 @@ import {
   customDropdown,
   createFilterTab,
   sliderParallax,
-  initGuestSelector
+  initGuestSelector,
 } from "../../main/js/global.min.js";
 ("use strict");
 $ = jQuery;
@@ -42,15 +42,15 @@ function getTime() {
       nextMonth: "Tháng sau",
       tooltip: {
         one: "ngày",
-        other: "ngày"
+        other: "ngày",
       },
       button: {
         prev: "&#8249;",
         next: "&#8250;",
         close: "&#10005;",
         reset: "Xoá",
-        apply: "Áp dụng"
-      }
+        apply: "Áp dụng",
+      },
     },
     onSelect: function (start, end) {
       if (start) {
@@ -75,7 +75,7 @@ function getTime() {
           pickerEl.style.top = rect.bottom + window.scrollY + 8 + "px";
         }
       }
-    }
+    },
   });
 
   gsap.registerPlugin(ScrollTrigger);
@@ -92,7 +92,7 @@ function getTime() {
     onEnter: () => selectBox.classList.add("is-bottom"), // scroll xuống vào vùng
     onLeave: () => selectBox.classList.remove("is-bottom"), // scroll xuống qua vùng
     onEnterBack: () => selectBox.classList.add("is-bottom"), // scroll lên vào vùng
-    onLeaveBack: () => selectBox.classList.remove("is-bottom") // scroll lên khỏi vùng
+    onLeaveBack: () => selectBox.classList.remove("is-bottom"), // scroll lên khỏi vùng
 
     // markers: true, // bật để debug
   });
@@ -186,8 +186,8 @@ function headerScroll() {
       start: "top -10px",
       end: "+=100",
       onEnter: () => header.classList.add("header-theme-light-active"),
-      onLeaveBack: () => header.classList.remove("header-theme-light-active")
-    }
+      onLeaveBack: () => header.classList.remove("header-theme-light-active"),
+    },
   });
 
   // return trigger;
@@ -210,7 +210,7 @@ function heroSection() {
     // },
     navigation: {
       nextEl: ".swiper-button-next",
-      prevEl: ".swiper-button-prev"
+      prevEl: ".swiper-button-prev",
     },
     on: {
       progress: function (swiper) {
@@ -247,8 +247,8 @@ function heroSection() {
             slideInner.style.transition = speed + "ms " + easing;
           }
         });
-      }
-    }
+      },
+    },
   });
 }
 function readMore() {
@@ -342,16 +342,16 @@ function imageZoom() {
       scrollTrigger: {
         trigger: imageZoom,
         start: "top 70%",
-        end: "top 70%"
-      }
-    }
+        end: "top 70%",
+      },
+    },
   );
 }
 function sliderDining() {
   if (!document.querySelector(".dining-swiper")) return;
 
   const titleService = document.querySelectorAll(
-    ".dining-list-title .dining-title"
+    ".dining-list-title .dining-title",
   );
   let activeElms = titleService[0];
 
@@ -371,8 +371,8 @@ function sliderDining() {
     on: {
       slideChange: function () {
         setActiveTitle(this.realIndex);
-      }
-    }
+      },
+    },
   });
 
   setActiveTitle(0);
@@ -439,9 +439,9 @@ function animationText() {
       scrollTrigger: {
         trigger: el,
         start: "top 65%",
-        once: true
+        once: true,
         // markers: true,
-      }
+      },
     });
 
     const animFrom = { y: 20, opacity: 0 };
@@ -449,7 +449,7 @@ function animationText() {
       y: 0,
       opacity: 1,
       duration: 0.6,
-      ease: "power2.out"
+      ease: "power2.out",
     };
 
     if (tlTextOne.length) tl.fromTo(tlTextOne, animFrom, animTo);
@@ -476,7 +476,7 @@ function accommodationSlider() {
         slide.querySelectorAll(".ac-text-two"),
         slide.querySelectorAll(".ac-text-three"),
         slide.querySelectorAll(".ac-text-four"),
-        slide.querySelectorAll(".ac-text-five")
+        slide.querySelectorAll(".ac-text-five"),
       ];
       groups.forEach((group) => {
         if (group.length) gsap.set(group, { y: 20, opacity: 0 });
@@ -518,7 +518,7 @@ function accommodationSlider() {
             once: true,
             onEnter: () => {
               animateSlideText(swiper.slides[swiper.activeIndex]);
-            }
+            },
           });
         },
         slideChangeTransitionStart(swiper) {
@@ -526,8 +526,8 @@ function accommodationSlider() {
         },
         slideChangeTransitionEnd(swiper) {
           animateSlideText(swiper.slides[swiper.activeIndex]);
-        }
-      }
+        },
+      },
     });
   });
 }
@@ -535,16 +535,15 @@ function eventSlider() {
   if (!document.querySelector(".event-swiper")) return;
 
   var swiperEvent = new Swiper(".event-swiper", {
-    slidesPerView: 1.8,
+    slidesPerView: 2,
     spaceBetween: 40,
-    slidesOffsetAfter: 40,
     pagination: {
       el: ".event-right .swiper-pagination",
-      type: "progressbar"
+      type: "progressbar",
     },
     navigation: {
       nextEl: ".event-right .swiper-button-next",
-      prevEl: ".event-right .swiper-button-prev"
+      prevEl: ".event-right .swiper-button-prev",
     },
     on: {
       init(swiper) {
@@ -553,18 +552,18 @@ function eventSlider() {
       slideChange(swiper) {
         updateFraction(swiper);
       },
-      reachEnd(swiper) {
-        updateFraction(swiper);
-      }
-    }
+    },
   });
 
   function updateFraction(swiper) {
     const el = document.querySelector(".event-right .swiper-fraction");
     if (!el) return;
 
-    const current = swiper.isEnd ? swiper.slides.length : swiper.realIndex + 1;
-    el.textContent = `${current} / ${swiper.slides.length}`;
+    const total = swiper.slides.length;
+    const perView = swiper.params.slidesPerView || 1;
+    const current = swiper.isEnd ? total : swiper.realIndex + perView;
+
+    el.textContent = `${current} / ${total}`;
   }
 }
 function animationAccommodationCard() {
@@ -594,9 +593,9 @@ function animationAccommodationCard() {
           y: 0,
           opacity: 1,
           duration: 0.6,
-          ease: "power2.out"
+          ease: "power2.out",
         });
-      }
+      },
     });
 
     const tl = gsap.timeline({ paused: true });
@@ -611,7 +610,7 @@ function animationAccommodationCard() {
       trigger: card.querySelector(".card-content"),
       start: "top 65%",
       once: true,
-      onEnter: () => tl.play()
+      onEnter: () => tl.play(),
     });
   });
 }
@@ -624,29 +623,29 @@ function header() {
 
   const tl = gsap.timeline({
     paused: true,
-    defaults: { ease: "power2.out" }
+    defaults: { ease: "power2.out" },
   });
 
   tl.from(".header-main--popup__top .logo", {
     x: -20,
     opacity: 0,
     duration: 0.3,
-    delay: 0.1
+    delay: 0.1,
   })
     .from(".header-main--popup > ul > li", {
       x: -20,
       opacity: 0,
       stagger: 0.08,
-      duration: 0.4
+      duration: 0.4,
     })
     .from(
       ".header-main--popup__bottom",
       {
         x: -20,
         opacity: 0,
-        duration: 0.3
+        duration: 0.3,
       },
-      "-=0.2"
+      "-=0.2",
     );
 
   function getScrollbarWidth() {
@@ -700,7 +699,7 @@ function header() {
 
   document.addEventListener("click", (e) => {
     const clickedHamburger = [...btnHambuger].some((btn) =>
-      btn.contains(e.target)
+      btn.contains(e.target),
     );
 
     if (

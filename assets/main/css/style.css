@@ -241,6 +241,7 @@ body {
   -webkit-font-smoothing: auto !important;
   -moz-osx-font-smoothing: grayscale !important;
   font-family: var(--font-body);
+  overflow-x: hidden;
 }
 
 body {
@@ -1777,6 +1778,9 @@ section.hero .video iframe {
   min-width: 0;
   padding-bottom: 60px;
   z-index: 3;
+}
+.event-right .event-slider .swiper {
+  padding-right: 40px;
 }
 .event-content {
   display: flex;
