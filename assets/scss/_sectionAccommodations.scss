@@ -75,6 +75,10 @@
         width: 100%;
         aspect-ratio: 845 / 560;
       }
+
+      .swiper-arrow.arrow-next {
+        right: 40px;
+      }
     }
 
     &-content {
