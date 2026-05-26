@@ -728,6 +728,63 @@ function setOfferDescHeight() {
   });
 }
 
+function animationItemsSection() {
+  const isMobile = $(window).width() < 992;
+
+  const MOVE_Y = 20;
+
+  const TRANSFORM_DURATION = 0.8;
+  const OPACITY_DURATION = 0.6;
+
+  const ITEM_STAGGER = 0.2;
+
+  gsap.utils.toArray("[section-fade-each-item]").forEach((section) => {
+    const items = section.querySelectorAll("[data-fade-item]");
+
+    const isFadeInMobile = section.hasAttribute("enabled-fade-each-mobile");
+
+    if (isMobile && !isFadeInMobile) return;
+
+    gsap.set(items, {
+      y: MOVE_Y,
+      opacity: 0,
+      force3D: true,
+      willChange: "transform, opacity"
+    });
+
+    const tl = gsap.timeline({
+      scrollTrigger: {
+        trigger: section,
+        start: "top 65%",
+        toggleActions: "play none none none",
+        once: true
+      }
+    });
+
+    tl.to(
+      items,
+      {
+        y: 0,
+        duration: TRANSFORM_DURATION,
+        stagger: ITEM_STAGGER,
+        ease: "power3.out",
+        force3D: true
+      },
+      0
+    ).to(
+      items,
+      {
+        opacity: 1,
+        duration: OPACITY_DURATION,
+        stagger: ITEM_STAGGER,
+        ease: "power2.out",
+        clearProps: "willChange"
+      },
+      0
+    );
+  });
+}
+
 const init = () => {
   gsap.registerPlugin(ScrollTrigger);
   customDropdown();
@@ -746,6 +803,7 @@ const init = () => {
   animationAccommodationCard();
   header();
   setOfferDescHeight();
+  animationItemsSection();
 };
 document.addEventListener("DOMContentLoaded", () => {
   init();
