@@ -71,6 +71,11 @@
       opacity: 1 !important;
       visibility: visible !important;
     }
+
+    .header-main--popup,
+    .header-overlay {
+      top: var(--header-top-height);
+    }
   }
   &.without-home {
     .header-top {
@@ -265,6 +270,84 @@
           }
         }
       }
+
+      &--popup {
+        height: 100svh;
+        width: 350px;
+        position: fixed;
+        top: 0;
+        z-index: 10;
+        left: 0;
+
+        background-color: var(--color-white);
+        padding: 40px;
+
+        clip-path: inset(0 100% 0 0);
+        transition: clip-path 0.8s ease;
+
+        display: flex;
+        flex-direction: column;
+
+        &.active {
+          clip-path: inset(0 0 0 0);
+        }
+
+        ul {
+          display: flex;
+          flex-direction: column;
+          gap: 16px;
+          margin-top: 40px;
+
+          .hover-underline-white {
+            &::before {
+              background-color: var(--color-black);
+            }
+          }
+
+          li {
+            &.menu-item-has-children {
+              & > a {
+                display: flex;
+                align-items: center;
+                gap: 10px;
+              }
+
+              .sub-menu {
+                margin-top: 16px;
+                padding-left: 24px;
+
+                overflow: hidden;
+                transition: max-height 0.5s ease;
+              }
+            }
+          }
+        }
+
+        &__top {
+          .header-hamburger {
+            position: absolute;
+            right: 40px;
+            top: 40px;
+
+            span {
+              background-color: var(--color-black);
+            }
+          }
+        }
+
+        &__bottom {
+          margin-top: auto;
+
+          ul {
+            margin-top: 16px;
+            gap: 4px;
+          }
+
+          li {
+            gap: 8px;
+          }
+        }
+      }
     }
     &-lang {
       display: flex;
@@ -370,6 +453,25 @@
         &:nth-child(3) {
           top: 15px;
         }
+      }
+    }
+
+    &-overlay {
+      width: 100vw;
+      height: 100svh;
+      position: fixed;
+      top: 0;
+      left: 0;
+      // background-color: rgba(255, 255, 255, 0.4);
+      background-color: rgba(0, 0, 0, 0.4);
+
+      transition: opacity 0.4s ease;
+      opacity: 0;
+      pointer-events: none;
+
+      &.active {
+        opacity: 1;
+        pointer-events: auto;
       }
     }
   }

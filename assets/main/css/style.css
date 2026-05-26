@@ -715,6 +715,10 @@ body {
   opacity: 1 !important;
   visibility: visible !important;
 }
+#header.header-theme-light-active .header-main--popup,
+#header.header-theme-light-active .header-overlay {
+  top: var(--header-top-height);
+}
 #header.without-home .header-top {
   display: none !important;
 }
@@ -863,6 +867,61 @@ body {
   transform: scaleX(1);
   transform-origin: bottom left;
 }
+#header .header-main--popup {
+  height: 100svh;
+  width: 350px;
+  position: fixed;
+  top: 0;
+  z-index: 10;
+  left: 0;
+  background-color: var(--color-white);
+  padding: 40px;
+  clip-path: inset(0 100% 0 0);
+  transition: clip-path 0.8s ease;
+  display: flex;
+  flex-direction: column;
+}
+#header .header-main--popup.active {
+  clip-path: inset(0 0 0 0);
+}
+#header .header-main--popup ul {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  margin-top: 40px;
+}
+#header .header-main--popup ul .hover-underline-white::before {
+  background-color: var(--color-black);
+}
+#header .header-main--popup ul li.menu-item-has-children > a {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+#header .header-main--popup ul li.menu-item-has-children .sub-menu {
+  margin-top: 16px;
+  padding-left: 24px;
+  overflow: hidden;
+  transition: max-height 0.5s ease;
+}
+#header .header-main--popup__top .header-hamburger {
+  position: absolute;
+  right: 40px;
+  top: 40px;
+}
+#header .header-main--popup__top .header-hamburger span {
+  background-color: var(--color-black);
+}
+#header .header-main--popup__bottom {
+  margin-top: auto;
+}
+#header .header-main--popup__bottom ul {
+  margin-top: 16px;
+  gap: 4px;
+}
+#header .header-main--popup__bottom li {
+  gap: 8px;
+}
 #header .header-lang {
   display: flex;
   align-items: center;
@@ -960,6 +1019,21 @@ body {
 }
 #header .header-hamburger span:nth-child(3) {
   top: 15px;
+}
+#header .header-overlay {
+  width: 100vw;
+  height: 100svh;
+  position: fixed;
+  top: 0;
+  left: 0;
+  background-color: rgba(0, 0, 0, 0.4);
+  transition: opacity 0.4s ease;
+  opacity: 0;
+  pointer-events: none;
+}
+#header .header-overlay.active {
+  opacity: 1;
+  pointer-events: auto;
 }
 
 .footer-container {
@@ -1262,7 +1336,7 @@ section.hero .video iframe {
   margin-top: 16px;
 }
 .weddings-list__item .item-content .title {
-  transition: all 0.4s ease;
+  transition: color 0.4s ease;
 }
 .weddings-list__item .item-content .title:hover {
   color: var(--color-gold);
