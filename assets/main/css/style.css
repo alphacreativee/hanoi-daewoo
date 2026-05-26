@@ -412,7 +412,9 @@ body {
 }
 .booking-form .select-people .select-box .select .min:hover,
 .booking-form .select-people .select-box .select .plus:hover {
-  opacity: 0.4;
+  border-color: var(--color-gold);
+  background-color: var(--color-gold);
+  color: var(--color-white);
 }
 .booking-form .select-people .select-box .select .val {
   width: 10px;
@@ -1772,6 +1774,7 @@ section.hero .video iframe {
 .event-right {
   min-width: 0;
   padding-bottom: 60px;
+  z-index: 3;
 }
 .event-content {
   display: flex;
