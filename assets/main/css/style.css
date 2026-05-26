@@ -1686,14 +1686,12 @@ section.hero .video iframe {
   top: 60px;
 }
 .accommodationPage .filter-section-result {
-  padding: 0 40px;
-}
-.accommodationPage .filter-item {
   display: flex;
   flex-wrap: wrap;
   gap: 60px 40px;
+  padding: 0 40px;
 }
-.accommodationPage .filter-item .accommodationCard {
+.accommodationPage .filter-section-result .accommodationCard {
   width: calc((100% - 40px) / 2);
 }
 

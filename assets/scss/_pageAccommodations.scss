@@ -24,13 +24,10 @@
   }
 
   .filter-section-result {
-    padding: 0 40px;
-  }
-
-  .filter-item {
     display: flex;
     flex-wrap: wrap;
     gap: 60px 40px;
+    padding: 0 40px;
 
     .accommodationCard {
       width: calc(calc(100% - 40px) / 2);
