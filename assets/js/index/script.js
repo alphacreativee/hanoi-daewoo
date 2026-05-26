@@ -535,9 +535,8 @@ function eventSlider() {
   if (!document.querySelector(".event-swiper")) return;
 
   var swiperEvent = new Swiper(".event-swiper", {
-    slidesPerView: 1.8,
+    slidesPerView: 2,
     spaceBetween: 40,
-    slidesOffsetAfter: 40,
     pagination: {
       el: ".event-right .swiper-pagination",
       type: "progressbar"
@@ -552,9 +551,6 @@ function eventSlider() {
       },
       slideChange(swiper) {
         updateFraction(swiper);
-      },
-      reachEnd(swiper) {
-        updateFraction(swiper);
       }
     }
   });
@@ -563,8 +559,11 @@ function eventSlider() {
     const el = document.querySelector(".event-right .swiper-fraction");
     if (!el) return;
 
-    const current = swiper.isEnd ? swiper.slides.length : swiper.realIndex + 1;
-    el.textContent = `${current} / ${swiper.slides.length}`;
+    const total = swiper.slides.length;
+    const perView = swiper.params.slidesPerView || 1;
+    const current = swiper.isEnd ? total : swiper.realIndex + perView;
+
+    el.textContent = `${current} / ${total}`;
   }
 }
 function animationAccommodationCard() {
