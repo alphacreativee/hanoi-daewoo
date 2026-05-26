@@ -614,6 +614,55 @@ function animationAccommodationCard() {
     });
   });
 }
+function animationWeddingItem() {
+  const items = document.querySelectorAll(".weddings-list__item");
+  if (!items.length) return;
+
+  gsap.registerPlugin(ScrollTrigger);
+
+  items.forEach((item) => {
+    const media = item.querySelector(".item-media");
+    const title = item.querySelector(".item-content .title");
+    const desc = item.querySelector(".item-content .desc");
+
+    const contentEls = [title, desc].filter(Boolean);
+
+    // Set trạng thái ban đầu
+    gsap.set(media, { y: 30, opacity: 0 });
+    gsap.set(contentEls, { y: 20, opacity: 0 });
+
+    // Animate media
+    ScrollTrigger.create({
+      trigger: media,
+      start: "top 65%",
+      once: true,
+      onEnter: () => {
+        gsap.to(media, {
+          y: 0,
+          opacity: 1,
+          duration: 0.8,
+          ease: "power2.out",
+        });
+      },
+    });
+
+    // Animate content dùng stagger thay vì timeline
+    ScrollTrigger.create({
+      trigger: item.querySelector(".item-content"),
+      start: "top 65%",
+      once: true,
+      onEnter: () => {
+        gsap.to(contentEls, {
+          y: 0,
+          opacity: 1,
+          duration: 0.7,
+          ease: "power2.out",
+          stagger: 0.15, // delay nhẹ giữa các el, không bị overlap cứng
+        });
+      },
+    });
+  });
+}
 function header() {
   const btnHambuger = document.querySelectorAll(".header-hamburger");
   const headerMenu = document.querySelector(".header-main--popup");
@@ -745,6 +794,7 @@ const init = () => {
   animationAccommodationCard();
   header();
   setOfferDescHeight();
+  animationWeddingItem();
 };
 document.addEventListener("DOMContentLoaded", () => {
   init();
