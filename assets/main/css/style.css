@@ -788,6 +788,11 @@ body {
   gap: 0 40px;
   transition: background-color 0.3s ease;
 }
+@media (max-width: 767px) {
+  #header .header-main {
+    grid-template-columns: 1fr auto;
+  }
+}
 #header .header-main--left {
   gap: 0 24px;
 }
@@ -1079,6 +1084,16 @@ body {
 .footer-top {
   padding: 40px 40px 32px;
 }
+@media (max-width: 767px) {
+  .footer-top {
+    padding: 40px 24px 32px;
+  }
+}
+@media (max-width: 767px) {
+  .footer-info {
+    margin-top: 24px;
+  }
+}
 .footer-info__title {
   margin-bottom: 12px;
 }
@@ -1088,8 +1103,18 @@ body {
 .footer-info ul {
   gap: 4px;
 }
+@media (max-width: 767px) {
+  .footer-social {
+    margin-top: 24px;
+  }
+}
 .footer-social__title {
   margin-bottom: 40px;
+}
+@media (max-width: 767px) {
+  .footer-social__title {
+    margin-bottom: 12px;
+  }
 }
 .footer-social ul {
   gap: 16px;
@@ -1104,6 +1129,11 @@ body {
   padding: 32px 40px;
   position: relative;
 }
+@media (max-width: 767px) {
+  .footer-menu {
+    padding: 32px 24px;
+  }
+}
 .footer-menu::before {
   content: "";
   background-color: var(--color-gray);
@@ -1114,10 +1144,31 @@ body {
   left: 50%;
   transform: translateX(-50%);
 }
+@media (max-width: 767px) {
+  .footer-menu::before {
+    width: calc(100% - 48px);
+  }
+}
 .footer-menu ul {
   display: grid;
   gap: 8px 20px;
   grid-template-columns: repeat(4, 1fr);
+}
+@media (max-width: 991px) {
+  .footer-menu ul {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+@media (max-width: 480px) {
+  .footer-menu ul {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 12px 20px;
+  }
+}
+@media (max-width: 767px) {
+  .footer-newsletter {
+    margin-top: 24px;
+  }
 }
 .footer-newsletter__title {
   margin-bottom: 12px;
@@ -1182,6 +1233,16 @@ body {
 .footer-bottom {
   padding: 15px 40px;
   background-color: var(--color-black);
+}
+@media (max-width: 767px) {
+  .footer-bottom {
+    padding: 15px 24px;
+  }
+}
+@media (max-width: 767px) {
+  .footer-bottom .footer-copyright {
+    margin-top: 16px;
+  }
 }
 
 section.hero {
@@ -1351,11 +1412,17 @@ section.hero .video iframe {
 .weddings-list {
   display: flex;
   align-items: flex-start;
+  flex-wrap: wrap;
   gap: 40px;
   margin-top: 60px;
 }
 .weddings-list__item {
   width: calc((100% - 40px) / 2);
+}
+@media (max-width: 767px) {
+  .weddings-list__item {
+    width: 100%;
+  }
 }
 .weddings-list__item .item-media .swiper {
   width: 100%;
@@ -1365,6 +1432,11 @@ section.hero .video iframe {
   margin: 24px auto 0;
   width: 100%;
   max-width: 66%;
+}
+@media (max-width: 767px) {
+  .weddings-list__item .item-content {
+    max-width: 100%;
+  }
 }
 .weddings-list__item .item-content .desc {
   margin-top: 16px;
@@ -1382,6 +1454,11 @@ section.hero .video iframe {
 .intro-grid {
   display: grid;
   grid-template-columns: 7fr 5fr;
+}
+@media (max-width: 767px) {
+  .intro-grid {
+    grid-template-columns: 1fr;
+  }
 }
 .intro-heading {
   margin-bottom: 40px;

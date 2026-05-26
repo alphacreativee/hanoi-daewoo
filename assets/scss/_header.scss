@@ -166,7 +166,11 @@
       align-items: center;
       gap: 0 40px;
       transition: background-color 0.3s ease;
-      // background-color: red;
+
+      @media (max-width: 767px) {
+        grid-template-columns: 1fr auto;
+      }
+
       &--left {
         gap: 0 24px;
         .col-space {
