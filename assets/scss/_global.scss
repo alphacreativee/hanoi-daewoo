@@ -3,6 +3,11 @@ body {
   background-color: #f2f2f2;
 }
 
+&::selection {
+  background-color: var(--color-dark-blue);
+  color: var(--color-white);
+}
+
 .btn-global {
   display: inline-block;
   padding: 10px 20px;
