@@ -12,7 +12,7 @@
       left: 0;
       right: 0;
       background-color: var(--color-white);
-      height: calc(50% + 164px);
+      height: calc(50% + 184px);
       z-index: 1;
     }
   }
@@ -27,7 +27,7 @@
   }
   &-right {
     min-width: 0;
-    padding-bottom: 50px;
+    padding-bottom: 60px;
     // padding-bottom: 50px;
   }
   &-content {
@@ -62,7 +62,7 @@
     display: flex;
     align-items: center;
     gap: 48px;
-    margin-top: 50px;
+    margin-top: 60px;
     padding-right: 40px;
   }
   .swiper-fraction {

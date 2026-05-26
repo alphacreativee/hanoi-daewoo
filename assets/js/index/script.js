@@ -567,7 +567,54 @@ function eventSlider() {
     el.textContent = `${current} / ${swiper.slides.length}`;
   }
 }
+function animationAccommodationCard() {
+  const cards = document.querySelectorAll(".accommodationCard");
+  if (!cards.length) return;
 
+  gsap.registerPlugin(ScrollTrigger);
+
+  cards.forEach((card) => {
+    const media = card.querySelector(".card-media");
+    const title = card.querySelector(".card-content .title");
+    const info = card.querySelector(".card-content .info");
+    const desc = card.querySelector(".card-content .desc");
+    const cta = card.querySelector(".card-content .cta");
+
+    const contentEls = [title, info, desc, cta].filter(Boolean);
+
+    gsap.set(media, { y: 20, opacity: 0 });
+    gsap.set(contentEls, { y: 20, opacity: 0 });
+
+    ScrollTrigger.create({
+      trigger: media,
+      start: "top 65%",
+      once: true,
+      onEnter: () => {
+        gsap.to(media, {
+          y: 0,
+          opacity: 1,
+          duration: 0.6,
+          ease: "power2.out"
+        });
+      }
+    });
+
+    const tl = gsap.timeline({ paused: true });
+    const animFrom = { y: 20, opacity: 0 };
+    const animTo = { y: 0, opacity: 1, duration: 0.6, ease: "power2.out" };
+
+    contentEls.forEach((el) => {
+      tl.fromTo(el, animFrom, animTo, "-=0.4");
+    });
+
+    ScrollTrigger.create({
+      trigger: card.querySelector(".card-content"),
+      start: "top 65%",
+      once: true,
+      onEnter: () => tl.play()
+    });
+  });
+}
 function header() {
   const btnHambuger = document.querySelectorAll(".header-hamburger");
   const headerMenu = document.querySelector(".header-main--popup");
@@ -681,6 +728,7 @@ const init = () => {
   accommodationSlider();
   eventSlider();
   animationText();
+  animationAccommodationCard();
   header();
 };
 document.addEventListener("DOMContentLoaded", () => {

@@ -1597,7 +1597,7 @@ section.hero .video iframe {
   max-width: 66.6666666667%;
 }
 .accommodationCard .title {
-  transition: all 0.4s ease;
+  transition: color 0.4s ease;
 }
 .accommodationCard .title:hover {
   color: var(--color-gold);
@@ -1726,7 +1726,7 @@ section.hero .video iframe {
   left: 0;
   right: 0;
   background-color: var(--color-white);
-  height: calc(50% + 164px);
+  height: calc(50% + 184px);
   z-index: 1;
 }
 .event-left {
@@ -1739,7 +1739,7 @@ section.hero .video iframe {
 }
 .event-right {
   min-width: 0;
-  padding-bottom: 50px;
+  padding-bottom: 60px;
 }
 .event-content {
   display: flex;
@@ -1773,7 +1773,7 @@ section.hero .video iframe {
   display: flex;
   align-items: center;
   gap: 48px;
-  margin-top: 50px;
+  margin-top: 60px;
   padding-right: 40px;
 }
 .event .swiper-fraction {

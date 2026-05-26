@@ -2,218 +2,218 @@
 <html lang="en">
 
 <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>accommodations - Hanoi Daewoo</title>
-    <!-- import favicon -->
-    <link rel="icon" href="./assets/images/use/favicon.svg" type="image/x-icon" />
-    <!-- meta -->
-    <meta property="og:url" content="" />
-    <meta property="og:type" content="website" />
-    <meta property="og:title" content="" />
-    <meta property="og:description" content="" />
-    <meta property="og:image" content="" />
-    <!-- meta -->
-    <link rel="stylesheet" href="./assets/libs/bootstrap.min.css" />
-    <link rel="stylesheet" href="./assets/libs/lenis.css" />
-    <link rel="stylesheet" href="./assets/libs/swiper-bundle.min.css" />
-    <link rel="stylesheet" href="./assets/libs/lightpick.min.css">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>accommodations - Hanoi Daewoo</title>
+  <!-- import favicon -->
+  <link rel="icon" href="./assets/images/use/favicon.svg" type="image/x-icon" />
+  <!-- meta -->
+  <meta property="og:url" content="" />
+  <meta property="og:type" content="website" />
+  <meta property="og:title" content="" />
+  <meta property="og:description" content="" />
+  <meta property="og:image" content="" />
+  <!-- meta -->
+  <link rel="stylesheet" href="./assets/libs/bootstrap.min.css" />
+  <link rel="stylesheet" href="./assets/libs/lenis.css" />
+  <link rel="stylesheet" href="./assets/libs/swiper-bundle.min.css" />
+  <link rel="stylesheet" href="./assets/libs/lightpick.min.css">
 
 
 
-    <!-- end meta -->
-    <!-- link custom css page -->
-    <link rel="stylesheet" href="./assets/fonts/VNF-Optima/font.css">
-    <link rel="stylesheet" href="./assets/fonts/OpenSans/font.css">
-    <link rel="stylesheet" href="./assets/main/css/style.min.css" />
-    <!-- end link custom css page -->
-    <!-- scrollRestoration -->
-    <script>
-        if ("scrollRestoration" in history) {
-            history.scrollRestoration = "manual";
-        }
-    </script>
+  <!-- end meta -->
+  <!-- link custom css page -->
+  <link rel="stylesheet" href="./assets/fonts/VNF-Optima/font.css">
+  <link rel="stylesheet" href="./assets/fonts/OpenSans/font.css">
+  <link rel="stylesheet" href="./assets/main/css/style.min.css" />
+  <!-- end link custom css page -->
+  <!-- scrollRestoration -->
+  <script>
+    if ("scrollRestoration" in history) {
+      history.scrollRestoration = "manual";
+    }
+  </script>
 </head>
 
 <body>
-    <!-- layout -->
-    <!-- header -->
-    <script>
-        fetch("./components/header.html")
-            .then((response) => response.text())
-            .then((data) => {
-                document.getElementById("header").innerHTML = data;
-                const currentPath = window.location.pathname || "/";
+  <!-- layout -->
+  <!-- header -->
+  <script>
+    fetch("./components/header.html")
+      .then((response) => response.text())
+      .then((data) => {
+        document.getElementById("header").innerHTML = data;
+        const currentPath = window.location.pathname || "/";
 
-                const navLinks = document.querySelectorAll(
-                    ".header-main-menu ul>li>a"
-                );
-                navLinks.forEach((link) => {
-                    const linkPath = link.getAttribute("href");
+        const navLinks = document.querySelectorAll(
+          ".header-main-menu ul>li>a"
+        );
+        navLinks.forEach((link) => {
+          const linkPath = link.getAttribute("href");
 
-                    // Normalize paths for comparison
-                    let normalizedCurrentPath = currentPath;
-                    let normalizedLinkPath = linkPath;
+          // Normalize paths for comparison
+          let normalizedCurrentPath = currentPath;
+          let normalizedLinkPath = linkPath;
 
-                    // Remove leading "./" from link path
-                    if (normalizedLinkPath.startsWith("./")) {
-                        normalizedLinkPath = normalizedLinkPath.substring(1);
-                    }
+          // Remove leading "./" from link path
+          if (normalizedLinkPath.startsWith("./")) {
+            normalizedLinkPath = normalizedLinkPath.substring(1);
+          }
 
-                    // Get the last segment of the path
-                    const currentSegment = normalizedCurrentPath.split("/").pop() || "";
-                    const linkSegment = normalizedLinkPath.split("/").pop() || "";
+          // Get the last segment of the path
+          const currentSegment = normalizedCurrentPath.split("/").pop() || "";
+          const linkSegment = normalizedLinkPath.split("/").pop() || "";
 
-                    // Check if current path is root or ends with /
-                    const isRootPath =
-                        currentPath === "/" ||
-                        currentPath.endsWith("/") ||
-                        currentSegment === "";
+          // Check if current path is root or ends with /
+          const isRootPath =
+            currentPath === "/" ||
+            currentPath.endsWith("/") ||
+            currentSegment === "";
 
-                    // Check if link is home/index
-                    const isHomeLink =
-                        linkPath === "/" ||
-                        linkPath === "./" ||
-                        linkPath === "./index.html" ||
-                        linkPath === "index.html" ||
-                        linkSegment === "index.html";
+          // Check if link is home/index
+          const isHomeLink =
+            linkPath === "/" ||
+            linkPath === "./" ||
+            linkPath === "./index.html" ||
+            linkPath === "index.html" ||
+            linkSegment === "index.html";
 
-                    // Match logic
-                    const isMatch =
-                        normalizedLinkPath === normalizedCurrentPath || // Exact match
-                        currentSegment === linkSegment || // Segment match
-                        (isRootPath && isHomeLink) || // Root path matches home link
-                        (currentPath.endsWith(normalizedLinkPath) &&
-                            normalizedLinkPath !== "/");
+          // Match logic
+          const isMatch =
+            normalizedLinkPath === normalizedCurrentPath || // Exact match
+            currentSegment === linkSegment || // Segment match
+            (isRootPath && isHomeLink) || // Root path matches home link
+            (currentPath.endsWith(normalizedLinkPath) &&
+              normalizedLinkPath !== "/");
 
-                    if (isMatch) {
-                        link.classList.add("active");
-                    }
-                });
-            });
+          if (isMatch) {
+            link.classList.add("active");
+          }
+        });
+      });
 
-    </script>
-    <!-- add thêm class without-home -->
-    <header id="header" class="position-fixed top-0 start-0 end-0 w-100 without-home"></header>
-    <!-- end header -->
-    <main>
-        <section class="hero">
-            <div class="hero-inner">
-                <!-- option slider -->
-                <div class="hero-slider ">
-                    <div class="swiper swiper-hero">
-                        <div class="swiper-wrapper">
-                            <div class="swiper-slide overflow-hidden">
-                                <div class="hero-slider-image">
-                                    <img src="./assets/images/draf/img-4.webp" alt="">
-                                </div>
-                            </div>
-
-
-                        </div>
-                        <div class="swiper-arrows">
-                            <div class="swiper-button-next swiper-arrow">
-                                <svg width="9" height="33" viewBox="0 0 9 33" fill="none"
-                                    xmlns="http://www.w3.org/2000/svg">
-                                    <path d="M0.447266 0.223602L8.44726 16.2236L0.447267 32.2236" stroke="white" />
-                                </svg>
-                            </div>
-                            <div class="swiper-button-prev swiper-arrow">
-                                <svg width="9" height="33" viewBox="0 0 9 33" fill="none"
-                                    xmlns="http://www.w3.org/2000/svg">
-                                    <path d="M8.55859 0.223602L0.558594 16.2236L8.55859 32.2236" stroke="white" />
-                                </svg>
-                            </div>
-                        </div>
-                    </div>
+  </script>
+  <!-- add thêm class without-home -->
+  <header id="header" class="position-fixed top-0 start-0 end-0 w-100 without-home"></header>
+  <!-- end header -->
+  <main>
+    <section class="hero">
+      <div class="hero-inner">
+        <!-- option slider -->
+        <div class="hero-slider ">
+          <div class="swiper swiper-hero">
+            <div class="swiper-wrapper">
+              <div class="swiper-slide overflow-hidden">
+                <div class="hero-slider-image">
+                  <img src="./assets/images/draf/img-4.webp" alt="">
                 </div>
-                <!-- option video -->
-                <div class="video d-none">
-                    <iframe title="vimeo-player"
-                        src="https://player.vimeo.com/video/1082441138?h=9ec1257b5f&controls=0&autoplay=1&loop=1&muted=1&playsinline=1"
-                        width="640" height="360" frameborder="0" allowfullscreen></iframe>
-                </div>
-                <!-- end option video -->
+              </div>
+
 
             </div>
-            <!-- booking -->
-            <div class="booking-form">
-                <div class="booking-form-container">
-                    <form action="">
-                        <div class="booking-item d-flex align-items-center">
-                            <div class="icon">
-                                <img src="./assets/images/use/icon-calendar.svg" alt="">
-                            </div>
-                            <div class="booking-field">
-                                <label for="">Check-in</label>
-                                <input type="text" id="startDate" name="startDate" readonly />
-                            </div>
-                        </div>
-                        <div class="booking-item d-flex align-items-center">
-                            <div class="icon">
-                                <img src="./assets/images/use/icon-calendar.svg" alt="">
-                            </div>
-                            <div class="booking-field">
-                                <label for="">Check-out</label>
-                                <input type="text" id="endDate" name="endDate" readonly />
-                            </div>
-                        </div>
-                        <div class="booking-item d-flex align-items-center">
-                            <div class="icon">
-                                <img src="./assets/images/use/icon-user.svg" alt="">
-                            </div>
-                            <div class="booking-field">
-                                <label for="">Guests</label>
-                                <div class="select-people">
-                                    <div class="select-people-wrapper d-flex align-items-center gap-2">
-
-                                        <div class="label">
-                                            <span class="adult-value">1</span> Adult,
-                                            <span class="child-value">0</span> Children
-                                        </div>
-                                    </div>
-                                    <div class="select-box">
-                                        <div class="adult">
-                                            <div class="label">Adult</div>
-                                            <div class="select">
-                                                <div class="min">-</div>
-                                                <div class="val">1</div>
-                                                <div class="plus">+</div>
-                                            </div>
-                                        </div>
-                                        <div class="child">
-                                            <div class="label">Children</div>
-                                            <div class="select">
-                                                <div class="min">-</div>
-                                                <div class="val">0</div>
-                                                <div class="plus">+</div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="booking-item d-flex align-items-center">
-                            <button>Book now</button>
-                        </div>
-                    </form>
-                </div>
+            <div class="swiper-arrows">
+              <div class="swiper-button-next swiper-arrow">
+                <svg width="9" height="33" viewBox="0 0 9 33" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <path d="M0.447266 0.223602L8.44726 16.2236L0.447267 32.2236" stroke="white" />
+                </svg>
+              </div>
+              <div class="swiper-button-prev swiper-arrow">
+                <svg width="9" height="33" viewBox="0 0 9 33" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <path d="M8.55859 0.223602L0.558594 16.2236L8.55859 32.2236" stroke="white" />
+                </svg>
+              </div>
             </div>
-            <!-- booking -->
-        </section>
-        <section class="accommodationPage">
-            <div class="section-title limit-width-6-col text-center">
-                    <h2 class="title heading-1 font-heading color-black">
-                        Elegantly Stylish, Light-filled Rooms
-                    </h2>
-                    <div class="desc b1-font color-black">
-                        Hanoi Daewoo Hotel offers 411 well-appointed rooms, ranging from the refined comfort of our Deluxe Rooms to the palatial Royal Suite. All our Hanoi accommodation are stylishly decorated, featuring elegant wooden furnishings 
+          </div>
+        </div>
+        <!-- option video -->
+        <div class="video d-none">
+          <iframe title="vimeo-player"
+            src="https://player.vimeo.com/video/1082441138?h=9ec1257b5f&controls=0&autoplay=1&loop=1&muted=1&playsinline=1"
+            width="640" height="360" frameborder="0" allowfullscreen></iframe>
+        </div>
+        <!-- end option video -->
+
+      </div>
+      <!-- booking -->
+      <div class="booking-form">
+        <div class="booking-form-container">
+          <form action="">
+            <div class="booking-item d-flex align-items-center">
+              <div class="icon">
+                <img src="./assets/images/use/icon-calendar.svg" alt="">
+              </div>
+              <div class="booking-field">
+                <label for="">Check-in</label>
+                <input type="text" id="startDate" name="startDate" readonly />
+              </div>
+            </div>
+            <div class="booking-item d-flex align-items-center">
+              <div class="icon">
+                <img src="./assets/images/use/icon-calendar.svg" alt="">
+              </div>
+              <div class="booking-field">
+                <label for="">Check-out</label>
+                <input type="text" id="endDate" name="endDate" readonly />
+              </div>
+            </div>
+            <div class="booking-item d-flex align-items-center">
+              <div class="icon">
+                <img src="./assets/images/use/icon-user.svg" alt="">
+              </div>
+              <div class="booking-field">
+                <label for="">Guests</label>
+                <div class="select-people">
+                  <div class="select-people-wrapper d-flex align-items-center gap-2">
+
+                    <div class="label">
+                      <span class="adult-value">1</span> Adult,
+                      <span class="child-value">0</span> Children
                     </div>
+                  </div>
+                  <div class="select-box">
+                    <div class="adult">
+                      <div class="label">Adult</div>
+                      <div class="select">
+                        <div class="min">-</div>
+                        <div class="val">1</div>
+                        <div class="plus">+</div>
+                      </div>
+                    </div>
+                    <div class="child">
+                      <div class="label">Children</div>
+                      <div class="select">
+                        <div class="min">-</div>
+                        <div class="val">0</div>
+                        <div class="plus">+</div>
+                      </div>
+                    </div>
+                  </div>
                 </div>
-            <div class="accommodationPage-container">
-                
-                <div class="accommodationPage-main">
-                    <div class="filter-section">
+              </div>
+            </div>
+            <div class="booking-item d-flex align-items-center">
+              <button>Book now</button>
+            </div>
+          </form>
+        </div>
+      </div>
+      <!-- booking -->
+    </section>
+    <section class="accommodationPage tl-text">
+      <div class="section-title limit-width-6-col text-center ">
+        <h2 class="title heading-1 font-heading color-black tl-text-one">
+          Elegantly Stylish, Light-filled Rooms
+        </h2>
+        <div class="desc b1-font color-black tl-text-two">
+          Hanoi Daewoo Hotel offers 411 well-appointed rooms, ranging from the refined comfort of our Deluxe Rooms to
+          the palatial Royal Suite. All our Hanoi accommodation are stylishly decorated, featuring elegant wooden
+          furnishings
+        </div>
+      </div>
+      <div class="accommodationPage-container">
+
+        <div class="accommodationPage-main">
+          <div class="filter-section tl-text-three">
             <div class="filter-list-button d-flex align-items-center justify-content-center">
               <div class="filter-button active btn-font color-black text-uppercase hover-underline-black"
                 data-type="all">ALL</div>
@@ -229,134 +229,134 @@
             <div class="filter-item all">
               <div class="accommodationCard">
                 <div class="card-media">
-                    <div class="slider-wrapper wrapper-slider-parallax">
-                          <div class="swiper" slider-parallax slider-arrow slider-pagination>
-                            <div class="swiper-wrapper">
-                              <div class="swiper-slide">
-                                <div class="image">
-                                  <img src="./assets/images/draf/deluxe-1.jpg" alt="" />
-                                </div>
-                              </div>
-                              <div class="swiper-slide">
-                                <div class="image">
-                                  <img src="./assets/images/draf/deluxe-2.jpg" alt="" />
-                                </div>
-                              </div>
-                              <div class="swiper-slide">
-                                <div class="image">
-                                  <img src="./assets/images/draf/deluxe-3.jpg" alt="" />
-                                </div>
-                              </div>
-                            </div>
+                  <div class="slider-wrapper wrapper-slider-parallax">
+                    <div class="swiper" slider-parallax slider-arrow slider-pagination>
+                      <div class="swiper-wrapper">
+                        <div class="swiper-slide">
+                          <div class="image">
+                            <img src="./assets/images/draf/deluxe-1.jpg" alt="" />
                           </div>
-                          <div class="swiper-arrows">
-                            <div class="arrow-prev swiper-arrow">
-                              <svg width="9" height="33" viewBox="0 0 9 33" fill="none"
-                                xmlns="http://www.w3.org/2000/svg">
-                                <path opacity="1" d="M8.55859 0.223633L0.558594 16.2236L8.55859 32.2236"
-                                  stroke="currentColor" />
-                              </svg>
-                            </div>
-                            <div class="arrow-next swiper-arrow">
-                              <svg width="9" height="33" viewBox="0 0 9 33" fill="none"
-                                xmlns="http://www.w3.org/2000/svg">
-                                <path d="M0.447266 0.223633L8.44726 16.2236L0.447267 32.2236" stroke="currentColor" />
-                              </svg>
-                            </div>
-                          </div>
-                          <div class="slider-pagination"></div>
                         </div>
+                        <div class="swiper-slide">
+                          <div class="image">
+                            <img src="./assets/images/draf/deluxe-2.jpg" alt="" />
+                          </div>
+                        </div>
+                        <div class="swiper-slide">
+                          <div class="image">
+                            <img src="./assets/images/draf/deluxe-3.jpg" alt="" />
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="swiper-arrows">
+                      <div class="arrow-prev swiper-arrow">
+                        <svg width="9" height="33" viewBox="0 0 9 33" fill="none" xmlns="http://www.w3.org/2000/svg">
+                          <path opacity="1" d="M8.55859 0.223633L0.558594 16.2236L8.55859 32.2236"
+                            stroke="currentColor" />
+                        </svg>
+                      </div>
+                      <div class="arrow-next swiper-arrow">
+                        <svg width="9" height="33" viewBox="0 0 9 33" fill="none" xmlns="http://www.w3.org/2000/svg">
+                          <path d="M0.447266 0.223633L8.44726 16.2236L0.447267 32.2236" stroke="currentColor" />
+                        </svg>
+                      </div>
+                    </div>
+                    <div class="slider-pagination"></div>
+                  </div>
                 </div>
                 <div class="card-content">
-                    <a class="title font-heading heading-3 color-black" href="./accommodation-detail.html">Deluxe Double</a>
-                        <ul class="info color-black d-flex flex-wrap">
-                          <li class="b2-font fw-regular">
-                            <img src="./assets/images/icons/icon-area.svg" class="icon" alt="">
-                            65m2
-                          </li>
-                          <li class="b2-font fw-regular">
-                            <img src="./assets/images/icons/icon-people.svg" class="icon" alt="">
-                            2 Adults - 2 Children
-                          </li>
-                          <li class="b2-font fw-regular">
-                            <img src="./assets/images/icons/icon-view.svg" class="icon" alt="">
-                            City View
-                          </li>
-                        </ul>
-                        <div class="desc b1-font">Located between the 4th and 13rd floor with sweeping view overlooking the vibrant city, the Deluxe Room features elegant interior décor.</div>
-                        <div class="cta d-flex align-items-center">
-                          <a href="./booking.html" class="btn-font color-gold text-uppercase hover-underline-white">BOOK
-                            NOW</a>
-                          <a href="./accommodation-detail.html"
-                            class="btn-font color-gold text-uppercase hover-underline-white">VIEW details</a>
-                        </div>
-                    
+                  <a class="title font-heading heading-3 color-black" href="./accommodation-detail.html">Deluxe
+                    Double</a>
+                  <ul class="info color-black d-flex flex-wrap">
+                    <li class="b2-font fw-regular">
+                      <img src="./assets/images/icons/icon-area.svg" class="icon" alt="">
+                      65m2
+                    </li>
+                    <li class="b2-font fw-regular">
+                      <img src="./assets/images/icons/icon-people.svg" class="icon" alt="">
+                      2 Adults - 2 Children
+                    </li>
+                    <li class="b2-font fw-regular">
+                      <img src="./assets/images/icons/icon-view.svg" class="icon" alt="">
+                      City View
+                    </li>
+                  </ul>
+                  <div class="desc b1-font">Located between the 4th and 13rd floor with sweeping view overlooking the
+                    vibrant city, the Deluxe Room features elegant interior décor.</div>
+                  <div class="cta d-flex align-items-center">
+                    <a href="./booking.html" class="btn-font color-gold text-uppercase hover-underline-white">BOOK
+                      NOW</a>
+                    <a href="./accommodation-detail.html"
+                      class="btn-font color-gold text-uppercase hover-underline-white">VIEW details</a>
+                  </div>
+
                 </div>
               </div>
               <div class="accommodationCard">
                 <div class="card-media">
-                    <div class="slider-wrapper wrapper-slider-parallax">
-                          <div class="swiper" slider-parallax slider-arrow slider-pagination>
-                            <div class="swiper-wrapper">
-                              <div class="swiper-slide">
-                                <div class="image">
-                                  <img src="./assets/images/draf/deluxe-1.jpg" alt="" />
-                                </div>
-                              </div>
-                              <div class="swiper-slide">
-                                <div class="image">
-                                  <img src="./assets/images/draf/deluxe-2.jpg" alt="" />
-                                </div>
-                              </div>
-                              <div class="swiper-slide">
-                                <div class="image">
-                                  <img src="./assets/images/draf/deluxe-3.jpg" alt="" />
-                                </div>
-                              </div>
-                            </div>
+                  <div class="slider-wrapper wrapper-slider-parallax">
+                    <div class="swiper" slider-parallax slider-arrow slider-pagination>
+                      <div class="swiper-wrapper">
+                        <div class="swiper-slide">
+                          <div class="image">
+                            <img src="./assets/images/draf/deluxe-1.jpg" alt="" />
                           </div>
-                          <div class="swiper-arrows">
-                            <div class="arrow-prev swiper-arrow">
-                              <svg width="9" height="33" viewBox="0 0 9 33" fill="none"
-                                xmlns="http://www.w3.org/2000/svg">
-                                <path opacity="1" d="M8.55859 0.223633L0.558594 16.2236L8.55859 32.2236"
-                                  stroke="currentColor" />
-                              </svg>
-                            </div>
-                            <div class="arrow-next swiper-arrow">
-                              <svg width="9" height="33" viewBox="0 0 9 33" fill="none"
-                                xmlns="http://www.w3.org/2000/svg">
-                                <path d="M0.447266 0.223633L8.44726 16.2236L0.447267 32.2236" stroke="currentColor" />
-                              </svg>
-                            </div>
-                          </div>
-                          <div class="slider-pagination"></div>
                         </div>
+                        <div class="swiper-slide">
+                          <div class="image">
+                            <img src="./assets/images/draf/deluxe-2.jpg" alt="" />
+                          </div>
+                        </div>
+                        <div class="swiper-slide">
+                          <div class="image">
+                            <img src="./assets/images/draf/deluxe-3.jpg" alt="" />
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="swiper-arrows">
+                      <div class="arrow-prev swiper-arrow">
+                        <svg width="9" height="33" viewBox="0 0 9 33" fill="none" xmlns="http://www.w3.org/2000/svg">
+                          <path opacity="1" d="M8.55859 0.223633L0.558594 16.2236L8.55859 32.2236"
+                            stroke="currentColor" />
+                        </svg>
+                      </div>
+                      <div class="arrow-next swiper-arrow">
+                        <svg width="9" height="33" viewBox="0 0 9 33" fill="none" xmlns="http://www.w3.org/2000/svg">
+                          <path d="M0.447266 0.223633L8.44726 16.2236L0.447267 32.2236" stroke="currentColor" />
+                        </svg>
+                      </div>
+                    </div>
+                    <div class="slider-pagination"></div>
+                  </div>
                 </div>
                 <div class="card-content">
-                    <a class="title font-heading heading-3 color-black" href="./accommodation-detail.html">Grand Deluxe Room</a>
-                        <ul class="info color-black d-flex flex-wrap">
-                          <li class="b2-font fw-regular">
-                            <img src="./assets/images/icons/icon-area.svg" class="icon" alt="">
-                            65m2
-                          </li>
-                          <li class="b2-font fw-regular">
-                            <img src="./assets/images/icons/icon-people.svg" class="icon" alt="">
-                            2 Adults - 2 Children
-                          </li>
-                          <li class="b2-font fw-regular">
-                            <img src="./assets/images/icons/icon-view.svg" class="icon" alt="">
-                            City View
-                          </li>
-                        </ul>
-                        <div class="desc b1-font">Providing an average of 34sqm of comfortable living space, the Grand Deluxe Room offers a perfect blend of classical elegance.</div>
-                        <div class="cta d-flex align-items-center">
-                          <a href="./booking.html" class="btn-font color-gold text-uppercase hover-underline-white">BOOK
-                            NOW</a>
-                          <a href="./accommodation-detail.html"
-                            class="btn-font color-gold text-uppercase hover-underline-white">VIEW details</a>
-                        </div>
-                    
+                  <a class="title font-heading heading-3 color-black" href="./accommodation-detail.html">Grand Deluxe
+                    Room</a>
+                  <ul class="info color-black d-flex flex-wrap">
+                    <li class="b2-font fw-regular">
+                      <img src="./assets/images/icons/icon-area.svg" class="icon" alt="">
+                      65m2
+                    </li>
+                    <li class="b2-font fw-regular">
+                      <img src="./assets/images/icons/icon-people.svg" class="icon" alt="">
+                      2 Adults - 2 Children
+                    </li>
+                    <li class="b2-font fw-regular">
+                      <img src="./assets/images/icons/icon-view.svg" class="icon" alt="">
+                      City View
+                    </li>
+                  </ul>
+                  <div class="desc b1-font">Providing an average of 34sqm of comfortable living space, the Grand Deluxe
+                    Room offers a perfect blend of classical elegance.</div>
+                  <div class="cta d-flex align-items-center">
+                    <a href="./booking.html" class="btn-font color-gold text-uppercase hover-underline-white">BOOK
+                      NOW</a>
+                    <a href="./accommodation-detail.html"
+                      class="btn-font color-gold text-uppercase hover-underline-white">VIEW details</a>
+                  </div>
+
                 </div>
               </div>
             </div>
@@ -370,27 +370,29 @@
               <div class="box"></div>
             </div>
           </div>
-                </div>
-            </div>
-        </section>
-        <section class="moreInfo related-offers">
+        </div>
+      </div>
+    </section>
+    <section class="moreInfo related-offers">
       <div class="moreInfo-container">
         <div class="section-title limit-width-6-col text-center">
           <h2 class="title heading-1 font-heading color-black">
             Related Offers
           </h2>
           <div class="desc b1-font color-black">
-            Stay at Hanoi Daewoo Hotel and take advantage of our latest accommodation packages. Book early before offers expire!
+            Stay at Hanoi Daewoo Hotel and take advantage of our latest accommodation packages. Book early before offers
+            expire!
           </div>
         </div>
         <div class="moreInfo-list">
           <a href="#" class="moreInfo-list__item">
             <div class="item-content text-center">
               <div class="title color-white heading-3 font-heading">
-                Hassle-free Package 
+                Hassle-free Package
               </div>
               <div class="desc b1-font color-white">
-                Your journey in Hanoi should be as relaxing as possible, from the moment you book your room to long after you arrive at the hotel. 
+                Your journey in Hanoi should be as relaxing as possible, from the moment you book your room to long
+                after you arrive at the hotel.
               </div>
             </div>
             <div class="item-cta">
@@ -408,7 +410,8 @@
                 Advance Purchase
               </div>
               <div class="desc b1-font color-white">
-                It’s time to plan your next stay to be rewarded with up to 30% off when you book 07 days in advance and up to 33% off when you book 14 days in advance.
+                It’s time to plan your next stay to be rewarded with up to 30% off when you book 07 days in advance and
+                up to 33% off when you book 14 days in advance.
               </div>
             </div>
             <div class="item-cta">
@@ -426,7 +429,8 @@
                 Weekend special
               </div>
               <div class="desc b1-font color-white">
-                Whether it’s a pampered vacation or a weekend getaway, we have got it covered. Reserve your room now to enjoy 35% off on the Best Available Rate.
+                Whether it’s a pampered vacation or a weekend getaway, we have got it covered. Reserve your room now to
+                enjoy 35% off on the Best Available Rate.
               </div>
             </div>
             <div class="item-cta">
@@ -441,40 +445,40 @@
         </div>
       </div>
     </section>
-    </main>
-    <!-- layout -->
-    <!-- footer -->
-    <script>
-        fetch("./components/footer.html")
-            .then((response) => response.text())
-            .then((data) => {
-                document.getElementById("footer").innerHTML = data;
-            });
-    </script>
+  </main>
+  <!-- layout -->
+  <!-- footer -->
+  <script>
+    fetch("./components/footer.html")
+      .then((response) => response.text())
+      .then((data) => {
+        document.getElementById("footer").innerHTML = data;
+      });
+  </script>
 
 
-    <footer id="footer"></footer>
-    <!-- end footer -->
-    <!-- end layout -->
+  <footer id="footer"></footer>
+  <!-- end footer -->
+  <!-- end layout -->
 
-    <footer id="footer"></footer>
-    <!-- end footer -->
-    <!-- end layout -->
+  <footer id="footer"></footer>
+  <!-- end footer -->
+  <!-- end layout -->
 
-    <script src="./assets/libs/jquery-3.7.1.js"></script>
-    <script src="./assets/libs/lenis.min.js"></script>
-    <script src="./assets/libs/gsap.min.js"></script>
-    <script src="./assets/libs/ScrollTrigger.min.js"></script>
-    <script src="./assets/libs/SplitText.min.js"></script>
-    <script src="./assets/libs/bootstrap.bundle.min.js"></script>
-    <script src="./assets/libs/swiper-bundle.min.js"></script>
-    <script src="./assets/libs/moment.min.js"></script>
-    <script src="./assets/libs/daterangepicker.min.js"></script>
-    <script src="./assets/libs/lightpick.min.js"></script>
-    <!-- import custom js -->
-    <script type="module" src="./assets/main/js/script.min.js"></script>
+  <script src="./assets/libs/jquery-3.7.1.js"></script>
+  <script src="./assets/libs/lenis.min.js"></script>
+  <script src="./assets/libs/gsap.min.js"></script>
+  <script src="./assets/libs/ScrollTrigger.min.js"></script>
+  <script src="./assets/libs/SplitText.min.js"></script>
+  <script src="./assets/libs/bootstrap.bundle.min.js"></script>
+  <script src="./assets/libs/swiper-bundle.min.js"></script>
+  <script src="./assets/libs/moment.min.js"></script>
+  <script src="./assets/libs/daterangepicker.min.js"></script>
+  <script src="./assets/libs/lightpick.min.js"></script>
+  <!-- import custom js -->
+  <script type="module" src="./assets/main/js/script.min.js"></script>
 
-    <!-- end import custom js -->
+  <!-- end import custom js -->
 </body>
 
 <!-- end import custom js -->

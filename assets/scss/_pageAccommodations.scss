@@ -61,7 +61,7 @@
   }
 
   .title {
-    transition: all 0.4s ease;
+    transition: color 0.4s ease;
 
     &:hover {
       color: var(--color-gold);
