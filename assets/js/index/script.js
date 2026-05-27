@@ -193,63 +193,46 @@ function headerScroll() {
   // return trigger;
 }
 function heroSection() {
-  if (!document.querySelector(".swiper-hero")) return;
+  if (!document.querySelector(".hero-slider")) return;
 
-  var interleaveOffset = 0.9;
+  $(".hero-slider").each(function () {
+    let $slider = $(this);
 
-  var swiperBanner = new Swiper(".swiper-hero", {
-    loop: true,
-    speed: 2500,
-    grabCursor: false,
-    watchSlidesProgress: true,
-    mousewheelControl: false,
-    keyboardControl: false,
-    allowTouchMove: false,
-    autoplay: {
-      delay: 3500,
-      disableOnInteraction: true
-    },
-    navigation: {
-      nextEl: ".swiper-button-next",
-      prevEl: ".swiper-button-prev"
-    },
-    on: {
-      progress: function (swiper) {
-        if (!swiper?.slides?.length) return;
-
-        swiper.slides.forEach(function (slide) {
-          var slideProgress = slide.progress || 0;
-          var innerOffset = swiper.width * interleaveOffset;
-          var innerTranslate = slideProgress * innerOffset;
-          if (!isNaN(innerTranslate)) {
-            var slideInner = slide.querySelector(".hero-slider-image");
-            if (slideInner) {
-              slideInner.style.transform =
-                "translate3d(" + innerTranslate + "px, 0, 0)";
-            }
-          }
-        });
-      },
-      touchStart: function (swiper) {
-        if (!swiper?.slides?.length) return; // ← thêm
-
-        swiper.slides.forEach(function (slide) {
-          slide.style.transition = "";
-        });
-      },
-      setTransition: function (swiper, speed) {
-        if (!swiper?.slides?.length) return;
-
-        var easing = "cubic-bezier(0.25, 0.1, 0.25, 1)";
-        swiper.slides.forEach(function (slide) {
-          slide.style.transition = speed + "ms " + easing;
-          var slideInner = slide.querySelector(".hero-slider-image");
-          if (slideInner) {
-            slideInner.style.transition = speed + "ms " + easing;
-          }
-        });
-      }
+    let $dataSpeed;
+    let $dataLoop = $slider.attr("data-loop");
+    let $dataAutoplay = $slider.data("autoplay")
+      ? { delay: $slider.data("autoplay") }
+      : $slider.data("autoplay");
+    if ($slider.is("[data-speed]")) {
+      $dataSpeed = $slider.data("speed");
+    } else {
+      $dataSpeed = 900; // by default
     }
+
+    new Swiper($slider[0], {
+      direction: "vertical",
+      speed: $dataSpeed,
+      loop: $dataLoop,
+      autoplay: $dataAutoplay,
+      preloadImages: true,
+      parallax: true,
+      lazy: {
+        loadPrevNext: true
+      },
+      allowTouchMove: false,
+      simulateTouch: false,
+      mousewheel: false,
+      navigation: {
+        nextEl: ".hero .swiper-button-next",
+        prevEl: ".hero .swiper-button-prev"
+      },
+      on: {
+        init: function () {
+          let $this = this;
+          $($this.slides[$this.activeIndex]);
+        }
+      }
+    });
   });
 }
 function readMore() {
