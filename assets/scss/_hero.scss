@@ -66,10 +66,6 @@ section.hero {
     }
   }
 
-  .swiper-slide-active img {
-    transform: scale(1.15);
-  }
-
   .swiper-slide-active img,
   .swiper-slide-duplicate-active img {
     transition-delay: 0s !important;
