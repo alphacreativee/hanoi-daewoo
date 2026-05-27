@@ -2,7 +2,7 @@ import {
   customDropdown,
   createFilterTab,
   sliderParallax,
-  initGuestSelector
+  initGuestSelector,
 } from "../../main/js/global.min.js";
 ("use strict");
 $ = jQuery;
@@ -15,162 +15,166 @@ gsap.ticker.add((time) => {
 
 gsap.ticker.lagSmoothing(0);
 
-function getTime() {
-  const defaultStart = moment().startOf("day");
-  const defaultEnd = moment().startOf("day").add(1, "day");
+// function getTime() {
+//   const defaultStart = moment().startOf("day");
+//   const defaultEnd = moment().startOf("day").add(1, "day");
 
-  // Set giá trị mặc định cho input
-  document.getElementById("startDate").value =
-    defaultStart.format("DD/MM/YYYY");
-  document.getElementById("endDate").value = defaultEnd.format("DD/MM/YYYY");
+//   // Set giá trị mặc định cho input
+//   document.getElementById("startDate").value =
+//     defaultStart.format("DD/MM/YYYY");
+//   document.getElementById("endDate").value = defaultEnd.format("DD/MM/YYYY");
 
-  // Khởi tạo Lightpick
-  var picker = new Lightpick({
-    field: document.getElementById("startDate"),
-    secondField: document.getElementById("endDate"),
-    singleDate: false,
-    autoclose: true,
-    numberOfMonths: 2,
-    numberOfColumns: 2,
-    startDate: defaultStart,
-    endDate: defaultEnd,
-    minDate: moment().startOf("day"),
-    minDays: 2,
-    lang: "vi",
-    i18n: {
-      previousMonth: "Tháng trước",
-      nextMonth: "Tháng sau",
-      tooltip: {
-        one: "ngày",
-        other: "ngày"
-      },
-      button: {
-        prev: "&#8249;",
-        next: "&#8250;",
-        close: "&#10005;",
-        reset: "Xoá",
-        apply: "Áp dụng"
-      }
-    },
-    onSelect: function (start, end) {
-      if (start) {
-        document.getElementById("startDate").value = start.format("DD/MM/YYYY");
-      }
-      if (end) {
-        document.getElementById("endDate").value = end.format("DD/MM/YYYY");
-      }
-    },
-    onOpen: function () {
-      // Điều chỉnh vị trí picker (nếu cần)
-      const field = document.getElementById("startDate");
-      const rect = field.getBoundingClientRect();
-      const spaceBelow = window.innerHeight - rect.bottom;
-      const pickerEl = document.querySelector(".lightpick");
+//   // Khởi tạo Lightpick
+//   var picker = new Lightpick({
+//     field: document.getElementById("startDate"),
+//     secondField: document.getElementById("endDate"),
+//     singleDate: false,
+//     autoclose: true,
+//     numberOfMonths: 2,
+//     numberOfColumns: 2,
+//     startDate: defaultStart,
+//     endDate: defaultEnd,
+//     minDate: moment().startOf("day"),
+//     minDays: 2,
+//     lang: "vi",
+//     i18n: {
+//       previousMonth: "Tháng trước",
+//       nextMonth: "Tháng sau",
+//       tooltip: {
+//         one: "ngày",
+//         other: "ngày",
+//       },
+//       button: {
+//         prev: "&#8249;",
+//         next: "&#8250;",
+//         close: "&#10005;",
+//         reset: "Xoá",
+//         apply: "Áp dụng",
+//       },
+//     },
+//     onSelect: function (start, end) {
+//       if (start) {
+//         document.getElementById("startDate").value = start.format("DD/MM/YYYY");
+//       }
+//       if (end) {
+//         document.getElementById("endDate").value = end.format("DD/MM/YYYY");
+//       }
+//     },
+//     onOpen: function () {
+//       // Điều chỉnh vị trí picker (nếu cần)
+//       const field = document.getElementById("startDate");
+//       const rect = field.getBoundingClientRect();
+//       const spaceBelow = window.innerHeight - rect.bottom;
+//       const pickerEl = document.querySelector(".lightpick");
 
-      if (pickerEl) {
-        if (spaceBelow < 380) {
-          pickerEl.style.top =
-            rect.top + window.scrollY - pickerEl.offsetHeight - 8 + "px";
-        } else {
-          pickerEl.style.top = rect.bottom + window.scrollY + 8 + "px";
-        }
-      }
-    }
-  });
+//       if (pickerEl) {
+//         if (spaceBelow < 380) {
+//           pickerEl.style.top =
+//             rect.top + window.scrollY - pickerEl.offsetHeight - 8 + "px";
+//         } else {
+//           pickerEl.style.top = rect.bottom + window.scrollY + 8 + "px";
+//         }
+//       }
+//     },
+//   });
 
-  gsap.registerPlugin(ScrollTrigger);
+//   gsap.registerPlugin(ScrollTrigger);
 
-  const container = document.querySelector(".booking-form-container");
-  const selectBox = document.querySelector(".select-box");
-  if (!container || !selectBox) return;
+//   const container = document.querySelector(".booking-form-container");
+//   const selectBox = document.querySelector(".select-box");
+//   if (!container || !selectBox) return;
 
-  ScrollTrigger.create({
-    trigger: container,
-    start: "bottom center", // bottom của container chạm center viewport
-    end: "top top", // top của container chạm top viewport
+//   ScrollTrigger.create({
+//     trigger: container,
+//     start: "bottom center", // bottom của container chạm center viewport
+//     end: "top top", // top của container chạm top viewport
 
-    onEnter: () => selectBox.classList.add("is-bottom"), // scroll xuống vào vùng
-    onLeave: () => selectBox.classList.remove("is-bottom"), // scroll xuống qua vùng
-    onEnterBack: () => selectBox.classList.add("is-bottom"), // scroll lên vào vùng
-    onLeaveBack: () => selectBox.classList.remove("is-bottom") // scroll lên khỏi vùng
+//     onEnter: () => selectBox.classList.add("is-bottom"), // scroll xuống vào vùng
+//     onLeave: () => selectBox.classList.remove("is-bottom"), // scroll xuống qua vùng
+//     onEnterBack: () => selectBox.classList.add("is-bottom"), // scroll lên vào vùng
+//     onLeaveBack: () => selectBox.classList.remove("is-bottom"), // scroll lên khỏi vùng
 
-    // markers: true, // bật để debug
-  });
-}
+//     // markers: true, // bật để debug
+//   });
+// }
 
 // document.addEventListener("DOMContentLoaded", function () {
 //   getTime();
 // });
-// function getTime() {
-//   if (!$("#search_checkin, #search_checkout").length) return;
+function getTime() {
+  const defaultStart = moment().startOf("day");
+  const defaultEnd = moment().startOf("day").add(1, "day");
 
-//   const defaultStart = moment().startOf("day");
-//   const defaultEnd = moment().startOf("day").add(1, "day");
+  const localeConfig = {
+    format: "DD/MM/YYYY",
+    separator: " - ",
+    applyLabel: "Áp dụng",
+    cancelLabel: "Huỷ",
+    daysOfWeek: ["CN", "T2", "T3", "T4", "T5", "T6", "T7"],
+    monthNames: [
+      "Tháng 1",
+      "Tháng 2",
+      "Tháng 3",
+      "Tháng 4",
+      "Tháng 5",
+      "Tháng 6",
+      "Tháng 7",
+      "Tháng 8",
+      "Tháng 9",
+      "Tháng 10",
+      "Tháng 11",
+      "Tháng 12",
+    ],
+    firstDay: 1,
+  };
 
-//   $("#search_checkin, #search_checkout").daterangepicker(
-//     {
-//       locale: {
-//         format: "DD-MM-YYYY",
-//         applyLabel: "Áp dụng",
-//         cancelLabel: "Huỷ",
-//       },
-//       alwaysShowCalendars: true,
-//       minDate: moment().startOf("day"),
-//       maxDate: moment().add("months", 1),
-//       autoApply: true,
-//       autoUpdateInput: false,
+  function getDrops() {
+    const rect = document.getElementById("startDate").getBoundingClientRect();
+    return window.innerHeight - rect.bottom < 350 ? "up" : "down";
+  }
 
-//       // Thêm các config mặc định quan trọng
-//       startDate: defaultStart,
-//       endDate: defaultEnd,
-//       linkedCalendars: false, // Khuyến nghị tắt để tránh highlight ngày 31 cả 2 bên
-//       drops: "down",
-//       opens: "right",
-//     },
-//     function (start, end, label) {
-//       const selectedStartDate = start.format("DD-MM-YYYY");
-//       const selectedEndDate = end.format("DD-MM-YYYY");
+  $('input[name="startDate"]').daterangepicker(
+    {
+      opens: "right",
+      drops: getDrops(),
+      autoApply: true,
+      singleDatePicker: false,
+      linkedCalendars: true,
+      minDate: moment().startOf("day"),
+      minSpan: { days: 1 },
+      startDate: defaultStart,
+      endDate: defaultEnd,
+      locale: localeConfig,
+    },
+    function (start, end) {
+      $('input[name="startDate"]').val(start.format("DD/MM/YYYY"));
+      $('input[name="endDate"]').val(end.format("DD/MM/YYYY"));
+    },
+  );
 
-//       $("#search_checkin").val(selectedStartDate);
-//       $("#search_checkout").val(selectedEndDate);
+  // ← Monkey-patch updateElement để picker không bao giờ tự ghi range vào input
+  const picker = $('input[name="startDate"]').data("daterangepicker");
+  picker.updateElement = function () {
+    $('input[name="startDate"]').val(this.startDate.format("DD/MM/YYYY"));
+    $('input[name="endDate"]').val(this.endDate.format("DD/MM/YYYY"));
+  };
 
-//       // Đồng bộ lại cả 2 picker
-//       const checkInPicker = $("#search_checkin").data("daterangepicker");
-//       const checkOutPicker = $("#search_checkout").data("daterangepicker");
+  // Set giá trị mặc định
+  $('input[name="startDate"]').val(defaultStart.format("DD/MM/YYYY"));
+  $('input[name="endDate"]').val(defaultEnd.format("DD/MM/YYYY"));
 
-//       if (checkInPicker) {
-//         checkInPicker.setStartDate(start);
-//         checkInPicker.setEndDate(end);
-//       }
-//       if (checkOutPicker) {
-//         checkOutPicker.setStartDate(start);
-//         checkOutPicker.setEndDate(end);
-//       }
-//     },
-//   );
+  // Click endDate → mở picker của startDate
+  $('input[name="endDate"]').on("click", function () {
+    $('input[name="startDate"]').data("daterangepicker").show();
+  });
 
-//   // === ĐẶT GIÁ TRỊ MẶC ĐỊNH NGAY SAU KHI INIT ===
-//   const startStr = defaultStart.format("DD-MM-YYYY");
-//   const endStr = defaultEnd.format("DD-MM-YYYY");
+  // Re-calc drops khi focus
+  $('input[name="startDate"], input[name="endDate"]').on("focus", function () {
+    const picker = $('input[name="startDate"]').data("daterangepicker");
+    if (picker) picker.drops = getDrops();
+  });
+}
 
-//   $("#search_checkin").val(startStr);
-//   $("#search_checkout").val(endStr);
-
-//   // Đồng bộ giá trị vào picker (rất quan trọng)
-//   setTimeout(() => {
-//     const checkInPicker = $("#search_checkin").data("daterangepicker");
-//     const checkOutPicker = $("#search_checkout").data("daterangepicker");
-
-//     if (checkInPicker) {
-//       checkInPicker.setStartDate(defaultStart);
-//       checkInPicker.setEndDate(defaultEnd);
-//     }
-//     if (checkOutPicker) {
-//       checkOutPicker.setStartDate(defaultStart);
-//       checkOutPicker.setEndDate(defaultEnd);
-//     }
-//   }, 100);
-// }
 function headerScroll() {
   const header = document.getElementById("header");
   const headerTop = document.querySelector(".header-top");
@@ -186,8 +190,8 @@ function headerScroll() {
       start: "top -10px",
       end: "+=100",
       onEnter: () => header.classList.add("header-theme-light-active"),
-      onLeaveBack: () => header.classList.remove("header-theme-light-active")
-    }
+      onLeaveBack: () => header.classList.remove("header-theme-light-active"),
+    },
   });
 
   // return trigger;
@@ -207,11 +211,11 @@ function heroSection() {
     allowTouchMove: false,
     autoplay: {
       delay: 3500,
-      disableOnInteraction: true
+      disableOnInteraction: true,
     },
     navigation: {
       nextEl: ".swiper-button-next",
-      prevEl: ".swiper-button-prev"
+      prevEl: ".swiper-button-prev",
     },
     on: {
       progress: function (swiper) {
@@ -248,8 +252,8 @@ function heroSection() {
             slideInner.style.transition = speed + "ms " + easing;
           }
         });
-      }
-    }
+      },
+    },
   });
 }
 function readMore() {
@@ -343,16 +347,16 @@ function imageZoom() {
       scrollTrigger: {
         trigger: imageZoom,
         start: "top 70%",
-        end: "top 70%"
-      }
-    }
+        end: "top 70%",
+      },
+    },
   );
 }
 function sliderDining() {
   if (!document.querySelector(".dining-swiper")) return;
 
   const titleService = document.querySelectorAll(
-    ".dining-list-title .dining-title"
+    ".dining-list-title .dining-title",
   );
   let activeElms = titleService[0];
 
@@ -372,8 +376,8 @@ function sliderDining() {
     on: {
       slideChange: function () {
         setActiveTitle(this.realIndex);
-      }
-    }
+      },
+    },
   });
 
   setActiveTitle(0);
@@ -440,9 +444,9 @@ function animationText() {
       scrollTrigger: {
         trigger: el,
         start: "top 65%",
-        once: true
+        once: true,
         // markers: true,
-      }
+      },
     });
 
     const animFrom = { y: 20, opacity: 0 };
@@ -450,7 +454,7 @@ function animationText() {
       y: 0,
       opacity: 1,
       duration: 0.6,
-      ease: "power2.out"
+      ease: "power2.out",
     };
 
     if (tlTextOne.length) tl.fromTo(tlTextOne, animFrom, animTo);
@@ -477,7 +481,7 @@ function accommodationSlider() {
         slide.querySelectorAll(".ac-text-two"),
         slide.querySelectorAll(".ac-text-three"),
         slide.querySelectorAll(".ac-text-four"),
-        slide.querySelectorAll(".ac-text-five")
+        slide.querySelectorAll(".ac-text-five"),
       ];
       groups.forEach((group) => {
         if (group.length) gsap.set(group, { y: 20, opacity: 0 });
@@ -519,7 +523,7 @@ function accommodationSlider() {
             once: true,
             onEnter: () => {
               animateSlideText(swiper.slides[swiper.activeIndex]);
-            }
+            },
           });
         },
         slideChangeTransitionStart(swiper) {
@@ -527,8 +531,8 @@ function accommodationSlider() {
         },
         slideChangeTransitionEnd(swiper) {
           animateSlideText(swiper.slides[swiper.activeIndex]);
-        }
-      }
+        },
+      },
     });
   });
 }
@@ -540,11 +544,11 @@ function eventSlider() {
     spaceBetween: 40,
     pagination: {
       el: ".event-right .swiper-pagination",
-      type: "progressbar"
+      type: "progressbar",
     },
     navigation: {
       nextEl: ".event-right .swiper-button-next",
-      prevEl: ".event-right .swiper-button-prev"
+      prevEl: ".event-right .swiper-button-prev",
     },
     on: {
       init(swiper) {
@@ -552,8 +556,8 @@ function eventSlider() {
       },
       slideChange(swiper) {
         updateFraction(swiper);
-      }
-    }
+      },
+    },
   });
 
   function updateFraction(swiper) {
@@ -594,9 +598,9 @@ function animationAccommodationCard() {
           y: 0,
           opacity: 1,
           duration: 0.6,
-          ease: "power2.out"
+          ease: "power2.out",
         });
-      }
+      },
     });
 
     const tl = gsap.timeline({ paused: true });
@@ -611,7 +615,7 @@ function animationAccommodationCard() {
       trigger: card.querySelector(".card-content"),
       start: "top 65%",
       once: true,
-      onEnter: () => tl.play()
+      onEnter: () => tl.play(),
     });
   });
 }
@@ -642,9 +646,9 @@ function animationWeddingItem() {
           y: 0,
           opacity: 1,
           duration: 0.8,
-          ease: "power2.out"
+          ease: "power2.out",
         });
-      }
+      },
     });
 
     // Animate content dùng stagger thay vì timeline
@@ -658,9 +662,9 @@ function animationWeddingItem() {
           opacity: 1,
           duration: 0.7,
           ease: "power2.out",
-          stagger: 0.15 // delay nhẹ giữa các el, không bị overlap cứng
+          stagger: 0.15, // delay nhẹ giữa các el, không bị overlap cứng
         });
-      }
+      },
     });
   });
 }
@@ -673,29 +677,29 @@ function header() {
 
   const tl = gsap.timeline({
     paused: true,
-    defaults: { ease: "power2.out" }
+    defaults: { ease: "power2.out" },
   });
 
   tl.from(".header-main--popup__top .logo", {
     x: -20,
     opacity: 0,
     duration: 0.3,
-    delay: 0.1
+    delay: 0.1,
   })
     .from(".header-main--popup > ul > li", {
       x: -20,
       opacity: 0,
       stagger: 0.08,
-      duration: 0.4
+      duration: 0.4,
     })
     .from(
       ".header-main--popup__bottom",
       {
         x: -20,
         opacity: 0,
-        duration: 0.3
+        duration: 0.3,
       },
-      "-=0.2"
+      "-=0.2",
     );
 
   function getScrollbarWidth() {
@@ -749,7 +753,7 @@ function header() {
 
   document.addEventListener("click", (e) => {
     const clickedHamburger = [...btnHambuger].some((btn) =>
-      btn.contains(e.target)
+      btn.contains(e.target),
     );
 
     if (
@@ -798,7 +802,7 @@ function animationItemsSection() {
       y: MOVE_Y,
       opacity: 0,
       force3D: true,
-      willChange: "transform, opacity"
+      willChange: "transform, opacity",
     });
 
     const tl = gsap.timeline({
@@ -806,8 +810,8 @@ function animationItemsSection() {
         trigger: section,
         start: "top 65%",
         toggleActions: "play none none none",
-        once: true
-      }
+        once: true,
+      },
     });
 
     tl.to(
@@ -817,9 +821,9 @@ function animationItemsSection() {
         duration: TRANSFORM_DURATION,
         stagger: ITEM_STAGGER,
         ease: "power3.out",
-        force3D: true
+        force3D: true,
       },
-      0
+      0,
     ).to(
       items,
       {
@@ -827,9 +831,9 @@ function animationItemsSection() {
         duration: OPACITY_DURATION,
         stagger: ITEM_STAGGER,
         ease: "power2.out",
-        clearProps: "willChange"
+        clearProps: "willChange",
       },
-      0
+      0,
     );
   });
 }
