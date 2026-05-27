@@ -538,6 +538,7 @@ function eventSlider() {
   var swiperEvent = new Swiper(".event-swiper", {
     slidesPerView: 2,
     spaceBetween: 40,
+    speed: 1000,
     pagination: {
       el: ".event-right .swiper-pagination",
       type: "progressbar"
