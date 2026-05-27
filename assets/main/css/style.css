@@ -1270,6 +1270,9 @@ body {
 #header .header-main--popup__bottom li {
   gap: 8px;
 }
+#header .header-book {
+  min-width: max-content;
+}
 #header .header-lang {
   display: flex;
   align-items: center;

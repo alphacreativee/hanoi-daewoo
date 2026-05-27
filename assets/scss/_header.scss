@@ -353,6 +353,9 @@
         }
       }
     }
+    &-book {
+      min-width: max-content;
+    }
     &-lang {
       display: flex;
       align-items: center;
