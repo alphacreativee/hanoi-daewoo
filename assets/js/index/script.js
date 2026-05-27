@@ -242,8 +242,10 @@ function heroSection() {
 function readMore() {
   const btnViewMore = document.querySelector(".intro .btn-read-more");
   if (!btnViewMore) return;
+
   const moreContent = document.querySelector(".intro-description-more");
   if (!moreContent) return;
+
   const introRight = document.querySelector(".intro-right");
 
   const textMore = btnViewMore.dataset.readMore;
