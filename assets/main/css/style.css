@@ -2440,3 +2440,113 @@ body {
   align-items: center;
   gap: 24px;
 }
+
+.wonderfulGallery {
+  position: relative;
+}
+.wonderfulGallery-container {
+  display: grid;
+  grid-template-columns: repeat(12, 1fr);
+  gap: 20px;
+  padding: 80px 40px 120px;
+  position: relative;
+}
+.wonderfulGallery-container::before {
+  content: "";
+  width: 0.5px;
+  height: 100%;
+  background-color: var(--color-black);
+  top: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  position: absolute;
+}
+.wonderfulGallery-container .item-media img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+.wonderfulGallery-container .item-media .text {
+  margin-top: 8px;
+  padding-left: 16px;
+  position: relative;
+  width: max-content;
+}
+.wonderfulGallery-container .item-media .text::before {
+  content: "";
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background-color: var(--color-gold);
+  position: absolute;
+  left: 0;
+  top: 50%;
+  transform: translateY(-50%);
+}
+.wonderfulGallery-container .item-one {
+  width: 66.6666666667%;
+}
+.wonderfulGallery-container .item-one img {
+  width: 100%;
+  aspect-ratio: 440/540;
+  object-fit: cover;
+}
+.wonderfulGallery-container .item-two {
+  width: 66.6666666667%;
+  margin-top: 120px;
+  margin-left: auto;
+}
+.wonderfulGallery-container .item-two img {
+  width: 100%;
+  aspect-ratio: 440/680;
+  object-fit: cover;
+}
+.wonderfulGallery-container .item-three {
+  width: 66.6666666667%;
+}
+.wonderfulGallery-container .item-three img {
+  width: 100%;
+  aspect-ratio: 440/525;
+  object-fit: cover;
+}
+.wonderfulGallery-container .item-four {
+  width: 83.3333333333%;
+  margin-top: 120px;
+}
+.wonderfulGallery-container .item-four img {
+  width: 100%;
+  aspect-ratio: 555/418;
+  object-fit: cover;
+}
+.wonderfulGallery-container .content-left {
+  grid-column: span 5;
+}
+.wonderfulGallery-container .content-left .item-media .text {
+  margin-left: auto;
+}
+.wonderfulGallery-container .content-center {
+  grid-column: span 2;
+}
+.wonderfulGallery-container .content-right {
+  grid-column: span 5;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  align-items: flex-end;
+}
+.wonderfulGallery .content-text {
+  position: absolute;
+  top: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  height: 100%;
+}
+.wonderfulGallery .content-text .title {
+  position: absolute;
+  top: 22%;
+  left: 50%;
+  transform: translateX(-50%);
+  width: max-content;
+  padding: 60px 0;
+  background-color: #f2f2f2;
+}
