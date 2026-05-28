@@ -1035,6 +1035,111 @@ body {
   font-size: 0;
 }
 
+#modalBookingTable .modal-dialog {
+  max-width: 1130px;
+}
+#modalBookingTable .content-box {
+  display: grid;
+  grid-template-columns: 4fr 6fr;
+}
+#modalBookingTable .content-box-left {
+  padding: 48px 48px 80px 48px;
+  border-right: 1px solid rgba(0, 0, 0, 0.2);
+}
+#modalBookingTable .content-box-right {
+  padding: 80px 100px;
+}
+#modalBookingTable .list-field {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 24px 16px;
+}
+#modalBookingTable .list-field .field-item {
+  position: relative;
+}
+#modalBookingTable .list-field .field-item label {
+  position: absolute;
+  left: 16px;
+  top: 50%;
+  transform: translateY(-50%);
+  pointer-events: none;
+  transition: all 0.4s ease;
+}
+#modalBookingTable .list-field .field-item label span {
+  color: #ff0000;
+}
+#modalBookingTable .list-field .field-item .label {
+  transform: translateY(-50%);
+  font-size: 12px;
+  line-height: 14px;
+  top: 0;
+  position: absolute;
+  left: 16px;
+  background-color: var(--color-white);
+  pointer-events: none;
+  padding: 0 8px;
+  z-index: 4;
+}
+#modalBookingTable .list-field .field-item .label span {
+  color: #ff0000;
+}
+#modalBookingTable .list-field .field-item .label .value-select span {
+  font-size: 16px;
+  line-height: 28px;
+}
+#modalBookingTable .list-field .dropdown-custom-select {
+  height: 44px;
+  border: none;
+  border: 1px solid rgba(0, 0, 0, 0.2);
+  color: var(--color-black);
+  padding: 8px 24px;
+  width: 100%;
+  position: relative;
+}
+#modalBookingTable .list-field .dropdown-custom-menu {
+  position: absolute;
+  top: 100%;
+  left: 0;
+  width: 100%;
+  margin-top: 1px;
+  background-color: var(--color-gray);
+  opacity: 0;
+  visibility: hidden;
+  transition: all 0.4s ease;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  padding: 16px 24px;
+}
+#modalBookingTable .list-field .dropdown-custom-menu.dropdown--active {
+  opacity: 1;
+  visibility: visible;
+}
+#modalBookingTable .list-field input {
+  height: 44px;
+  border: none;
+  border: 1px solid rgba(0, 0, 0, 0.2);
+  color: var(--color-black);
+  padding: 8px 24px;
+  width: 100%;
+}
+#modalBookingTable .list-field input + label {
+  color: var(--color-black);
+  background-color: var(--color-white);
+  padding: 0 8px;
+}
+#modalBookingTable .list-field input:focus-visible + label, #modalBookingTable .list-field input:not(:placeholder-shown) + label {
+  transform: translateY(-50%);
+  font-size: 12px;
+  line-height: 14px;
+  top: 0;
+}
+
+.daterangepicker .drp-calendar.left,
+.daterangepicker .drp-calendar.left .calendar-table {
+  padding-right: 0;
+}
+
 #header {
   z-index: 999;
   transition: background-color 0.3s ease, transform 0.3s ease;

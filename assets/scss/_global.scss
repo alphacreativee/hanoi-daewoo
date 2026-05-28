@@ -926,3 +926,116 @@ body {
   content: unset;
   font-size: 0;
 }
+#modalBookingTable {
+  .modal-dialog {
+    max-width: 1130px;
+  }
+  .content-box {
+    display: grid;
+    grid-template-columns: 4fr 6fr;
+    &-left {
+      padding: 48px 48px 80px 48px;
+      border-right: 1px solid rgba(0, 0, 0, 0.2);
+    }
+    &-right {
+      padding: 80px 100px;
+    }
+  }
+  .list-field {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 24px 16px;
+    .field-item {
+      position: relative;
+
+      label {
+        position: absolute;
+        left: 16px;
+        top: 50%;
+        transform: translateY(-50%);
+        pointer-events: none;
+        transition: all 0.4s ease;
+        span {
+          color: #ff0000;
+        }
+      }
+      .label {
+        transform: translateY(-50%);
+        font-size: 12px;
+        line-height: 14px;
+        top: 0;
+        position: absolute;
+        left: 16px;
+        background-color: var(--color-white);
+        pointer-events: none;
+        padding: 0 8px;
+        z-index: 4;
+        span {
+          color: #ff0000;
+        }
+        .value-select {
+          span {
+            font-size: 16px;
+            line-height: 28px;
+          }
+        }
+      }
+    }
+    .dropdown-custom-select {
+      height: 44px;
+      border: none;
+      border: 1px solid rgba(0, 0, 0, 0.2);
+      color: var(--color-black);
+      padding: 8px 24px;
+      width: 100%;
+      position: relative;
+    }
+    .dropdown-custom-menu {
+      position: absolute;
+      top: 100%;
+      left: 0;
+      width: 100%;
+      margin-top: 1px;
+      background-color: var(--color-gray);
+      opacity: 0;
+      visibility: hidden;
+      transition: all 0.4s ease;
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+      padding: 16px 24px;
+      &.dropdown--active {
+        opacity: 1;
+        visibility: visible;
+      }
+    }
+
+    input {
+      height: 44px;
+      border: none;
+      border: 1px solid rgba(0, 0, 0, 0.2);
+      color: var(--color-black);
+      padding: 8px 24px;
+      width: 100%;
+
+      & + label {
+        color: var(--color-black);
+        background-color: var(--color-white);
+        padding: 0 8px;
+      }
+      &:focus-visible,
+      &:not(:placeholder-shown) {
+        & + label {
+          transform: translateY(-50%);
+          font-size: 12px;
+          line-height: 14px;
+          top: 0;
+        }
+      }
+    }
+  }
+}
+.daterangepicker .drp-calendar.left,
+.daterangepicker .drp-calendar.left .calendar-table {
+  padding-right: 0;
+}

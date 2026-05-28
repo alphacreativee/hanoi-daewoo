@@ -310,7 +310,8 @@
                             </div>
                             <div class="list-btn list-detail-four">
                                 <div class="list-btn-item">
-                                    <button class="btn-overlay-line  color-gold-hover ">book a table</button>
+                                    <button class="btn-overlay-line  color-gold-hover " type="button"
+                                        data-bs-toggle="modal" data-bs-target="#modalBookingTable">book a table</button>
                                     <a href="" class="btn-overlay-line  color-gold-hover">menu</a>
                                 </div>
                                 <div class="list-btn-item">
@@ -614,6 +615,110 @@
         </section>
     </main>
     <!-- layout -->
+    <div class="modal fade modal-booking " id="modalBookingTable" aria-hidden="true" tabindex="-1">
+        <div class="modal-dialog modal-dialog-centered d-flex justify-content-center align-items-end flex-column">
+            <div class="modal-close">
+                <button type="button" class="btn-close" data-bs-dismiss="modal">
+
+                </button>
+            </div>
+            <div class="modal-content">
+                <div class="modal-body">
+                    <div class="content-box">
+                        <div class="content-box-left">
+                            <div class="head">
+                                <h3 class="font-heading heading-1 color-black ">Book a table</h3>
+                                <p class="b1-font font-body color-black">Get in touch and tell us more about your event
+                                </p>
+
+                            </div>
+                            <div class="foot">
+                                <ul class="d-flex flex-column">
+                                    <li class="b3-font d-flex align-content-center">
+                                        <div class="icon">
+                                            <img src="./assets/images/icons/icon-location.svg" alt="" />
+                                        </div>
+                                        360 Kim Ma, Giang Vo, Hanoi
+                                    </li>
+                                    <li class="b3-font d-flex align-content-center">
+                                        <div class="icon">
+                                            <img src="./assets/images/icons/icon-phone.svg" alt="" />
+                                        </div>
+                                        <a href="tel:+842438315000" class="hover-underline-white">+84 243 8315 000</a>
+                                    </li>
+                                    <li class="b3-font d-flex align-content-center">
+                                        <div class="icon">
+                                            <img src="./assets/images/icons/icon-mail.svg" alt="" />
+                                        </div>
+                                        <a href="mailto:reservation@daewoohotel.com"
+                                            class="hover-underline-white">reservation@daewoohotel.com</a>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                        <div class="content-box-right">
+                            <form action="">
+                                <div class="list-field">
+                                    <div class="field-item">
+                                        <input type="text" name="firstname" placeholder=" " class="b1-font" />
+                                        <label for="firstname" class="b1-font">First Name<span>*</span></label>
+                                    </div>
+                                    <div class="field-item">
+                                        <input type="text" name="lastname" placeholder=" " class="b1-font" />
+                                        <label for="lastname" class="b1-font">Last Name<span>*</span></label>
+                                    </div>
+                                    <div class="field-item">
+                                        <input type="tel" name="phone" placeholder=" " class="b1-font" />
+                                        <label for="phone" class="b1-font">Phone<span>*</span></label>
+                                    </div>
+                                    <div class="field-item">
+                                        <input type="email" name="email" placeholder=" " class="b1-font" />
+                                        <label for="email" class="b1-font">Email<span>*</span></spab></label>
+                                    </div>
+                                    <div class="field-item">
+                                        <input type="text" name="adult" placeholder=" " class="b1-font" />
+                                        <label for="adult" class="b1-font">Adult<span>*</span></spab></label>
+                                    </div>
+                                    <div class="field-item">
+                                        <input type="text" name="children" placeholder=" " class="b1-font" />
+                                        <label for="children" class="b1-font">Children<span>*</span></spab></label>
+                                    </div>
+                                    <div class="field-item">
+                                        <input type="text" name="date" id="dateBookTable" placeholder=" "
+                                            class="b1-font" />
+                                        <label for="date" class="b1-font">Date<span>*</span></spab></label>
+                                    </div>
+                                    <div class="field-item">
+
+                                        <div class="label">Time<span>*</span></div>
+                                        <div class="dropdown-custom-select z-3" style="z-index: 3">
+                                            <div class="dropdown-custom-btn">
+                                                <div class="value-select dropdown-custom-text color-black">
+                                                    <span>Chọn thời gian</span>
+                                                </div>
+                                                <img src="./assets/images/icons/icon-clock.svg" alt="" />
+                                            </div>
+                                            <div class="dropdown-custom-menu">
+                                                <div class="dropdown-custom-item language-item color-white">
+                                                    <span>10:30</span>
+                                                </div>
+                                                <div class="dropdown-custom-item language-item color-white">
+                                                    <span>11:00</span>
+                                                </div>
+                                                <div class="dropdown-custom-item language-item color-white">
+                                                    <span>11:30</span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
     <!-- footer -->
     <script>
         fetch("./components/footer.html")
