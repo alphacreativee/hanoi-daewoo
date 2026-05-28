@@ -823,7 +823,52 @@ function animationItemsSection() {
     );
   });
 }
+function animationItemRow() {
+  const rowItems = document.querySelectorAll(".list-detail-item");
+  if (!rowItems.length) return;
+  gsap.registerPlugin(ScrollTrigger);
+  rowItems.forEach((item) => {
+    const boxSlider = item.querySelector(".list-detail-image");
+    const listDOne = item.querySelector(".list-detail-one");
+    const listDTwo = item.querySelector(".list-detail-two");
+    const listDThree = item.querySelector(".list-detail-three");
+    const listDFour = item.querySelector(".list-detail-four");
 
+    const contentEls = [listDOne, listDTwo, listDThree, listDFour].filter(
+      Boolean,
+    );
+    gsap.set(boxSlider, { y: 20, opacity: 0 });
+    gsap.set(contentEls, { y: 20, opacity: 0 });
+    ScrollTrigger.create({
+      trigger: boxSlider,
+      start: "top 60%",
+      once: true,
+      // markers: true,
+      onEnter: () => {
+        gsap.to(boxSlider, {
+          y: 0,
+          opacity: 1,
+          duration: 0.6,
+          ease: "power2.out",
+        });
+      },
+    });
+    const tl = gsap.timeline({ paused: true });
+    const animFrom = { y: 20, opacity: 0 };
+    const animTo = { y: 0, opacity: 1, duration: 0.8, ease: "power2.out" };
+
+    contentEls.forEach((el) => {
+      tl.fromTo(el, animFrom, animTo, "-=0.4");
+    });
+
+    ScrollTrigger.create({
+      trigger: item.querySelector(".list-detail-box"),
+      start: "top 50%",
+      once: true,
+      onEnter: () => tl.play(),
+    });
+  });
+}
 const init = () => {
   gsap.registerPlugin(ScrollTrigger);
   customDropdown();
@@ -844,6 +889,7 @@ const init = () => {
   setOfferDescHeight();
   animationWeddingItem();
   animationItemsSection();
+  animationItemRow();
 };
 document.addEventListener("DOMContentLoaded", () => {
   init();
