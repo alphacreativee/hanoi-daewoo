@@ -1,5 +1,6 @@
 :root {
   // font
+  --font-heading-art: "Cormorant Garamond", sans-serif;
   --font-heading: "VNF-Optima", sans-serif;
   --font-body: "Open Sans", sans-serif;
   // color
@@ -12,6 +13,9 @@
   //
 }
 // font variable
+.font-heading-art {
+  font-family: var(--font-heading-art);
+}
 .font-heading {
   font-family: var(--font-heading);
 }

@@ -1,4 +1,5 @@
 :root {
+  --font-heading-art: "Cormorant Garamond", sans-serif;
   --font-heading: "VNF-Optima", sans-serif;
   --font-body: "Open Sans", sans-serif;
   --color-black: #000000;
@@ -7,6 +8,10 @@
   --color-gray: #76787a;
   --color-dark-blue: #1b1c4c;
   --color-gold: #b39c79;
+}
+
+.font-heading-art {
+  font-family: var(--font-heading-art);
 }
 
 .font-heading {
