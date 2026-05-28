@@ -416,8 +416,9 @@ body {
   }
 
   .slider-title {
-    left: 16px;
-    bottom: 16px;
+    left: 50%;
+    bottom: -50px;
+    transform: translateX(-50%);
 
     position: absolute;
     z-index: 3;

@@ -22,6 +22,14 @@
 
   &.has-slider {
     height: 100dvh;
+
+    &.short-banner {
+      height: 640px;
+
+      .hero__image {
+        height: 640px !important;
+      }
+    }
   }
 
   .hero-image {
@@ -64,6 +72,14 @@
         max-height: 100dvh;
       }
     }
+  }
+
+  &__content {
+    position: absolute;
+    z-index: 4;
+    top: calc(50% + 60px - 40px);
+    left: 50%;
+    transform: translate(-50%, -50%);
   }
 
   .swiper-slide-active img,
