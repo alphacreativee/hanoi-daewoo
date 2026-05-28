@@ -25,6 +25,9 @@
   &-container {
     padding: 120px 40px;
     background-color: var(--color-white);
+    &.bgc-body {
+      background-color: #f2f2f2;
+    }
   }
 
   &-list {

@@ -1,5 +1,6 @@
 :root {
   // font
+  --font-heading-art: "Cormorant Garamond", sans-serif;
   --font-heading: "VNF-Optima", sans-serif;
   --font-body: "Open Sans", sans-serif;
   // color
@@ -7,16 +8,23 @@
   --color-white: #ffffff;
   --color-blue: #003c77;
   --color-gray: #76787a;
-  --color-dark-blue: #1b1c4c;
+  --color-dark-blue: #000000;
   --color-gold: #b39c79;
   //
 }
-// font variable
+.font-heading-art {
+  // font variable
+  font-family: var(--font-heading-art);
+}
 .font-heading {
   font-family: var(--font-heading);
 }
 .font-body {
   font-family: var(--font-body);
+}
+.heading-1-art {
+  font-size: 50px;
+  line-height: 64px;
 }
 .heading-1 {
   font-size: 40px;
@@ -119,4 +127,7 @@
     width: 100%;
     margin: 0 auto;
   }
+}
+.background-body {
+  background-color: #f2f2f2;
 }

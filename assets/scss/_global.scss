@@ -465,6 +465,11 @@ body {
   text-transform: uppercase;
   font-weight: 600;
   position: relative;
+  &.has-arrow {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+  }
   &.color-gold-hover {
     &:hover {
       color: var(--color-gold);
@@ -915,4 +920,9 @@ body {
 }
 .daterangepicker.show-calendar.drop-up {
   margin-top: -28px;
+}
+.swiper-button-next:after,
+.swiper-rtl .swiper-button-prev:after {
+  content: unset;
+  font-size: 0;
 }
