@@ -1,0 +1,49 @@
+.roomAmenities {
+  padding-top: calc(120px - 40px);
+
+  .amenities {
+    &-top {
+      padding-bottom: 120px;
+    }
+    &-list {
+      margin-top: 60px;
+
+      display: grid;
+      grid-template-columns: repeat(5, 1fr);
+      gap: 48px 24px;
+
+      li {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+
+        img {
+          margin-bottom: 10px;
+          width: 80px;
+          height: 80px;
+          flex-shrink: 0;
+        }
+      }
+    }
+
+    &-bottom {
+      padding-bottom: 180px;
+      position: relative;
+
+      &::after {
+        content: "";
+        width: 100%;
+        height: calc(100% - 180px);
+        bottom: 0;
+        left: 0;
+        position: absolute;
+        background-color: var(--color-white);
+      }
+
+      .swiper {
+        aspect-ratio: 1130 / 640;
+      }
+    }
+  }
+}
