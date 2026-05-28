@@ -19,6 +19,7 @@
 
   &-top {
     padding: 40px 40px 32px;
+    background-color: #181818;
 
     @media (max-width: 767px) {
       padding: 40px 24px 32px;
@@ -74,6 +75,7 @@
   &-menu {
     padding: 32px 40px;
     position: relative;
+    background-color: #181818;
 
     @media (max-width: 767px) {
       padding: 32px 24px;
@@ -147,7 +149,7 @@
 
         & + label {
           color: rgba($color: #fff, $alpha: 0.5);
-          background-color: var(--color-dark-blue);
+          background-color: #181818;
           padding: 0 8px;
         }
         &:focus-visible,

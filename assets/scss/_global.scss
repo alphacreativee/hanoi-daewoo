@@ -4,8 +4,8 @@ body {
 }
 
 &::selection {
-  background-color: var(--color-dark-blue);
-  color: var(--color-white);
+  background-color: transparent;
+  color: var(--color-gold);
 }
 
 .btn-global {

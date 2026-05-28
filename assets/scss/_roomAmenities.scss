@@ -31,6 +31,10 @@
       padding-bottom: 180px;
       position: relative;
 
+      .slider-wrapper {
+        z-index: 3;
+      }
+
       &::after {
         content: "";
         width: 100%;
