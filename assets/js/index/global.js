@@ -156,9 +156,8 @@ export function sliderParallax() {
     const hasNoDrag = swiperEl.hasAttribute("slider-no-drag");
     const hasChangeLabel = swiperEl.hasAttribute("slider-change-label");
 
-    const $sliderTitle = $swiper.find(".slider-title");
-
     const $wrapper = $swiper.closest(".wrapper-slider-parallax");
+    const $sliderTitle = $wrapper.find(".slider-title");
     const nextBtn = $wrapper.find(".arrow-next")[0];
     const prevBtn = $wrapper.find(".arrow-prev")[0];
     const $pagination = $wrapper.find(".slider-pagination");
