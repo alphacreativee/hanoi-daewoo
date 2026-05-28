@@ -4,7 +4,7 @@
   --font-body: "Open Sans", sans-serif;
   --color-black: #000000;
   --color-white: #ffffff;
-  --color-blue: #003c77;
+  --color-blue: #1b1c4c;
   --color-gray: #76787a;
   --color-dark-blue: #000000;
   --color-gold: #b39c79;
@@ -264,8 +264,8 @@ body {
 }
 
 &::selection {
-  background-color: var(--color-dark-blue);
-  color: var(--color-white);
+  background-color: transparent;
+  color: var(--color-gold);
 }
 
 .btn-global {
@@ -605,8 +605,9 @@ body {
 }
 [slider-parallax] .slider-title,
 .wrapper-slider-parallax .slider-title {
-  left: 16px;
-  bottom: 16px;
+  left: 50%;
+  bottom: -50px;
+  transform: translateX(-50%);
   position: absolute;
   z-index: 3;
 }
@@ -1178,7 +1179,7 @@ body {
   color: var(--color-black) !important;
 }
 #header.header-theme-light-active .header-book .btn-global {
-  background-color: var(--color-dark-blue);
+  background-color: var(--color-blue);
   color: var(--color-white);
 }
 #header.header-theme-light-active .header-book .btn-global:hover {
@@ -1551,6 +1552,7 @@ body {
 }
 .footer-top {
   padding: 40px 40px 32px;
+  background-color: #181818;
 }
 @media (max-width: 767px) {
   .footer-top {
@@ -1596,6 +1598,7 @@ body {
 .footer-menu {
   padding: 32px 40px;
   position: relative;
+  background-color: #181818;
 }
 @media (max-width: 767px) {
   .footer-menu {
@@ -1666,7 +1669,7 @@ body {
 }
 .footer-newsletter .form input + label {
   color: rgba(255, 255, 255, 0.5);
-  background-color: var(--color-dark-blue);
+  background-color: #181818;
   padding: 0 8px;
 }
 .footer-newsletter .form input:focus-visible + label, .footer-newsletter .form input:not(:placeholder-shown) + label {
@@ -1733,6 +1736,17 @@ body {
 .hero.has-slider {
   height: 100dvh;
 }
+.hero.has-slider.short-banner {
+  height: 640px;
+}
+.hero.has-slider.short-banner::before {
+  height: 100%;
+  background: rgba(0, 0, 0, 0.2);
+  opacity: 1;
+}
+.hero.has-slider.short-banner .hero__image {
+  height: 640px !important;
+}
 .hero .hero-image {
   width: 100%;
   height: 100%;
@@ -1772,6 +1786,13 @@ body {
     height: 540px !important;
     max-height: 100dvh;
   }
+}
+.hero__content {
+  position: absolute;
+  z-index: 4;
+  top: calc(50% + 60px - 40px);
+  left: 50%;
+  transform: translate(-50%, -50%);
 }
 .hero .swiper-slide-active img,
 .hero .swiper-slide-duplicate-active img {
@@ -2449,6 +2470,9 @@ body {
 .roomAmenities .amenities-bottom {
   padding-bottom: 180px;
   position: relative;
+}
+.roomAmenities .amenities-bottom .slider-wrapper {
+  z-index: 3;
 }
 .roomAmenities .amenities-bottom::after {
   content: "";

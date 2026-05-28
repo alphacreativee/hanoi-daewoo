@@ -1,6 +1,6 @@
 export function customDropdown() {
   const dropdowns = document.querySelectorAll(
-    ".dropdown-custom, .dropdown-custom-select"
+    ".dropdown-custom, .dropdown-custom-select",
   );
   if (!dropdowns.length) return;
   dropdowns.forEach((dropdown) => {
@@ -156,9 +156,8 @@ export function sliderParallax() {
     const hasNoDrag = swiperEl.hasAttribute("slider-no-drag");
     const hasChangeLabel = swiperEl.hasAttribute("slider-change-label");
 
-    const $sliderTitle = $swiper.find(".slider-title");
-
     const $wrapper = $swiper.closest(".wrapper-slider-parallax");
+    const $sliderTitle = $wrapper.find(".slider-title");
     const nextBtn = $wrapper.find(".arrow-next")[0];
     const prevBtn = $wrapper.find(".arrow-prev")[0];
     const $pagination = $wrapper.find(".slider-pagination");
@@ -182,20 +181,20 @@ export function sliderParallax() {
         el: $pagination[0],
         dynamicBullets: true,
         clickable: true,
-        dynamicMainBullets: 1
+        dynamicMainBullets: 1,
       },
 
       autoplay: hasAutoplay
         ? {
             delay: 4000,
-            disableOnInteraction: true
+            disableOnInteraction: true,
           }
         : false,
 
       navigation: hasArrow
         ? {
             nextEl: nextBtn,
-            prevEl: prevBtn
+            prevEl: prevBtn,
           }
         : false,
       on: {
@@ -239,15 +238,15 @@ export function sliderParallax() {
               slideInner.style.transition = `${speed}ms ${easing}`;
             }
           });
-        }
-      }
+        },
+      },
     });
 
     function updateLabel(swiper) {
       const realIndex = swiper.realIndex;
 
       const realSlides = swiper.el.querySelectorAll(
-        ".swiper-slide:not(.swiper-slide-duplicate)"
+        ".swiper-slide:not(.swiper-slide-duplicate)",
       );
 
       const total = realSlides.length;
