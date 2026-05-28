@@ -102,6 +102,8 @@ gsap.ticker.lagSmoothing(0);
 //   getTime();
 // });
 function getTime() {
+  if ($(".booking-form").length < 1) return;
+
   const defaultStart = moment().startOf("day");
   const defaultEnd = moment().startOf("day").add(1, "day");
 

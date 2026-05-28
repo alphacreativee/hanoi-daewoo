@@ -1,0 +1,498 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Accommodation detail - Hanoi Daewoo</title>
+  <!-- import favicon -->
+  <link rel="icon" href="./assets/images/use/favicon.svg" type="image/x-icon" />
+  <!-- meta -->
+  <meta property="og:url" content="" />
+  <meta property="og:type" content="website" />
+  <meta property="og:title" content="" />
+  <meta property="og:description" content="" />
+  <meta property="og:image" content="" />
+  <!-- meta -->
+  <link rel="stylesheet" href="./assets/libs/bootstrap.min.css" />
+  <link rel="stylesheet" href="./assets/libs/lenis.css" />
+  <link rel="stylesheet" href="./assets/libs/swiper-bundle.min.css" />
+  <link rel="stylesheet" href="./assets/libs/lightpick.min.css">
+  <link rel="stylesheet" href="./assets/libs/daterangepicker.css">
+
+
+
+  <!-- end meta -->
+  <!-- link custom css page -->
+  <link rel="stylesheet" href="./assets/fonts/VNF-Optima/font.css">
+  <link rel="stylesheet" href="./assets/fonts/OpenSans/font.css">
+  <link rel="stylesheet" href="./assets/main/css/style.min.css" />
+  <!-- end link custom css page -->
+  <!-- scrollRestoration -->
+  <script>
+    if ("scrollRestoration" in history) {
+      history.scrollRestoration = "manual";
+    }
+  </script>
+</head>
+
+<body>
+  <!-- layout -->
+  <!-- header -->
+  <script>
+    fetch("./components/header.html")
+      .then((response) => response.text())
+      .then((data) => {
+        document.getElementById("header").innerHTML = data;
+        const currentPath = window.location.pathname || "/";
+
+        const navLinks = document.querySelectorAll(
+          ".header-main-menu ul>li>a"
+        );
+        navLinks.forEach((link) => {
+          const linkPath = link.getAttribute("href");
+
+          // Normalize paths for comparison
+          let normalizedCurrentPath = currentPath;
+          let normalizedLinkPath = linkPath;
+
+          // Remove leading "./" from link path
+          if (normalizedLinkPath.startsWith("./")) {
+            normalizedLinkPath = normalizedLinkPath.substring(1);
+          }
+
+          // Get the last segment of the path
+          const currentSegment = normalizedCurrentPath.split("/").pop() || "";
+          const linkSegment = normalizedLinkPath.split("/").pop() || "";
+
+          // Check if current path is root or ends with /
+          const isRootPath =
+            currentPath === "/" ||
+            currentPath.endsWith("/") ||
+            currentSegment === "";
+
+          // Check if link is home/index
+          const isHomeLink =
+            linkPath === "/" ||
+            linkPath === "./" ||
+            linkPath === "./index.html" ||
+            linkPath === "index.html" ||
+            linkSegment === "index.html";
+
+          // Match logic
+          const isMatch =
+            normalizedLinkPath === normalizedCurrentPath || // Exact match
+            currentSegment === linkSegment || // Segment match
+            (isRootPath && isHomeLink) || // Root path matches home link
+            (currentPath.endsWith(normalizedLinkPath) &&
+              normalizedLinkPath !== "/");
+
+          if (isMatch) {
+            link.classList.add("active");
+          }
+        });
+      });
+
+  </script>
+  <!-- add thêm class without-home -->
+  <header id="header" class="position-fixed top-0 start-0 end-0 w-100 without-home"></header>
+  <!-- end header -->
+  <main>
+    <section class="hero has-slider position-relative short-banner">
+        <div
+          class="swiper hero-slider position-absolute top-0 start-0 w-100 h-100"
+          data-loop="true"
+          data-speed="3000"
+          data-autoplay="5000"
+        >
+          <div class="swiper-wrapper">
+            <div class="swiper-slide overflow-hidden">
+              <div
+                data-swiper-parallax-y="100%"
+                class="position-relative w-100 h-100 hero__image"
+              >
+                <picture>
+                  <source
+                    media="(max-width: 767px)"
+                    srcset="./assets/images/draf/img-5.webp"
+                  />
+                  <img
+                    data-swiper-parallax-scale="1.35"
+                    class="w-100 h-100 object-fit-cover"
+                    src="./assets/images/draf/img-5.webp"
+                    alt="img_hero_1"
+                  />
+                </picture>
+              </div>
+            </div>
+            <div class="swiper-slide overflow-hidden">
+              <div
+                data-swiper-parallax-y="100%"
+                class="position-relative w-100 h-100 hero__image"
+              >
+                <picture>
+                  <source
+                    media="(max-width: 767px)"
+                    srcset="./assets/images/draf/img-6.webp"
+                  />
+                  <img
+                    data-swiper-parallax-scale="1.35"
+                    class="w-100 h-100 object-fit-cover"
+                    src="./assets/images/draf/img-6.webp"
+                    alt="img_hero_1"
+                  />
+                </picture>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="swiper-arrows">
+          <div class="swiper-button-next swiper-arrow">
+            <svg width="9" height="33" viewBox="0 0 9 33" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path d="M0.447266 0.223602L8.44726 16.2236L0.447267 32.2236" stroke="white" />
+            </svg>
+          </div>
+          <div class="swiper-button-prev swiper-arrow">
+            <svg width="9" height="33" viewBox="0 0 9 33" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path d="M8.55859 0.223602L0.558594 16.2236L8.55859 32.2236" stroke="white" />
+            </svg>
+          </div>
+        </div>
+    </section>
+    <section class="overview">
+      <div class="overview-container">
+        <div class="content-left">
+          <div class="title heading-1 font-heading color-black">Overview</div>
+          <div class="desc b1-font color-black">Located between the 4th and 13rd floor with sweeping view overlooking the vibrant city, the Deluxe Room features elegant interior décor. Luxurious marble bathroom contains a separate bathtub and overhead shower.</div>
+          <div class="btn-wrapper">
+            <a href="#" class="btn-font btn-overlay-line">Book now</a>
+          </div>
+        </div>
+        <div class="content-right">
+          <div class="title heading-3 font-heading color-black">Benefits</div>
+          <ul class="color-black b1-font">
+            <li>
+              <img src="./assets/images/draf/icon-cocktail.svg" alt="">
+              Daily buffet breakfast
+            </li>
+            <li>
+              <img src="./assets/images/draf/icon-cocktail.svg" alt="">
+              Complimentary Internet in room
+            </li>
+            <li>
+              <img src="./assets/images/draf/icon-cocktail.svg" alt="">
+              Two bottles of mineral water
+            </li>
+            <li>
+              <img src="./assets/images/draf/icon-cocktail.svg" alt="">
+              Complimentary tea & coffee
+            </li>
+            <li>
+              <img src="./assets/images/draf/icon-cocktail.svg" alt="">
+              Complimentary access of gymnasium and swimming pool
+            </li>
+          </ul>
+        </div>
+      </div>
+    </section>
+    <section class="roomAmenities">
+      <div class="amenities-top limit-width-10-col text-center">
+        <h2 class="title heading-3 color-black font-heading">Room Amenities</h2>
+        <ul class="amenities-list color-black b1-font">
+          <li>
+            <img src="./assets/images/draf/icon-refrigerator.svg" alt="">
+            Bathrobe & slippers
+          </li>
+          <li>
+            <img src="./assets/images/draf/icon-refrigerator.svg" alt="">
+            Scale
+          </li>
+          <li>
+            <img src="./assets/images/draf/icon-refrigerator.svg" alt="">
+            Television
+          </li>
+          <li>
+            <img src="./assets/images/draf/icon-refrigerator.svg" alt="">
+            Telephone
+          </li>
+          <li>
+            <img src="./assets/images/draf/icon-refrigerator.svg" alt="">
+            Bathrobe & slippers
+          </li>
+          <li>
+            <img src="./assets/images/draf/icon-refrigerator.svg" alt="">
+            Scale
+          </li>
+          <li>
+            <img src="./assets/images/draf/icon-refrigerator.svg" alt="">
+            Television
+          </li>
+          <li>
+            <img src="./assets/images/draf/icon-refrigerator.svg" alt="">
+            Telephone
+          </li>
+          <li>
+            <img src="./assets/images/draf/icon-refrigerator.svg" alt="">
+            Television
+          </li>
+          <li>
+            <img src="./assets/images/draf/icon-refrigerator.svg" alt="">
+            Telephone
+          </li>
+        </ul>
+      </div>
+      <div class="amenities-bottom ">
+        <div class="slider-wrapper wrapper-slider-parallax limit-width-10-col">
+          <div class="swiper" slider-parallax slider-arrow slider-pagination>
+            <div class="swiper-wrapper">
+              <div class="swiper-slide">
+                <div class="image">
+                  <img src="./assets/images/draf/club-room-1.webp" alt="" />
+                </div>
+              </div>
+              <div class="swiper-slide">
+                <div class="image">
+                  <img src="./assets/images/draf/club-room-2.webp" alt="" />
+                </div>
+              </div>
+              <div class="swiper-slide">
+                <div class="image">
+                  <img src="./assets/images/draf/club-room-3.webp" alt="" />
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="swiper-arrows">
+            <div class="arrow-prev swiper-arrow">
+              <svg width="9" height="33" viewBox="0 0 9 33" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path opacity="1" d="M8.55859 0.223633L0.558594 16.2236L8.55859 32.2236"
+                  stroke="currentColor" />
+              </svg>
+            </div>
+            <div class="arrow-next swiper-arrow">
+              <svg width="9" height="33" viewBox="0 0 9 33" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M0.447266 0.223633L8.44726 16.2236L0.447267 32.2236" stroke="currentColor" />
+              </svg>
+            </div>
+          </div>
+          <div class="slider-pagination"></div>
+        </div>
+      </div>
+    </section>
+    <section class="accommodations">
+      <div class="accommodations-container tl-text">
+        <div class="section-title limit-width-6-col text-center">
+          <h2 class="title heading-2 font-heading color-black tl-text-one">
+            Another Room
+          </h2>
+        </div>
+        <div class="accommodations-main">
+          <div class="filter-section-result">
+            <div class="filter-item all">
+              <div class="swiper accommodations-slider">
+                <div class="swiper-wrapper">
+                  <div class="swiper-slide">
+                    <div class="box">
+                      <div class="box-media">
+                        <div class="slider-wrapper wrapper-slider-parallax">
+                          <div class="swiper" slider-parallax slider-arrow slider-pagination>
+                            <div class="swiper-wrapper">
+                              <div class="swiper-slide">
+                                <div class="image">
+                                  <img src="./assets/images/draf/deluxe-1.jpg" alt="" />
+                                </div>
+                              </div>
+                              <div class="swiper-slide">
+                                <div class="image">
+                                  <img src="./assets/images/draf/deluxe-2.jpg" alt="" />
+                                </div>
+                              </div>
+                              <div class="swiper-slide">
+                                <div class="image">
+                                  <img src="./assets/images/draf/deluxe-3.jpg" alt="" />
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+                          <div class="swiper-arrows">
+                            <div class="arrow-prev swiper-arrow">
+                              <svg width="9" height="33" viewBox="0 0 9 33" fill="none"
+                                xmlns="http://www.w3.org/2000/svg">
+                                <path opacity="1" d="M8.55859 0.223633L0.558594 16.2236L8.55859 32.2236"
+                                  stroke="currentColor" />
+                              </svg>
+                            </div>
+                            <div class="arrow-next swiper-arrow">
+                              <svg width="9" height="33" viewBox="0 0 9 33" fill="none"
+                                xmlns="http://www.w3.org/2000/svg">
+                                <path d="M0.447266 0.223633L8.44726 16.2236L0.447267 32.2236" stroke="currentColor" />
+                              </svg>
+                            </div>
+                          </div>
+                          <div class="slider-pagination"></div>
+                        </div>
+                      </div>
+                      <div class="box-content ">
+                        <div class="title font-heading heading-2 color-black ac-text-one">Deluxe Double</div>
+                        <ul class="info color-black d-flex flex-wrap ac-text-two">
+                          <li class="b2-font fw-regular">
+                            <img src="./assets/images/icons/icon-area.svg" class="icon" alt="">
+                            65m2
+                          </li>
+                          <li class="b2-font fw-regular">
+                            <img src="./assets/images/icons/icon-people.svg" class="icon" alt="">
+                            2 Adults - 2 Children
+                          </li>
+                          <li class="b2-font fw-regular">
+                            <img src="./assets/images/icons/icon-view.svg" class="icon" alt="">
+                            City View
+                          </li>
+                        </ul>
+                        <div class="desc b1-font ac-text-three">Located between the 4th and 13rd floor with sweeping
+                          view overlooking
+                          the
+                          vibrant city, the Deluxe Room features elegant interior décor. Luxurious marble bathroom
+                          contains a separate bathtub and overhead shower.</div>
+                        <div class="cta d-flex align-items-center ac-text-four">
+                          <a href="./booking.html" class="btn-font color-gold text-uppercase hover-underline-white">BOOK
+                            NOW</a>
+                          <a href="./accommodation-detail.html"
+                            class="btn-font color-gold text-uppercase hover-underline-white">VIEW details</a>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="swiper-slide">
+                    <div class="box">
+                      <div class="box-media">
+                        <div class="slider-wrapper wrapper-slider-parallax">
+                          <div class="swiper" slider-parallax slider-arrow slider-pagination>
+                            <div class="swiper-wrapper">
+                              <div class="swiper-slide">
+                                <div class="image">
+                                  <img src="./assets/images/draf/grand-deluxe-1.jpg" alt="" />
+                                </div>
+                              </div>
+                              <div class="swiper-slide">
+                                <div class="image">
+                                  <img src="./assets/images/draf/grand-deluxe-2.jpg" alt="" />
+                                </div>
+                              </div>
+                              <div class="swiper-slide">
+                                <div class="image">
+                                  <img src="./assets/images/draf/grand-deluxe-3.jpg" alt="" />
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+                          <div class="swiper-arrows">
+                            <div class="arrow-prev swiper-arrow">
+                              <svg width="9" height="33" viewBox="0 0 9 33" fill="none"
+                                xmlns="http://www.w3.org/2000/svg">
+                                <path opacity="1" d="M8.55859 0.223633L0.558594 16.2236L8.55859 32.2236"
+                                  stroke="currentColor" />
+                              </svg>
+                            </div>
+                            <div class="arrow-next swiper-arrow">
+                              <svg width="9" height="33" viewBox="0 0 9 33" fill="none"
+                                xmlns="http://www.w3.org/2000/svg">
+                                <path d="M0.447266 0.223633L8.44726 16.2236L0.447267 32.2236" stroke="currentColor" />
+                              </svg>
+                            </div>
+                          </div>
+                          <div class="slider-pagination"></div>
+                        </div>
+                      </div>
+                      <div class="box-content">
+                        <div class="title font-heading heading-2 color-black ac-text-one">Grand Deluxe Room</div>
+                        <ul class="info color-black d-flex flex-wrap ac-text-two">
+                          <li class="b2-font fw-regular">
+                            <img src="./assets/images/icons/icon-area.svg" class="icon" alt="">
+                            65m2
+                          </li>
+                          <li class="b2-font fw-regular">
+                            <img src="./assets/images/icons/icon-people.svg" class="icon" alt="">
+                            2 Adults - 2 Children
+                          </li>
+                          <li class="b2-font fw-regular">
+                            <img src="./assets/images/icons/icon-view.svg" class="icon" alt="">
+                            City View
+                          </li>
+                        </ul>
+                        <div class="desc ac-text-three">Providing an average of 34sqm of comfortable living space, the
+                          Grand Deluxe
+                          Room offers a perfect blend of classical elegance.</div>
+                        <div class="cta d-flex align-items-center ac-text-four">
+                          <a href="./booking.html" class="btn-font color-gold text-uppercase hover-underline-white">BOOK
+                            NOW</a>
+                          <a href="./accommodation-detail.html"
+                            class="btn-font color-gold text-uppercase hover-underline-white">VIEW details</a>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div class="swiper-action">
+                  <div class="swiper-button-prev">
+                    <svg width="24" height="8" viewBox="0 0 24 8" fill="none" xmlns="http://www.w3.org/2000/svg">
+                      <path
+                        d="M23.5 3.18188C23.7761 3.18188 24 3.40574 24 3.68188C24 3.95803 23.7761 4.18188 23.5 4.18188V3.68188V3.18188ZM0.146446 4.03544C-0.0488148 3.84018 -0.0488148 3.52359 0.146446 3.32833L3.32843 0.146351C3.52369 -0.0489113 3.84027 -0.0489113 4.03553 0.146351C4.2308 0.341613 4.2308 0.658195 4.03553 0.853458L1.20711 3.68188L4.03553 6.51031C4.2308 6.70557 4.2308 7.02216 4.03553 7.21742C3.84027 7.41268 3.52369 7.41268 3.32843 7.21742L0.146446 4.03544ZM23.5 3.68188V4.18188H0.5V3.68188V3.18188H23.5V3.68188Z"
+                        fill="currentColor" />
+                    </svg>
+                  </div>
+                  <div class="swiper-pagination"></div>
+                  <div class="swiper-button-next">
+                    <svg width="24" height="8" viewBox="0 0 24 8" fill="none" xmlns="http://www.w3.org/2000/svg">
+                      <path
+                        d="M0.5 3.18188C0.223858 3.18188 0 3.40574 0 3.68188C0 3.95803 0.223858 4.18188 0.5 4.18188V3.68188V3.18188ZM23.8536 4.03544C24.0488 3.84018 24.0488 3.52359 23.8536 3.32833L20.6716 0.146351C20.4763 -0.0489113 20.1597 -0.0489113 19.9645 0.146351C19.7692 0.341613 19.7692 0.658195 19.9645 0.853458L22.7929 3.68188L19.9645 6.51031C19.7692 6.70557 19.7692 7.02216 19.9645 7.21742C20.1597 7.41268 20.4763 7.41268 20.6716 7.21742L23.8536 4.03544ZM0.5 3.68188V4.18188H23.5V3.68188V3.18188H0.5V3.68188Z"
+                        fill="currentColor" />
+                    </svg>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+  <!-- layout -->
+  <!-- footer -->
+  <script>
+    fetch("./components/footer.html")
+      .then((response) => response.text())
+      .then((data) => {
+        document.getElementById("footer").innerHTML = data;
+      });
+  </script>
+
+
+  <footer id="footer"></footer>
+  <!-- end footer -->
+  <!-- end layout -->
+
+  <footer id="footer"></footer>
+  <!-- end footer -->
+  <!-- end layout -->
+
+  <script src="./assets/libs/jquery-3.7.1.js"></script>
+  <script src="./assets/libs/lenis.min.js"></script>
+  <script src="./assets/libs/gsap.min.js"></script>
+  <script src="./assets/libs/ScrollTrigger.min.js"></script>
+  <script src="./assets/libs/SplitText.min.js"></script>
+  <script src="./assets/libs/bootstrap.bundle.min.js"></script>
+  <script src="./assets/libs/swiper-bundle.min.js"></script>
+  <script src="./assets/libs/moment.min.js"></script>
+  <script src="./assets/libs/daterangepicker.min.js"></script>
+  <script src="./assets/libs/lightpick.min.js"></script>
+  <!-- import custom js -->
+  <script type="module" src="./assets/main/js/script.min.js"></script>
+
+  <!-- end import custom js -->
+</body>
+
+<!-- end import custom js -->
+</body>
+
+</html>
+<!-- https://gsap.com/community/forums/topic/30338-circular-carouselslider/ -->
