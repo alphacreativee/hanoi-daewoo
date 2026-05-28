@@ -12,8 +12,8 @@
   --color-gold: #b39c79;
   //
 }
-// font variable
 .font-heading-art {
+  // font variable
   font-family: var(--font-heading-art);
 }
 .font-heading {
@@ -127,4 +127,7 @@
     width: 100%;
     margin: 0 auto;
   }
+}
+.background-body {
+  background-color: #f2f2f2;
 }

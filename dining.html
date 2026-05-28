@@ -1,0 +1,546 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Dining - Hanoi Daewoo</title>
+    <!-- import favicon -->
+    <link rel="icon" href="./assets/images/use/favicon.svg" type="image/x-icon" />
+    <!-- meta -->
+    <meta property="og:url" content="" />
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="" />
+    <meta property="og:description" content="" />
+    <meta property="og:image" content="" />
+    <!-- meta -->
+    <link rel="stylesheet" href="./assets/libs/bootstrap.min.css" />
+    <link rel="stylesheet" href="./assets/libs/lenis.css" />
+    <link rel="stylesheet" href="./assets/libs/swiper-bundle.min.css" />
+    <link rel="stylesheet" href="./assets/libs/lightpick.min.css">
+    <link rel="stylesheet" href="./assets/libs/daterangepicker.css">
+
+
+
+    <!-- end meta -->
+    <!-- link custom css page -->
+    <link rel="stylesheet" href="./assets/fonts/VNF-Optima/font.css">
+    <link rel="stylesheet" href="./assets/fonts/OpenSans/font.css">
+    <link rel="stylesheet" href="./assets/fonts/CormorantGaramond/font.css">
+    <link rel="stylesheet" href="./assets/main/css/style.min.css" />
+    <!-- end link custom css page -->
+    <!-- scrollRestoration -->
+    <script>
+        if ("scrollRestoration" in history) {
+            history.scrollRestoration = "manual";
+        }
+    </script>
+</head>
+
+<body>
+    <!-- layout -->
+    <!-- header -->
+    <script>
+        fetch("./components/header.html")
+            .then((response) => response.text())
+            .then((data) => {
+                document.getElementById("header").innerHTML = data;
+                const currentPath = window.location.pathname || "/";
+
+                const navLinks = document.querySelectorAll(
+                    ".header-main-menu ul>li>a"
+                );
+                navLinks.forEach((link) => {
+                    const linkPath = link.getAttribute("href");
+
+                    // Normalize paths for comparison
+                    let normalizedCurrentPath = currentPath;
+                    let normalizedLinkPath = linkPath;
+
+                    // Remove leading "./" from link path
+                    if (normalizedLinkPath.startsWith("./")) {
+                        normalizedLinkPath = normalizedLinkPath.substring(1);
+                    }
+
+                    // Get the last segment of the path
+                    const currentSegment = normalizedCurrentPath.split("/").pop() || "";
+                    const linkSegment = normalizedLinkPath.split("/").pop() || "";
+
+                    // Check if current path is root or ends with /
+                    const isRootPath =
+                        currentPath === "/" ||
+                        currentPath.endsWith("/") ||
+                        currentSegment === "";
+
+                    // Check if link is home/index
+                    const isHomeLink =
+                        linkPath === "/" ||
+                        linkPath === "./" ||
+                        linkPath === "./index.html" ||
+                        linkPath === "index.html" ||
+                        linkSegment === "index.html";
+
+                    // Match logic
+                    const isMatch =
+                        normalizedLinkPath === normalizedCurrentPath || // Exact match
+                        currentSegment === linkSegment || // Segment match
+                        (isRootPath && isHomeLink) || // Root path matches home link
+                        (currentPath.endsWith(normalizedLinkPath) &&
+                            normalizedLinkPath !== "/");
+
+                    if (isMatch) {
+                        link.classList.add("active");
+                    }
+                });
+            });
+
+    </script>
+    <!-- add thêm class without-home -->
+    <header id="header" class="position-fixed top-0 start-0 end-0 w-100 without-home"></header>
+    <!-- end header -->
+    <main>
+        <section class="hero has-slider position-relative">
+            <div class="swiper hero-slider position-absolute top-0 start-0 w-100 h-100" data-loop="true"
+                data-speed="3000" data-autoplay="5000">
+                <div class="swiper-wrapper">
+                    <div class="swiper-slide overflow-hidden">
+                        <div data-swiper-parallax-y="100%" class="position-relative w-100 h-100 hero__image">
+                            <picture>
+                                <source media="(max-width: 767px)" srcset="./assets/images/draf/dining-5.webp" />
+                                <img data-swiper-parallax-scale="1.35" class="w-100 h-100 object-fit-cover"
+                                    src="./assets/images/draf/dining-5.webp" alt="img_hero_1" />
+                            </picture>
+                        </div>
+                    </div>
+                    <div class="swiper-slide overflow-hidden">
+                        <div data-swiper-parallax-y="100%" class="position-relative w-100 h-100 hero__image">
+                            <picture>
+                                <source media="(max-width: 767px)" srcset="./assets/images/draf/dining-2.webp" />
+                                <img data-swiper-parallax-scale="1.35" class="w-100 h-100 object-fit-cover"
+                                    src="./assets/images/draf/dining-2.webp" alt="img_hero_1" />
+                            </picture>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="booking-form d-lg-block d-none">
+                <div class="booking-form-container">
+                    <form
+                        action="https://bookings.travelclick.com/86088?_gl=1*11vc350*_ga*MzAwMjE4MjkxLjE3NzM2MzQxMjg.*_ga_LZYTF83GCQ*czE3Nzk3Nzg4NjQkbzU1JGcwJHQxNzc5Nzc4ODY0JGo2MCRsMCRoMA..*_gcl_au*NTAzMzI1OTAwLjE3NzM2MzQxMjg.&adults=1&datein=05/26/2026&dateout=05/27/2026&domain=www.daewoohotel.com&languageid=1&rooms=1#/accommodation/room">
+                        <div class="booking-item d-flex align-items-center" method="GET" target="_blank">
+                            <div class="icon">
+                                <img src="./assets/images/use/icon-calendar.svg" alt="">
+                            </div>
+                            <div class="booking-field">
+                                <label for="">Check-in</label>
+                                <input type="text" id="startDate" name="startDate" readonly />
+                            </div>
+                        </div>
+                        <div class="booking-item d-flex align-items-center">
+                            <div class="icon">
+                                <img src="./assets/images/use/icon-calendar.svg" alt="">
+                            </div>
+                            <div class="booking-field">
+                                <label for="">Check-out</label>
+                                <input type="text" id="endDate" name="endDate" readonly />
+                            </div>
+                        </div>
+                        <div class="booking-item d-flex align-items-center">
+                            <div class="icon">
+                                <img src="./assets/images/use/icon-user.svg" alt="">
+                            </div>
+                            <div class="booking-field">
+                                <label for="">Guests</label>
+                                <div class="select-people">
+                                    <div class="select-people-wrapper d-flex align-items-center gap-2">
+
+                                        <div class="label">
+                                            <span class="adult-value">1</span> Adult,
+                                            <span class="child-value">0</span> Children
+                                        </div>
+                                    </div>
+                                    <div class="select-box">
+                                        <div class="adult">
+                                            <div class="label">Adult</div>
+                                            <div class="select">
+                                                <div class="min">-</div>
+                                                <div class="val">1</div>
+                                                <div class="plus">+</div>
+                                            </div>
+                                        </div>
+                                        <div class="child">
+                                            <div class="label">Children</div>
+                                            <div class="select">
+                                                <div class="min">-</div>
+                                                <div class="val">0</div>
+                                                <div class="plus">+</div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="booking-item d-flex align-items-center">
+                            <button>Book now</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+            <div class="swiper-arrows">
+                <div class="swiper-button-next swiper-arrow">
+                    <svg width="9" height="33" viewBox="0 0 9 33" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M0.447266 0.223602L8.44726 16.2236L0.447267 32.2236" stroke="white" />
+                    </svg>
+                </div>
+                <div class="swiper-button-prev swiper-arrow">
+                    <svg width="9" height="33" viewBox="0 0 9 33" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M8.55859 0.223602L0.558594 16.2236L8.55859 32.2236" stroke="white" />
+                    </svg>
+                </div>
+            </div>
+        </section>
+        <section class="accommodationPage tl-text">
+            <div class="section-title limit-width-7-col text-center ">
+                <h2 class="title  intro-title color-gold tl-text-one font-heading-art fst-italic heading-1-art">
+                    Gourmet Local & International Fare
+                </h2>
+                <div class="desc b1-font color-black tl-text-two">
+                    Extravagant breakfast buffet in Hanoi, lavish Chinese banquets, beautifully plated sushi and sashimi
+                    – cuisines at Hanoi Daewoo Hotel delight every palate. With a choice of different restaurants, a
+                    lounge and an onsite bakery, the hotel offers guests a delectable culinary experience that spans the
+                    best of local and international fare.
+                </div>
+            </div>
+
+        </section>
+        <section class="list-detail">
+            <div class="container-fluid p-0">
+                <div class="row list-detail-item g-0">
+                    <div class="col-lg-7">
+                        <div class="list-detail-image">
+                            <div class="slider-wrapper wrapper-slider-parallax">
+                                <div class="swiper" slider-parallax slider-arrow slider-pagination>
+                                    <div class="swiper-wrapper">
+                                        <div class="swiper-slide">
+                                            <div class="image">
+                                                <img src="./assets/images/draf/dining-1.webp" alt="" />
+                                            </div>
+                                        </div>
+                                        <div class="swiper-slide">
+                                            <div class="image">
+                                                <img src="./assets/images/draf/dining-2.webp" alt="" />
+                                            </div>
+                                        </div>
+                                        <div class="swiper-slide">
+                                            <div class="image">
+                                                <img src="./assets/images/draf/dining-3.webp" alt="" />
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="swiper-arrows">
+                                    <div class="arrow-prev swiper-arrow">
+                                        <svg width="9" height="33" viewBox="0 0 9 33" fill="none"
+                                            xmlns="http://www.w3.org/2000/svg">
+                                            <path opacity="1" d="M8.55859 0.223633L0.558594 16.2236L8.55859 32.2236"
+                                                stroke="currentColor" />
+                                        </svg>
+                                    </div>
+                                    <div class="arrow-next swiper-arrow">
+                                        <svg width="9" height="33" viewBox="0 0 9 33" fill="none"
+                                            xmlns="http://www.w3.org/2000/svg">
+                                            <path d="M0.447266 0.223633L8.44726 16.2236L0.447267 32.2236"
+                                                stroke="currentColor" />
+                                        </svg>
+                                    </div>
+                                </div>
+                                <div class="slider-pagination"></div>
+                            </div>
+
+                        </div>
+                    </div>
+                    <div class="col-lg-5">
+                        <div class="list-detail-box">
+                            <h3 class="title h2-font font-heading color-black">Café Promenade</h3>
+                            <div class="desc b1-font font-body color-black">
+                                Immerse in the vibrant atmosphere and a sumptuous buffet at Café Promenade with our
+                                abundant menu from different cuisines and indulge your senses with a unique live buffet
+                                experience. Impressive space with a spectacular view over our stunning outdoor swimming
+                                pool will be the highlight for your joyful gatherings.
+                            </div>
+                            <div class="table-info">
+                                <div class="table-row">
+                                    <div class="name">Cuisine</div>
+                                    <div class="value">
+                                        <p>International</p>
+                                    </div>
+                                </div>
+                                <div class="table-row">
+                                    <div class="name">Location</div>
+                                    <div class="value">
+                                        <p>1st Floor</p>
+                                    </div>
+                                </div>
+                                <div class="table-row">
+                                    <div class="name">Opening hours</div>
+                                    <div class="value">
+                                        <ul>
+                                            <li>
+                                                <p>Lunch: 11.30 - 14.30 (Mon - Sun)</p>
+                                            </li>
+                                            <li>
+                                                <p>Dinner: 18.00 - 22.00 (Fri - Sun)</p>
+                                            </li>
+                                        </ul>
+                                    </div>
+                                </div>
+                                <div class="table-row">
+                                    <div class="name">Mobile</div>
+                                    <div class="value">
+                                        <a href="tel:+84934618098" class="hover-underline-black">+84 93 461 8098</a>
+                                    </div>
+                                </div>
+                                <div class="table-row">
+                                    <div class="name">Email</div>
+                                    <div class="value">
+                                        <a href="mailto:roomservice@daewoohotel.com"
+                                            class="hover-underline-black">roomservice@daewoohotel.com</a>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="list-btn">
+                                <div class="list-btn-item">
+                                    <button class="btn-overlay-line  color-gold-hover ">book a table</button>
+                                    <a href="" class="btn-overlay-line  color-gold-hover">menu</a>
+                                </div>
+                                <div class="list-btn-item">
+                                    <a href="" class="btn-overlay-line  color-gold-hover has-arrow">view details <span>
+                                            <img src="./assets/images/icons/icon-arrow-gold.svg" alt="">
+                                        </span></a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- thêm class flex-row-reverse -->
+                <div class="row list-detail-item g-0 flex-row-reverse">
+                    <div class="col-lg-7">
+                        <div class="list-detail-image">
+                            <div class="slider-wrapper wrapper-slider-parallax">
+                                <div class="swiper" slider-parallax slider-arrow slider-pagination>
+                                    <div class="swiper-wrapper">
+                                        <div class="swiper-slide">
+                                            <div class="image">
+                                                <img src="./assets/images/draf/dining-5.webp" alt="" />
+                                            </div>
+                                        </div>
+                                        <div class="swiper-slide">
+                                            <div class="image">
+                                                <img src="./assets/images/draf/dining-3.webp" alt="" />
+                                            </div>
+                                        </div>
+                                        <div class="swiper-slide">
+                                            <div class="image">
+                                                <img src="./assets/images/draf/dining-4.webp" alt="" />
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="swiper-arrows">
+                                    <div class="arrow-prev swiper-arrow">
+                                        <svg width="9" height="33" viewBox="0 0 9 33" fill="none"
+                                            xmlns="http://www.w3.org/2000/svg">
+                                            <path opacity="1" d="M8.55859 0.223633L0.558594 16.2236L8.55859 32.2236"
+                                                stroke="currentColor" />
+                                        </svg>
+                                    </div>
+                                    <div class="arrow-next swiper-arrow">
+                                        <svg width="9" height="33" viewBox="0 0 9 33" fill="none"
+                                            xmlns="http://www.w3.org/2000/svg">
+                                            <path d="M0.447266 0.223633L8.44726 16.2236L0.447267 32.2236"
+                                                stroke="currentColor" />
+                                        </svg>
+                                    </div>
+                                </div>
+                                <div class="slider-pagination"></div>
+                            </div>
+
+                        </div>
+                    </div>
+                    <div class="col-lg-5">
+                        <div class="list-detail-box">
+                            <h3 class="title h2-font font-heading color-black">Ngan Dinh Hanoi Restaurant</h3>
+                            <div class="desc b1-font font-body color-black">
+                                Located on the 2nd floor of the hotel, Ngan Dinh Hanoi Restaurant celebrates authentic
+                                Cantonese cuisine through finest ingredients. From the creative dim sum menu, to a
+                                selection of exquisite Chinese delights with style and flair, our talented culinary team
+                                will impress even Hanoi’s most glamorous diners.
+                            </div>
+                            <div class="table-info">
+                                <div class="table-row">
+                                    <div class="name">Cantonese</div>
+                                    <div class="value">
+                                        <p>International</p>
+                                    </div>
+                                </div>
+                                <div class="table-row">
+                                    <div class="name">Location</div>
+                                    <div class="value">
+                                        <p>2nd Floor</p>
+                                    </div>
+                                </div>
+                                <div class="table-row">
+                                    <div class="name">Opening hours</div>
+                                    <div class="value">
+                                        <ul>
+                                            <li>
+                                                <p>11.00 - 14.00 | 18.00 - 22.30 (Mon - Sun)</p>
+                                            </li>
+
+                                        </ul>
+                                    </div>
+                                </div>
+                                <div class="table-row">
+                                    <div class="name">Mobile</div>
+                                    <div class="value">
+                                        <a href="tel:+84934618098" class="hover-underline-black">+84 93 461 8098</a>
+                                    </div>
+                                </div>
+                                <div class="table-row">
+                                    <div class="name">Email</div>
+                                    <div class="value">
+                                        <a href="mailto:roomservice@daewoohotel.com"
+                                            class="hover-underline-black">roomservice@daewoohotel.com</a>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="list-btn">
+                                <div class="list-btn-item">
+                                    <button class="btn-overlay-line  color-gold-hover ">book a table</button>
+                                    <a href="" class="btn-overlay-line  color-gold-hover">menu</a>
+                                </div>
+                                <div class="list-btn-item">
+                                    <a href="" class="btn-overlay-line  color-gold-hover has-arrow">view details <span>
+                                            <img src="./assets/images/icons/icon-arrow-gold.svg" alt="">
+                                        </span></a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </section>
+        <section class="moreInfo related-offers ">
+            <div class="moreInfo-container tl-text bgc-body">
+                <div class="section-title limit-width-6-col text-center">
+                    <h2 class="title heading-1 font-heading color-black tl-text-one">
+                        Related Offers
+                    </h2>
+                    <div class="desc b1-font color-black tl-text-two">
+                        Stay at Hanoi Daewoo Hotel and take advantage of our latest accommodation packages. Book early
+                        before offers
+                        expire!
+                    </div>
+                </div>
+                <div class="moreInfo-list" section-fade-each-item>
+                    <a href="#" class="moreInfo-list__item" data-fade-item>
+                        <div class="item-content text-center">
+                            <div class="title color-white heading-3 font-heading">
+                                Umami Midday Delight
+                            </div>
+                            <div class="desc b1-font color-white">
+                                Escape the midday rush to savor a symphony of flavors at Edo.
+                            </div>
+                        </div>
+                        <div class="item-cta">
+                            <div class="btn-font fw-semibold color-white hover-underline-white">
+                                VIEW ALL
+                            </div>
+                        </div>
+                        <div class="item-image">
+                            <img src="./assets/images/draf/offer-1.jpg" alt="" />
+                        </div>
+                    </a>
+                    <a href="#" class="moreInfo-list__item" data-fade-item>
+                        <div class="item-content text-center">
+                            <div class="title color-white heading-3 font-heading">
+                                Summer Orchard
+                            </div>
+                            <div class="desc b1-font color-white">
+                                Step into Summer Orchard, a lush garden bathed in golden sunlight where seasonal flavors
+                                awaken your
+                                every sense.
+                            </div>
+                        </div>
+                        <div class="item-cta">
+                            <div class="btn-font fw-semibold color-white hover-underline-white">
+                                VIEW ALL
+                            </div>
+                        </div>
+                        <div class="item-image">
+                            <img src="./assets/images/draf/offer-2.jpg" alt="" />
+                        </div>
+                    </a>
+                    <a href="#" class="moreInfo-list__item" data-fade-item>
+                        <div class="item-content text-center">
+                            <div class="title color-white heading-3 font-heading">
+                                Happy Friday at <br> Brodard Gourmet
+                            </div>
+                            <div class="desc b1-font color-white">
+                                The beloved sweet celebration returns to Brodard Gourmet!
+                            </div>
+                        </div>
+                        <div class="item-cta">
+                            <div class="btn-font fw-semibold color-white hover-underline-white">
+                                VIEW ALL
+                            </div>
+                        </div>
+                        <div class="item-image">
+                            <img src="./assets/images/draf/offer-3.jpg" alt="" />
+                        </div>
+                    </a>
+                </div>
+            </div>
+        </section>
+    </main>
+    <!-- layout -->
+    <!-- footer -->
+    <script>
+        fetch("./components/footer.html")
+            .then((response) => response.text())
+            .then((data) => {
+                document.getElementById("footer").innerHTML = data;
+            });
+    </script>
+
+
+    <footer id="footer"></footer>
+    <!-- end footer -->
+    <!-- end layout -->
+
+    <footer id="footer"></footer>
+    <!-- end footer -->
+    <!-- end layout -->
+
+    <script src="./assets/libs/jquery-3.7.1.js"></script>
+    <script src="./assets/libs/lenis.min.js"></script>
+    <script src="./assets/libs/gsap.min.js"></script>
+    <script src="./assets/libs/ScrollTrigger.min.js"></script>
+    <script src="./assets/libs/SplitText.min.js"></script>
+    <script src="./assets/libs/bootstrap.bundle.min.js"></script>
+    <script src="./assets/libs/swiper-bundle.min.js"></script>
+    <script src="./assets/libs/moment.min.js"></script>
+    <script src="./assets/libs/daterangepicker.min.js"></script>
+    <script src="./assets/libs/lightpick.min.js"></script>
+    <!-- import custom js -->
+    <script type="module" src="./assets/main/js/script.min.js"></script>
+
+    <!-- end import custom js -->
+</body>
+
+<!-- end import custom js -->
+</body>
+
+</html>
+<!-- https://gsap.com/community/forums/topic/30338-circular-carouselslider/ -->
