@@ -642,7 +642,7 @@ function animationWeddingItem() {
     // Animate content dùng stagger thay vì timeline
     ScrollTrigger.create({
       trigger: item.querySelector(".item-content"),
-      start: "top 65%",
+      start: "top 70%",
       once: true,
       onEnter: () => {
         gsap.to(contentEls, {
@@ -830,7 +830,7 @@ function animationItemRow() {
   if (!rowItems.length) return;
   gsap.registerPlugin(ScrollTrigger);
   rowItems.forEach((item) => {
-    const boxSlider = item.querySelector(".list-detail-image");
+
     const listDOne = item.querySelector(".list-detail-one");
     const listDTwo = item.querySelector(".list-detail-two");
     const listDThree = item.querySelector(".list-detail-three");
@@ -839,22 +839,9 @@ function animationItemRow() {
     const contentEls = [listDOne, listDTwo, listDThree, listDFour].filter(
       Boolean,
     );
-    // gsap.set(boxSlider, { y: 20, opacity: 0 });
+
     gsap.set(contentEls, { y: 20, opacity: 0 });
-    // ScrollTrigger.create({
-    //   trigger: boxSlider,
-    //   start: "top 60%",
-    //   once: true,
-    //   // markers: true,
-    //   onEnter: () => {
-    //     gsap.to(boxSlider, {
-    //       y: 0,
-    //       opacity: 1,
-    //       duration: 0.6,
-    //       ease: "power2.out",
-    //     });
-    //   },
-    // });
+    
     const tl = gsap.timeline({ paused: true });
     const animFrom = { y: 20, opacity: 0 };
     const animTo = { y: 0, opacity: 1, duration: 0.8, ease: "power2.out" };
