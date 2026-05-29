@@ -901,6 +901,101 @@ function bookAtable() {
     },
   });
 }
+function wonderGallery() {
+  const mediaItems = document.querySelectorAll(".wonderfulGallery .item-media");
+  if (!mediaItems.length) return;
+
+  gsap.registerPlugin(ScrollTrigger);
+
+  const container = document.querySelector(".wonderfulGallery-container");
+
+  if (container) {
+    const styleEl = document.createElement("style");
+    styleEl.textContent = `
+      .wonderfulGallery-container::before {
+        height: var(--line-height, 0%) !important;
+      }
+    `;
+    document.head.appendChild(styleEl);
+
+    const textContent = document.querySelector(
+      ".wonderfulGallery .content-text .title",
+    );
+
+    if (textContent) {
+      gsap.set(textContent, { opacity: 0, y: 20 });
+    }
+
+    const tl = gsap.timeline({
+      scrollTrigger: {
+        trigger: container,
+        start: "top 70%",
+        end: "bottom 90%",
+        scrub: 1,
+        // markers: true,
+
+        onLeave: (self) => {
+          self.kill();
+
+          gsap.set(container, { "--line-height": "100%" });
+          if (textContent) {
+            gsap.set(textContent, { opacity: 1, y: 0 });
+          }
+        },
+      },
+    });
+
+    tl.to(container, {
+      "--line-height": "100%",
+      ease: "none",
+    });
+
+    if (textContent) {
+      tl.to(
+        textContent,
+        {
+          opacity: 1,
+          y: 0,
+          duration: 0.3,
+          ease: "power2.out",
+        },
+        "<13%",
+      );
+    }
+  }
+
+  mediaItems.forEach((item) => {
+    const image = item.querySelector("img");
+    const text = item.querySelector(".text");
+
+    gsap.set(image, { y: 20, opacity: 0 });
+    gsap.set(text, { y: 20, opacity: 0 });
+
+    const tl = gsap.timeline({
+      scrollTrigger: {
+        trigger: item,
+        start: "top 80%",
+        once: true,
+      },
+    });
+
+    tl.to(image, {
+      y: 0,
+      opacity: 1,
+      duration: 0.6,
+      ease: "power2.out",
+    }).to(
+      text,
+      {
+        y: 0,
+        opacity: 1,
+        duration: 0.3,
+        ease: "power2.out",
+      },
+      "-=0.4",
+    );
+  });
+}
 const init = () => {
   gsap.registerPlugin(ScrollTrigger);
   customDropdown();
@@ -923,6 +1018,7 @@ const init = () => {
   animationItemsSection();
   animationItemRow();
   bookAtable();
+  wonderGallery();
 };
 document.addEventListener("DOMContentLoaded", () => {
   init();

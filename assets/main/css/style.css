@@ -2658,6 +2658,18 @@ body {
   transform: translateX(-50%);
   height: 100%;
 }
+.wonderfulGallery .content-text::before {
+  content: "";
+  position: absolute;
+  top: 22%;
+  left: 50%;
+  transform: translateX(-50%);
+  background-color: #f2f2f2;
+  z-index: -1;
+  width: 400px;
+  height: 232px;
+  pointer-events: none;
+}
 .wonderfulGallery .content-text .title {
   position: absolute;
   top: 22%;
