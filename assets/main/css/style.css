@@ -1693,7 +1693,7 @@ body {
 }
 .footer-menu::before {
   content: "";
-  background-color: var(--color-gray);
+  background-color: rgba(118, 120, 122, 0.1);
   height: 1px;
   width: calc(100% - 80px);
   position: absolute;
