@@ -2603,6 +2603,7 @@ body {
   gap: 12px;
   padding: 24px 0;
   border-top: 1px solid rgba(0, 0, 0, 0.2);
+  border-bottom: 1px solid rgba(0, 0, 0, 0.2);
 }
 .list-detail .table-info .table-row {
   display: flex;
@@ -2625,7 +2626,6 @@ body {
 }
 .list-detail .list-btn {
   padding-top: 40px;
-  border-top: 1px solid rgba(0, 0, 0, 0.2);
   display: flex;
   align-items: center;
   gap: 40px;
