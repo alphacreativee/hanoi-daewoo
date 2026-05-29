@@ -2821,3 +2821,22 @@ body {
   flex-direction: column;
   gap: 120px;
 }
+
+.offers-container {
+  padding: 120px 40px;
+}
+.offers-container .filter-list-button {
+  gap: 40px;
+  margin-bottom: 46px;
+}
+.offers-container .filter-list-button .filter-button {
+  cursor: pointer;
+}
+.offers-container .filter-section-result {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 20px;
+}
+.offers-container .filter-section-result .moreInfo-list__item .item-image {
+  aspect-ratio: 440/480;
+}
