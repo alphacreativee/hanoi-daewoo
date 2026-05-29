@@ -2581,6 +2581,7 @@ body {
 .list-detail-box {
   padding: 80px;
   background-color: var(--color-white);
+  height: 100%;
 }
 .list-detail-image {
   width: 100%;
