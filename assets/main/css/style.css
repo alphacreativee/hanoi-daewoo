@@ -335,7 +335,7 @@ body {
   width: 100%;
 }
 .booking-form-container {
-  padding: 10px 20px;
+  padding: 10px 10px 10px 20px;
 }
 .booking-form-container form {
   display: grid;
