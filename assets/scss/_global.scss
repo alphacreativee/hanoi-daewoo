@@ -68,7 +68,7 @@ body {
   max-width: calc(calc(8 / 12) * 100%);
   width: 100%;
   &-container {
-    padding: 10px 20px;
+    padding: 10px 10px 10px 20px;
     form {
       display: grid;
       grid-template-columns: 1fr 1fr 1fr auto;
