@@ -2537,11 +2537,11 @@ body {
 .roomAmenities {
   padding-top: 80px;
 }
-.roomAmenities .amenities-top {
-  padding-bottom: 120px;
+.roomAmenities .amenities-top .title {
+  margin-bottom: 60px;
 }
 .roomAmenities .amenities-list {
-  margin-top: 60px;
+  padding-bottom: 120px;
   display: grid;
   grid-template-columns: repeat(5, 1fr);
   gap: 48px 24px;
