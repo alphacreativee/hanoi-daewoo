@@ -928,26 +928,112 @@ body {
   font-size: 0;
 }
 #modalBookingTable {
+  .modal-body {
+    padding: 0;
+  }
+
+  .modal-content {
+    border-radius: 0;
+    border: unset;
+  }
+
   .modal-dialog {
     max-width: 1130px;
   }
+
+  .btn-close {
+    width: 44px;
+    height: 44px;
+
+    background: var(--color-black);
+    border-radius: unset;
+    opacity: 1;
+    color: var(--color-white);
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.4s ease;
+
+    &:hover {
+      background-color: var(--color-gold);
+    }
+  }
+
+  .modal-close {
+    position: absolute;
+    z-index: 5;
+    right: 0;
+    top: 0;
+    cursor: pointer;
+  }
+
   .content-box {
     display: grid;
     grid-template-columns: 4fr 6fr;
     &-left {
       padding: 48px 48px 80px 48px;
       border-right: 1px solid rgba(0, 0, 0, 0.2);
+
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+
+      p {
+        margin-top: 24px;
+      }
+
+      .foot {
+        li {
+          gap: 8px;
+        }
+
+        ul {
+          gap: 4px;
+        }
+      }
     }
     &-right {
       padding: 80px 100px;
     }
   }
+
   .list-field {
     display: grid;
     grid-template-columns: 1fr 1fr;
     gap: 24px 16px;
     .field-item {
       position: relative;
+
+      input {
+        &:-webkit-autofill,
+        &:-webkit-autofill:hover,
+        &:-webkit-autofill:focus {
+          -webkit-box-shadow: 0 0 0 1000px #ffffff inset !important;
+        }
+      }
+
+      input[type="number"]::-webkit-outer-spin-button,
+      input[type="number"]::-webkit-inner-spin-button {
+        -webkit-appearance: none;
+        margin: 0;
+      }
+
+      &.full {
+        grid-column: 1 / -1;
+      }
+
+      textarea {
+        width: 100%;
+        border: 1px solid rgba(0, 0, 0, 0.2);
+        color: var(--color-black);
+        padding: 8px 24px;
+
+        & + label {
+          top: 8px;
+          transform: translate(0);
+        }
+      }
 
       label {
         position: absolute;
@@ -982,6 +1068,24 @@ body {
         }
       }
     }
+
+    .btn-submit,
+    .note {
+      grid-column: 1 / -1;
+    }
+
+    .btn-submit {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      background-color: var(--color-blue);
+      color: var(--color-white);
+
+      &:hover {
+        background-color: var(--color-gold);
+      }
+    }
+
     .dropdown-custom-select {
       height: 44px;
       border: none;
@@ -1018,7 +1122,10 @@ body {
       color: var(--color-black);
       padding: 8px 24px;
       width: 100%;
+    }
 
+    input,
+    textarea {
       & + label {
         color: var(--color-black);
         background-color: var(--color-white);
