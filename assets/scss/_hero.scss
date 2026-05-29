@@ -22,17 +22,21 @@
 
   &.has-slider {
     height: 100dvh;
+  }
 
-    &.short-banner {
-      height: 640px;
+  &.short-banner {
+    height: 640px;
 
-      &::before {
-        height: 100%;
-        background: rgba($color: #000000, $alpha: 0.2);
-        opacity: 1;
-      }
+    &::before {
+      height: 100%;
+      background: rgba($color: #000000, $alpha: 0.2);
+      opacity: 1;
+    }
 
-      .hero__image {
+    .hero__image {
+      height: 640px !important;
+
+      img {
         height: 640px !important;
       }
     }
@@ -83,9 +87,20 @@
   &__content {
     position: absolute;
     z-index: 4;
-    top: calc(50% + 60px - 40px);
     left: 50%;
-    transform: translate(-50%, -50%);
+    top: unset;
+    bottom: calc(66px + 40px + 24px);
+    transform: translate(-50%, 0);
+
+    h2 {
+      font-style: italic;
+    }
+
+    &.center {
+      top: calc(50% + 60px - 40px);
+      bottom: unset;
+      transform: translate(-50%, -50%);
+    }
   }
 
   .swiper-slide-active img,
