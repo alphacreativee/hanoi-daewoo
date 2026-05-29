@@ -20,6 +20,10 @@
 
         .btn-wrapper {
           margin-top: 24px;
+
+          display: flex;
+          align-items: center;
+          gap: 40px;
         }
       }
 
@@ -32,7 +36,7 @@
           align-items: flex-start;
         }
 
-        ul {
+        ul.desc {
           margin-top: 24px;
 
           li {
@@ -50,6 +54,37 @@
               margin-right: 12px;
               width: 16px;
               height: 16px;
+            }
+          }
+        }
+
+        .table-info {
+          display: flex;
+          flex-direction: column;
+          margin-top: 24px;
+          // padding-right: calc(100% / 5);
+
+          .table-row {
+            display: flex;
+            align-items: flex-start;
+            justify-content: space-between;
+            padding: 12px 0;
+            border-bottom: 1px solid rgba(0, 0, 0, 0.2);
+
+            .name {
+              color: rgba(0, 0, 0, 0.5);
+              font-size: 13px;
+              line-height: 24px;
+              font-family: var(--font-body);
+            }
+            .value {
+              & > * {
+                text-align: right;
+                color: var(--color-black);
+                font-size: 13px;
+                line-height: 24px;
+                font-family: var(--font-body);
+              }
             }
           }
         }
