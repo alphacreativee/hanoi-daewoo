@@ -2868,19 +2868,18 @@ body {
 }
 
 .offers-container {
-  padding: 120px 40px;
+  padding: 120px 0;
 }
 .offers-container .filter-section {
-  padding: 10px 0;
+  padding: 10px 40px;
   background-color: #f2f2f2;
-  margin: 50px 0;
+  margin-bottom: 50px;
   position: sticky;
   z-index: 4;
   top: 60px;
 }
 .offers-container .filter-list-button {
   gap: 40px;
-  margin-bottom: 46px;
 }
 .offers-container .filter-list-button .filter-button {
   cursor: pointer;
@@ -2889,6 +2888,7 @@ body {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
   gap: 20px;
+  padding: 0 40px;
 }
 .offers-container .filter-section-result .moreInfo-list__item .item-image {
   aspect-ratio: 440/480;

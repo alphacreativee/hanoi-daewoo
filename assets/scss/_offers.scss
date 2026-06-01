@@ -1,11 +1,11 @@
 .offers {
   &-container {
-    padding: 120px 40px;
+    padding: 120px 0;
 
     .filter-section {
-      padding: 10px 0;
+      padding: 10px 40px;
       background-color: #f2f2f2;
-      margin: 50px 0;
+      margin-bottom: 50px;
 
       position: sticky;
       z-index: 4;
@@ -14,7 +14,7 @@
 
     .filter-list-button {
       gap: 40px;
-      margin-bottom: 46px;
+      // margin-bottom: 46px;
 
       .filter-button {
         cursor: pointer;
@@ -25,6 +25,7 @@
       display: grid;
       grid-template-columns: repeat(3, 1fr);
       gap: 20px;
+      padding: 0 40px;
 
       .moreInfo-list__item {
         .item-image {
