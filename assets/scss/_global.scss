@@ -1156,3 +1156,48 @@ body {
 .daterangepicker .drp-calendar.left .calendar-table {
   padding-right: 0;
 }
+.swiper-three-col {
+  margin-top: 60px;
+}
+.main-swiper {
+  .swiper-arrows {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+  }
+  .swiper-arrow-custom {
+    position: static;
+    height: auto;
+    margin: 0;
+    &::after {
+      content: unset;
+      font-size: 0;
+    }
+    svg {
+      color: var(--color-black);
+    }
+  }
+  .swiper-nav {
+    display: flex;
+    align-items: center;
+    gap: 48px;
+    margin-top: 60px;
+    &.hidden {
+      display: none;
+    }
+  }
+  .swiper-fraction {
+    white-space: nowrap;
+    z-index: 2;
+  }
+  .swiper-pagination {
+    position: static;
+    top: auto;
+    bottom: 0;
+    height: 1px;
+    background-color: rgba(0, 0, 0, 0.2);
+    .swiper-pagination-progressbar-fill {
+      background-color: var(--color-black);
+    }
+  }
+}

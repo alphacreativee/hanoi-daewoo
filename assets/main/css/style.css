@@ -1227,6 +1227,51 @@ body {
   padding-right: 0;
 }
 
+.swiper-three-col {
+  margin-top: 60px;
+}
+
+.main-swiper .swiper-arrows {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+.main-swiper .swiper-arrow-custom {
+  position: static;
+  height: auto;
+  margin: 0;
+}
+.main-swiper .swiper-arrow-custom::after {
+  content: unset;
+  font-size: 0;
+}
+.main-swiper .swiper-arrow-custom svg {
+  color: var(--color-black);
+}
+.main-swiper .swiper-nav {
+  display: flex;
+  align-items: center;
+  gap: 48px;
+  margin-top: 60px;
+}
+.main-swiper .swiper-nav.hidden {
+  display: none;
+}
+.main-swiper .swiper-fraction {
+  white-space: nowrap;
+  z-index: 2;
+}
+.main-swiper .swiper-pagination {
+  position: static;
+  top: auto;
+  bottom: 0;
+  height: 1px;
+  background-color: rgba(0, 0, 0, 0.2);
+}
+.main-swiper .swiper-pagination .swiper-pagination-progressbar-fill {
+  background-color: var(--color-black);
+}
+
 #header {
   z-index: 999;
   transition: background-color 0.3s ease, transform 0.3s ease;

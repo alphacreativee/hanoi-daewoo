@@ -830,7 +830,6 @@ function animationItemRow() {
   if (!rowItems.length) return;
   gsap.registerPlugin(ScrollTrigger);
   rowItems.forEach((item) => {
-
     const listDOne = item.querySelector(".list-detail-one");
     const listDTwo = item.querySelector(".list-detail-two");
     const listDThree = item.querySelector(".list-detail-three");
@@ -841,7 +840,7 @@ function animationItemRow() {
     );
 
     gsap.set(contentEls, { y: 20, opacity: 0 });
-    
+
     const tl = gsap.timeline({ paused: true });
     const animFrom = { y: 20, opacity: 0 };
     const animTo = { y: 0, opacity: 1, duration: 0.8, ease: "power2.out" };
@@ -983,6 +982,49 @@ function wonderGallery() {
     );
   });
 }
+function swiperThreeCol() {
+  if (!$(".swiper-three-col").length) return;
+
+  const slides = $(".swiper-three-col .swiper-slide").length;
+  const perView = $(".swiper-three-col").data("per-view") || 3;
+  const spaceBetween = $(".swiper-three-col").data("space-between") || 30;
+
+  const swiper = new Swiper(".swiper-three-col", {
+    slidesPerView: perView,
+    spaceBetween: spaceBetween,
+    pagination: {
+      el: ".main-swiper .swiper-pagination",
+      type: "progressbar",
+    },
+    navigation: {
+      nextEl: ".main-swiper .swiper-button-next",
+      prevEl: ".main-swiper .swiper-button-prev",
+    },
+    on: {
+      init(swiper) {
+        updateFraction(swiper);
+      },
+      slideChange(swiper) {
+        updateFraction(swiper);
+      },
+    },
+  });
+
+  // Ẩn nav nếu số slide <= perView
+  if (slides <= perView) {
+    document.querySelector(".main-swiper .swiper-nav")?.classList.add("hidden");
+  }
+
+  function updateFraction(swiper) {
+    const el = document.querySelector(".main-swiper .swiper-fraction");
+    if (!el) return;
+
+    const total = swiper.slides.length;
+    const current = swiper.isEnd ? total : swiper.realIndex + perView;
+
+    el.textContent = `${current} / ${total}`;
+  }
+}
 const init = () => {
   gsap.registerPlugin(ScrollTrigger);
   customDropdown();
@@ -1006,6 +1048,7 @@ const init = () => {
   animationItemRow();
   bookAtable();
   wonderGallery();
+  swiperThreeCol();
 };
 document.addEventListener("DOMContentLoaded", () => {
   init();
