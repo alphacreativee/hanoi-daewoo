@@ -1975,11 +1975,11 @@ body {
   object-fit: cover;
 }
 
+.moreInfo.related-offers .item-image {
+  aspect-ratio: 440/480;
+}
 .moreInfo.related-offers .moreInfo-list {
   grid-template-columns: repeat(3, 1fr);
-}
-.moreInfo.related-offers .moreInfo-list .item-image {
-  aspect-ratio: 440/480;
 }
 .moreInfo.related-offers .moreInfo-list .item-content .desc {
   -webkit-line-clamp: 3;
@@ -2581,6 +2581,9 @@ body {
 .overview-container .content-left .desc {
   margin-top: 24px;
 }
+.overview-container .content-left .desc p:not(:first-child) {
+  margin-top: 16px;
+}
 .overview-container .content-left .btn-wrapper {
   margin-top: 24px;
   display: flex;
@@ -2874,11 +2877,18 @@ body {
 }
 
 .offers-container {
-  padding: 120px 40px;
+  padding: 0 0 120px;
+}
+.offers-container .filter-section {
+  padding: 10px 40px;
+  background-color: #f2f2f2;
+  margin-bottom: 50px;
+  position: sticky;
+  z-index: 4;
+  top: 60px;
 }
 .offers-container .filter-list-button {
   gap: 40px;
-  margin-bottom: 46px;
 }
 .offers-container .filter-list-button .filter-button {
   cursor: pointer;
@@ -2887,6 +2897,7 @@ body {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
   gap: 20px;
+  padding: 0 40px;
 }
 .offers-container .filter-section-result .moreInfo-list__item .item-image {
   aspect-ratio: 440/480;

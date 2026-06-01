@@ -1005,6 +1005,7 @@ function swiperThreeCol() {
     on: {
       init(swiper) {
         updateFraction(swiper);
+        setOfferDescHeight();
       },
       slideChange(swiper) {
         updateFraction(swiper);

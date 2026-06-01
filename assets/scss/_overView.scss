@@ -16,6 +16,12 @@
       &-left {
         .desc {
           margin-top: 24px;
+
+          p {
+            &:not(:first-child) {
+              margin-top: 16px;
+            }
+          }
         }
 
         .btn-wrapper {
