@@ -1,5 +1,13 @@
 .intro {
   padding: 120px 0;
+  &.no-img {
+    .intro-line {
+      display: none;
+    }
+  }
+  &-btn {
+    margin-top: 80px;
+  }
   // &-grid {
   //   display: grid;
   //   grid-template-columns: 7fr 5fr;

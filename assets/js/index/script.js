@@ -420,6 +420,7 @@ function animationText() {
     const tlTextThree = el.querySelectorAll(".tl-text-three");
     const tlTextFour = el.querySelectorAll(".tl-text-four");
     const tlTextFive = el.querySelectorAll(".tl-text-five");
+    const tlTextSix = el.querySelectorAll(".tl-text-six");
 
     // [tlTextOne, tlTextTwo, tlTextThree, tlTextFour, tlTextFive].forEach(
     //   (group) => {
@@ -449,6 +450,7 @@ function animationText() {
     if (tlTextThree.length) tl.fromTo(tlTextThree, animFrom, animTo, "-=0.4");
     if (tlTextFour.length) tl.fromTo(tlTextFour, animFrom, animTo, "-=0.4");
     if (tlTextFive.length) tl.fromTo(tlTextFive, animFrom, animTo, "-=0.4");
+    if (tlTextSix.length) tl.fromTo(tlTextSix, animFrom, animTo, "-=0.4");
   });
 }
 
@@ -1025,6 +1027,102 @@ function swiperThreeCol() {
     el.textContent = `${current} / ${total}`;
   }
 }
+// ================================
+// PARALLAX SWIPER
+// ================================
+function initParallaxSwiper(swiperEl, options = {}) {
+  const interleaveOffset = 0.8;
+
+  return new Swiper(swiperEl, {
+    slidesPerView: 1,
+    loop: true,
+    speed: 1500,
+    watchSlidesProgress: true,
+    grabCursor: true,
+    ...options,
+    on: {
+      progress(swiper) {
+        swiper.slides.forEach((slide) => {
+          const slideProgress = slide.progress || 0;
+          const innerOffset = swiper.width * interleaveOffset;
+          const innerTranslate = slideProgress * innerOffset;
+
+          if (!isNaN(innerTranslate)) {
+            const image = slide.querySelector(".image");
+            if (image) {
+              image.style.transform = `translate3d(${innerTranslate}px, 0, 0)`;
+            }
+          }
+        });
+      },
+      touchStart(swiper) {
+        swiper.slides.forEach((slide) => {
+          slide.style.transition = "";
+        });
+      },
+      setTransition(swiper, speed) {
+        const easing = "cubic-bezier(0.25, 0.1, 0.25, 1)";
+        swiper.slides.forEach((slide) => {
+          slide.style.transition = `${speed}ms ${easing}`;
+          const image = slide.querySelector(".image");
+          if (image) {
+            image.style.transition = `${speed}ms ${easing}`;
+          }
+        });
+      },
+      ...(options.on || {}),
+    },
+  });
+}
+
+// ================================
+// GALLERY LIGHTBOX
+// ================================
+function galleryLightbox() {
+  const lightbox = document.querySelector(".gallery-lightbox");
+  if (!lightbox) return;
+
+  const swiperEl = lightbox.querySelector(".swiper-lightbox");
+  let swiperLightbox = null;
+
+  function initSwiper() {
+    if (swiperLightbox) return;
+
+    swiperLightbox = initParallaxSwiper(swiperEl, {
+      navigation: {
+        nextEl: lightbox.querySelector(".swiper-button-next"),
+        prevEl: lightbox.querySelector(".swiper-button-prev"),
+      },
+      pagination: {
+        el: lightbox.querySelector(".swiper-fraction"),
+        type: "fraction",
+      },
+    });
+  }
+
+  // Click grid item -> mở lightbox
+  document.querySelectorAll(".gallery-grid .grid-item").forEach((item) => {
+    item.addEventListener("click", function () {
+      const index = parseInt(this.dataset.index);
+      lightbox.classList.remove("hidden");
+      initSwiper();
+      swiperLightbox.slideTo(index, 0);
+    });
+  });
+
+  // Đóng lightbox
+  lightbox
+    .querySelector(".icon-close-lightbox")
+    ?.addEventListener("click", () => {
+      lightbox.classList.add("hidden");
+    });
+
+  lightbox.querySelector(".lightbox-overlay")?.addEventListener("click", () => {
+    lightbox.classList.add("hidden");
+  });
+}
+
+galleryLightbox();
 const init = () => {
   gsap.registerPlugin(ScrollTrigger);
   customDropdown();
