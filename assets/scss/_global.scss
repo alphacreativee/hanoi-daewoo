@@ -373,6 +373,16 @@ body {
 .section-title {
   .desc {
     margin-top: 24px;
+
+    p {
+      &:not(:first-child) {
+        margin-top: 16px;
+      }
+    }
+  }
+
+  .cta {
+    margin-top: 40px;
   }
 }
 

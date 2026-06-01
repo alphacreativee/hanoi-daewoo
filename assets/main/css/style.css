@@ -563,6 +563,12 @@ body {
 .section-title .desc {
   margin-top: 24px;
 }
+.section-title .desc p:not(:first-child) {
+  margin-top: 16px;
+}
+.section-title .cta {
+  margin-top: 40px;
+}
 
 [slider-parallax],
 .wrapper-slider-parallax {
@@ -2895,4 +2901,84 @@ body {
 }
 .offers-container .filter-section-result .moreInfo-list__item .item-image {
   aspect-ratio: 440/480;
+}
+
+.sectionAccordion-container {
+  padding: 120px 40px;
+}
+.sectionAccordion .accordion-main {
+  margin-top: 60px;
+  border: 1px solid var(--color-gold);
+  padding: 12px 40px 16px;
+}
+.sectionAccordion .accordion-header {
+  position: relative;
+}
+.sectionAccordion .accordion-header .icon {
+  position: absolute;
+  right: 0;
+  top: 32px;
+  width: 20px;
+  height: 20px;
+}
+.sectionAccordion .accordion-header .icon svg {
+  position: absolute;
+  inset: 0;
+  transition: transform 0.4s ease, opacity 0.4s ease;
+}
+.sectionAccordion .accordion-header .icon svg * {
+  transition: all 0.4s ease;
+}
+.sectionAccordion .accordion-header .icon svg.icon-minus {
+  opacity: 0;
+}
+.sectionAccordion .accordion-header .icon .icon-plus {
+  transform: rotate(0);
+}
+.sectionAccordion .accordion-button {
+  border: none;
+  color: var(--color-black);
+  box-shadow: none;
+  background-color: transparent;
+  transition: all 0.4s ease;
+  padding: 24px 0;
+  border-radius: unset !important;
+}
+.sectionAccordion .accordion-button:not(.collapsed) + .icon .icon-plus {
+  opacity: 0;
+  transform: rotate(90deg);
+}
+.sectionAccordion .accordion-button:not(.collapsed) + .icon .icon-minus {
+  opacity: 1;
+}
+.sectionAccordion .accordion-button::after {
+  display: none;
+}
+.sectionAccordion .accordion-button:hover {
+  color: var(--color-gold);
+}
+.sectionAccordion .accordion-button:hover + .icon {
+  color: var(--color-gold);
+}
+.sectionAccordion .accordion-item {
+  border: none;
+  background-color: transparent;
+}
+.sectionAccordion .accordion-item:not(:last-child) {
+  border-bottom: 1px solid rgba(0, 0, 0, 0.2);
+}
+.sectionAccordion .accordion-body {
+  padding: 0 0 24px;
+}
+.sectionAccordion .accordion-body .content {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 24px;
+}
+.sectionAccordion .accordion-body .content ul {
+  padding-left: 24px;
+  list-style: disc;
+}
+.sectionAccordion .accordion-body .cta {
+  margin-top: 24px;
 }
