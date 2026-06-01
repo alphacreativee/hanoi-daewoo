@@ -1084,7 +1084,30 @@ function galleryLightbox() {
   if (!lightbox) return;
 
   const swiperEl = lightbox.querySelector(".swiper-lightbox");
+  const titleEl = lightbox.querySelector(".swiper-slide-title");
   let swiperLightbox = null;
+
+  function updateTitle(swiper) {
+    if (!titleEl) return;
+    const realSlides = swiperEl.querySelectorAll(
+      ".swiper-slide:not(.swiper-slide-duplicate)",
+    );
+    const title = realSlides[swiper.realIndex]?.dataset?.title || "";
+
+    // Reset animation
+    titleEl.style.transition = "none";
+    titleEl.style.transform = "translateY(20px)";
+    titleEl.style.opacity = "0";
+
+    // Force reflow
+    titleEl.offsetHeight;
+
+    // Animate vào
+    titleEl.style.transition = "transform 0.4s ease, opacity 0.4s ease";
+    titleEl.style.transform = "translateY(0)";
+    titleEl.style.opacity = "1";
+    titleEl.textContent = title;
+  }
 
   function initSwiper() {
     if (swiperLightbox) return;
@@ -1098,20 +1121,27 @@ function galleryLightbox() {
         el: lightbox.querySelector(".swiper-fraction"),
         type: "fraction",
       },
+      on: {
+        init(swiper) {
+          updateTitle(swiper);
+        },
+        slideChange(swiper) {
+          updateTitle(swiper);
+        },
+      },
     });
   }
 
-  // Click grid item -> mở lightbox
   document.querySelectorAll(".gallery-grid .grid-item").forEach((item) => {
     item.addEventListener("click", function () {
       const index = parseInt(this.dataset.index);
       lightbox.classList.remove("hidden");
       initSwiper();
       swiperLightbox.slideTo(index, 0);
+      updateTitle(swiperLightbox); // update title ngay khi mở
     });
   });
 
-  // Đóng lightbox
   lightbox
     .querySelector(".icon-close-lightbox")
     ?.addEventListener("click", () => {

@@ -2988,7 +2988,14 @@ body {
 .gallery-lightbox .swiper-nav {
   display: flex;
   align-items: center;
+  justify-content: flex-end;
   gap: 16px;
+  width: 100%;
+}
+.gallery-lightbox .swiper-nav-inner {
+  display: grid;
+  grid-template-columns: 1fr auto 1fr;
+  width: 100%;
 }
 .gallery-lightbox .image {
   overflow: hidden;
@@ -2999,6 +3006,7 @@ body {
   white-space: nowrap;
   z-index: 2;
   text-align: center;
+  width: max-content;
 }
 .gallery-lightbox.hidden {
   display: none;
