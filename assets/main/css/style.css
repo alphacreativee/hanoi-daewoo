@@ -1975,11 +1975,11 @@ body {
   object-fit: cover;
 }
 
+.moreInfo.related-offers .item-image {
+  aspect-ratio: 440/480;
+}
 .moreInfo.related-offers .moreInfo-list {
   grid-template-columns: repeat(3, 1fr);
-}
-.moreInfo.related-offers .moreInfo-list .item-image {
-  aspect-ratio: 440/480;
 }
 .moreInfo.related-offers .moreInfo-list .item-content .desc {
   -webkit-line-clamp: 3;
@@ -2575,6 +2575,9 @@ body {
 .overview-container .content-left .desc {
   margin-top: 24px;
 }
+.overview-container .content-left .desc p:not(:first-child) {
+  margin-top: 16px;
+}
 .overview-container .content-left .btn-wrapper {
   margin-top: 24px;
   display: flex;
@@ -2868,7 +2871,7 @@ body {
 }
 
 .offers-container {
-  padding: 120px 0;
+  padding: 0 0 120px;
 }
 .offers-container .filter-section {
   padding: 10px 40px;

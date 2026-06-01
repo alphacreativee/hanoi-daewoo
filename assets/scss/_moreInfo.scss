@@ -1,11 +1,11 @@
 .moreInfo {
   &.related-offers {
+    .item-image {
+      aspect-ratio: 440 / 480;
+    }
+
     .moreInfo-list {
       grid-template-columns: repeat(3, 1fr);
-
-      .item-image {
-        aspect-ratio: 440 / 480;
-      }
 
       .item-content .desc {
         -webkit-line-clamp: 3;
