@@ -2,6 +2,16 @@
   &-container {
     padding: 120px 40px;
 
+    .filter-section {
+      padding: 10px 0;
+      background-color: #f2f2f2;
+      margin: 50px 0;
+
+      position: sticky;
+      z-index: 4;
+      top: 60px;
+    }
+
     .filter-list-button {
       gap: 40px;
       margin-bottom: 46px;
