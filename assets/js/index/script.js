@@ -1153,7 +1153,124 @@ function galleryLightbox() {
   });
 }
 
-galleryLightbox();
+function galleryTabLightbox() {
+  const section = document.querySelector(".galleryTab");
+  if (!section) return;
+
+  const lightbox = document.querySelector(".gallery-lightbox");
+  if (!lightbox) return;
+
+  const swiperEl = lightbox.querySelector(".swiper-lightbox");
+  const titleEl = lightbox.querySelector(
+    ".swiper-nav-inner .swiper-slide-title",
+  );
+  const fractionEl = lightbox.querySelector(".swiper-fraction");
+  let swiperLightbox = null;
+
+  function updateTitle(swiper) {
+    if (!titleEl) return;
+    const realSlides = swiperEl.querySelectorAll(
+      ".swiper-slide:not(.swiper-slide-duplicate)",
+    );
+    const title = realSlides[swiper.realIndex]?.dataset?.title || "";
+
+    // Reset
+    titleEl.style.transition = "none";
+    titleEl.style.transform = "translateY(20px)";
+    titleEl.style.opacity = "0";
+
+    // Force reflow
+    titleEl.offsetHeight;
+
+    // Animate
+    titleEl.style.transition = "transform 0.4s ease, opacity 0.4s ease";
+    titleEl.style.transform = "translateY(0)";
+    titleEl.style.opacity = "1";
+    titleEl.textContent = title;
+  }
+
+  function buildSlides(items) {
+    const wrapper = swiperEl.querySelector(".swiper-wrapper");
+    wrapper.innerHTML = "";
+
+    items.forEach((item) => {
+      const img = item.querySelector("img");
+      const src = img?.getAttribute("src") || "";
+      const title = item.dataset.title || "";
+
+      const slide = document.createElement("div");
+      slide.className = "swiper-slide overflow-hidden";
+      slide.dataset.title = title;
+      slide.innerHTML = `<div class="image"><img src="${src}" /></div>`;
+      wrapper.appendChild(slide);
+    });
+  }
+
+  function destroySwiper() {
+    if (swiperLightbox) {
+      swiperLightbox.destroy(true, true);
+      swiperLightbox = null;
+    }
+  }
+
+  function initSwiper() {
+    swiperLightbox = initParallaxSwiper(swiperEl, {
+      navigation: {
+        nextEl: lightbox.querySelector(".swiper-button-next"),
+        prevEl: lightbox.querySelector(".swiper-button-prev"),
+      },
+      pagination: {
+        el: fractionEl,
+        type: "fraction",
+      },
+      on: {
+        init(swiper) {
+          updateTitle(swiper);
+        },
+        slideChange(swiper) {
+          updateTitle(swiper);
+        },
+      },
+    });
+  }
+
+  section.querySelectorAll(".filter-item").forEach((item) => {
+    item.addEventListener("click", function () {
+      const activeBtn = section.querySelector(".filter-button.active");
+      const activeType = activeBtn?.dataset?.type || "all";
+
+      let visibleItems;
+      if (activeType === "all") {
+        visibleItems = [...section.querySelectorAll(".filter-item")];
+      } else {
+        visibleItems = [
+          ...section.querySelectorAll(`.filter-item.${activeType}`),
+        ];
+      }
+
+      const index = visibleItems.indexOf(this);
+
+      destroySwiper();
+      buildSlides(visibleItems);
+
+      lightbox.classList.remove("hidden");
+      initSwiper();
+      swiperLightbox.slideTo(index, 0);
+      updateTitle(swiperLightbox);
+    });
+  });
+
+  lightbox
+    .querySelector(".icon-close-lightbox")
+    ?.addEventListener("click", () => {
+      lightbox.classList.add("hidden");
+    });
+
+  lightbox.querySelector(".lightbox-overlay")?.addEventListener("click", () => {
+    lightbox.classList.add("hidden");
+  });
+}
+
 const init = () => {
   gsap.registerPlugin(ScrollTrigger);
   customDropdown();
@@ -1178,6 +1295,8 @@ const init = () => {
   bookAtable();
   wonderGallery();
   swiperThreeCol();
+  galleryLightbox();
+  galleryTabLightbox();
 };
 document.addEventListener("DOMContentLoaded", () => {
   init();
