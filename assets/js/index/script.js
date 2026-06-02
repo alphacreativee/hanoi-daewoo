@@ -998,7 +998,105 @@ function galleryLightbox() {
   if (!lightbox) return;
 
   const swiperEl = lightbox.querySelector(".swiper-lightbox");
+  const wrapper = swiperEl.querySelector(".swiper-wrapper");
   const titleEl = lightbox.querySelector(".swiper-slide-title");
+
+  let swiperLightbox = null;
+
+  function updateTitle(swiper) {
+    if (!titleEl || !swiper) return;
+
+    const activeSlide = swiper.slides[swiper.activeIndex];
+    const title = activeSlide ? activeSlide.dataset.title : "";
+
+    // Animation
+    titleEl.style.transition = "none";
+    titleEl.style.transform = "translateY(20px)";
+    titleEl.style.opacity = "0";
+    titleEl.offsetHeight;
+
+    titleEl.style.transition = "transform 0.4s ease, opacity 0.4s ease";
+    titleEl.style.transform = "translateY(0)";
+    titleEl.style.opacity = "1";
+    titleEl.textContent = title;
+  }
+
+  function buildSlides() {
+    const items = document.querySelectorAll(".gallery-grid .grid-item");
+    wrapper.innerHTML = "";
+
+    items.forEach((item) => {
+      const img = item.querySelector("img");
+      const src = img?.getAttribute("src") || "";
+      const title = item.dataset.title || "Gallery Image";
+
+      const slide = document.createElement("div");
+      slide.className = "swiper-slide overflow-hidden";
+      slide.dataset.title = title;
+      slide.innerHTML = `<div class="image"><img src="${src}" alt="${title}" /></div>`;
+      wrapper.appendChild(slide);
+    });
+  }
+
+  function initSwiper(startIndex = 0) {
+    if (swiperLightbox) swiperLightbox.destroy(true, true);
+
+    swiperLightbox = initParallaxSwiper(swiperEl, {
+      navigation: {
+        nextEl: lightbox.querySelector(".swiper-button-next"),
+        prevEl: lightbox.querySelector(".swiper-button-prev")
+      },
+      pagination: {
+        el: lightbox.querySelector(".swiper-fraction"),
+        type: "fraction"
+      },
+      observer: true,
+      observeParents: true,
+      observeSlideChildren: true,
+      initialSlide: startIndex,
+
+      on: {
+        init: updateTitle,
+        slideChange: updateTitle
+      }
+    });
+  }
+
+  // Click handler
+  document.querySelectorAll(".gallery-grid .grid-item").forEach((item) => {
+    item.addEventListener("click", function () {
+      const index = parseInt(this.dataset.index);
+
+      buildSlides();
+      lightbox.classList.remove("hidden");
+
+      setTimeout(() => {
+        initSwiper(index);
+      }, 50);
+    });
+  });
+
+  // Close
+  lightbox
+    .querySelector(".icon-close-lightbox")
+    ?.addEventListener("click", () => lightbox.classList.add("hidden"));
+  lightbox
+    .querySelector(".lightbox-overlay")
+    ?.addEventListener("click", () => lightbox.classList.add("hidden"));
+}
+
+function galleryTabLightbox() {
+  const section = document.querySelector(".galleryTab");
+  if (!section) return;
+
+  const lightbox = document.querySelector(".gallery-lightbox");
+  if (!lightbox) return;
+
+  const swiperEl = lightbox.querySelector(".swiper-lightbox");
+  const titleEl = lightbox.querySelector(
+    ".swiper-nav-inner .swiper-slide-title"
+  );
+  const fractionEl = lightbox.querySelector(".swiper-fraction");
   let swiperLightbox = null;
 
   function updateTitle(swiper) {
@@ -1008,7 +1106,7 @@ function galleryLightbox() {
     );
     const title = realSlides[swiper.realIndex]?.dataset?.title || "";
 
-    // Reset animation
+    // Reset
     titleEl.style.transition = "none";
     titleEl.style.transform = "translateY(20px)";
     titleEl.style.opacity = "0";
@@ -1016,23 +1114,45 @@ function galleryLightbox() {
     // Force reflow
     titleEl.offsetHeight;
 
-    // Animate vào
+    // Animate
     titleEl.style.transition = "transform 0.4s ease, opacity 0.4s ease";
     titleEl.style.transform = "translateY(0)";
     titleEl.style.opacity = "1";
     titleEl.textContent = title;
   }
 
-  function initSwiper() {
-    if (swiperLightbox) return;
+  function buildSlides(items) {
+    const wrapper = swiperEl.querySelector(".swiper-wrapper");
+    wrapper.innerHTML = "";
 
+    items.forEach((item) => {
+      const img = item.querySelector("img");
+      const src = img?.getAttribute("src") || "";
+      const title = item.dataset.title || "";
+
+      const slide = document.createElement("div");
+      slide.className = "swiper-slide overflow-hidden";
+      slide.dataset.title = title;
+      slide.innerHTML = `<div class="image"><img src="${src}" /></div>`;
+      wrapper.appendChild(slide);
+    });
+  }
+
+  function destroySwiper() {
+    if (swiperLightbox) {
+      swiperLightbox.destroy(true, true);
+      swiperLightbox = null;
+    }
+  }
+
+  function initSwiper() {
     swiperLightbox = initParallaxSwiper(swiperEl, {
       navigation: {
         nextEl: lightbox.querySelector(".swiper-button-next"),
         prevEl: lightbox.querySelector(".swiper-button-prev")
       },
       pagination: {
-        el: lightbox.querySelector(".swiper-fraction"),
+        el: fractionEl,
         type: "fraction"
       },
       on: {
@@ -1046,13 +1166,29 @@ function galleryLightbox() {
     });
   }
 
-  document.querySelectorAll(".gallery-grid .grid-item").forEach((item) => {
+  section.querySelectorAll(".filter-item").forEach((item) => {
     item.addEventListener("click", function () {
-      const index = parseInt(this.dataset.index);
+      const activeBtn = section.querySelector(".filter-button.active");
+      const activeType = activeBtn?.dataset?.type || "all";
+
+      let visibleItems;
+      if (activeType === "all") {
+        visibleItems = [...section.querySelectorAll(".filter-item")];
+      } else {
+        visibleItems = [
+          ...section.querySelectorAll(`.filter-item.${activeType}`)
+        ];
+      }
+
+      const index = visibleItems.indexOf(this);
+
+      destroySwiper();
+      buildSlides(visibleItems);
+
       lightbox.classList.remove("hidden");
       initSwiper();
       swiperLightbox.slideTo(index, 0);
-      updateTitle(swiperLightbox); // update title ngay khi mở
+      updateTitle(swiperLightbox);
     });
   });
 
@@ -1276,6 +1412,8 @@ const init = () => {
   wonderGallery();
   swiperThreeCol();
   formBookingEvent();
+  galleryLightbox();
+  galleryTabLightbox();
 };
 document.addEventListener("DOMContentLoaded", () => {
   init();
