@@ -1049,17 +1049,17 @@ body {
   font-size: 0;
 }
 
-#modalBookingTable .modal-body {
+.modal-booking .modal-body {
   padding: 0;
 }
-#modalBookingTable .modal-content {
+.modal-booking .modal-content {
   border-radius: 0;
   border: unset;
 }
-#modalBookingTable .modal-dialog {
+.modal-booking .modal-dialog {
   max-width: 1130px;
 }
-#modalBookingTable .btn-close {
+.modal-booking .btn-close {
   width: 44px;
   height: 44px;
   background: var(--color-black);
@@ -1071,69 +1071,152 @@ body {
   justify-content: center;
   transition: all 0.4s ease;
 }
-#modalBookingTable .btn-close:hover {
+.modal-booking .btn-close:hover {
   background-color: var(--color-gold);
 }
-#modalBookingTable .modal-close {
+.modal-booking .modal-close {
   position: absolute;
   z-index: 5;
   right: 0;
   top: 0;
   cursor: pointer;
 }
-#modalBookingTable .content-box {
+.modal-booking .content-box {
   display: grid;
   grid-template-columns: 4fr 6fr;
 }
-#modalBookingTable .content-box-left {
+.modal-booking .content-box-left {
   padding: 48px 48px 80px 48px;
   border-right: 1px solid rgba(0, 0, 0, 0.2);
   display: flex;
   flex-direction: column;
   justify-content: space-between;
 }
-#modalBookingTable .content-box-left p {
+.modal-booking .content-box-left p {
   margin-top: 24px;
 }
-#modalBookingTable .content-box-left .foot li {
+.modal-booking .content-box-left .foot li {
   gap: 8px;
 }
-#modalBookingTable .content-box-left .foot ul {
+.modal-booking .content-box-left .foot ul {
   gap: 4px;
 }
-#modalBookingTable .content-box-right {
+.modal-booking .content-box-right {
   padding: 80px 100px;
+  position: relative;
 }
-#modalBookingTable .list-field {
+.modal-booking .content-box-right .step-number {
+  position: absolute;
+  z-index: 3;
+  bottom: 16px;
+  right: 16px;
+}
+.modal-booking .content-box .upload-area {
+  border: 1px dashed var(--color-black);
+  border-radius: 0;
+  padding: 26px 40px 28px;
+  text-align: center;
+  transition: 0.3s;
+  margin-top: 12px;
+}
+.modal-booking .content-box .upload-area .upload-content {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 4px;
+}
+.modal-booking .content-box .upload-area .upload-content button {
+  text-decoration: underline;
+  transition: all 0.4s ease;
+}
+.modal-booking .content-box .upload-area .upload-content button:hover {
+  color: var(--color-gold);
+}
+.modal-booking .content-box .upload-area.dragover {
+  border-color: #000;
+  background: #f5f5f5;
+}
+.modal-booking .content-box #fileList.hasFile {
+  margin-top: 15px;
+}
+.modal-booking .content-box .btn-next,
+.modal-booking .content-box .btn-back {
+  border: 1px solid var(--color-black);
+}
+.modal-booking .content-box .btn-next {
+  grid-column: 1/-1;
+}
+.modal-booking .list-field {
   display: grid;
   grid-template-columns: 1fr 1fr;
   gap: 24px 16px;
 }
-#modalBookingTable .list-field .field-item {
+.modal-booking .list-field .field-item {
   position: relative;
 }
-#modalBookingTable .list-field .field-item input:-webkit-autofill, #modalBookingTable .list-field .field-item input:-webkit-autofill:hover, #modalBookingTable .list-field .field-item input:-webkit-autofill:focus {
+.modal-booking .list-field .field-item .checkbox-list {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 12px;
+  margin-top: 12px;
+}
+.modal-booking .list-field .field-item .checkbox-list input {
+  border-radius: 50%;
+  width: 18px;
+  height: 18px;
+}
+.modal-booking .list-field .field-item .checkbox-list label {
+  position: unset;
+  transform: none;
+  pointer-events: auto;
+  display: flex;
+  align-items: center;
+  gap: 4px;
+}
+.modal-booking .list-field .field-item input:-webkit-autofill, .modal-booking .list-field .field-item input:-webkit-autofill:hover, .modal-booking .list-field .field-item input:-webkit-autofill:focus {
   -webkit-box-shadow: 0 0 0 1000px #ffffff inset !important;
 }
-#modalBookingTable .list-field .field-item input[type=number]::-webkit-outer-spin-button,
-#modalBookingTable .list-field .field-item input[type=number]::-webkit-inner-spin-button {
+.modal-booking .list-field .field-item input[type=number]::-webkit-outer-spin-button,
+.modal-booking .list-field .field-item input[type=number]::-webkit-inner-spin-button {
   -webkit-appearance: none;
   margin: 0;
 }
-#modalBookingTable .list-field .field-item.full {
+.modal-booking .list-field .field-item input[type=radio] {
+  accent-color: var(--color-black);
+}
+.modal-booking .list-field .field-item input[name=arrivalDate],
+.modal-booking .list-field .field-item input[name=departureDate] {
+  padding-right: 40px;
+}
+.modal-booking .list-field .field-item.date {
+  position: relative;
+}
+.modal-booking .list-field .field-item.date::after {
+  content: "";
+  width: 24px;
+  height: 24px;
+  background-image: url("../../images/use/icon-calendar.svg");
+  background-repeat: no-repeat;
+  background-size: cover;
+  position: absolute;
+  top: 50%;
+  right: 12px;
+  transform: translateY(-50%);
+}
+.modal-booking .list-field .field-item.full {
   grid-column: 1/-1;
 }
-#modalBookingTable .list-field .field-item textarea {
+.modal-booking .list-field .field-item textarea {
   width: 100%;
   border: 1px solid rgba(0, 0, 0, 0.2);
   color: var(--color-black);
   padding: 8px 24px;
 }
-#modalBookingTable .list-field .field-item textarea + label {
+.modal-booking .list-field .field-item textarea + label {
   top: 8px;
   transform: translate(0);
 }
-#modalBookingTable .list-field .field-item label {
+.modal-booking .list-field .field-item label {
   position: absolute;
   left: 16px;
   top: 50%;
@@ -1141,10 +1224,10 @@ body {
   pointer-events: none;
   transition: all 0.4s ease;
 }
-#modalBookingTable .list-field .field-item label span {
+.modal-booking .list-field .field-item label span {
   color: #ff0000;
 }
-#modalBookingTable .list-field .field-item .label {
+.modal-booking .list-field .field-item .label {
   transform: translateY(-50%);
   font-size: 12px;
   line-height: 14px;
@@ -1156,28 +1239,28 @@ body {
   padding: 0 8px;
   z-index: 4;
 }
-#modalBookingTable .list-field .field-item .label span {
+.modal-booking .list-field .field-item .label span {
   color: #ff0000;
 }
-#modalBookingTable .list-field .field-item .label .value-select span {
+.modal-booking .list-field .field-item .label .value-select span {
   font-size: 16px;
   line-height: 28px;
 }
-#modalBookingTable .list-field .btn-submit,
-#modalBookingTable .list-field .note {
+.modal-booking .list-field .btn-submit,
+.modal-booking .list-field .note {
   grid-column: 1/-1;
 }
-#modalBookingTable .list-field .btn-submit {
+.modal-booking .list-field .btn-submit {
   display: flex;
   justify-content: center;
   align-items: center;
   background-color: var(--color-blue);
   color: var(--color-white);
 }
-#modalBookingTable .list-field .btn-submit:hover {
+.modal-booking .list-field .btn-submit:hover {
   background-color: var(--color-gold);
 }
-#modalBookingTable .list-field .dropdown-custom-select {
+.modal-booking .list-field .dropdown-custom-select {
   height: 44px;
   border: none;
   border: 1px solid rgba(0, 0, 0, 0.2);
@@ -1186,13 +1269,29 @@ body {
   width: 100%;
   position: relative;
 }
-#modalBookingTable .list-field .dropdown-custom-menu {
+.modal-booking .list-field .dropdown-custom-btn {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  position: relative;
+  cursor: pointer;
+}
+.modal-booking .list-field .dropdown-custom-btn img {
+  flex-shrink: 0;
+  width: 9px;
+  height: 6px;
+  position: absolute;
+  top: 50%;
+  right: 0;
+  transform: translateY(calc(2px - 50%));
+}
+.modal-booking .list-field .dropdown-custom-menu {
   position: absolute;
   top: 100%;
   left: 0;
   width: 100%;
   margin-top: 1px;
-  background-color: var(--color-gray);
+  background-color: #f8f5f1;
   opacity: 0;
   visibility: hidden;
   transition: all 0.4s ease;
@@ -1201,11 +1300,14 @@ body {
   gap: 8px;
   padding: 16px 24px;
 }
-#modalBookingTable .list-field .dropdown-custom-menu.dropdown--active {
+.modal-booking .list-field .dropdown-custom-menu.dropdown--active {
   opacity: 1;
   visibility: visible;
 }
-#modalBookingTable .list-field input {
+.modal-booking .list-field .dropdown-custom-item {
+  cursor: pointer;
+}
+.modal-booking .list-field input {
   height: 44px;
   border: none;
   border: 1px solid rgba(0, 0, 0, 0.2);
@@ -1213,19 +1315,42 @@ body {
   padding: 8px 24px;
   width: 100%;
 }
-#modalBookingTable .list-field input + label,
-#modalBookingTable .list-field textarea + label {
+.modal-booking .list-field input + label,
+.modal-booking .list-field textarea + label {
   color: var(--color-black);
   background-color: var(--color-white);
   padding: 0 8px;
 }
-#modalBookingTable .list-field input:focus-visible + label, #modalBookingTable .list-field input:not(:placeholder-shown) + label,
-#modalBookingTable .list-field textarea:focus-visible + label,
-#modalBookingTable .list-field textarea:not(:placeholder-shown) + label {
+.modal-booking .list-field input:focus-visible + label, .modal-booking .list-field input:not(:placeholder-shown) + label,
+.modal-booking .list-field textarea:focus-visible + label,
+.modal-booking .list-field textarea:not(:placeholder-shown) + label {
   transform: translateY(-50%);
   font-size: 12px;
   line-height: 14px;
   top: 0;
+}
+.modal-booking .btn-wrapper {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  width: 100%;
+  grid-column: 1/-1;
+}
+.modal-booking .btn-wrapper .btn-back {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  flex-shrink: 0;
+}
+.modal-booking .btn-wrapper .btn-back svg {
+  flex-shrink: 0;
+}
+.modal-booking .btn-wrapper .btn-submit {
+  flex: auto 1;
+  border: 1px solid var(--color-blue);
+}
+.modal-booking .btn-wrapper .btn-submit:hover {
+  border: 1px solid var(--color-gold);
 }
 
 .daterangepicker .drp-calendar.left,

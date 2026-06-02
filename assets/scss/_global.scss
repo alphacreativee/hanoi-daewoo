@@ -91,12 +91,14 @@ body {
     font-size: 16px;
     line-height: 28px;
   }
+
   label {
     font-size: 12px;
     line-height: 18px;
     font-weight: 400;
     color: var(--color-black);
   }
+
   .booking-item {
     gap: 12px;
     border-right: 1px solid rgba(27, 28, 76, 0.2);
@@ -119,6 +121,7 @@ body {
       border-right: none;
     }
   }
+
   .booking-field {
     display: flex;
     flex-direction: column;
@@ -127,18 +130,7 @@ body {
   .booking-field input[type="number"] {
     width: 35px;
   }
-  // .select-people {
-  //   .select-box {
-  //     top: 100%;
-  //     transform: translateY(0);
-  //     margin-top: 18px;
-  //     border-radius: 0;
-  //     @media (max-width: 991px) {
-  //       margin-top: 12px;
-  //       padding: 12px;
-  //     }
-  //   }
-  // }
+
   .select-people {
     position: relative;
     .select-box {
@@ -946,7 +938,8 @@ body {
   content: unset;
   font-size: 0;
 }
-#modalBookingTable {
+
+.modal-booking {
   .modal-body {
     padding: 0;
   }
@@ -1014,6 +1007,57 @@ body {
     }
     &-right {
       padding: 80px 100px;
+      position: relative;
+
+      .step-number {
+        position: absolute;
+        z-index: 3;
+        bottom: 16px;
+        right: 16px;
+      }
+    }
+
+    .upload-area {
+      border: 1px dashed var(--color-black);
+      border-radius: 0;
+      padding: 26px 40px 28px;
+      text-align: center;
+      transition: 0.3s;
+      margin-top: 12px;
+
+      .upload-content {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 4px;
+
+        button {
+          text-decoration: underline;
+          transition: all 0.4s ease;
+
+          &:hover {
+            color: var(--color-gold);
+          }
+        }
+      }
+    }
+
+    .upload-area.dragover {
+      border-color: #000;
+      background: #f5f5f5;
+    }
+
+    #fileList.hasFile {
+      margin-top: 15px;
+    }
+
+    .btn-next,
+    .btn-back {
+      border: 1px solid var(--color-black);
+    }
+
+    .btn-next {
+      grid-column: 1 / -1;
     }
   }
 
@@ -1023,6 +1067,29 @@ body {
     gap: 24px 16px;
     .field-item {
       position: relative;
+
+      .checkbox-list {
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        gap: 12px;
+        margin-top: 12px;
+
+        input {
+          border-radius: 50%;
+          width: 18px;
+          height: 18px;
+        }
+
+        label {
+          position: unset;
+          transform: none;
+          pointer-events: auto;
+
+          display: flex;
+          align-items: center;
+          gap: 4px;
+        }
+      }
 
       input {
         &:-webkit-autofill,
@@ -1036,6 +1103,33 @@ body {
       input[type="number"]::-webkit-inner-spin-button {
         -webkit-appearance: none;
         margin: 0;
+      }
+
+      input[type="radio"] {
+        accent-color: var(--color-black);
+      }
+
+      input[name="arrivalDate"],
+      input[name="departureDate"] {
+        padding-right: 40px;
+      }
+
+      &.date {
+        position: relative;
+
+        &::after {
+          content: "";
+          width: 24px;
+          height: 24px;
+          background-image: url("../../images/use/icon-calendar.svg");
+          background-repeat: no-repeat;
+          background-size: cover;
+
+          position: absolute;
+          top: 50%;
+          right: 12px;
+          transform: translateY(-50%);
+        }
       }
 
       &.full {
@@ -1114,13 +1208,34 @@ body {
       width: 100%;
       position: relative;
     }
+
+    .dropdown-custom-btn {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      position: relative;
+      cursor: pointer;
+
+      img {
+        flex-shrink: 0;
+
+        width: 9px;
+        height: 6px;
+
+        position: absolute;
+        top: 50%;
+        right: 0;
+        transform: translateY(calc(2px - 50%));
+      }
+    }
+
     .dropdown-custom-menu {
       position: absolute;
       top: 100%;
       left: 0;
       width: 100%;
       margin-top: 1px;
-      background-color: var(--color-gray);
+      background-color: #f8f5f1;
       opacity: 0;
       visibility: hidden;
       transition: all 0.4s ease;
@@ -1132,6 +1247,10 @@ body {
         opacity: 1;
         visibility: visible;
       }
+    }
+
+    .dropdown-custom-item {
+      cursor: pointer;
     }
 
     input {
@@ -1158,6 +1277,34 @@ body {
           line-height: 14px;
           top: 0;
         }
+      }
+    }
+  }
+
+  .btn-wrapper {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    width: 100%;
+    grid-column: 1 / -1;
+
+    .btn-back {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      flex-shrink: 0;
+
+      svg {
+        flex-shrink: 0;
+      }
+    }
+
+    .btn-submit {
+      flex: auto 1;
+      border: 1px solid var(--color-blue);
+
+      &:hover {
+        border: 1px solid var(--color-gold);
       }
     }
   }

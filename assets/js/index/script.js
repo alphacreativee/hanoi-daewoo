@@ -2,7 +2,7 @@ import {
   customDropdown,
   createFilterTab,
   sliderParallax,
-  initGuestSelector,
+  initGuestSelector
 } from "../../main/js/global.min.js";
 ("use strict");
 $ = jQuery;
@@ -15,92 +15,6 @@ gsap.ticker.add((time) => {
 
 gsap.ticker.lagSmoothing(0);
 
-// function getTime() {
-//   const defaultStart = moment().startOf("day");
-//   const defaultEnd = moment().startOf("day").add(1, "day");
-
-//   // Set giá trị mặc định cho input
-//   document.getElementById("startDate").value =
-//     defaultStart.format("DD/MM/YYYY");
-//   document.getElementById("endDate").value = defaultEnd.format("DD/MM/YYYY");
-
-//   // Khởi tạo Lightpick
-//   var picker = new Lightpick({
-//     field: document.getElementById("startDate"),
-//     secondField: document.getElementById("endDate"),
-//     singleDate: false,
-//     autoclose: true,
-//     numberOfMonths: 2,
-//     numberOfColumns: 2,
-//     startDate: defaultStart,
-//     endDate: defaultEnd,
-//     minDate: moment().startOf("day"),
-//     minDays: 2,
-//     lang: "vi",
-//     i18n: {
-//       previousMonth: "Tháng trước",
-//       nextMonth: "Tháng sau",
-//       tooltip: {
-//         one: "ngày",
-//         other: "ngày",
-//       },
-//       button: {
-//         prev: "&#8249;",
-//         next: "&#8250;",
-//         close: "&#10005;",
-//         reset: "Xoá",
-//         apply: "Áp dụng",
-//       },
-//     },
-//     onSelect: function (start, end) {
-//       if (start) {
-//         document.getElementById("startDate").value = start.format("DD/MM/YYYY");
-//       }
-//       if (end) {
-//         document.getElementById("endDate").value = end.format("DD/MM/YYYY");
-//       }
-//     },
-//     onOpen: function () {
-//       // Điều chỉnh vị trí picker (nếu cần)
-//       const field = document.getElementById("startDate");
-//       const rect = field.getBoundingClientRect();
-//       const spaceBelow = window.innerHeight - rect.bottom;
-//       const pickerEl = document.querySelector(".lightpick");
-
-//       if (pickerEl) {
-//         if (spaceBelow < 380) {
-//           pickerEl.style.top =
-//             rect.top + window.scrollY - pickerEl.offsetHeight - 8 + "px";
-//         } else {
-//           pickerEl.style.top = rect.bottom + window.scrollY + 8 + "px";
-//         }
-//       }
-//     },
-//   });
-
-//   gsap.registerPlugin(ScrollTrigger);
-
-//   const container = document.querySelector(".booking-form-container");
-//   const selectBox = document.querySelector(".select-box");
-//   if (!container || !selectBox) return;
-
-//   ScrollTrigger.create({
-//     trigger: container,
-//     start: "bottom center", // bottom của container chạm center viewport
-//     end: "top top", // top của container chạm top viewport
-
-//     onEnter: () => selectBox.classList.add("is-bottom"), // scroll xuống vào vùng
-//     onLeave: () => selectBox.classList.remove("is-bottom"), // scroll xuống qua vùng
-//     onEnterBack: () => selectBox.classList.add("is-bottom"), // scroll lên vào vùng
-//     onLeaveBack: () => selectBox.classList.remove("is-bottom"), // scroll lên khỏi vùng
-
-//     // markers: true, // bật để debug
-//   });
-// }
-
-// document.addEventListener("DOMContentLoaded", function () {
-//   getTime();
-// });
 function getTime() {
   if ($(".booking-form").length < 1) return;
 
@@ -125,9 +39,9 @@ function getTime() {
       "Tháng 9",
       "Tháng 10",
       "Tháng 11",
-      "Tháng 12",
+      "Tháng 12"
     ],
-    firstDay: 1,
+    firstDay: 1
   };
 
   function getDrops() {
@@ -146,12 +60,12 @@ function getTime() {
       minSpan: { days: 1 },
       startDate: defaultStart,
       endDate: defaultEnd,
-      locale: localeConfig,
+      locale: localeConfig
     },
     function (start, end) {
       $('input[name="startDate"]').val(start.format("DD/MM/YYYY"));
       $('input[name="endDate"]').val(end.format("DD/MM/YYYY"));
-    },
+    }
   );
 
   // ← Monkey-patch updateElement để picker không bao giờ tự ghi range vào input
@@ -192,8 +106,8 @@ function headerScroll() {
       start: "top -10px",
       end: "+=100",
       onEnter: () => header.classList.add("header-theme-light-active"),
-      onLeaveBack: () => header.classList.remove("header-theme-light-active"),
-    },
+      onLeaveBack: () => header.classList.remove("header-theme-light-active")
+    }
   });
 
   // return trigger;
@@ -223,21 +137,21 @@ function heroSection() {
       preloadImages: true,
       parallax: true,
       lazy: {
-        loadPrevNext: true,
+        loadPrevNext: true
       },
       allowTouchMove: false,
       simulateTouch: false,
       mousewheel: false,
       navigation: {
         nextEl: ".hero .swiper-button-next",
-        prevEl: ".hero .swiper-button-prev",
+        prevEl: ".hero .swiper-button-prev"
       },
       on: {
         init: function () {
           let $this = this;
           $($this.slides[$this.activeIndex]);
-        },
-      },
+        }
+      }
     });
   });
 }
@@ -334,16 +248,16 @@ function imageZoom() {
       scrollTrigger: {
         trigger: imageZoom,
         start: "top 70%",
-        end: "top 70%",
-      },
-    },
+        end: "top 70%"
+      }
+    }
   );
 }
 function sliderDining() {
   if (!document.querySelector(".dining-swiper")) return;
 
   const titleService = document.querySelectorAll(
-    ".dining-list-title .dining-title",
+    ".dining-list-title .dining-title"
   );
   let activeElms = titleService[0];
 
@@ -363,8 +277,8 @@ function sliderDining() {
     on: {
       slideChange: function () {
         setActiveTitle(this.realIndex);
-      },
-    },
+      }
+    }
   });
 
   setActiveTitle(0);
@@ -432,9 +346,9 @@ function animationText() {
       scrollTrigger: {
         trigger: el,
         start: "top 65%",
-        once: true,
+        once: true
         // markers: true,
-      },
+      }
     });
 
     const animFrom = { y: 20, opacity: 0 };
@@ -442,7 +356,7 @@ function animationText() {
       y: 0,
       opacity: 1,
       duration: 0.6,
-      ease: "power2.out",
+      ease: "power2.out"
     };
 
     if (tlTextOne.length) tl.fromTo(tlTextOne, animFrom, animTo);
@@ -470,7 +384,7 @@ function accommodationSlider() {
         slide.querySelectorAll(".ac-text-two"),
         slide.querySelectorAll(".ac-text-three"),
         slide.querySelectorAll(".ac-text-four"),
-        slide.querySelectorAll(".ac-text-five"),
+        slide.querySelectorAll(".ac-text-five")
       ];
       groups.forEach((group) => {
         if (group.length) gsap.set(group, { y: 20, opacity: 0 });
@@ -512,7 +426,7 @@ function accommodationSlider() {
             once: true,
             onEnter: () => {
               animateSlideText(swiper.slides[swiper.activeIndex]);
-            },
+            }
           });
         },
         slideChangeTransitionStart(swiper) {
@@ -520,8 +434,8 @@ function accommodationSlider() {
         },
         slideChangeTransitionEnd(swiper) {
           animateSlideText(swiper.slides[swiper.activeIndex]);
-        },
-      },
+        }
+      }
     });
   });
 }
@@ -534,11 +448,11 @@ function eventSlider() {
     speed: 1000,
     pagination: {
       el: ".event-right .swiper-pagination",
-      type: "progressbar",
+      type: "progressbar"
     },
     navigation: {
       nextEl: ".event-right .swiper-button-next",
-      prevEl: ".event-right .swiper-button-prev",
+      prevEl: ".event-right .swiper-button-prev"
     },
     on: {
       init(swiper) {
@@ -546,8 +460,8 @@ function eventSlider() {
       },
       slideChange(swiper) {
         updateFraction(swiper);
-      },
-    },
+      }
+    }
   });
 
   function updateFraction(swiper) {
@@ -588,9 +502,9 @@ function animationAccommodationCard() {
           y: 0,
           opacity: 1,
           duration: 0.6,
-          ease: "power2.out",
+          ease: "power2.out"
         });
-      },
+      }
     });
 
     const tl = gsap.timeline({ paused: true });
@@ -605,7 +519,7 @@ function animationAccommodationCard() {
       trigger: card.querySelector(".card-content"),
       start: "top 65%",
       once: true,
-      onEnter: () => tl.play(),
+      onEnter: () => tl.play()
     });
   });
 }
@@ -636,9 +550,9 @@ function animationWeddingItem() {
           y: 0,
           opacity: 1,
           duration: 0.8,
-          ease: "power2.out",
+          ease: "power2.out"
         });
-      },
+      }
     });
 
     // Animate content dùng stagger thay vì timeline
@@ -652,9 +566,9 @@ function animationWeddingItem() {
           opacity: 1,
           duration: 0.7,
           ease: "power2.out",
-          stagger: 0.15, // delay nhẹ giữa các el, không bị overlap cứng
+          stagger: 0.15 // delay nhẹ giữa các el, không bị overlap cứng
         });
-      },
+      }
     });
   });
 }
@@ -667,29 +581,29 @@ function header() {
 
   const tl = gsap.timeline({
     paused: true,
-    defaults: { ease: "power2.out" },
+    defaults: { ease: "power2.out" }
   });
 
   tl.from(".header-main--popup__top .logo", {
     x: -20,
     opacity: 0,
     duration: 0.3,
-    delay: 0.1,
+    delay: 0.1
   })
     .from(".header-main--popup > ul > li", {
       x: -20,
       opacity: 0,
       stagger: 0.08,
-      duration: 0.4,
+      duration: 0.4
     })
     .from(
       ".header-main--popup__bottom",
       {
         x: -20,
         opacity: 0,
-        duration: 0.3,
+        duration: 0.3
       },
-      "-=0.2",
+      "-=0.2"
     );
 
   function getScrollbarWidth() {
@@ -743,7 +657,7 @@ function header() {
 
   document.addEventListener("click", (e) => {
     const clickedHamburger = [...btnHambuger].some((btn) =>
-      btn.contains(e.target),
+      btn.contains(e.target)
     );
 
     if (
@@ -792,7 +706,7 @@ function animationItemsSection() {
       y: MOVE_Y,
       opacity: 0,
       force3D: true,
-      willChange: "transform, opacity",
+      willChange: "transform, opacity"
     });
 
     const tl = gsap.timeline({
@@ -800,8 +714,8 @@ function animationItemsSection() {
         trigger: section,
         start: "top 65%",
         toggleActions: "play none none none",
-        once: true,
-      },
+        once: true
+      }
     });
 
     tl.to(
@@ -811,9 +725,9 @@ function animationItemsSection() {
         duration: TRANSFORM_DURATION,
         stagger: ITEM_STAGGER,
         ease: "power3.out",
-        force3D: true,
+        force3D: true
       },
-      0,
+      0
     ).to(
       items,
       {
@@ -821,9 +735,9 @@ function animationItemsSection() {
         duration: OPACITY_DURATION,
         stagger: ITEM_STAGGER,
         ease: "power2.out",
-        clearProps: "willChange",
+        clearProps: "willChange"
       },
-      0,
+      0
     );
   });
 }
@@ -838,7 +752,7 @@ function animationItemRow() {
     const listDFour = item.querySelector(".list-detail-four");
 
     const contentEls = [listDOne, listDTwo, listDThree, listDFour].filter(
-      Boolean,
+      Boolean
     );
 
     gsap.set(contentEls, { y: 20, opacity: 0 });
@@ -855,7 +769,7 @@ function animationItemRow() {
       trigger: item.querySelector(".list-detail-box"),
       start: "top 50%",
       once: true,
-      onEnter: () => tl.play(),
+      onEnter: () => tl.play()
     });
   });
 }
@@ -883,10 +797,10 @@ function bookAtable() {
         "Tháng 9",
         "Tháng 10",
         "Tháng 11",
-        "Tháng 12",
+        "Tháng 12"
       ],
-      firstDay: 1,
-    },
+      firstDay: 1
+    }
   });
 }
 function wonderGallery() {
@@ -907,7 +821,7 @@ function wonderGallery() {
     document.head.appendChild(styleEl);
 
     const textContent = document.querySelector(
-      ".wonderfulGallery .content-text .title",
+      ".wonderfulGallery .content-text .title"
     );
 
     if (textContent) {
@@ -929,13 +843,13 @@ function wonderGallery() {
           if (textContent) {
             gsap.set(textContent, { opacity: 1, y: 0 });
           }
-        },
-      },
+        }
+      }
     });
 
     tl.to(container, {
       "--line-height": "100%",
-      ease: "none",
+      ease: "none"
     });
 
     if (textContent) {
@@ -945,9 +859,9 @@ function wonderGallery() {
           opacity: 1,
           y: 0,
           duration: 0.3,
-          ease: "power2.out",
+          ease: "power2.out"
         },
-        "<13%",
+        "<13%"
       );
     }
   }
@@ -963,24 +877,24 @@ function wonderGallery() {
       scrollTrigger: {
         trigger: item,
         start: "top 80%",
-        once: true,
-      },
+        once: true
+      }
     });
 
     tl.to(image, {
       y: 0,
       opacity: 1,
       duration: 0.6,
-      ease: "power2.out",
+      ease: "power2.out"
     }).to(
       text,
       {
         y: 0,
         opacity: 1,
         duration: 0.3,
-        ease: "power2.out",
+        ease: "power2.out"
       },
-      "-=0.4",
+      "-=0.4"
     );
   });
 }
@@ -996,11 +910,11 @@ function swiperThreeCol() {
     spaceBetween: spaceBetween,
     pagination: {
       el: ".main-swiper .swiper-pagination",
-      type: "progressbar",
+      type: "progressbar"
     },
     navigation: {
       nextEl: ".main-swiper .swiper-button-next",
-      prevEl: ".main-swiper .swiper-button-prev",
+      prevEl: ".main-swiper .swiper-button-prev"
     },
     on: {
       init(swiper) {
@@ -1009,8 +923,8 @@ function swiperThreeCol() {
       },
       slideChange(swiper) {
         updateFraction(swiper);
-      },
-    },
+      }
+    }
   });
 
   // Ẩn nav nếu số slide <= perView
@@ -1071,8 +985,8 @@ function initParallaxSwiper(swiperEl, options = {}) {
           }
         });
       },
-      ...(options.on || {}),
-    },
+      ...(options.on || {})
+    }
   });
 }
 
@@ -1090,7 +1004,7 @@ function galleryLightbox() {
   function updateTitle(swiper) {
     if (!titleEl) return;
     const realSlides = swiperEl.querySelectorAll(
-      ".swiper-slide:not(.swiper-slide-duplicate)",
+      ".swiper-slide:not(.swiper-slide-duplicate)"
     );
     const title = realSlides[swiper.realIndex]?.dataset?.title || "";
 
@@ -1115,11 +1029,11 @@ function galleryLightbox() {
     swiperLightbox = initParallaxSwiper(swiperEl, {
       navigation: {
         nextEl: lightbox.querySelector(".swiper-button-next"),
-        prevEl: lightbox.querySelector(".swiper-button-prev"),
+        prevEl: lightbox.querySelector(".swiper-button-prev")
       },
       pagination: {
         el: lightbox.querySelector(".swiper-fraction"),
-        type: "fraction",
+        type: "fraction"
       },
       on: {
         init(swiper) {
@@ -1127,8 +1041,8 @@ function galleryLightbox() {
         },
         slideChange(swiper) {
           updateTitle(swiper);
-        },
-      },
+        }
+      }
     });
   }
 
@@ -1153,7 +1067,190 @@ function galleryLightbox() {
   });
 }
 
-galleryLightbox();
+function formBookingEvent() {
+  if ($("#modalBookingEvents").length < 1) return;
+
+  uploadFile();
+
+  const defaultStart = moment().startOf("day");
+  const defaultEnd = moment().startOf("day").add(1, "day");
+
+  const localeConfig = {
+    format: "DD/MM/YYYY",
+    separator: " - ",
+    applyLabel: "Áp dụng",
+    cancelLabel: "Huỷ",
+    daysOfWeek: ["CN", "T2", "T3", "T4", "T5", "T6", "T7"],
+    monthNames: [
+      "Tháng 1",
+      "Tháng 2",
+      "Tháng 3",
+      "Tháng 4",
+      "Tháng 5",
+      "Tháng 6",
+      "Tháng 7",
+      "Tháng 8",
+      "Tháng 9",
+      "Tháng 10",
+      "Tháng 11",
+      "Tháng 12"
+    ],
+    firstDay: 1
+  };
+
+  function getDrops() {
+    const rect = document.getElementById("arrivalDate").getBoundingClientRect();
+    return window.innerHeight - rect.bottom < 350 ? "up" : "down";
+  }
+
+  $('input[name="arrivalDate"]').daterangepicker(
+    {
+      opens: "right",
+      drops: getDrops(),
+      autoApply: true,
+      singleDatePicker: false,
+      linkedCalendars: true,
+      minDate: moment().startOf("day"),
+      minSpan: { days: 1 },
+      startDate: defaultStart,
+      endDate: defaultEnd,
+      locale: localeConfig
+    },
+    function (start, end) {
+      $('input[name="arrivalDate"]').val(start.format("DD/MM/YYYY"));
+      $('input[name="departureDate"]').val(end.format("DD/MM/YYYY"));
+    }
+  );
+
+  // ← Monkey-patch updateElement để picker không bao giờ tự ghi range vào input
+  const picker = $('input[name="arrivalDate"]').data("daterangepicker");
+  picker.updateElement = function () {
+    $('input[name="arrivalDate"]').val(this.startDate.format("DD/MM/YYYY"));
+    $('input[name="departureDate"]').val(this.endDate.format("DD/MM/YYYY"));
+  };
+
+  // Set giá trị mặc định
+  $('input[name="arrivalDate"]').val(defaultStart.format("DD/MM/YYYY"));
+  $('input[name="departureDate"]').val(defaultEnd.format("DD/MM/YYYY"));
+
+  // Click endDate → mở picker của startDate
+  $('input[name="departureDate"]').on("click", function () {
+    $('input[name="arrivalDate"]').data("daterangepicker").show();
+  });
+
+  // Re-calc drops khi focus
+  $('input[name="arrivalDate"], input[name="departureDate"]').on(
+    "focus",
+    function () {
+      const picker = $('input[name="arrivalDate"]').data("daterangepicker");
+      if (picker) picker.drops = getDrops();
+    }
+  );
+
+  // change step
+  const form = $("#modalBookingEvents form");
+  const btnNextStep = form.find(".btn-next");
+  const btnBackStep = form.find(".btn-back");
+
+  let currentStep = 1;
+
+  btnNextStep.on("click", () => activeStep(2));
+  btnBackStep.on("click", () => activeStep(1));
+
+  function activeStep(step) {
+    currentStep = step;
+
+    form.find(".step").hide();
+    form.find(`.step[data-step="${step}"]`).fadeIn(200);
+
+    $("#modalBookingEvents .step-number .current").text(step);
+  }
+}
+
+function uploadFile() {
+  const uploadArea = document.getElementById("uploadArea");
+  const fileInput = document.getElementById("fileInput");
+  const browseBtn = document.getElementById("browseBtn");
+  const fileList = document.getElementById("fileList");
+
+  if (!uploadArea || !fileInput || !browseBtn || !fileList) return;
+
+  const MAX_FILES = 3;
+  const MAX_FILE_SIZE_MB = 5;
+  const MAX_FILE_SIZE = MAX_FILE_SIZE_MB * 1024 * 1024;
+
+  browseBtn.addEventListener("click", () => {
+    fileInput.click();
+  });
+
+  fileInput.addEventListener("change", () => {
+    handleFiles(fileInput.files);
+  });
+
+  uploadArea.addEventListener("dragover", (e) => {
+    e.preventDefault();
+    uploadArea.classList.add("dragover");
+  });
+
+  uploadArea.addEventListener("dragleave", () => {
+    uploadArea.classList.remove("dragover");
+  });
+
+  uploadArea.addEventListener("drop", (e) => {
+    e.preventDefault();
+    uploadArea.classList.remove("dragover");
+
+    const files = e.dataTransfer.files;
+
+    const dt = new DataTransfer();
+
+    [...files].slice(0, MAX_FILES).forEach((file) => {
+      dt.items.add(file);
+    });
+
+    fileInput.files = dt.files;
+
+    handleFiles(dt.files);
+  });
+
+  function handleFiles(files) {
+    if (!files.length) {
+      resetFiles();
+      return;
+    }
+
+    if (files.length > MAX_FILES) {
+      alert(`You can upload a maximum of ${MAX_FILES} files.`);
+      resetFiles();
+      return;
+    }
+
+    const oversizedFile = [...files].find((file) => file.size > MAX_FILE_SIZE);
+
+    if (oversizedFile) {
+      alert(
+        `${oversizedFile.name} exceeds the maximum size of ${MAX_FILE_SIZE_MB}MB.`
+      );
+      resetFiles();
+      return;
+    }
+
+    showFiles(files);
+  }
+
+  function showFiles(files) {
+    fileList.textContent = [...files].map((file) => file.name).join(", ");
+
+    fileList.classList.add("hasFile");
+  }
+
+  function resetFiles() {
+    fileInput.value = "";
+    fileList.textContent = "";
+    fileList.classList.remove("hasFile");
+  }
+}
+
 const init = () => {
   gsap.registerPlugin(ScrollTrigger);
   customDropdown();
@@ -1178,6 +1275,7 @@ const init = () => {
   bookAtable();
   wonderGallery();
   swiperThreeCol();
+  formBookingEvent();
 };
 document.addEventListener("DOMContentLoaded", () => {
   init();
