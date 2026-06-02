@@ -61,6 +61,12 @@
   display: flex;
   align-items: center;
   justify-content: center;
+  .lightbox-logo {
+    position: absolute;
+    top: 20px;
+    left: 40px;
+    z-index: 1;
+  }
   .swiper-arrows {
     display: flex;
     align-items: center;
