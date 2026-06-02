@@ -1084,33 +1084,48 @@ function galleryLightbox() {
   if (!lightbox) return;
 
   const swiperEl = lightbox.querySelector(".swiper-lightbox");
+  const wrapper = swiperEl.querySelector(".swiper-wrapper");
   const titleEl = lightbox.querySelector(".swiper-slide-title");
+
   let swiperLightbox = null;
 
   function updateTitle(swiper) {
-    if (!titleEl) return;
-    const realSlides = swiperEl.querySelectorAll(
-      ".swiper-slide:not(.swiper-slide-duplicate)",
-    );
-    const title = realSlides[swiper.realIndex]?.dataset?.title || "";
+    if (!titleEl || !swiper) return;
 
-    // Reset animation
+    const activeSlide = swiper.slides[swiper.activeIndex];
+    const title = activeSlide ? activeSlide.dataset.title : "";
+
+    // Animation
     titleEl.style.transition = "none";
     titleEl.style.transform = "translateY(20px)";
     titleEl.style.opacity = "0";
-
-    // Force reflow
     titleEl.offsetHeight;
 
-    // Animate vào
     titleEl.style.transition = "transform 0.4s ease, opacity 0.4s ease";
     titleEl.style.transform = "translateY(0)";
     titleEl.style.opacity = "1";
     titleEl.textContent = title;
   }
 
-  function initSwiper() {
-    if (swiperLightbox) return;
+  function buildSlides() {
+    const items = document.querySelectorAll(".gallery-grid .grid-item");
+    wrapper.innerHTML = "";
+
+    items.forEach((item) => {
+      const img = item.querySelector("img");
+      const src = img?.getAttribute("src") || "";
+      const title = item.dataset.title || "Gallery Image";
+
+      const slide = document.createElement("div");
+      slide.className = "swiper-slide overflow-hidden";
+      slide.dataset.title = title;
+      slide.innerHTML = `<div class="image"><img src="${src}" alt="${title}" /></div>`;
+      wrapper.appendChild(slide);
+    });
+  }
+
+  function initSwiper(startIndex = 0) {
+    if (swiperLightbox) swiperLightbox.destroy(true, true);
 
     swiperLightbox = initParallaxSwiper(swiperEl, {
       navigation: {
@@ -1121,36 +1136,39 @@ function galleryLightbox() {
         el: lightbox.querySelector(".swiper-fraction"),
         type: "fraction",
       },
+      observer: true,
+      observeParents: true,
+      observeSlideChildren: true,
+      initialSlide: startIndex,
+
       on: {
-        init(swiper) {
-          updateTitle(swiper);
-        },
-        slideChange(swiper) {
-          updateTitle(swiper);
-        },
+        init: updateTitle,
+        slideChange: updateTitle,
       },
     });
   }
 
+  // Click handler
   document.querySelectorAll(".gallery-grid .grid-item").forEach((item) => {
     item.addEventListener("click", function () {
       const index = parseInt(this.dataset.index);
+
+      buildSlides();
       lightbox.classList.remove("hidden");
-      initSwiper();
-      swiperLightbox.slideTo(index, 0);
-      updateTitle(swiperLightbox); // update title ngay khi mở
+
+      setTimeout(() => {
+        initSwiper(index);
+      }, 50);
     });
   });
 
+  // Close
   lightbox
     .querySelector(".icon-close-lightbox")
-    ?.addEventListener("click", () => {
-      lightbox.classList.add("hidden");
-    });
-
-  lightbox.querySelector(".lightbox-overlay")?.addEventListener("click", () => {
-    lightbox.classList.add("hidden");
-  });
+    ?.addEventListener("click", () => lightbox.classList.add("hidden"));
+  lightbox
+    .querySelector(".lightbox-overlay")
+    ?.addEventListener("click", () => lightbox.classList.add("hidden"));
 }
 
 function galleryTabLightbox() {
