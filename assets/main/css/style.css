@@ -1132,6 +1132,10 @@ body {
 .modal-booking .content-box .upload-area .upload-content button:hover {
   color: var(--color-gold);
 }
+.modal-booking .content-box .attach-note {
+  margin-top: 4px;
+  color: rgba(0, 0, 0, 0.5);
+}
 .modal-booking .content-box .upload-area.dragover {
   border-color: #000;
   background: #f5f5f5;

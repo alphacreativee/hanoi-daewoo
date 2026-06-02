@@ -163,8 +163,8 @@
                     </li>
                 </ul>
                 <div class="intro-btn d-flex justify-content-center tl-text-six">
-                    <button class="btn-font btn-global bg-blue" type="button" data-bs-toggle="modal"
-                        data-bs-target="#modalProposal">Request for proposal</button>
+                    <a href="javascript:void(0)" data-bs-toggle="modal" data-bs-target="#modalBookingEvents"
+          class="btn-font btn-global bg-blue">Request for proposal</a>
                 </div>
             </div>
         </section>
@@ -389,15 +389,15 @@
         </section>
     </main>
     <!-- layout -->
-    <div class="modal fade modal-booking " id="modalProposal" aria-hidden="true" tabindex="-1" data-lenis-prevent>
+    <div class="modal fade modal-booking " id="modalBookingEvents" aria-hidden="true" tabindex="-1" data-lenis-prevent >
         <div class="modal-dialog modal-dialog-centered d-flex justify-content-center align-items-end flex-column">
-
+            
             <div class="modal-content">
                 <div class="modal-close">
                     <button type="button" class="btn-close" data-bs-dismiss="modal">
                         <svg width="26" height="25" viewBox="0 0 26 25" fill="none" xmlns="http://www.w3.org/2000/svg">
-                            <path d="M3.72461 21.2939L21.7246 3.29394" stroke="currentColor" stroke-linejoin="round" />
-                            <path d="M3.72461 3.29443L21.7246 21.2944" stroke="currentColor" stroke-linejoin="round" />
+                        <path d="M3.72461 21.2939L21.7246 3.29394" stroke="currentColor" stroke-linejoin="round"/>
+                        <path d="M3.72461 3.29443L21.7246 21.2944" stroke="currentColor" stroke-linejoin="round"/>
                         </svg>
                     </button>
                 </div>
@@ -405,10 +405,9 @@
                     <div class="content-box">
                         <div class="content-box-left">
                             <div class="head">
-                                <h3 class="font-heading heading-1 color-black ">Book a table</h3>
+                                <h3 class="font-heading heading-1 color-black ">Request for proposal</h3>
                                 <p class="b1-font font-body color-black">Get in touch and tell us more about your event
                                 </p>
-
                             </div>
                             <div class="foot">
                                 <ul class="d-flex flex-column">
@@ -436,7 +435,78 @@
                         </div>
                         <div class="content-box-right">
                             <form action="">
-                                <div class="list-field">
+                                <div class="list-field step" data-step="1">
+                                  <div class="field-item full">
+                                        <div class="label">Event Type<span>*</span></div>
+                                        <div class="dropdown-custom-select z-3" style="z-index: 3">
+                                            <div class="dropdown-custom-btn">
+                                                <div class="value-select dropdown-custom-text color-black">
+                                                    <span>Choose your event</span>
+                                                </div>
+                                                <img src="./assets/images/use/icon-arrow-select.svg" alt="" />
+                                            </div>
+                                            <div class="dropdown-custom-menu">
+                                                <div class="dropdown-custom-item color-black ">
+                                                    <span class="hover-underline-black">Wedding</span>
+                                                </div>
+                                                <div class="dropdown-custom-item color-black">
+                                                    <span class="hover-underline-black">Meeting</span>
+                                                </div>
+                                                <div class="dropdown-custom-item color-black">
+                                                    <span class="hover-underline-black">Outdoor event</span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="field-item">
+                                        <input type="number" name="attendees" placeholder=" " class="b1-font" />
+                                        <label for="attendees" class="b1-font">Number of Attendees<span>*</span></label>
+                                    </div>
+                                    <div class="field-item">
+                                        <input type="number" name="bedroom" placeholder=" " class="b1-font" />
+                                        <label for="bedroom" class="b1-font">Number of Bedrooms<span>*</span></label>
+                                    </div>
+                                    <div class="field-item date">
+                                        <input type="text" name="arrivalDate" id="arrivalDate" placeholder=" "
+                                            class="b1-font" />
+                                        <label for="arrivalDate" class="b1-font">Preferred Arrival Date<span>*</span></label>
+                                    </div>
+                                    <div class="field-item date">
+                                        <input type="text" name="departureDate" id="departureDate" placeholder=" "
+                                            class="b1-font" />
+                                        <label for="departureDate" class="b1-font">Preferred Departure Date<span>*</span></label>
+                                    </div>
+                                    <div class="field-item checkbox">
+                                      <div class="static-label b3-font fw-normal color-black">Are your dates flexible?</div>
+                                      <div class="checkbox-list b3-font fw-normal color-black">
+                                        <label for="date_flexible_1"><input type="radio" id="date_flexible_1" name="date_flexible" value="1" checked>Yes</label>
+                                        <label for="date_flexible_2"><input type="radio" id="date_flexible_2" name="date_flexible" value="0">No</label>
+                                      </div>
+                                    </div>
+                                    <div class="field-item checkbox">
+                                      <div class="static-label b3-font fw-normal color-black">Are your dates flexible?</div>
+                                      <div class="checkbox-list b3-font fw-normal color-black">
+                                        <label for="meeting_space_1"><input type="radio" id="meeting_space_1" name="meeting_space" value="1" checked>Yes</label>
+                                        <label for="meeting_space_2"><input type="radio" id="meeting_space_2" name="meeting_space" value="2">No</label>
+                                      </div>
+                                    </div>
+                                    <div class="field-item full attach-file">
+                                      <div class="static-label b3-font fw-normal color-black">Are your dates flexible?</div>
+                                      <div class="upload-area" id="uploadArea">
+                                        <input type="file" id="fileInput" hidden multiple>
+
+                                        <div class="upload-content b3-font color-black fw-normal">
+                                          <p>Drag & Drop file here or</p>
+                                          <button type="button" id="browseBtn" class="fw-semibold">Browse Files</button>
+                                        </div>
+
+                                        <div id="fileList" class="b3-font color-black fw-semibold"></div>
+                                      </div>
+                                      <div class="attach-note b0-font fw-normal">The following file types are accepted: .doc, .docx, .pdf, .xls, and .xlsx. Maximum file size: 5MB. Upload up to 3 files.</div>
+                                    </div>
+                                    <button type="button" class="btn-next btn-global text-uppercase">next step</button>
+                                </div>
+                                <div class="list-field step" data-step="2" style="display: none;">
                                     <div class="field-item">
                                         <input type="text" name="firstname" placeholder=" " class="b1-font" />
                                         <label for="firstname" class="b1-font">First Name<span>*</span></label>
@@ -447,64 +517,41 @@
                                     </div>
                                     <div class="field-item">
                                         <input type="tel" name="phone" placeholder=" " class="b1-font" />
-                                        <label for="phone" class="b1-font">Phone<span>*</span></label>
+                                        <label for="phone" class="b1-font">Telephone<span>*</span></label>
                                     </div>
                                     <div class="field-item">
                                         <input type="email" name="email" placeholder=" " class="b1-font" />
                                         <label for="email" class="b1-font">Email<span>*</span></label>
                                     </div>
-                                    <div class="field-item">
-                                        <input type="number" name="adult" placeholder=" " class="b1-font" />
-                                        <label for="adult" class="b1-font">Adult<span>*</span></label>
-                                    </div>
-                                    <div class="field-item">
-                                        <input type="number" name="children" placeholder=" " class="b1-font" />
-                                        <label for="children" class="b1-font">Children<span>*</span></label>
-                                    </div>
-                                    <div class="field-item">
-                                        <input type="text" name="date" id="dateBookTable" placeholder=" "
-                                            class="b1-font" />
-                                        <label for="date" class="b1-font">Date<span>*</span></label>
-                                    </div>
-                                    <div class="field-item">
-
-                                        <div class="label">Time<span>*</span></div>
-                                        <div class="dropdown-custom-select z-3" style="z-index: 3">
-                                            <div class="dropdown-custom-btn">
-                                                <div class="value-select dropdown-custom-text color-black">
-                                                    <span>Select time</span>
-                                                </div>
-                                                <img src="./assets/images/icons/icon-clock.svg" alt="" />
-                                            </div>
-                                            <div class="dropdown-custom-menu">
-                                                <div class="dropdown-custom-item language-item color-white">
-                                                    <span>10:30</span>
-                                                </div>
-                                                <div class="dropdown-custom-item language-item color-white">
-                                                    <span>11:00</span>
-                                                </div>
-                                                <div class="dropdown-custom-item language-item color-white">
-                                                    <span>11:30</span>
-                                                </div>
-                                            </div>
-                                        </div>
+                                    <div class="field-item full">
+                                        <input type="text" name="company" placeholder=" " class="b1-font" />
+                                        <label for="company" class="b1-font">Company name</label>
                                     </div>
                                     <div class="field-item full">
-                                        <textarea name="message" rows="3" placeholder=" "></textarea>
+                                        <textarea name="message" rows="4" placeholder=" "></textarea>
                                         <label for="message" class="b1-font">Message</label>
                                     </div>
-                                    <button type="submit" class="btn-submit btn-global text-uppercase">send
-                                        request</button>
-                                    <div class="note b3-font color-black">Thank you for contacting us. Our team will
-                                        call you to confirm your request.</div>
+                                    <div class="btn-wrapper">
+                                      <button type="button" class="btn-back btn-global text-uppercase">                                       
+                                        <svg width="6" height="9" viewBox="0 0 6 9" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                        <path d="M4.70703 0.353516L0.707031 4.35352L4.70703 8.35352" stroke="currentColor"/>
+                                        </svg>
+                                        previous step
+                                      </button>
+                                      <button type="submit" class="btn-submit btn-global text-uppercase">send request</button>
+                                    </div>
+                                    <div class="note b3-font color-black">Thank you for contacting us. Our team will call you to confirm your request.</div>
                                 </div>
                             </form>
+                            <div class="step-number b2-font fw-semibold">
+                              <span class="current">1</span>/<span class="total">2</span>
+                            </div>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
-    </div>
+  </div>
     <!-- footer -->
     <script>
         fetch("./components/footer.html")
