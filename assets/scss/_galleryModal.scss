@@ -140,18 +140,17 @@
     display: flex;
     justify-content: center;
     align-items: center;
-
     gap: 16px;
     .swiper-lightbox {
-      max-width: 900px;
       width: 100%;
-      aspect-ratio: 900 / 520;
     }
     .lightbox-main {
       display: flex;
       flex-direction: column;
       gap: 16px;
       align-items: flex-end;
+      width: calc(calc(8 / 12) * 100% - 80px);
+      height: 80%;
     }
     .icon-close-lightbox {
       position: absolute;
@@ -172,6 +171,12 @@
         object-fit: cover;
       }
     }
+  }
+  .swiper-slide-title {
+    font-size: 16px;
+    line-height: 28px;
+    color: var(--color-black);
+    font-family: var(--font-body);
   }
 }
 
