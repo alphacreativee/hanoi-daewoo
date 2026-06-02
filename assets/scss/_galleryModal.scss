@@ -61,6 +61,9 @@
   display: flex;
   align-items: center;
   justify-content: center;
+  &.hidden {
+    display: none;
+  }
   .lightbox-logo {
     position: absolute;
     top: 20px;
@@ -115,9 +118,6 @@
     z-index: 2;
     text-align: center;
     width: max-content;
-  }
-  &.hidden {
-    display: none;
   }
 
   .lightbox-overlay {

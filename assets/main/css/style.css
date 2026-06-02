@@ -3049,6 +3049,9 @@ body {
   align-items: center;
   justify-content: center;
 }
+.gallery-lightbox.hidden {
+  display: none;
+}
 .gallery-lightbox .lightbox-logo {
   position: absolute;
   top: 20px;
@@ -3099,9 +3102,6 @@ body {
   z-index: 2;
   text-align: center;
   width: max-content;
-}
-.gallery-lightbox.hidden {
-  display: none;
 }
 .gallery-lightbox .lightbox-overlay {
   position: absolute;
