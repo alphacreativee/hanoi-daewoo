@@ -20,7 +20,7 @@
         display: grid;
         grid-template-columns: repeat(3, 1fr) 150px 150px;
         padding: 20px 0;
-        border-top: 1px solid var(--color-gray);
+        border-top: 1px solid rgba(118, 120, 122, 0.2);
 
         .name {
           transition: all 0.4s ease;
