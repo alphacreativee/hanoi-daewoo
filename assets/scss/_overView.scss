@@ -2,6 +2,23 @@
   position: relative;
   z-index: 3;
 
+  &.full {
+    .overview-container {
+      grid-template-columns: 1fr;
+      margin: 0 40px 80px;
+    }
+  }
+
+  &.recruitment-detail {
+    .overview-container {
+      gap: 0;
+
+      .content-right {
+        padding-left: calc(100% / 5);
+      }
+    }
+  }
+
   &-container {
     background-color: var(--color-white);
     margin: 0 40px;

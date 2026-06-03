@@ -5,6 +5,13 @@
       display: none;
     }
   }
+
+  &.intro-recruitment {
+    .intro-item .number {
+      font-size: 80px;
+    }
+  }
+
   &-btn {
     margin-top: 80px;
   }
@@ -14,6 +21,7 @@
     justify-content: space-between;
     gap: 80px;
   }
+
   &-item {
     display: flex;
     flex-direction: column;
@@ -25,6 +33,10 @@
       line-height: 1.4;
       font-family: var(--font-heading);
       color: var(--color-gold);
+
+      span {
+        font-size: 40px;
+      }
     }
   }
   &-desc {

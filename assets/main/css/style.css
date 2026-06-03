@@ -2254,6 +2254,9 @@ body {
 .intro.no-img .intro-line {
   display: none;
 }
+.intro.intro-recruitment .intro-item .number {
+  font-size: 80px;
+}
 .intro-btn {
   margin-top: 80px;
 }
@@ -2274,6 +2277,9 @@ body {
   line-height: 1.4;
   font-family: var(--font-heading);
   color: var(--color-gold);
+}
+.intro-item .number span {
+  font-size: 40px;
 }
 .intro-desc {
   text-align: center;
@@ -2706,6 +2712,16 @@ body {
   position: relative;
   z-index: 3;
 }
+.overview.full .overview-container {
+  grid-template-columns: 1fr;
+  margin: 0 40px 80px;
+}
+.overview.recruitment-detail .overview-container {
+  gap: 0;
+}
+.overview.recruitment-detail .overview-container .content-right {
+  padding-left: 20%;
+}
 .overview-container {
   background-color: var(--color-white);
   margin: 0 40px;
@@ -3036,11 +3052,12 @@ body {
 }
 
 .offers-container {
-  padding: 0 0 120px;
+  padding: 110px 0 120px;
+  background-color: var(--color-white);
 }
 .offers-container .filter-section {
   padding: 10px 40px;
-  background-color: #f2f2f2;
+  background-color: var(--color-white);
   margin-bottom: 50px;
   position: sticky;
   z-index: 4;
@@ -3060,6 +3077,10 @@ body {
 }
 .offers-container .filter-section-result .moreInfo-list__item .item-image {
   aspect-ratio: 440/480;
+}
+.offers.list-news .filter-section-result {
+  grid-template-columns: repeat(2, 1fr);
+  gap: 60px 20px;
 }
 
 .sectionAccordion-container {
@@ -3614,4 +3635,46 @@ body {
 }
 .panels .panel-heading.active {
   color: var(--color-black);
+}
+
+.card-news:hover .name {
+  color: var(--color-gold);
+}
+.card-news:hover .cta::before {
+  transform: scaleX(1);
+  transform-origin: bottom left;
+}
+.card-news:hover img {
+  transform: scale(1.03);
+}
+.card-news__media {
+  width: 660/500;
+  overflow: hidden;
+}
+.card-news__media img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: all 0.4s ease;
+}
+.card-news__content {
+  margin-top: 24px;
+}
+.card-news__content .date {
+  color: rgba(0, 0, 0, 0.5);
+  margin-bottom: 12px;
+}
+.card-news__content .name {
+  margin-bottom: 24px;
+  transition: all 0.4s ease;
+}
+.card-news__content .desc {
+  overflow: hidden;
+  display: -webkit-box;
+  -webkit-line-clamp: 3;
+  line-clamp: 3;
+  -webkit-box-orient: vertical;
+}
+.card-news__content .cta {
+  margin-top: 24px;
 }
