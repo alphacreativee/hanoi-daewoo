@@ -7,7 +7,38 @@
   padding: 40px;
   position: relative;
   z-index: 4;
-
+  &.full-col {
+    padding: 80px calc((1 / 12) * 100%);
+    margin-bottom: 0;
+    .contact-wrapper {
+      .head {
+        margin-bottom: 24px;
+        .title {
+          margin-bottom: 24px;
+        }
+      }
+      .foot {
+        h4 {
+          font-size: 16px;
+          line-height: 28px;
+          font-weight: bold;
+          color: var(--color-black);
+        }
+        ul {
+          list-style-type: disc;
+          padding-left: 20px;
+          li {
+            & > * {
+              font-size: 16px;
+              line-height: 28px;
+              font-weight: 400;
+              color: var(--color-black);
+            }
+          }
+        }
+      }
+    }
+  }
   &-title {
     margin-bottom: 40px;
   }

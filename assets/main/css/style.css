@@ -3406,6 +3406,32 @@ body {
   position: relative;
   z-index: 4;
 }
+.contact.full-col {
+  padding: 80px 8.3333333333%;
+  margin-bottom: 0;
+}
+.contact.full-col .contact-wrapper .head {
+  margin-bottom: 24px;
+}
+.contact.full-col .contact-wrapper .head .title {
+  margin-bottom: 24px;
+}
+.contact.full-col .contact-wrapper .foot h4 {
+  font-size: 16px;
+  line-height: 28px;
+  font-weight: bold;
+  color: var(--color-black);
+}
+.contact.full-col .contact-wrapper .foot ul {
+  list-style-type: disc;
+  padding-left: 20px;
+}
+.contact.full-col .contact-wrapper .foot ul li > * {
+  font-size: 16px;
+  line-height: 28px;
+  font-weight: 400;
+  color: var(--color-black);
+}
 .contact-title {
   margin-bottom: 40px;
 }
@@ -3558,6 +3584,83 @@ body {
 }
 .position-hiring .dropdown-custom-item {
   cursor: pointer;
+}
+
+.panels {
+  position: relative;
+  width: 100%;
+  height: 100svh;
+  display: grid;
+  grid-template-columns: 4fr 8fr;
+  gap: 20px;
+}
+.panels-right {
+  width: 100%;
+  height: 100svh;
+  overflow: hidden;
+  position: relative;
+}
+.panels-right .panel {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+}
+.panels-right .panel-wrapper {
+  position: relative;
+  height: 100%;
+}
+.panels-right .panel-content {
+  position: absolute;
+  left: 40px;
+  bottom: 40px;
+  max-width: 41.6666666667%;
+  z-index: 10;
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+.panels-right .panel-content a {
+  color: var(--color-white);
+  width: max-content;
+}
+.panels-right .panel-content a::after {
+  background-color: rgba(255, 255, 255, 0.2);
+}
+.panels-right .panel-content a::before {
+  background-color: var(--color-white);
+}
+.panels-right .panel-image {
+  width: 100%;
+  height: 100%;
+  position: relative;
+}
+.panels-right .panel-image::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.2);
+  z-index: 1;
+}
+.panels-right .panel-image img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+.panels-left {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding-left: 40px;
+  gap: 12px;
+}
+.panels .panel-heading {
+  transition: color 0.3s ease;
+  color: rgba(0, 0, 0, 0.2);
+}
+.panels .panel-heading.active {
+  color: var(--color-black);
 }
 
 .card-news:hover .name {
