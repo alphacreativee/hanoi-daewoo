@@ -186,34 +186,34 @@ button {
 }
 
 button,
-[type=button],
-[type=reset],
-[type=submit] {
+[type="button"],
+[type="reset"],
+[type="submit"] {
   -webkit-appearance: button;
 }
 
 button::-moz-focus-inner,
-[type=button]::-moz-focus-inner,
-[type=reset]::-moz-focus-inner,
-[type=submit]::-moz-focus-inner {
+[type="button"]::-moz-focus-inner,
+[type="reset"]::-moz-focus-inner,
+[type="submit"]::-moz-focus-inner {
   border-style: none;
   padding: 0;
 }
 
 button:-moz-focusring,
-[type=button]:-moz-focusring,
-[type=reset]:-moz-focusring,
-[type=submit]:-moz-focusring {
+[type="button"]:-moz-focusring,
+[type="reset"]:-moz-focusring,
+[type="submit"]:-moz-focusring {
   outline: 1px solid #000;
 }
 
-[type=checkbox],
-[type=radio] {
+[type="checkbox"],
+[type="radio"] {
   box-sizing: border-box;
   padding: 0;
 }
 
-[type=search]::-webkit-search-decoration {
+[type="search"]::-webkit-search-decoration {
   -webkit-appearance: none;
 }
 
@@ -373,7 +373,8 @@ body {
   border: 1px solid var(--color-gold);
   color: var(--color-white);
 }
-.booking-form .booking-item:last-child, .booking-form .booking-item:nth-last-child(2) {
+.booking-form .booking-item:last-child,
+.booking-form .booking-item:nth-last-child(2) {
   border-right: none;
 }
 .booking-form .booking-field {
@@ -381,7 +382,7 @@ body {
   flex-direction: column;
   gap: 0px;
 }
-.booking-form .booking-field input[type=number] {
+.booking-form .booking-field input[type="number"] {
   width: 35px;
 }
 .booking-form .select-people {
@@ -1177,19 +1178,27 @@ body {
   align-items: center;
   gap: 4px;
 }
-.modal-booking .list-field .field-item input:-webkit-autofill, .modal-booking .list-field .field-item input:-webkit-autofill:hover, .modal-booking .list-field .field-item input:-webkit-autofill:focus {
+.modal-booking .list-field .field-item input:-webkit-autofill,
+.modal-booking .list-field .field-item input:-webkit-autofill:hover,
+.modal-booking .list-field .field-item input:-webkit-autofill:focus {
   -webkit-box-shadow: 0 0 0 1000px #ffffff inset !important;
 }
-.modal-booking .list-field .field-item input[type=number]::-webkit-outer-spin-button,
-.modal-booking .list-field .field-item input[type=number]::-webkit-inner-spin-button {
+.modal-booking
+  .list-field
+  .field-item
+  input[type="number"]::-webkit-outer-spin-button,
+.modal-booking
+  .list-field
+  .field-item
+  input[type="number"]::-webkit-inner-spin-button {
   -webkit-appearance: none;
   margin: 0;
 }
-.modal-booking .list-field .field-item input[type=radio] {
+.modal-booking .list-field .field-item input[type="radio"] {
   accent-color: var(--color-black);
 }
-.modal-booking .list-field .field-item input[name=arrivalDate],
-.modal-booking .list-field .field-item input[name=departureDate] {
+.modal-booking .list-field .field-item input[name="arrivalDate"],
+.modal-booking .list-field .field-item input[name="departureDate"] {
   padding-right: 40px;
 }
 .modal-booking .list-field .field-item.date {
@@ -1325,7 +1334,8 @@ body {
   background-color: var(--color-white);
   padding: 0 8px;
 }
-.modal-booking .list-field input:focus-visible + label, .modal-booking .list-field input:not(:placeholder-shown) + label,
+.modal-booking .list-field input:focus-visible + label,
+.modal-booking .list-field input:not(:placeholder-shown) + label,
 .modal-booking .list-field textarea:focus-visible + label,
 .modal-booking .list-field textarea:not(:placeholder-shown) + label {
   transform: translateY(-50%);
@@ -1409,7 +1419,9 @@ body {
 
 #header {
   z-index: 999;
-  transition: background-color 0.3s ease, transform 0.3s ease;
+  transition:
+    background-color 0.3s ease,
+    transform 0.3s ease;
   --header-top-height: 104px;
 }
 #header.header-theme-light-active {
@@ -1424,7 +1436,13 @@ body {
 #header.header-theme-light-active .header-main-menu > ul > li > a:hover {
   color: var(--color-black);
 }
-#header.header-theme-light-active .header-main-menu > ul > li.menu-item-has-children > a .icon svg {
+#header.header-theme-light-active
+  .header-main-menu
+  > ul
+  > li.menu-item-has-children
+  > a
+  .icon
+  svg {
   color: var(--color-black);
 }
 #header.header-theme-light-active .hover-underline-white::before {
@@ -1471,7 +1489,13 @@ body {
 #header.without-home .header-main-menu > ul > li > a:hover {
   color: var(--color-black);
 }
-#header.without-home .header-main-menu > ul > li.menu-item-has-children > a .icon svg {
+#header.without-home
+  .header-main-menu
+  > ul
+  > li.menu-item-has-children
+  > a
+  .icon
+  svg {
   color: var(--color-black);
 }
 #header.without-home .hover-underline-white::before {
@@ -1597,7 +1621,14 @@ body {
 #header .header-main-menu ul li.menu-item-has-children > .sub-menu > ul li a {
   transition: all 0.3s ease;
 }
-#header .header-main-menu ul li.menu-item-has-children > .sub-menu > ul li a:hover {
+#header
+  .header-main-menu
+  ul
+  li.menu-item-has-children
+  > .sub-menu
+  > ul
+  li
+  a:hover {
   color: var(--color-black);
 }
 #header .header-main-menu ul li.menu-item-has-children > a {
@@ -1725,7 +1756,11 @@ body {
   transform-origin: bottom right;
   transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
 }
-#header .header-lang .dropdown-custom-menu .dropdown-custom-item:hover span::before {
+#header
+  .header-lang
+  .dropdown-custom-menu
+  .dropdown-custom-item:hover
+  span::before {
   transform: scaleX(1);
   transform-origin: bottom left;
 }
@@ -1938,7 +1973,8 @@ body {
   background-color: #181818;
   padding: 0 8px;
 }
-.footer-newsletter .form input:focus-visible + label, .footer-newsletter .form input:not(:placeholder-shown) + label {
+.footer-newsletter .form input:focus-visible + label,
+.footer-newsletter .form input:not(:placeholder-shown) + label {
   transform: translateY(-50%);
   font-size: 12px;
   line-height: 14px;
@@ -2721,12 +2757,6 @@ body {
 .overview-container .content-left .desc p:not(:first-child) {
   margin-top: 16px;
 }
-.overview-container .content-left .btn-wrapper {
-  margin-top: 24px;
-  display: flex;
-  align-items: center;
-  gap: 40px;
-}
 .overview-container .content-right .title {
   min-height: 56px;
   display: flex;
@@ -2755,7 +2785,7 @@ body {
 .overview-container .content-right .table-info {
   display: flex;
   flex-direction: column;
-  margin-top: 24px;
+  margin-top: 12px;
 }
 .overview-container .content-right .table-info .table-row {
   display: flex;
@@ -2776,6 +2806,34 @@ body {
   font-size: 13px;
   line-height: 24px;
   font-family: var(--font-body);
+}
+.overview-container .btn-wrapper {
+  margin-top: 24px;
+  display: flex;
+  align-items: center;
+  gap: 40px;
+}
+.overview.recruitment-detail .content-left h4,
+.overview.recruitment-detail .content-left h5,
+.overview.recruitment-detail .content-left h6 {
+  font-size: 14px;
+  line-height: 24px;
+  font-weight: 600;
+  margin-bottom: 12px;
+}
+.overview.recruitment-detail .content-left h4:not(:first-child),
+.overview.recruitment-detail .content-left h5:not(:first-child),
+.overview.recruitment-detail .content-left h6:not(:first-child) {
+  margin-top: 24px;
+}
+.overview.recruitment-detail .content-left ul {
+  padding-left: 24px;
+  list-style: disc;
+}
+.overview.recruitment-detail .content-right {
+  height: max-content;
+  position: sticky;
+  top: 180px;
 }
 
 .roomAmenities {
@@ -3061,7 +3119,9 @@ body {
 .sectionAccordion .accordion-header .icon svg {
   position: absolute;
   inset: 0;
-  transition: transform 0.4s ease, opacity 0.4s ease;
+  transition:
+    transform 0.4s ease,
+    opacity 0.4s ease;
 }
 .sectionAccordion .accordion-header .icon svg * {
   transition: all 0.4s ease;
@@ -3139,28 +3199,28 @@ body {
   grid-column: span 1;
   overflow: hidden;
 }
-.gallery-modal .gallery-grid .grid-item:nth-child(8n+1) {
+.gallery-modal .gallery-grid .grid-item:nth-child(8n + 1) {
   grid-row-end: span 10;
 }
-.gallery-modal .gallery-grid .grid-item:nth-child(8n+2) {
+.gallery-modal .gallery-grid .grid-item:nth-child(8n + 2) {
   grid-row-end: span 10;
 }
-.gallery-modal .gallery-grid .grid-item:nth-child(8n+3) {
+.gallery-modal .gallery-grid .grid-item:nth-child(8n + 3) {
   grid-row-end: span 8;
 }
-.gallery-modal .gallery-grid .grid-item:nth-child(8n+4) {
+.gallery-modal .gallery-grid .grid-item:nth-child(8n + 4) {
   grid-row-end: span 8;
 }
-.gallery-modal .gallery-grid .grid-item:nth-child(8n+5) {
+.gallery-modal .gallery-grid .grid-item:nth-child(8n + 5) {
   grid-row-end: span 10;
 }
-.gallery-modal .gallery-grid .grid-item:nth-child(8n+6) {
+.gallery-modal .gallery-grid .grid-item:nth-child(8n + 6) {
   grid-row-end: span 10;
 }
-.gallery-modal .gallery-grid .grid-item:nth-child(8n+7) {
+.gallery-modal .gallery-grid .grid-item:nth-child(8n + 7) {
   grid-row-end: span 10;
 }
-.gallery-modal .gallery-grid .grid-item:nth-child(8n+8) {
+.gallery-modal .gallery-grid .grid-item:nth-child(8n + 8) {
   grid-row-end: span 10;
 }
 .gallery-modal .gallery-grid .grid-item img,
@@ -3320,28 +3380,28 @@ body {
   background-repeat: no-repeat;
   background-position: center center;
 }
-.galleryTab .filter-item:nth-child(8n+1) {
+.galleryTab .filter-item:nth-child(8n + 1) {
   grid-row-end: span 10;
 }
-.galleryTab .filter-item:nth-child(8n+2) {
+.galleryTab .filter-item:nth-child(8n + 2) {
   grid-row-end: span 10;
 }
-.galleryTab .filter-item:nth-child(8n+3) {
+.galleryTab .filter-item:nth-child(8n + 3) {
   grid-row-end: span 11;
 }
-.galleryTab .filter-item:nth-child(8n+4) {
+.galleryTab .filter-item:nth-child(8n + 4) {
   grid-row-end: span 12;
 }
-.galleryTab .filter-item:nth-child(8n+5) {
+.galleryTab .filter-item:nth-child(8n + 5) {
   grid-row-end: span 10;
 }
-.galleryTab .filter-item:nth-child(8n+6) {
+.galleryTab .filter-item:nth-child(8n + 6) {
   grid-row-end: span 10;
 }
-.galleryTab .filter-item:nth-child(8n+7) {
+.galleryTab .filter-item:nth-child(8n + 7) {
   grid-row-end: span 10;
 }
-.galleryTab .filter-item:nth-child(8n+8) {
+.galleryTab .filter-item:nth-child(8n + 8) {
   grid-row-end: span 10;
 }
 .galleryTab .filter-item img,
@@ -3373,7 +3433,7 @@ body {
   display: grid;
   grid-template-columns: repeat(3, 1fr) 150px 150px;
   padding: 20px 0;
-  border-top: 1px solid var(--color-gray);
+  border-top: 1px solid rgba(118, 120, 122, 0.2);
 }
 .position-hiring__main .position-list__item .name {
   transition: all 0.4s ease;

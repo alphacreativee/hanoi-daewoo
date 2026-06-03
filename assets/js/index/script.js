@@ -1206,8 +1206,6 @@ function galleryTabLightbox() {
 function formBookingEvent() {
   if ($("#modalBookingEvents").length < 1) return;
 
-  uploadFile();
-
   const defaultStart = moment().startOf("day");
   const defaultEnd = moment().startOf("day").add(1, "day");
 
@@ -1314,6 +1312,7 @@ function uploadFile() {
   const MAX_FILES = 3;
   const MAX_FILE_SIZE_MB = 5;
   const MAX_FILE_SIZE = MAX_FILE_SIZE_MB * 1024 * 1024;
+  const ALLOWED_EXTENSIONS = ["pdf", "doc", "docx", "xls", "xlsx"];
 
   browseBtn.addEventListener("click", () => {
     fileInput.click();
@@ -1357,6 +1356,17 @@ function uploadFile() {
 
     if (files.length > MAX_FILES) {
       alert(`You can upload a maximum of ${MAX_FILES} files.`);
+      resetFiles();
+      return;
+    }
+
+    const invalidFile = [...files].find((file) => {
+      const extension = file.name.split(".").pop().toLowerCase();
+      return !ALLOWED_EXTENSIONS.includes(extension);
+    });
+
+    if (invalidFile) {
+      alert("Only PDF, DOC, DOCX, XLS, and XLSX files are allowed.");
       resetFiles();
       return;
     }
@@ -1418,6 +1428,7 @@ const init = () => {
   formBookingEvent();
   galleryLightbox();
   galleryTabLightbox();
+  uploadFile();
 };
 document.addEventListener("DOMContentLoaded", () => {
   init();
