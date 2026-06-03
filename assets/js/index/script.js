@@ -1401,6 +1401,168 @@ function filterPostionHiring() {
   if ($(".position-hiring").length < 1) return;
 }
 
+function panel() {
+  document.querySelectorAll(".panels").forEach((element) => {
+    if (element.dataset.scriptInitialized) return;
+    element.dataset.scriptInitialized = "true";
+
+    gsap.registerPlugin(ScrollTrigger);
+
+    const panels = document.querySelectorAll(".panel");
+    const headings = document.querySelectorAll(".panel-heading");
+    const tl = gsap.timeline();
+    const panelArray = Array.from(panels);
+
+    panelArray.forEach((item, index) => {
+      item.style.zIndex = panelArray.length - index;
+    });
+
+    panels.forEach((panel) => {
+      gsap.set(
+        panel.querySelectorAll(".panel-title, .panel-desc, .panel-btn"),
+        { opacity: 0, y: 20, pointerEvents: "none" },
+      );
+    });
+
+    function animateTextIn(panel) {
+      gsap.fromTo(
+        panel.querySelectorAll(".panel-title, .panel-desc, .panel-btn"),
+        { opacity: 0, y: 20, pointerEvents: "none" },
+        {
+          opacity: 1,
+          y: 0,
+          pointerEvents: "auto",
+          stagger: 0.1,
+          duration: 0.6,
+          ease: "power2.out",
+          overwrite: true,
+        },
+      );
+    }
+
+    function animateTextOut(panel) {
+      gsap.to(panel.querySelectorAll(".panel-title, .panel-desc, .panel-btn"), {
+        opacity: 0,
+        y: -20,
+        pointerEvents: "none",
+        duration: 0.4,
+        ease: "power2.in",
+        overwrite: true,
+      });
+    }
+
+    // Build timeline với labels
+    panels.forEach((panel, index) => {
+      if (index < panels.length - 1) {
+        tl.addLabel(`fadeOut_${index}`)
+          .to({}, { duration: 0.4 })
+          .addLabel(`clipStart_${index}`)
+          .fromTo(
+            panel.querySelector(".panel-image"),
+            { clipPath: "inset(0 0 0% 0)" },
+            { clipPath: "inset(0 0 100% 0)", ease: "none", duration: 1 },
+          )
+          .fromTo(
+            panels[index + 1].querySelector("img"),
+            { scale: 1.35 },
+            { scale: 1, duration: 1.3, ease: "power2.out" },
+            "<",
+          )
+          .to({}, { duration: 0.6 }, "<+=0.5");
+      }
+    });
+
+    // Đọc thời gian thực từ labels
+    const triggerPoints = [];
+    const clipEndPoints = [];
+    const total = tl.totalDuration();
+
+    panels.forEach((panel, index) => {
+      if (index < panels.length - 1) {
+        const fadeOutTime = tl.labels[`fadeOut_${index}`];
+        const clipStartTime = tl.labels[`clipStart_${index}`];
+
+        triggerPoints.push({
+          type: "out",
+          panelIndex: index,
+          progress: (fadeOutTime + 0.25) / total,
+        });
+        triggerPoints.push({
+          type: "in",
+          panelIndex: index + 1,
+          progress: (clipStartTime + 0.5) / total,
+        });
+        clipEndPoints.push((clipStartTime + 1) / total);
+      }
+    });
+
+    let lastProgress = 0;
+
+    ScrollTrigger.create({
+      animation: tl,
+      trigger: ".panels",
+      start: "top top",
+      end: () => `+=${tl.totalDuration() * innerHeight}`,
+      scrub: 0.6,
+      pin: true,
+      // markers: true,
+      onEnter: () => {
+        animateTextIn(panels[0]);
+      },
+      onLeaveBack: () => {
+        panels.forEach((panel) => {
+          panel.style.pointerEvents = "auto";
+        });
+        panels.forEach((panel) => {
+          gsap.set(
+            panel.querySelectorAll(".panel-title, .panel-desc, .panel-btn"),
+            { opacity: 0, y: 20, pointerEvents: "none" },
+          );
+        });
+        animateTextIn(panels[0]);
+        headings.forEach((h, i) => h.classList.toggle("active", i === 0));
+        lastProgress = 0;
+      },
+      onUpdate: ({ progress }) => {
+        const forward = progress > lastProgress;
+
+        clipEndPoints.forEach((endPoint, index) => {
+          panels[index].style.pointerEvents =
+            progress >= endPoint ? "none" : "auto";
+        });
+
+        triggerPoints.forEach((point) => {
+          const crossed = forward
+            ? lastProgress < point.progress && progress >= point.progress
+            : lastProgress >= point.progress && progress < point.progress;
+
+          if (crossed) {
+            if (point.type === "in" && forward)
+              animateTextIn(panels[point.panelIndex]);
+            else if (point.type === "out" && forward)
+              animateTextOut(panels[point.panelIndex]);
+            else if (point.type === "in" && !forward)
+              animateTextOut(panels[point.panelIndex]);
+            else if (point.type === "out" && !forward)
+              animateTextIn(panels[point.panelIndex]);
+          }
+        });
+
+        let currentIndex = 0;
+        triggerPoints
+          .filter((p) => p.type === "in")
+          .forEach((point, i) => {
+            if (progress >= point.progress) currentIndex = i + 1;
+          });
+        headings.forEach((h, i) =>
+          h.classList.toggle("active", i === currentIndex),
+        );
+
+        lastProgress = progress;
+      },
+    });
+  });
+}
 const init = () => {
   gsap.registerPlugin(ScrollTrigger);
   customDropdown();
@@ -1429,6 +1591,7 @@ const init = () => {
   galleryLightbox();
   galleryTabLightbox();
   uploadFile();
+  panel();
 };
 document.addEventListener("DOMContentLoaded", () => {
   init();
