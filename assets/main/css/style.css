@@ -3414,6 +3414,39 @@ body {
   object-fit: cover;
 }
 
+.contact {
+  max-width: calc(100% - 80px);
+  width: 100%;
+  margin-left: auto;
+  margin-right: auto;
+  margin-top: -20px;
+  background-color: var(--color-white);
+  padding: 40px;
+  position: relative;
+  z-index: 4;
+}
+.contact-inner {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 20px;
+}
+.contact-right {
+  padding-left: calc(8.3333333333% + 20px);
+  display: flex;
+  flex-direction: column;
+  gap: 40px;
+}
+.contact-heading {
+  margin-bottom: 24px;
+}
+.contact-info ul,
+.contact-info li {
+  gap: 8px;
+}
+.contact-social ul {
+  gap: 20px;
+}
+
 .position-hiring {
   padding: 0 40px 120px;
 }
