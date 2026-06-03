@@ -2254,6 +2254,9 @@ body {
 .intro.no-img .intro-line {
   display: none;
 }
+.intro.intro-recruitment .intro-item .number {
+  font-size: 80px;
+}
 .intro-btn {
   margin-top: 80px;
 }
@@ -2274,6 +2277,9 @@ body {
   line-height: 1.4;
   font-family: var(--font-heading);
   color: var(--color-gold);
+}
+.intro-item .number span {
+  font-size: 40px;
 }
 .intro-desc {
   text-align: center;
@@ -2709,6 +2715,12 @@ body {
 .overview.full .overview-container {
   grid-template-columns: 1fr;
   margin: 0 40px 80px;
+}
+.overview.recruitment-detail .overview-container {
+  gap: 0;
+}
+.overview.recruitment-detail .overview-container .content-right {
+  padding-left: 20%;
 }
 .overview-container {
   background-color: var(--color-white);
