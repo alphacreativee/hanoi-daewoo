@@ -3406,6 +3406,32 @@ body {
   position: relative;
   z-index: 4;
 }
+.contact.full-col {
+  padding: 80px 8.3333333333%;
+  margin-bottom: 0;
+}
+.contact.full-col .contact-wrapper .head {
+  margin-bottom: 24px;
+}
+.contact.full-col .contact-wrapper .head .title {
+  margin-bottom: 24px;
+}
+.contact.full-col .contact-wrapper .foot h4 {
+  font-size: 16px;
+  line-height: 28px;
+  font-weight: bold;
+  color: var(--color-black);
+}
+.contact.full-col .contact-wrapper .foot ul {
+  list-style-type: disc;
+  padding-left: 20px;
+}
+.contact.full-col .contact-wrapper .foot ul li > * {
+  font-size: 16px;
+  line-height: 28px;
+  font-weight: 400;
+  color: var(--color-black);
+}
 .contact-title {
   margin-bottom: 40px;
 }
