@@ -1387,6 +1387,10 @@ function uploadFile() {
   }
 }
 
+function filterPostionHiring() {
+  if ($(".position-hiring").length < 1) return;
+}
+
 const init = () => {
   gsap.registerPlugin(ScrollTrigger);
   customDropdown();
