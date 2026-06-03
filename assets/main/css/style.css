@@ -3384,18 +3384,74 @@ body {
 .contact {
   max-width: calc(100% - 80px);
   width: 100%;
-  margin-left: auto;
-  margin-right: auto;
-  margin-top: -20px;
+  margin: -20px auto 40px;
   background-color: var(--color-white);
   padding: 40px;
   position: relative;
   z-index: 4;
 }
+.contact-title {
+  margin-bottom: 40px;
+}
 .contact-inner {
   display: grid;
   grid-template-columns: 1fr 1fr;
   gap: 20px;
+}
+.contact-left .list-field {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 20px;
+  margin-bottom: 20px;
+}
+.contact-left .list-field.full-width {
+  grid-template-columns: 1fr;
+}
+.contact-left .field-item {
+  position: relative;
+}
+.contact-left .field-item input {
+  height: 44px;
+  border: none;
+  border: 1px solid rgba(0, 0, 0, 0.2);
+  color: var(--color-black);
+  padding: 8px 24px;
+  width: 100%;
+}
+.contact-left .field-item input + label,
+.contact-left .field-item textarea + label {
+  color: var(--color-black);
+  background-color: var(--color-white);
+  padding: 0 8px;
+}
+.contact-left .field-item input:focus-visible + label, .contact-left .field-item input:not(:placeholder-shown) + label,
+.contact-left .field-item textarea:focus-visible + label,
+.contact-left .field-item textarea:not(:placeholder-shown) + label {
+  transform: translateY(-50%);
+  font-size: 12px;
+  line-height: 14px;
+  top: 0;
+}
+.contact-left .field-item textarea {
+  width: 100%;
+  border: 1px solid rgba(0, 0, 0, 0.2);
+  color: var(--color-black);
+  padding: 8px 24px;
+}
+.contact-left .field-item textarea + label {
+  top: 8px;
+  transform: translate(0);
+}
+.contact-left .field-item label {
+  position: absolute;
+  left: 16px;
+  top: 50%;
+  transform: translateY(-50%);
+  pointer-events: none;
+  transition: all 0.4s ease;
+}
+.contact-left .field-item label span {
+  color: #ff0000;
 }
 .contact-right {
   padding-left: calc(8.3333333333% + 20px);
