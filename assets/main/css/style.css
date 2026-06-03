@@ -2706,6 +2706,10 @@ body {
   position: relative;
   z-index: 3;
 }
+.overview.full .overview-container {
+  grid-template-columns: 1fr;
+  margin: 0 40px 80px;
+}
 .overview-container {
   background-color: var(--color-white);
   margin: 0 40px;

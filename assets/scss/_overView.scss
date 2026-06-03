@@ -2,6 +2,13 @@
   position: relative;
   z-index: 3;
 
+  &.full {
+    .overview-container {
+      grid-template-columns: 1fr;
+      margin: 0 40px 80px;
+    }
+  }
+
   &-container {
     background-color: var(--color-white);
     margin: 0 40px;
