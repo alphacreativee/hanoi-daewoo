@@ -19,6 +19,17 @@
     }
   }
 
+  &.overview-detail {
+    .overview-container {
+      gap: 0;
+
+      .content-right,
+      .content-left {
+        padding-right: calc(100% / 5);
+      }
+    }
+  }
+
   &-container {
     background-color: var(--color-white);
     margin: 0 40px;
