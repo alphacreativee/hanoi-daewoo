@@ -1250,6 +1250,10 @@ body {
   font-size: 16px;
   line-height: 28px;
 }
+.modal-booking .list-field .field-item.error label,
+.modal-booking .list-field .field-item.error .label {
+  color: #ff0000;
+}
 .modal-booking .list-field .btn-submit,
 .modal-booking .list-field .note {
   grid-column: 1/-1;

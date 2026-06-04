@@ -1185,6 +1185,13 @@ body {
           }
         }
       }
+
+      &.error {
+        label,
+        .label {
+          color: #ff0000;
+        }
+      }
     }
 
     .btn-submit,

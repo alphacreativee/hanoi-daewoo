@@ -618,7 +618,7 @@
                                 <div class="list-field step" data-step="1">
                                   <div class="field-item full">
                                         <div class="label">Event Type<span>*</span></div>
-                                        <div class="dropdown-custom-select z-3" style="z-index: 3">
+                                        <div class="dropdown-custom-select z-3 required" style="z-index: 3">
                                             <div class="dropdown-custom-btn">
                                                 <div class="value-select dropdown-custom-text color-black">
                                                     <span>Choose your event</span>
@@ -639,11 +639,11 @@
                                         </div>
                                     </div>
                                     <div class="field-item">
-                                        <input type="number" name="attendees" placeholder=" " class="b1-font" />
+                                        <input type="number" name="attendees" placeholder=" " class="b1-font required" />
                                         <label for="attendees" class="b1-font">Number of Attendees<span>*</span></label>
                                     </div>
                                     <div class="field-item">
-                                        <input type="number" name="bedroom" placeholder=" " class="b1-font" />
+                                        <input type="number" name="bedroom" placeholder=" " class="b1-font required" />
                                         <label for="bedroom" class="b1-font">Number of Bedrooms<span>*</span></label>
                                     </div>
                                     <div class="field-item date">
@@ -688,19 +688,19 @@
                                 </div>
                                 <div class="list-field step" data-step="2" style="display: none;">
                                     <div class="field-item">
-                                        <input type="text" name="firstname" placeholder=" " class="b1-font" />
+                                        <input type="text" name="firstname" placeholder=" " class="b1-font required" />
                                         <label for="firstname" class="b1-font">First Name<span>*</span></label>
                                     </div>
                                     <div class="field-item">
-                                        <input type="text" name="lastname" placeholder=" " class="b1-font" />
+                                        <input type="text" name="lastname" placeholder=" " class="b1-font required" />
                                         <label for="lastname" class="b1-font">Last Name<span>*</span></label>
                                     </div>
                                     <div class="field-item">
-                                        <input type="tel" name="phone" placeholder=" " class="b1-font" />
+                                        <input type="tel" name="phone" placeholder=" " class="b1-font required" />
                                         <label for="phone" class="b1-font">Telephone<span>*</span></label>
                                     </div>
                                     <div class="field-item">
-                                        <input type="email" name="email" placeholder=" " class="b1-font" />
+                                        <input type="email" name="email" placeholder=" " class="b1-font required"  />
                                         <label for="email" class="b1-font">Email<span>*</span></label>
                                     </div>
                                     <div class="field-item full">
@@ -720,7 +720,7 @@
                                       </button>
                                       <button type="submit" class="btn-submit btn-global text-uppercase">send request</button>
                                     </div>
-                                    <div class="note b3-font color-black">Thank you for contacting us. Our team will call you to confirm your request.</div>
+                                    <div class="note b3-font color-black" style="display: none;">Thank you for contacting us. Our team will call you to confirm your request.</div>
                                 </div>
                             </form>
                             <div class="step-number b2-font fw-semibold">
