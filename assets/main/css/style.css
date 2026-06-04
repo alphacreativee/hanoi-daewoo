@@ -2722,6 +2722,13 @@ body {
 .overview.recruitment-detail .overview-container .content-right {
   padding-left: 20%;
 }
+.overview.overview-detail .overview-container {
+  gap: 0;
+}
+.overview.overview-detail .overview-container .content-right,
+.overview.overview-detail .overview-container .content-left {
+  padding-right: 20%;
+}
 .overview-container {
   background-color: var(--color-white);
   margin: 0 40px;
@@ -3085,6 +3092,7 @@ body {
 
 .sectionAccordion-container {
   padding: 120px 40px;
+  background-color: var(--color-white);
 }
 .sectionAccordion .accordion-main {
   margin-top: 60px;
