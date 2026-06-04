@@ -2748,6 +2748,21 @@ body {
 .overview-container .content-left .desc p:not(:first-child) {
   margin-top: 16px;
 }
+.overview-container .content-left .info {
+  margin-top: 15px;
+  gap: 32px;
+}
+.overview-container .content-left .info li {
+  display: flex;
+  align-items: center;
+}
+.overview-container .content-left .info img {
+  flex-shrink: 0;
+  width: 16px;
+  height: 16px;
+  object-fit: cover;
+  margin-right: 12px;
+}
 .overview-container .content-right .title {
   min-height: 56px;
   display: flex;
@@ -2828,7 +2843,7 @@ body {
 }
 
 .roomAmenities {
-  padding-top: 80px;
+  padding: 80px 40px 0;
 }
 .roomAmenities .amenities-top .title {
   margin-bottom: 60px;

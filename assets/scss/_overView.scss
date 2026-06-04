@@ -51,6 +51,24 @@
             }
           }
         }
+
+        .info {
+          margin-top: 15px;
+          gap: 32px;
+
+          li {
+            display: flex;
+            align-items: center;
+          }
+
+          img {
+            flex-shrink: 0;
+            width: 16px;
+            height: 16px;
+            object-fit: cover;
+            margin-right: 12px;
+          }
+        }
       }
 
       &-right {
