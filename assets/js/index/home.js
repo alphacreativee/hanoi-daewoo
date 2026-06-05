@@ -805,31 +805,49 @@ function swiperThreeCol() {
   const perView = $(".swiper-three-col").data("per-view") || 3;
   const spaceBetween = $(".swiper-three-col").data("space-between") || 30;
 
-  const swiper = new Swiper(".swiper-three-col", {
-    slidesPerView: perView,
-    spaceBetween: spaceBetween,
-    pagination: {
-      el: ".main-swiper .swiper-pagination",
-      type: "progressbar",
-    },
-    navigation: {
-      nextEl: ".main-swiper .swiper-button-next",
-      prevEl: ".main-swiper .swiper-button-prev",
-    },
-    on: {
-      init(swiper) {
-        updateFraction(swiper);
-        setOfferDescHeight();
-      },
-      slideChange(swiper) {
-        updateFraction(swiper);
-      },
-    },
-  });
+  let swiper;
 
-  // Ẩn nav nếu số slide <= perView
-  if (slides <= perView) {
-    document.querySelector(".main-swiper .swiper-nav")?.classList.add("hidden");
+  function initSwiper() {
+    const isMobile = window.innerWidth <= 991;
+
+    if (isMobile) {
+      if (swiper) swiper.destroy(true, true);
+      swiper = null;
+      document
+        .querySelector(".main-swiper .swiper-nav")
+        ?.classList.add("hidden");
+      return;
+    }
+
+    if (swiper) swiper.destroy(true, true);
+
+    swiper = new Swiper(".swiper-three-col", {
+      slidesPerView: perView,
+      spaceBetween: spaceBetween,
+      pagination: {
+        el: ".main-swiper .swiper-pagination",
+        type: "progressbar",
+      },
+      navigation: {
+        nextEl: ".main-swiper .swiper-button-next",
+        prevEl: ".main-swiper .swiper-button-prev",
+      },
+      on: {
+        init(swiper) {
+          updateFraction(swiper);
+          setOfferDescHeight();
+        },
+        slideChange(swiper) {
+          updateFraction(swiper);
+        },
+      },
+    });
+
+    if (slides <= perView) {
+      document
+        .querySelector(".main-swiper .swiper-nav")
+        ?.classList.add("hidden");
+    }
   }
 
   function updateFraction(swiper) {
@@ -841,6 +859,9 @@ function swiperThreeCol() {
 
     el.textContent = `${current} / ${total}`;
   }
+
+  initSwiper();
+  window.addEventListener("resize", initSwiper);
 }
 
 const init = () => {

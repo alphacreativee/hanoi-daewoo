@@ -46,6 +46,12 @@
   font-size: 16px;
   line-height: 28px;
 }
+@media (max-width: 991px) {
+  .b1-font {
+    font-size: 14px;
+    line-height: 24px;
+  }
+}
 
 .b2-font {
   font-size: 14px;
@@ -2183,6 +2189,11 @@ body {
   padding: 120px 40px;
   background-color: var(--color-white);
 }
+@media (max-width: 991px) {
+  .moreInfo-container {
+    padding: 64px 16px;
+  }
+}
 .moreInfo-container.bgc-body {
   background-color: #f2f2f2;
 }
@@ -2260,10 +2271,19 @@ body {
   bottom: 22px;
   opacity: 1;
 }
+.moreInfo .swiper-wrapper {
+  flex-direction: column;
+  gap: 24px;
+}
 
 .weddings-container {
   padding: 120px 40px;
   background-color: #f2f2f2;
+}
+@media (max-width: 991px) {
+  .weddings-container {
+    padding: 64px 16px;
+  }
 }
 .weddings-list {
   display: flex;
@@ -2307,6 +2327,11 @@ body {
 .intro {
   padding: 120px 0;
 }
+@media (max-width: 991px) {
+  .intro {
+    padding: 64px 16px;
+  }
+}
 .intro.no-img .intro-line {
   display: none;
 }
@@ -2322,6 +2347,11 @@ body {
   justify-content: space-between;
   gap: 80px;
 }
+@media (max-width: 991px) {
+  .intro-list {
+    gap: 40px;
+  }
+}
 .intro-item {
   display: flex;
   flex-direction: column;
@@ -2333,6 +2363,11 @@ body {
   line-height: 1.4;
   font-family: var(--font-heading);
   color: var(--color-gold);
+}
+@media (max-width: 991px) {
+  .intro-item .number {
+    font-size: 50px;
+  }
 }
 .intro-item .number span {
   font-size: 40px;

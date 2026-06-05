@@ -41,6 +41,10 @@
 .b1-font {
   font-size: 16px;
   line-height: 28px;
+  @media (max-width: 991px) {
+    font-size: 14px;
+    line-height: 24px;
+  }
 }
 .b2-font {
   font-size: 14px;
