@@ -2,7 +2,7 @@ import {
   customDropdown,
   createFilterTab,
   sliderParallax,
-  initGuestSelector
+  initGuestSelector,
 } from "../../main/js/global.min.js";
 ("use strict");
 $ = jQuery;
@@ -39,9 +39,9 @@ function getTime() {
       "Tháng 9",
       "Tháng 10",
       "Tháng 11",
-      "Tháng 12"
+      "Tháng 12",
     ],
-    firstDay: 1
+    firstDay: 1,
   };
 
   function getDrops() {
@@ -60,12 +60,12 @@ function getTime() {
       minSpan: { days: 1 },
       startDate: defaultStart,
       endDate: defaultEnd,
-      locale: localeConfig
+      locale: localeConfig,
     },
     function (start, end) {
       $('input[name="startDate"]').val(start.format("DD/MM/YYYY"));
       $('input[name="endDate"]').val(end.format("DD/MM/YYYY"));
-    }
+    },
   );
 
   // ← Monkey-patch updateElement để picker không bao giờ tự ghi range vào input
@@ -106,8 +106,8 @@ function headerScroll() {
       start: "top -10px",
       end: "+=100",
       onEnter: () => header.classList.add("header-theme-light-active"),
-      onLeaveBack: () => header.classList.remove("header-theme-light-active")
-    }
+      onLeaveBack: () => header.classList.remove("header-theme-light-active"),
+    },
   });
 
   // return trigger;
@@ -137,21 +137,21 @@ function heroSection() {
       preloadImages: true,
       parallax: true,
       lazy: {
-        loadPrevNext: true
+        loadPrevNext: true,
       },
       allowTouchMove: false,
       simulateTouch: false,
       mousewheel: false,
       navigation: {
         nextEl: ".hero .swiper-button-next",
-        prevEl: ".hero .swiper-button-prev"
+        prevEl: ".hero .swiper-button-prev",
       },
       on: {
         init: function () {
           let $this = this;
           $($this.slides[$this.activeIndex]);
-        }
-      }
+        },
+      },
     });
   });
 }
@@ -248,16 +248,16 @@ function imageZoom() {
       scrollTrigger: {
         trigger: imageZoom,
         start: "top 70%",
-        end: "top 70%"
-      }
-    }
+        end: "top 70%",
+      },
+    },
   );
 }
 function sliderDining() {
   if (!document.querySelector(".dining-swiper")) return;
 
   const titleService = document.querySelectorAll(
-    ".dining-list-title .dining-title"
+    ".dining-list-title .dining-title",
   );
   let activeElms = titleService[0];
 
@@ -277,8 +277,8 @@ function sliderDining() {
     on: {
       slideChange: function () {
         setActiveTitle(this.realIndex);
-      }
-    }
+      },
+    },
   });
 
   setActiveTitle(0);
@@ -291,39 +291,6 @@ function sliderDining() {
   });
 
   const allSplitLines = [];
-  // titleService.forEach((el) => {
-  //   const split = new SplitText(el, {
-  //     type: "lines",
-  //     linesClass: "line",
-  //     mask: "lines",
-  //   });
-  //   allSplitLines.push(...split.lines);
-  //   gsap.set(split.lines, { yPercent: 100 });
-  // });
-
-  // ScrollTrigger.create({
-  //   trigger: ".amigo-service-wrapper",
-  //   start: "top 70%",
-  //   once: true,
-  //   onEnter: () => {
-  //     if (swiperEl) {
-  //       gsap.to(swiperEl, {
-  //         autoAlpha: 1,
-  //         y: 0,
-  //         ease: "power2.out",
-  //         duration: 0.8,
-  //       });
-  //     }
-
-  //     gsap.to(allSplitLines, {
-  //       yPercent: 0,
-  //       ease: "power3.out",
-  //       duration: 0.8,
-  //       stagger: 0.1,
-  //       delay: 0.2,
-  //     });
-  //   },
-  // });
 }
 function animationText() {
   gsap.registerPlugin(ScrollTrigger);
@@ -346,9 +313,9 @@ function animationText() {
       scrollTrigger: {
         trigger: el,
         start: "top 65%",
-        once: true
+        once: true,
         // markers: true,
-      }
+      },
     });
 
     const animFrom = { y: 20, opacity: 0 };
@@ -356,7 +323,7 @@ function animationText() {
       y: 0,
       opacity: 1,
       duration: 0.6,
-      ease: "power2.out"
+      ease: "power2.out",
     };
 
     if (tlTextOne.length) tl.fromTo(tlTextOne, animFrom, animTo);
@@ -384,7 +351,7 @@ function accommodationSlider() {
         slide.querySelectorAll(".ac-text-two"),
         slide.querySelectorAll(".ac-text-three"),
         slide.querySelectorAll(".ac-text-four"),
-        slide.querySelectorAll(".ac-text-five")
+        slide.querySelectorAll(".ac-text-five"),
       ];
       groups.forEach((group) => {
         if (group.length) gsap.set(group, { y: 20, opacity: 0 });
@@ -426,7 +393,7 @@ function accommodationSlider() {
             once: true,
             onEnter: () => {
               animateSlideText(swiper.slides[swiper.activeIndex]);
-            }
+            },
           });
         },
         slideChangeTransitionStart(swiper) {
@@ -434,8 +401,8 @@ function accommodationSlider() {
         },
         slideChangeTransitionEnd(swiper) {
           animateSlideText(swiper.slides[swiper.activeIndex]);
-        }
-      }
+        },
+      },
     });
   });
 }
@@ -448,11 +415,11 @@ function eventSlider() {
     speed: 1000,
     pagination: {
       el: ".event-right .swiper-pagination",
-      type: "progressbar"
+      type: "progressbar",
     },
     navigation: {
       nextEl: ".event-right .swiper-button-next",
-      prevEl: ".event-right .swiper-button-prev"
+      prevEl: ".event-right .swiper-button-prev",
     },
     on: {
       init(swiper) {
@@ -460,8 +427,8 @@ function eventSlider() {
       },
       slideChange(swiper) {
         updateFraction(swiper);
-      }
-    }
+      },
+    },
   });
 
   function updateFraction(swiper) {
@@ -502,9 +469,9 @@ function animationAccommodationCard() {
           y: 0,
           opacity: 1,
           duration: 0.6,
-          ease: "power2.out"
+          ease: "power2.out",
         });
-      }
+      },
     });
 
     const tl = gsap.timeline({ paused: true });
@@ -519,7 +486,7 @@ function animationAccommodationCard() {
       trigger: card.querySelector(".card-content"),
       start: "top 65%",
       once: true,
-      onEnter: () => tl.play()
+      onEnter: () => tl.play(),
     });
   });
 }
@@ -550,9 +517,9 @@ function animationWeddingItem() {
           y: 0,
           opacity: 1,
           duration: 0.8,
-          ease: "power2.out"
+          ease: "power2.out",
         });
-      }
+      },
     });
 
     // Animate content dùng stagger thay vì timeline
@@ -566,9 +533,9 @@ function animationWeddingItem() {
           opacity: 1,
           duration: 0.7,
           ease: "power2.out",
-          stagger: 0.15 // delay nhẹ giữa các el, không bị overlap cứng
+          stagger: 0.15, // delay nhẹ giữa các el, không bị overlap cứng
         });
-      }
+      },
     });
   });
 }
@@ -581,29 +548,29 @@ function header() {
 
   const tl = gsap.timeline({
     paused: true,
-    defaults: { ease: "power2.out" }
+    defaults: { ease: "power2.out" },
   });
 
   tl.from(".header-main--popup__top .logo", {
     x: -20,
     opacity: 0,
     duration: 0.3,
-    delay: 0.1
+    delay: 0.1,
   })
     .from(".header-main--popup > ul > li", {
       x: -20,
       opacity: 0,
       stagger: 0.08,
-      duration: 0.4
+      duration: 0.4,
     })
     .from(
       ".header-main--popup__bottom",
       {
         x: -20,
         opacity: 0,
-        duration: 0.3
+        duration: 0.3,
       },
-      "-=0.2"
+      "-=0.2",
     );
 
   function getScrollbarWidth() {
@@ -657,7 +624,7 @@ function header() {
 
   document.addEventListener("click", (e) => {
     const clickedHamburger = [...btnHambuger].some((btn) =>
-      btn.contains(e.target)
+      btn.contains(e.target),
     );
 
     if (
@@ -706,7 +673,7 @@ function animationItemsSection() {
       y: MOVE_Y,
       opacity: 0,
       force3D: true,
-      willChange: "transform, opacity"
+      willChange: "transform, opacity",
     });
 
     const tl = gsap.timeline({
@@ -714,8 +681,8 @@ function animationItemsSection() {
         trigger: section,
         start: "top 65%",
         toggleActions: "play none none none",
-        once: true
-      }
+        once: true,
+      },
     });
 
     tl.to(
@@ -725,9 +692,9 @@ function animationItemsSection() {
         duration: TRANSFORM_DURATION,
         stagger: ITEM_STAGGER,
         ease: "power3.out",
-        force3D: true
+        force3D: true,
       },
-      0
+      0,
     ).to(
       items,
       {
@@ -735,9 +702,9 @@ function animationItemsSection() {
         duration: OPACITY_DURATION,
         stagger: ITEM_STAGGER,
         ease: "power2.out",
-        clearProps: "willChange"
+        clearProps: "willChange",
       },
-      0
+      0,
     );
   });
 }
@@ -752,7 +719,7 @@ function animationItemRow() {
     const listDFour = item.querySelector(".list-detail-four");
 
     const contentEls = [listDOne, listDTwo, listDThree, listDFour].filter(
-      Boolean
+      Boolean,
     );
 
     gsap.set(contentEls, { y: 20, opacity: 0 });
@@ -769,7 +736,7 @@ function animationItemRow() {
       trigger: item.querySelector(".list-detail-box"),
       start: "top 50%",
       once: true,
-      onEnter: () => tl.play()
+      onEnter: () => tl.play(),
     });
   });
 }
@@ -797,10 +764,10 @@ function bookAtable() {
         "Tháng 9",
         "Tháng 10",
         "Tháng 11",
-        "Tháng 12"
+        "Tháng 12",
       ],
-      firstDay: 1
-    }
+      firstDay: 1,
+    },
   });
 }
 function wonderGallery() {
@@ -821,7 +788,7 @@ function wonderGallery() {
     document.head.appendChild(styleEl);
 
     const textContent = document.querySelector(
-      ".wonderfulGallery .content-text .title"
+      ".wonderfulGallery .content-text .title",
     );
 
     if (textContent) {
@@ -843,13 +810,13 @@ function wonderGallery() {
           if (textContent) {
             gsap.set(textContent, { opacity: 1, y: 0 });
           }
-        }
-      }
+        },
+      },
     });
 
     tl.to(container, {
       "--line-height": "100%",
-      ease: "none"
+      ease: "none",
     });
 
     if (textContent) {
@@ -859,9 +826,9 @@ function wonderGallery() {
           opacity: 1,
           y: 0,
           duration: 0.3,
-          ease: "power2.out"
+          ease: "power2.out",
         },
-        "<13%"
+        "<13%",
       );
     }
   }
@@ -877,24 +844,24 @@ function wonderGallery() {
       scrollTrigger: {
         trigger: item,
         start: "top 80%",
-        once: true
-      }
+        once: true,
+      },
     });
 
     tl.to(image, {
       y: 0,
       opacity: 1,
       duration: 0.6,
-      ease: "power2.out"
+      ease: "power2.out",
     }).to(
       text,
       {
         y: 0,
         opacity: 1,
         duration: 0.3,
-        ease: "power2.out"
+        ease: "power2.out",
       },
-      "-=0.4"
+      "-=0.4",
     );
   });
 }
@@ -910,11 +877,11 @@ function swiperThreeCol() {
     spaceBetween: spaceBetween,
     pagination: {
       el: ".main-swiper .swiper-pagination",
-      type: "progressbar"
+      type: "progressbar",
     },
     navigation: {
       nextEl: ".main-swiper .swiper-button-next",
-      prevEl: ".main-swiper .swiper-button-prev"
+      prevEl: ".main-swiper .swiper-button-prev",
     },
     on: {
       init(swiper) {
@@ -923,8 +890,8 @@ function swiperThreeCol() {
       },
       slideChange(swiper) {
         updateFraction(swiper);
-      }
-    }
+      },
+    },
   });
 
   // Ẩn nav nếu số slide <= perView
@@ -985,8 +952,8 @@ function initParallaxSwiper(swiperEl, options = {}) {
           }
         });
       },
-      ...(options.on || {})
-    }
+      ...(options.on || {}),
+    },
   });
 }
 
@@ -1068,11 +1035,11 @@ function galleryLightbox() {
     swiperLightbox = initParallaxSwiper(swiperEl, {
       navigation: {
         nextEl: lightbox.querySelector(".swiper-button-next"),
-        prevEl: lightbox.querySelector(".swiper-button-prev")
+        prevEl: lightbox.querySelector(".swiper-button-prev"),
       },
       pagination: {
         el: lightbox.querySelector(".swiper-fraction"),
-        type: "fraction"
+        type: "fraction",
       },
       initialSlide: startIndex,
       on: {
@@ -1082,8 +1049,8 @@ function galleryLightbox() {
         slideChange(swiper) {
           if (isInitializing) return;
           updateTitle(swiper);
-        }
-      }
+        },
+      },
     });
   }
 
@@ -1127,7 +1094,7 @@ function galleryTabLightbox() {
 
   const swiperEl = lightbox.querySelector(".swiper-lightbox");
   const titleEl = lightbox.querySelector(
-    ".swiper-nav-inner .swiper-slide-title"
+    ".swiper-nav-inner .swiper-slide-title",
   );
   const fractionEl = lightbox.querySelector(".swiper-fraction");
   let swiperLightbox = null;
@@ -1135,7 +1102,7 @@ function galleryTabLightbox() {
   function updateTitle(swiper) {
     if (!titleEl) return;
     const realSlides = swiperEl.querySelectorAll(
-      ".swiper-slide:not(.swiper-slide-duplicate)"
+      ".swiper-slide:not(.swiper-slide-duplicate)",
     );
     const title = realSlides[swiper.realIndex]?.dataset?.title || "";
 
@@ -1182,11 +1149,11 @@ function galleryTabLightbox() {
     swiperLightbox = initParallaxSwiper(swiperEl, {
       navigation: {
         nextEl: lightbox.querySelector(".swiper-button-next"),
-        prevEl: lightbox.querySelector(".swiper-button-prev")
+        prevEl: lightbox.querySelector(".swiper-button-prev"),
       },
       pagination: {
         el: fractionEl,
-        type: "fraction"
+        type: "fraction",
       },
       on: {
         init(swiper) {
@@ -1194,8 +1161,8 @@ function galleryTabLightbox() {
         },
         slideChange(swiper) {
           updateTitle(swiper);
-        }
-      }
+        },
+      },
     });
   }
 
@@ -1209,7 +1176,7 @@ function galleryTabLightbox() {
         visibleItems = [...section.querySelectorAll(".filter-item")];
       } else {
         visibleItems = [
-          ...section.querySelectorAll(`.filter-item.${activeType}`)
+          ...section.querySelectorAll(`.filter-item.${activeType}`),
         ];
       }
 
@@ -1260,9 +1227,9 @@ function formBookingEvent() {
       "Tháng 9",
       "Tháng 10",
       "Tháng 11",
-      "Tháng 12"
+      "Tháng 12",
     ],
-    firstDay: 1
+    firstDay: 1,
   };
 
   function getDrops() {
@@ -1281,12 +1248,12 @@ function formBookingEvent() {
       minSpan: { days: 1 },
       startDate: defaultStart,
       endDate: defaultEnd,
-      locale: localeConfig
+      locale: localeConfig,
     },
     function (start, end) {
       $('input[name="arrivalDate"]').val(start.format("DD/MM/YYYY"));
       $('input[name="departureDate"]').val(end.format("DD/MM/YYYY"));
-    }
+    },
   );
 
   // ← Monkey-patch updateElement để picker không bao giờ tự ghi range vào input
@@ -1311,7 +1278,7 @@ function formBookingEvent() {
     function () {
       const picker = $('input[name="arrivalDate"]').data("daterangepicker");
       if (picker) picker.drops = getDrops();
-    }
+    },
   );
 
   // change step
@@ -1408,7 +1375,7 @@ function uploadFile() {
 
     if (oversizedFile) {
       alert(
-        `${oversizedFile.name} exceeds the maximum size of ${MAX_FILE_SIZE_MB}MB.`
+        `${oversizedFile.name} exceeds the maximum size of ${MAX_FILE_SIZE_MB}MB.`,
       );
       resetFiles();
       return;
@@ -1453,7 +1420,7 @@ function panel() {
     panels.forEach((panel) => {
       gsap.set(
         panel.querySelectorAll(".panel-title, .panel-desc, .panel-btn"),
-        { opacity: 0, y: 20, pointerEvents: "none" }
+        { opacity: 0, y: 20, pointerEvents: "none" },
       );
     });
 
@@ -1468,8 +1435,8 @@ function panel() {
           stagger: 0.1,
           duration: 0.6,
           ease: "power2.out",
-          overwrite: true
-        }
+          overwrite: true,
+        },
       );
     }
 
@@ -1480,7 +1447,7 @@ function panel() {
         pointerEvents: "none",
         duration: 0.4,
         ease: "power2.in",
-        overwrite: true
+        overwrite: true,
       });
     }
 
@@ -1493,13 +1460,13 @@ function panel() {
           .fromTo(
             panel.querySelector(".panel-image"),
             { clipPath: "inset(0 0 0% 0)" },
-            { clipPath: "inset(0 0 100% 0)", ease: "none", duration: 1 }
+            { clipPath: "inset(0 0 100% 0)", ease: "none", duration: 1 },
           )
           .fromTo(
             panels[index + 1].querySelector("img"),
             { scale: 1.35 },
             { scale: 1, duration: 1.3, ease: "power2.out" },
-            "<"
+            "<",
           )
           .to({}, { duration: 0.6 }, "<+=0.5");
       }
@@ -1518,12 +1485,12 @@ function panel() {
         triggerPoints.push({
           type: "out",
           panelIndex: index,
-          progress: (fadeOutTime + 0.25) / total
+          progress: (fadeOutTime + 0.25) / total,
         });
         triggerPoints.push({
           type: "in",
           panelIndex: index + 1,
-          progress: (clipStartTime + 0.5) / total
+          progress: (clipStartTime + 0.5) / total,
         });
         clipEndPoints.push((clipStartTime + 1) / total);
       }
@@ -1549,7 +1516,7 @@ function panel() {
         panels.forEach((panel) => {
           gsap.set(
             panel.querySelectorAll(".panel-title, .panel-desc, .panel-btn"),
-            { opacity: 0, y: 20, pointerEvents: "none" }
+            { opacity: 0, y: 20, pointerEvents: "none" },
           );
         });
         animateTextIn(panels[0]);
@@ -1588,11 +1555,11 @@ function panel() {
             if (progress >= point.progress) currentIndex = i + 1;
           });
         headings.forEach((h, i) =>
-          h.classList.toggle("active", i === currentIndex)
+          h.classList.toggle("active", i === currentIndex),
         );
 
         lastProgress = progress;
-      }
+      },
     });
   });
 }
@@ -1607,7 +1574,7 @@ function modalBooking() {
 
     const inputRequired = form.find(".field-item input.required");
     const selectRequired = form.find(
-      ".field-item .dropdown-custom-select.required"
+      ".field-item .dropdown-custom-select.required",
     );
 
     let isValid = true;

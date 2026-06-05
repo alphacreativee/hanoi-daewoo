@@ -267,30 +267,39 @@ function sliderDining() {
     if (activeElms) activeElms.classList.add("active");
   }
 
-  const swiperService = new Swiper(".dining-swiper", {
-    effect: "fade",
-    // slidesPerView: 1,
-    // spaceBetween: 0,
-    loop: true,
-    speed: 1500,
+  let swiperService;
 
-    on: {
-      slideChange: function () {
-        setActiveTitle(this.realIndex);
+  function initSwiper() {
+    if (swiperService) swiperService.destroy(true, true);
+
+    const isMobile = window.innerWidth <= 991;
+
+    swiperService = new Swiper(".dining-swiper", {
+      effect: isMobile ? "slide" : "fade",
+      loop: isMobile ? false : true,
+      speed: 1500,
+      slidesPerView: isMobile ? 1.15 : 1,
+      spaceBetween: isMobile ? 24 : 0,
+      on: {
+        slideChange: function () {
+          setActiveTitle(this.realIndex);
+        },
       },
-    },
-  });
+    });
+
+    if (!isMobile) {
+      titleService.forEach((el, index) => {
+        el.addEventListener("mouseover", function () {
+          swiperService.slideToLoop(index);
+          setActiveTitle(index);
+        });
+      });
+    }
+  }
 
   setActiveTitle(0);
-
-  titleService.forEach((el, index) => {
-    el.addEventListener("mouseover", function () {
-      swiperService.slideToLoop(index);
-      setActiveTitle(index);
-    });
-  });
-
-  const allSplitLines = [];
+  initSwiper();
+  window.addEventListener("resize", initSwiper);
 }
 function animationText() {
   gsap.registerPlugin(ScrollTrigger);
