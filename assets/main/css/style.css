@@ -1835,6 +1835,13 @@ body {
   background-color: var(--color-dark-blue);
   color: var(--color-white);
 }
+@media (max-width: 767px) {
+  .footer-logo {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+}
 .footer-logo a {
   width: 98px;
   height: auto;
@@ -1848,14 +1855,22 @@ body {
   padding: 40px 40px 32px;
   background-color: #181818;
 }
-@media (max-width: 767px) {
+@media (max-width: 991px) {
   .footer-top {
     padding: 40px 24px 32px;
   }
 }
-@media (max-width: 767px) {
+@media (max-width: 991px) {
   .footer-info {
     margin-top: 24px;
+  }
+}
+@media (max-width: 767px) {
+  .footer-info {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
   }
 }
 .footer-info__title {
@@ -1868,14 +1883,27 @@ body {
   gap: 4px;
 }
 @media (max-width: 767px) {
+  .footer-info ul {
+    align-items: center;
+  }
+}
+@media (max-width: 991px) {
   .footer-social {
     margin-top: 24px;
+  }
+}
+@media (max-width: 767px) {
+  .footer-social {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
   }
 }
 .footer-social__title {
   margin-bottom: 40px;
 }
-@media (max-width: 767px) {
+@media (max-width: 991px) {
   .footer-social__title {
     margin-bottom: 12px;
   }
@@ -1894,7 +1922,7 @@ body {
   position: relative;
   background-color: #181818;
 }
-@media (max-width: 767px) {
+@media (max-width: 991px) {
   .footer-menu {
     padding: 32px 24px;
   }
@@ -1909,7 +1937,7 @@ body {
   left: 50%;
   transform: translateX(-50%);
 }
-@media (max-width: 767px) {
+@media (max-width: 991px) {
   .footer-menu::before {
     width: calc(100% - 48px);
   }
@@ -1930,7 +1958,7 @@ body {
     gap: 12px 20px;
   }
 }
-@media (max-width: 767px) {
+@media (max-width: 991px) {
   .footer-newsletter {
     margin-top: 24px;
   }
@@ -1999,12 +2027,12 @@ body {
   padding: 15px 40px;
   background-color: var(--color-black);
 }
-@media (max-width: 767px) {
+@media (max-width: 991px) {
   .footer-bottom {
     padding: 15px 24px;
   }
 }
-@media (max-width: 767px) {
+@media (max-width: 991px) {
   .footer-bottom .footer-copyright {
     margin-top: 16px;
   }
