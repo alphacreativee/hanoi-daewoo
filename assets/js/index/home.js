@@ -716,6 +716,7 @@ function wonderGallery() {
   gsap.registerPlugin(ScrollTrigger);
 
   const container = document.querySelector(".wonderfulGallery-container");
+  const isMobile = window.innerWidth < 992;
 
   if (container) {
     const styleEl = document.createElement("style");
@@ -740,11 +741,8 @@ function wonderGallery() {
         start: "top 70%",
         end: "bottom 90%",
         scrub: 1,
-        // markers: true,
-
         onLeave: (self) => {
           self.kill();
-
           gsap.set(container, { "--line-height": "100%" });
           if (textContent) {
             gsap.set(textContent, { opacity: 1, y: 0 });
@@ -758,7 +756,7 @@ function wonderGallery() {
       ease: "none",
     });
 
-    if (textContent) {
+    if (textContent && !isMobile) {
       tl.to(
         textContent,
         {
@@ -772,37 +770,71 @@ function wonderGallery() {
     }
   }
 
-  mediaItems.forEach((item) => {
-    const image = item.querySelector("img");
-    const text = item.querySelector(".text");
+  function animateMediaItems() {
+    mediaItems.forEach((item) => {
+      const image = item.querySelector("img");
+      const text = item.querySelector(".text");
 
-    gsap.set(image, { y: 20, opacity: 0 });
-    gsap.set(text, { y: 20, opacity: 0 });
+      gsap.set(image, { y: 20, opacity: 0 });
+      gsap.set(text, { y: 20, opacity: 0 });
 
-    const tl = gsap.timeline({
-      scrollTrigger: {
-        trigger: item,
-        start: "top 80%",
-        once: true,
-      },
-    });
+      const tl = gsap.timeline({
+        scrollTrigger: {
+          trigger: item,
+          start: "top 80%",
+          once: true,
+        },
+      });
 
-    tl.to(image, {
-      y: 0,
-      opacity: 1,
-      duration: 0.6,
-      ease: "power2.out",
-    }).to(
-      text,
-      {
+      tl.to(image, {
         y: 0,
         opacity: 1,
-        duration: 0.3,
+        duration: 0.6,
         ease: "power2.out",
-      },
-      "-=0.4",
+      }).to(
+        text,
+        {
+          y: 0,
+          opacity: 1,
+          duration: 0.3,
+          ease: "power2.out",
+        },
+        "-=0.4",
+      );
+    });
+  }
+
+  if (isMobile) {
+    const textContent = document.querySelector(
+      ".wonderfulGallery .content-text .title",
     );
-  });
+
+    if (textContent) {
+      ScrollTrigger.create({
+        trigger: textContent,
+        start: "top 80%",
+        once: true,
+        onEnter: () => {
+          gsap.to(textContent, {
+            opacity: 1,
+            y: 0,
+            duration: 0.5,
+            ease: "power2.out",
+            onComplete: () => {
+              animateMediaItems();
+            },
+          });
+        },
+      });
+    } else {
+      animateMediaItems();
+    }
+
+    return;
+  }
+
+  // Desktop
+  animateMediaItems();
 }
 function swiperThreeCol() {
   if (!$(".swiper-three-col").length) return;
