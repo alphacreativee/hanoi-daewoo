@@ -2909,7 +2909,7 @@ body {
 }
 @media (max-width: 991px) {
   .dining .dining-image {
-    aspect-ratio: 310/400;
+    aspect-ratio: 310/380;
   }
 }
 .dining .dining-image img {

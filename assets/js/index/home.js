@@ -771,13 +771,37 @@ function wonderGallery() {
   }
 
   function animateMediaItems() {
-    mediaItems.forEach((item) => {
+    mediaItems.forEach((item, index) => {
       const image = item.querySelector("img");
       const text = item.querySelector(".text");
 
       gsap.set(image, { y: 20, opacity: 0 });
       gsap.set(text, { y: 20, opacity: 0 });
 
+      // ✅ Item đầu animate thẳng không cần ScrollTrigger
+      if (index === 0) {
+        gsap
+          .timeline()
+          .to(image, {
+            y: 0,
+            opacity: 1,
+            duration: 0.6,
+            ease: "power2.out",
+          })
+          .to(
+            text,
+            {
+              y: 0,
+              opacity: 1,
+              duration: 0.3,
+              ease: "power2.out",
+            },
+            "-=0.4",
+          );
+        return;
+      }
+
+      // Các item còn lại vẫn dùng ScrollTrigger
       const tl = gsap.timeline({
         scrollTrigger: {
           trigger: item,
