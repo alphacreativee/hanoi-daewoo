@@ -55,7 +55,7 @@
   }
 
   @media (max-width: 991px) {
-    height: 540px !important;
+    // height: 540px !important;
     max-height: 100dvh;
   }
 
@@ -64,7 +64,7 @@
     height: 100dvh !important;
 
     @media (max-width: 991px) {
-      height: 540px !important;
+      // height: 540px !important;
       max-height: 100dvh;
     }
 
@@ -78,7 +78,7 @@
       transition-duration: 10000ms !important;
 
       @media (max-width: 991px) {
-        height: 540px !important;
+        // height: 540px !important;
         max-height: 100dvh;
       }
     }
@@ -100,6 +100,11 @@
       top: calc(50% + 60px - 40px);
       bottom: unset;
       transform: translate(-50%, -50%);
+    }
+    @media (max-width: 991px) {
+      bottom: 80px;
+      max-width: calc(100% - 32px);
+      width: 100%;
     }
   }
 

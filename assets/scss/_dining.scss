@@ -6,6 +6,8 @@
     overflow: hidden;
     @media (max-width: 991px) {
       height: auto;
+      background-color: var(--color-white);
+      padding: 64px 0;
     }
     &::after {
       content: "";
