@@ -2293,9 +2293,11 @@ body {
   bottom: 22px;
   opacity: 1;
 }
-.moreInfo .swiper-wrapper {
-  flex-direction: column;
-  gap: 24px;
+@media (max-width: 991px) {
+  .moreInfo .swiper-wrapper {
+    flex-direction: column;
+    gap: 24px;
+  }
 }
 
 .weddings-container {
@@ -2879,10 +2881,21 @@ body {
   padding: 120px 0 0px;
   background-color: rgb(242, 242, 242);
 }
+@media (max-width: 991px) {
+  .event {
+    padding: 64px 0 0px;
+  }
+}
 .event-inner {
   display: grid;
   grid-template-columns: 5fr 7fr;
   position: relative;
+}
+@media (max-width: 991px) {
+  .event-inner {
+    grid-template-columns: 1fr;
+    gap: 32px;
+  }
 }
 .event-inner::before {
   content: "";
@@ -2894,6 +2907,12 @@ body {
   height: calc(50% + 184px);
   z-index: 1;
 }
+@media (max-width: 991px) {
+  .event-inner::before {
+    content: unset;
+    display: none;
+  }
+}
 .event-left {
   padding-left: 40px;
   display: flex;
@@ -2901,6 +2920,11 @@ body {
   justify-content: center;
   z-index: 2;
   padding-right: calc(8.3333333333% + 20px);
+}
+@media (max-width: 991px) {
+  .event-left {
+    padding: 0 16px;
+  }
 }
 .event-right {
   min-width: 0;
@@ -2910,10 +2934,23 @@ body {
 .event-right .event-slider .swiper {
   padding-right: 40px;
 }
+@media (max-width: 991px) {
+  .event-right .event-slider .swiper {
+    padding-right: 0px;
+  }
+}
 .event-content {
   display: flex;
   flex-direction: column;
   gap: 24px;
+}
+@media (max-width: 991px) {
+  .event-content {
+    align-items: center;
+  }
+  .event-content .desc {
+    text-align: center;
+  }
 }
 .event-content a {
   width: max-content;

@@ -129,7 +129,9 @@
     }
   }
   .swiper-wrapper {
-    flex-direction: column;
-    gap: 24px;
+    @media (max-width: 991px) {
+      flex-direction: column;
+      gap: 24px;
+    }
   }
 }

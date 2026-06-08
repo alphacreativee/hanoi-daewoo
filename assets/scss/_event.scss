@@ -1,10 +1,18 @@
 .event {
   padding: 120px 0 0px;
   background-color: rgb(242, 242, 242);
+  @media (max-width: 991px) {
+    padding: 64px 0 0px;
+  }
+
   &-inner {
     display: grid;
     grid-template-columns: 5fr 7fr;
     position: relative;
+    @media (max-width: 991px) {
+      grid-template-columns: 1fr;
+      gap: 32px;
+    }
     &::before {
       content: "";
       position: absolute;
@@ -14,6 +22,10 @@
       background-color: var(--color-white);
       height: calc(50% + 184px);
       z-index: 1;
+      @media (max-width: 991px) {
+        content: unset;
+        display: none;
+      }
     }
   }
   &-left {
@@ -23,6 +35,9 @@
     justify-content: center;
     z-index: 2;
     padding-right: calc(calc(1 / 12) * 100% + 20px);
+    @media (max-width: 991px) {
+      padding: 0 16px;
+    }
     // background-color: var(--color-white);
   }
   &-right {
@@ -31,6 +46,9 @@
     z-index: 3;
     .event-slider .swiper {
       padding-right: 40px;
+      @media (max-width: 991px) {
+        padding-right: 0px;
+      }
     }
     // padding-right: 40px;
     // padding-bottom: 50px;
@@ -39,6 +57,12 @@
     display: flex;
     flex-direction: column;
     gap: 24px;
+    @media (max-width: 991px) {
+      align-items: center;
+      .desc {
+        text-align: center;
+      }
+    }
     a {
       width: max-content;
     }
