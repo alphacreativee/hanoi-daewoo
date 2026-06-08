@@ -2254,10 +2254,20 @@ body {
   width: 90%;
   transition: transform 0.6s ease;
 }
+@media (max-width: 991px) {
+  .moreInfo-list__item .item-content {
+    transform: translate(-50%, -50%);
+  }
+}
 .moreInfo-list__item .item-content .desc {
   margin-top: 8px;
   opacity: 0;
   transition: opacity 0.6s ease;
+}
+@media (max-width: 991px) {
+  .moreInfo-list__item .item-content .desc {
+    opacity: 1;
+  }
 }
 .moreInfo-list__item .item-cta {
   position: absolute;
@@ -2268,6 +2278,12 @@ body {
   color: var(--color-white) !important;
   transition: all 0.5s ease;
   opacity: 0;
+}
+@media (max-width: 991px) {
+  .moreInfo-list__item .item-cta {
+    opacity: 1;
+    bottom: 24px;
+  }
 }
 .moreInfo-list__item .item-cta::after {
   content: "";
@@ -2319,7 +2335,7 @@ body {
 .weddings-list__item {
   width: calc((100% - 40px) / 2);
 }
-@media (max-width: 767px) {
+@media (max-width: 991px) {
   .weddings-list__item {
     width: 100%;
   }
@@ -2332,20 +2348,46 @@ body {
   margin: 24px auto 0;
   width: 100%;
   max-width: 66%;
+  text-align: left !important;
 }
-@media (max-width: 767px) {
+@media (max-width: 991px) {
   .weddings-list__item .item-content {
+    margin-top: 0;
     max-width: 100%;
+    background-color: var(--color-white);
+    padding: 24px;
   }
 }
 .weddings-list__item .item-content .desc {
   margin-top: 16px;
+}
+@media (max-width: 991px) {
+  .weddings-list__item .item-content .desc {
+    margin-top: 24px;
+  }
 }
 .weddings-list__item .item-content .title {
   transition: color 0.4s ease;
 }
 .weddings-list__item .item-content .title:hover {
   color: var(--color-gold);
+}
+@media (max-width: 991px) {
+  .weddings .wrapper-slider-parallax .swiper-arrow {
+    color: var(--color-white);
+  }
+}
+@media (max-width: 991px) {
+  .weddings .wrapper-slider-parallax .swiper-arrow.arrow-prev,
+  .weddings [slider-parallax] .swiper-arrow.arrow-prev {
+    left: 0px;
+  }
+}
+@media (max-width: 991px) {
+  .weddings .wrapper-slider-parallax .swiper-arrow.arrow-next,
+  .weddings [slider-parallax] .swiper-arrow.arrow-next {
+    right: 0px;
+  }
 }
 
 .intro {

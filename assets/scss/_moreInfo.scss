@@ -75,12 +75,17 @@
           z-index: 2;
           width: 90%;
           transition: transform 0.6s ease;
-
+          @media (max-width: 991px) {
+            transform: translate(-50%, -50%);
+          }
           .desc {
             margin-top: 8px;
 
             opacity: 0;
             transition: opacity 0.6s ease;
+            @media (max-width: 991px) {
+              opacity: 1;
+            }
           }
         }
 
@@ -93,7 +98,10 @@
           color: var(--color-white) !important;
           transition: all 0.5s ease;
           opacity: 0;
-
+          @media (max-width: 991px) {
+            opacity: 1;
+            bottom: 24px;
+          }
           &::after {
             content: "";
             position: absolute;
