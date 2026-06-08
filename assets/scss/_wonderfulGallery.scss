@@ -150,6 +150,9 @@
     @media (max-width: 991px) {
       position: static;
       transform: translateX(0%);
+      width: 100%;
+      padding: 0 16px;
+      max-width: 100%;
     }
     &::before {
       content: "";
@@ -162,6 +165,9 @@
       width: 400px;
       height: 232px;
       pointer-events: none;
+      @media (max-width: 991px) {
+        width: 100%;
+      }
     }
     .title {
       position: absolute;
