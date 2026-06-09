@@ -8,6 +8,23 @@
   @media (max-width: 991px) {
     --header-top-height: 0px;
   }
+  .logo-mobile-group {
+    img {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      transition: all 0.3s ease;
+      opacity: 1;
+      visibility: visible;
+      &:last-child {
+        width: 33px;
+        height: 33px;
+        opacity: 0;
+        visibility: hidden;
+      }
+    }
+  }
   &.header-theme-light-active {
     transform: translateY(calc(-1 * var(--header-top-height)));
     .header-main {
@@ -31,6 +48,18 @@
               }
             }
           }
+        }
+      }
+    }
+    .logo-mobile-group {
+      img {
+        opacity: 0;
+        visibility: hidden;
+        opacity: 1;
+        visibility: visible;
+        &:last-child {
+          opacity: 1;
+          visibility: visible;
         }
       }
     }
@@ -81,6 +110,18 @@
     }
   }
   &.without-home {
+    .logo-mobile-group {
+      img {
+        opacity: 0;
+        visibility: hidden;
+        opacity: 1;
+        visibility: visible;
+        &:last-child {
+          opacity: 1;
+          visibility: visible;
+        }
+      }
+    }
     .header-top {
       display: none !important;
     }

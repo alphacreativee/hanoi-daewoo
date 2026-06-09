@@ -1,13 +1,27 @@
 .accommodationPage {
   padding: 120px 0;
-
+  @media (max-width: 991px) {
+    padding: 64px 0;
+  }
   .section-title {
     padding: 0 40px;
+    @media (max-width: 991px) {
+      padding: 0 16px;
+    }
   }
 
   .filter-list-button {
     gap: 40px;
-
+    @media (max-width: 991px) {
+      gap: 32px;
+      overflow-x: scroll;
+      padding-right: 16px;
+      padding-left: 16px;
+      justify-content: start !important;
+      &::-webkit-scrollbar {
+        display: none;
+      }
+    }
     .filter-button {
       cursor: pointer;
     }
@@ -21,6 +35,9 @@
     position: sticky;
     z-index: 4;
     top: 60px;
+    @media (max-width: 991px) {
+      top: 92px;
+    }
   }
 
   .filter-section-result {
@@ -28,9 +45,16 @@
     flex-wrap: wrap;
     gap: 60px 40px;
     padding: 0 40px;
-
+    @media (max-width: 991px) {
+      padding: 0 16px;
+      flex-direction: column;
+      gap: 48px;
+    }
     .accommodationCard {
       width: calc(calc(100% - 40px) / 2);
+      @media (max-width: 991px) {
+        width: 100%;
+      }
     }
   }
 }
@@ -54,6 +78,11 @@
       text-align: center;
 
       max-width: calc(calc(100% / 6) * 4);
+      @media (max-width: 991px) {
+        max-width: 100%;
+        margin: 0;
+        padding: 24px;
+      }
     }
   }
 
@@ -68,7 +97,9 @@
   .info {
     margin-top: 15px;
     gap: 32px;
-
+    @media (max-width: 991px) {
+      gap: 16px;
+    }
     li {
       display: flex;
       align-items: center;
@@ -80,6 +111,9 @@
       height: 16px;
       object-fit: cover;
       margin-right: 12px;
+      @media (max-width: 991px) {
+        margin-right: 6px;
+      }
     }
   }
 

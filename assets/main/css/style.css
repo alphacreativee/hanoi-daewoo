@@ -1451,6 +1451,21 @@ body {
     --header-top-height: 0px;
   }
 }
+#header .logo-mobile-group img {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  transition: all 0.3s ease;
+  opacity: 1;
+  visibility: visible;
+}
+#header .logo-mobile-group img:last-child {
+  width: 33px;
+  height: 33px;
+  opacity: 0;
+  visibility: hidden;
+}
 #header.header-theme-light-active {
   transform: translateY(calc(-1 * var(--header-top-height)));
 }
@@ -1465,6 +1480,16 @@ body {
 }
 #header.header-theme-light-active .header-main-menu > ul > li.menu-item-has-children > a .icon svg {
   color: var(--color-black);
+}
+#header.header-theme-light-active .logo-mobile-group img {
+  opacity: 0;
+  visibility: hidden;
+  opacity: 1;
+  visibility: visible;
+}
+#header.header-theme-light-active .logo-mobile-group img:last-child {
+  opacity: 1;
+  visibility: visible;
 }
 #header.header-theme-light-active .hover-underline-white::before {
   background-color: var(--color-black);
@@ -1497,6 +1522,16 @@ body {
 #header.header-theme-light-active .header-main--popup,
 #header.header-theme-light-active .header-overlay {
   top: var(--header-top-height);
+}
+#header.without-home .logo-mobile-group img {
+  opacity: 0;
+  visibility: hidden;
+  opacity: 1;
+  visibility: visible;
+}
+#header.without-home .logo-mobile-group img:last-child {
+  opacity: 1;
+  visibility: visible;
 }
 #header.without-home .header-top {
   display: none !important;
@@ -2178,6 +2213,11 @@ body {
   height: auto;
   padding: 24px;
 }
+@media (max-width: 991px) {
+  .hero .swiper-arrow {
+    display: none;
+  }
+}
 .hero .swiper-arrow::after {
   font-size: 0;
   content: unset;
@@ -2732,11 +2772,33 @@ body {
 .accommodationPage {
   padding: 120px 0;
 }
+@media (max-width: 991px) {
+  .accommodationPage {
+    padding: 64px 0;
+  }
+}
 .accommodationPage .section-title {
   padding: 0 40px;
 }
+@media (max-width: 991px) {
+  .accommodationPage .section-title {
+    padding: 0 16px;
+  }
+}
 .accommodationPage .filter-list-button {
   gap: 40px;
+}
+@media (max-width: 991px) {
+  .accommodationPage .filter-list-button {
+    gap: 32px;
+    overflow-x: scroll;
+    padding-right: 16px;
+    padding-left: 16px;
+    justify-content: start !important;
+  }
+  .accommodationPage .filter-list-button::-webkit-scrollbar {
+    display: none;
+  }
 }
 .accommodationPage .filter-list-button .filter-button {
   cursor: pointer;
@@ -2749,14 +2811,31 @@ body {
   z-index: 4;
   top: 60px;
 }
+@media (max-width: 991px) {
+  .accommodationPage .filter-section {
+    top: 92px;
+  }
+}
 .accommodationPage .filter-section-result {
   display: flex;
   flex-wrap: wrap;
   gap: 60px 40px;
   padding: 0 40px;
 }
+@media (max-width: 991px) {
+  .accommodationPage .filter-section-result {
+    padding: 0 16px;
+    flex-direction: column;
+    gap: 48px;
+  }
+}
 .accommodationPage .filter-section-result .accommodationCard {
   width: calc((100% - 40px) / 2);
+}
+@media (max-width: 991px) {
+  .accommodationPage .filter-section-result .accommodationCard {
+    width: 100%;
+  }
 }
 
 .accommodationCard .card-media .swiper {
@@ -2772,6 +2851,13 @@ body {
   text-align: center;
   max-width: 66.6666666667%;
 }
+@media (max-width: 991px) {
+  .accommodationCard .card-content {
+    max-width: 100%;
+    margin: 0;
+    padding: 24px;
+  }
+}
 .accommodationCard .title {
   transition: color 0.4s ease;
 }
@@ -2781,6 +2867,11 @@ body {
 .accommodationCard .info {
   margin-top: 15px;
   gap: 32px;
+}
+@media (max-width: 991px) {
+  .accommodationCard .info {
+    gap: 16px;
+  }
 }
 .accommodationCard .info li {
   display: flex;
@@ -2792,6 +2883,11 @@ body {
   height: 16px;
   object-fit: cover;
   margin-right: 12px;
+}
+@media (max-width: 991px) {
+  .accommodationCard .info img {
+    margin-right: 6px;
+  }
 }
 .accommodationCard .desc {
   margin-top: 24px;

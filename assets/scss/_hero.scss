@@ -118,6 +118,9 @@
     width: auto;
     height: auto;
     padding: 24px;
+    @media (max-width: 991px) {
+      display: none;
+    }
     &::after {
       font-size: 0;
       content: unset;

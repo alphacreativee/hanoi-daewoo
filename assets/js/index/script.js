@@ -656,18 +656,13 @@ function animationItemsSection() {
   const isMobile = $(window).width() < 992;
 
   const MOVE_Y = 20;
-
   const TRANSFORM_DURATION = 0.8;
   const OPACITY_DURATION = 0.6;
-
   const ITEM_STAGGER = 0.2;
 
   gsap.utils.toArray("[section-fade-each-item]").forEach((section) => {
     const items = section.querySelectorAll("[data-fade-item]");
-
     const isFadeInMobile = section.hasAttribute("enabled-fade-each-mobile");
-
-    if (isMobile && !isFadeInMobile) return;
 
     gsap.set(items, {
       y: MOVE_Y,
@@ -676,6 +671,45 @@ function animationItemsSection() {
       willChange: "transform, opacity",
     });
 
+    // ── Mobile: mỗi item tự trigger khi scroll tới ──
+    if (isMobile) {
+      console.log("mobile");
+      items.forEach((item) => {
+        const tl = gsap.timeline({
+          scrollTrigger: {
+            trigger: item, // trigger theo từng item
+            start: "top 83%",
+            toggleActions: "play none none none",
+            once: true,
+            // markers: true,
+          },
+        });
+
+        tl.to(
+          item,
+          {
+            y: 0,
+            duration: TRANSFORM_DURATION,
+            ease: "power3.out",
+            force3D: true,
+          },
+          0,
+        ).to(
+          item,
+          {
+            opacity: 1,
+            duration: OPACITY_DURATION,
+            ease: "power2.out",
+            clearProps: "willChange",
+          },
+          0,
+        );
+      });
+
+      return; // bỏ qua phần desktop bên dưới
+    }
+
+    // ── Desktop: stagger toàn bộ items cùng lúc ──
     const tl = gsap.timeline({
       scrollTrigger: {
         trigger: section,
@@ -872,31 +906,49 @@ function swiperThreeCol() {
   const perView = $(".swiper-three-col").data("per-view") || 3;
   const spaceBetween = $(".swiper-three-col").data("space-between") || 30;
 
-  const swiper = new Swiper(".swiper-three-col", {
-    slidesPerView: perView,
-    spaceBetween: spaceBetween,
-    pagination: {
-      el: ".main-swiper .swiper-pagination",
-      type: "progressbar",
-    },
-    navigation: {
-      nextEl: ".main-swiper .swiper-button-next",
-      prevEl: ".main-swiper .swiper-button-prev",
-    },
-    on: {
-      init(swiper) {
-        updateFraction(swiper);
-        setOfferDescHeight();
-      },
-      slideChange(swiper) {
-        updateFraction(swiper);
-      },
-    },
-  });
+  let swiper;
 
-  // Ẩn nav nếu số slide <= perView
-  if (slides <= perView) {
-    document.querySelector(".main-swiper .swiper-nav")?.classList.add("hidden");
+  function initSwiper() {
+    const isMobile = window.innerWidth <= 991;
+
+    if (isMobile) {
+      if (swiper) swiper.destroy(true, true);
+      swiper = null;
+      document
+        .querySelector(".main-swiper .swiper-nav")
+        ?.classList.add("hidden");
+      return;
+    }
+
+    if (swiper) swiper.destroy(true, true);
+
+    swiper = new Swiper(".swiper-three-col", {
+      slidesPerView: perView,
+      spaceBetween: spaceBetween,
+      pagination: {
+        el: ".main-swiper .swiper-pagination",
+        type: "progressbar",
+      },
+      navigation: {
+        nextEl: ".main-swiper .swiper-button-next",
+        prevEl: ".main-swiper .swiper-button-prev",
+      },
+      on: {
+        init(swiper) {
+          updateFraction(swiper);
+          setOfferDescHeight();
+        },
+        slideChange(swiper) {
+          updateFraction(swiper);
+        },
+      },
+    });
+
+    if (slides <= perView) {
+      document
+        .querySelector(".main-swiper .swiper-nav")
+        ?.classList.add("hidden");
+    }
   }
 
   function updateFraction(swiper) {
@@ -908,6 +960,9 @@ function swiperThreeCol() {
 
     el.textContent = `${current} / ${total}`;
   }
+
+  initSwiper();
+  window.addEventListener("resize", initSwiper);
 }
 // ================================
 // PARALLAX SWIPER
