@@ -75,6 +75,12 @@
   font-size: 14px;
   line-height: 24px;
 }
+@media (max-width: 991px) {
+  .b2-font {
+    font-size: 12px;
+    line-height: 20px;
+  }
+}
 
 .btn-font {
   font-size: 13px;
@@ -1859,6 +1865,11 @@ body {
   background-color: var(--color-dark-blue);
   color: var(--color-white);
 }
+@media (max-width: 991px) {
+  .footer-bct {
+    text-align: center;
+  }
+}
 @media (max-width: 767px) {
   .footer-logo {
     display: flex;
@@ -2059,6 +2070,7 @@ body {
 @media (max-width: 991px) {
   .footer-bottom .footer-copyright {
     margin-top: 16px;
+    text-align: center;
   }
 }
 
@@ -2348,7 +2360,6 @@ body {
   margin: 24px auto 0;
   width: 100%;
   max-width: 66%;
-  text-align: left !important;
 }
 @media (max-width: 991px) {
   .weddings-list__item .item-content {

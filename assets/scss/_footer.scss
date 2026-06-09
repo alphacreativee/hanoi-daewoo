@@ -3,7 +3,11 @@
     background-color: var(--color-dark-blue);
     color: var(--color-white);
   }
-
+  &-bct {
+    @media (max-width: 991px) {
+      text-align: center;
+    }
+  }
   &-logo {
     @media (max-width: 767px) {
       display: flex;
@@ -223,6 +227,7 @@
     .footer-copyright {
       @media (max-width: 991px) {
         margin-top: 16px;
+        text-align: center;
       }
     }
   }
