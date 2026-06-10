@@ -52,6 +52,10 @@
       padding: 24px 0;
       border-radius: unset !important;
 
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 24px;
+
       &:not(.collapsed) {
         & + .icon {
           .icon-plus {
