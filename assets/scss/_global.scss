@@ -1356,6 +1356,9 @@ body {
 }
 .swiper-three-col {
   margin-top: 60px;
+  @media (max-width: 991px) {
+    margin-top: 32px;
+  }
 }
 .main-swiper {
   .swiper-arrows {

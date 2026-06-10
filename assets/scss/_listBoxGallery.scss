@@ -1,9 +1,30 @@
 .list-boxGallery {
   padding: 120px 40px 0;
-
+  @media (max-width: 991px) {
+    padding-left: 16px;
+    padding-right: 16px;
+    &.pt-0 {
+      .boxGallery {
+        padding: 0;
+      }
+    }
+  }
+  &.pt-mobile-0 {
+    @media (max-width: 991px) {
+      padding: 0;
+    }
+  }
   .list-wrapper {
     display: flex;
     flex-direction: column;
     gap: 120px;
+    @media (max-width: 991px) {
+      gap: 48px;
+    }
+  }
+  .boxGallery.media-left .box-media {
+    @media (max-width: 991px) {
+      margin-left: 0;
+    }
   }
 }

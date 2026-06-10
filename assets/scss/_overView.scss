@@ -26,6 +26,14 @@
       .content-right,
       .content-left {
         padding-right: calc(100% / 5);
+        @media (max-width: 991px) {
+          padding-right: 0px;
+        }
+      }
+      .content-left {
+        @media (max-width: 991px) {
+          margin-bottom: 48px;
+        }
       }
     }
   }
@@ -154,6 +162,9 @@
       display: flex;
       align-items: center;
       gap: 40px;
+      @media (max-width: 991px) {
+        justify-content: space-between;
+      }
     }
   }
 

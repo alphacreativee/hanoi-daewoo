@@ -151,3 +151,8 @@
 .background-body {
   background-color: #f2f2f2;
 }
+@media (max-width: 991px) {
+  .pt-mobile-0 {
+    padding-top: 0 !important;
+  }
+}

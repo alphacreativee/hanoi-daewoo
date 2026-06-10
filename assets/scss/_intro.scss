@@ -7,6 +7,11 @@
     .intro-line {
       display: none;
     }
+    .intro-list {
+      @media (max-width: 991px) {
+        gap: 24px;
+      }
+    }
   }
 
   &.intro-recruitment {
@@ -17,6 +22,9 @@
 
   &-btn {
     margin-top: 80px;
+    @media (max-width: 991px) {
+      margin-top: 40px;
+    }
   }
   &-list {
     display: flex;
