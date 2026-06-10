@@ -2542,6 +2542,7 @@ body {
 @media (max-width: 991px) {
   .intro.no-img .intro-list {
     gap: 24px;
+    align-items: flex-start;
   }
 }
 .intro.intro-recruitment .intro-item .number {
