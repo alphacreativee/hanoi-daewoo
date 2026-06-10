@@ -1,6 +1,10 @@
 .position-hiring {
   padding: 0 40px 120px;
 
+  &.has-spacing-top {
+    padding-top: 120px;
+  }
+
   &__container {
     padding: 60px 116px;
     background-color: var(--color-white);
