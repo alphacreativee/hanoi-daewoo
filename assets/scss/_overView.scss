@@ -39,7 +39,12 @@
     display: grid;
     grid-template-columns: repeat(2, 1fr);
     gap: calc(100% / 12);
-
+    @media (max-width: 991px) {
+      margin: 0 16px;
+      grid-template-columns: 1fr;
+      gap: 48px;
+      padding: 16px;
+    }
     .content {
       &-left {
         .desc {
@@ -55,7 +60,9 @@
         .info {
           margin-top: 15px;
           gap: 32px;
-
+          @media (max-width: 991px) {
+            gap: 24px;
+          }
           li {
             display: flex;
             align-items: center;
@@ -67,6 +74,9 @@
             height: 16px;
             object-fit: cover;
             margin-right: 12px;
+            @media (max-width: 991px) {
+              margin-right: 6px;
+            }
           }
         }
       }
@@ -78,6 +88,9 @@
           flex-direction: column;
           justify-content: flex-end;
           align-items: flex-start;
+          @media (max-width: 991px) {
+            min-height: 34px;
+          }
         }
 
         ul.desc {

@@ -17,7 +17,13 @@
       }
     }
   }
-
+  &.pt-mobile-0 {
+    .accommodations-container {
+      @media (max-width: 991px) {
+        padding-top: 0;
+      }
+    }
+  }
   &-main {
     margin-top: 60px;
 

@@ -51,7 +51,7 @@ function getTime() {
 
   $('input[name="startDate"]').daterangepicker(
     {
-      opens: "right",
+      opens: window.innerWidth <= 992 ? "left" : "right",
       drops: getDrops(),
       autoApply: true,
       singleDatePicker: false,
@@ -68,11 +68,39 @@ function getTime() {
     },
   );
 
-  // ← Monkey-patch updateElement để picker không bao giờ tự ghi range vào input
   const picker = $('input[name="startDate"]').data("daterangepicker");
+
+  // Monkey-patch updateElement
   picker.updateElement = function () {
     $('input[name="startDate"]').val(this.startDate.format("DD/MM/YYYY"));
     $('input[name="endDate"]').val(this.endDate.format("DD/MM/YYYY"));
+  };
+
+  // Patch renderCalendar để hook sau mỗi lần render
+  const originalRender = picker.renderCalendar.bind(picker);
+  picker.renderCalendar = function (side) {
+    originalRender(side);
+
+    if (window.innerWidth <= 992 && side === "right") {
+      const $container = $(this.container);
+      const $rightNext = $container.find(".drp-calendar.right th.next");
+
+      // Bind click vào vùng header của left calendar để trigger next
+      $container
+        .find(".drp-calendar.left .calendar-table thead tr:first-child")
+        .off("click.mobilenext")
+        .append(
+          $("<th>")
+            .addClass("next available")
+            .html($rightNext.html()) // copy icon từ right
+            .on("click", function () {
+              $rightNext.trigger("click");
+            }),
+        );
+
+      // Hide right sau khi đã lấy xong
+      $container.find(".drp-calendar.right").hide();
+    }
   };
 
   // Set giá trị mặc định
@@ -959,7 +987,20 @@ function swiperThreeCol() {
   initSwiper();
   window.addEventListener("resize", initSwiper);
 }
+function toolbarMobile() {
+  if (!$(".toolbar-mobile").length || window.innerWidth > 992) return;
 
+  const toolbar = document.querySelector(".toolbar-mobile");
+  const hero = document.querySelector(".hero");
+
+  ScrollTrigger.create({
+    trigger: hero,
+    start: "bottom bottom-=32",
+    // markers: true,
+    onEnter: () => toolbar.classList.add("change-bgc-button"),
+    onLeaveBack: () => toolbar.classList.remove("change-bgc-button"),
+  });
+}
 const init = () => {
   gsap.registerPlugin(ScrollTrigger);
   customDropdown();
@@ -981,6 +1022,7 @@ const init = () => {
   animationItemsSection();
   wonderGallery();
   swiperThreeCol();
+  toolbarMobile();
 };
 document.addEventListener("DOMContentLoaded", () => {
   init();

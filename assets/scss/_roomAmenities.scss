@@ -1,6 +1,8 @@
 .roomAmenities {
   padding: calc(120px - 40px) 40px 0;
-
+  @media (max-width: 991px) {
+    padding: 24px 16px 0;
+  }
   .amenities {
     &-top {
       .title {
@@ -14,7 +16,11 @@
       display: grid;
       grid-template-columns: repeat(5, 1fr);
       gap: 48px 24px;
-
+      @media (max-width: 991px) {
+        grid-template-columns: 1fr 1fr;
+        padding-bottom: 64px;
+        gap: 32px 16px;
+      }
       li {
         display: flex;
         flex-direction: column;
@@ -33,7 +39,9 @@
     &-bottom {
       padding-bottom: 180px;
       position: relative;
-
+      @media (max-width: 991px) {
+        padding-bottom: 150px;
+      }
       .slider-wrapper {
         z-index: 3;
       }
@@ -46,11 +54,29 @@
         left: 0;
         position: absolute;
         background-color: var(--color-white);
+        @media (max-width: 991px) {
+          width: calc(100% + 32px);
+          left: -16px;
+          bottom: 50%;
+          transform: translateY(50%);
+          height: calc(100% - 128px);
+        }
       }
 
       .swiper {
         aspect-ratio: 1130 / 640;
       }
     }
+  }
+  .wrapper-slider-parallax .swiper-arrow {
+    color: var(--color-white);
+  }
+  .wrapper-slider-parallax .swiper-arrow.arrow-next,
+  [slider-parallax] .swiper-arrow.arrow-next {
+    right: 0;
+  }
+  .wrapper-slider-parallax .swiper-arrow.arrow-prev,
+  [slider-parallax] .swiper-arrow.arrow-prev {
+    left: 0;
   }
 }
