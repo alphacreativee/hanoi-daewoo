@@ -1457,6 +1457,7 @@ function filterPostionHiring() {
 }
 
 function panel() {
+  if (window.innerWidth < 991) return;
   document.querySelectorAll(".panels").forEach((element) => {
     if (element.dataset.scriptInitialized) return;
     element.dataset.scriptInitialized = "true";
@@ -1659,7 +1660,14 @@ function modalBooking() {
     alert("hợp lệ");
   });
 }
-
+function swiperDestination() {
+  if ($(".swiper-destination").length < 1 || window.innerWidth > 992) return;
+  const swiper = new Swiper(".swiper-destination", {
+    slidesPerView: 1.15,
+    spaceBetween: 24,
+    slidesOffsetAfter: 16,
+  });
+}
 const init = () => {
   gsap.registerPlugin(ScrollTrigger);
   customDropdown();
@@ -1690,6 +1698,7 @@ const init = () => {
   uploadFile();
   panel();
   modalBooking();
+  swiperDestination();
 };
 document.addEventListener("DOMContentLoaded", () => {
   init();

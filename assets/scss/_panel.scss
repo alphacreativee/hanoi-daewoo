@@ -5,6 +5,41 @@
   display: grid;
   grid-template-columns: 4fr 8fr;
   gap: 20px;
+  &.mobile {
+    background-color: var(--color-white);
+    height: auto;
+    padding: 64px 0;
+    .swiper-destination {
+      @media (max-width: 991px) {
+        padding-left: 16px;
+      }
+      .image {
+        width: 100%;
+        aspect-ratio: 310/380;
+        img {
+          width: 100%;
+          height: 100%;
+          object-fit: cover;
+        }
+      }
+      .content {
+        padding: 16px;
+        display: flex;
+        flex-direction: column;
+        gap: 24px;
+        .btn-overlay-line {
+          width: max-content;
+          color: var(--color-black);
+          &::before {
+            background-color: var(--color-black);
+          }
+          &::after {
+            background-color: rgba(0, 0, 0, 0.2);
+          }
+        }
+      }
+    }
+  }
   &-right {
     width: 100%;
     height: 100svh;
