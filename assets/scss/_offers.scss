@@ -2,7 +2,9 @@
   &-container {
     padding: 110px 0 120px;
     background-color: var(--color-white);
-
+    @media (max-width: 991px) {
+      padding: 54px 0 64px;
+    }
     .filter-section {
       padding: 10px 40px;
       background-color: var(--color-white);
@@ -11,14 +13,32 @@
       position: sticky;
       z-index: 4;
       top: 60px;
+      @media (max-width: 991px) {
+        padding-left: 0;
+        padding-right: 0;
+        margin-bottom: 14px;
+        top: 92px;
+      }
     }
 
     .filter-list-button {
       gap: 40px;
       // margin-bottom: 46px;
-
+      @media (max-width: 991px) {
+        gap: 32px;
+        overflow-x: scroll;
+        padding-right: 16px;
+        padding-left: 16px;
+        justify-content: start !important;
+        &::-webkit-scrollbar {
+          display: none;
+        }
+      }
       .filter-button {
         cursor: pointer;
+        @media (max-width: 991px) {
+          white-space: nowrap;
+        }
       }
     }
 
@@ -27,7 +47,11 @@
       grid-template-columns: repeat(3, 1fr);
       gap: 20px;
       padding: 0 40px;
-
+      @media (max-width: 991px) {
+        grid-template-columns: 1fr;
+        gap: 24px;
+        padding: 0 16px;
+      }
       .moreInfo-list__item {
         .item-image {
           aspect-ratio: 440 / 480;

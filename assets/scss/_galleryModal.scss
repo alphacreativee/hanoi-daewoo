@@ -119,6 +119,7 @@
     width: 100%;
     @media (max-width: 991px) {
       justify-content: center;
+      margin-top: 16px;
     }
     &-inner {
       display: grid;
@@ -218,6 +219,9 @@
 .galleryTab {
   background-color: var(--color-white);
   padding: 110px 40px 120px;
+  @media (max-width: 991px) {
+    padding: 54px 0px 64px;
+  }
   .filter-section {
     padding: 10px 0;
     background-color: var(--color-white);
@@ -225,12 +229,31 @@
     position: sticky;
     z-index: 4;
     top: 60px;
+    @media (max-width: 991px) {
+      padding-left: 0;
+      padding-right: 0;
+      margin-bottom: 14px;
+      top: 92px;
+    }
   }
   .filter-list-button {
     justify-content: center;
     gap: 40px;
+    @media (max-width: 991px) {
+      gap: 32px;
+      overflow-x: scroll;
+      padding-right: 16px;
+      padding-left: 16px;
+      justify-content: start !important;
+      &::-webkit-scrollbar {
+        display: none;
+      }
+    }
     .filter-button {
       cursor: pointer;
+      @media (max-width: 991px) {
+        white-space: nowrap;
+      }
     }
   }
   .filter-section-result {
@@ -240,6 +263,10 @@
     grid-gap: 12px;
     grid-template-columns: repeat(auto-fill, minmax(20%, 1fr));
     grid-auto-rows: 2px;
+    @media (max-width: 991px) {
+      padding: 0 16px;
+      grid-template-columns: 1fr;
+    }
   }
   .filter-item {
     grid-row-end: span 22;

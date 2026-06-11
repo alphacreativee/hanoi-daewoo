@@ -2,6 +2,9 @@
   &-container {
     padding: 120px 40px;
     background-color: var(--color-white);
+    @media (max-width: 991px) {
+      padding: 64px 16px;
+    }
   }
 
   .accordion {
@@ -9,6 +12,10 @@
       margin-top: 60px;
       border: 1px solid var(--color-gold);
       padding: 12px 40px 16px;
+      @media (max-width: 991px) {
+        margin-top: 32px;
+        padding: 0px 16px;
+      }
     }
 
     &-header {
@@ -55,7 +62,10 @@
       display: grid;
       grid-template-columns: repeat(2, 1fr);
       gap: 24px;
-
+      @media (max-width: 991px) {
+        grid-template-columns: 1fr;
+        gap: 12px;
+      }
       &:not(.collapsed) {
         & + .icon {
           .icon-plus {
@@ -98,7 +108,10 @@
         display: grid;
         grid-template-columns: repeat(2, 1fr);
         gap: 24px;
-
+        @media (max-width: 991px) {
+          grid-template-columns: 1fr;
+          gap: 0;
+        }
         ul {
           padding-left: 24px;
           list-style: disc;
