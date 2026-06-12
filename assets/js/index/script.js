@@ -559,7 +559,7 @@ function header() {
     duration: 0.3,
     delay: 0.1,
   })
-    .from(".header-main--popup > ul > li", {
+    .from(".header-main--popup > ul > li, .main-sub-menu  ", {
       x: -20,
       opacity: 0,
       stagger: 0.08,
@@ -1655,7 +1655,108 @@ function swiperDestination() {
     slidesOffsetAfter: 16,
   });
 }
+function createFilterTabDropdown() {
+  document.querySelectorAll(".venus-filter").forEach((section) => {
+    let result;
 
+    const targetSelector = section.dataset.target;
+    if (targetSelector) {
+      result = document.querySelector(targetSelector);
+    } else {
+      result = section.querySelector(".filter-section-result");
+      if (!result) {
+        result = section.nextElementSibling;
+        if (!result?.classList.contains("filter-section-result")) return;
+      }
+    }
+
+    if (!result) return;
+
+    const normalButtons = section.querySelectorAll(".filter-button[data-type]");
+
+    // Sửa: .dropdown-custom-select.filter-tab thay vì .dropdown-custom.filter-tab
+    const dropdownFilterTab = section.querySelector(
+      ".dropdown-custom-select.filter-tab",
+    );
+    const dropdownItems = dropdownFilterTab
+      ? dropdownFilterTab.querySelectorAll(".dropdown-custom-item[data-type]")
+      : [];
+
+    const allButtons = [...normalButtons, ...dropdownItems];
+    if (!allButtons.length) return;
+
+    const activeBtn = section.querySelector(
+      ".filter-button.active[data-type], .dropdown-custom-item.active[data-type]",
+    );
+    if (activeBtn) {
+      const activeType = activeBtn.dataset.type;
+      if (activeType !== "all") {
+        result.querySelectorAll(".filter-item").forEach((item) => {
+          item.style.display = item.classList.contains(activeType)
+            ? ""
+            : "none";
+        });
+      }
+
+      if (dropdownFilterTab && dropdownFilterTab.contains(activeBtn)) {
+        const displayText = dropdownFilterTab.querySelector(
+          ".dropdown-custom-text span",
+        );
+        if (displayText) {
+          displayText.textContent =
+            activeBtn.querySelector("span")?.textContent.trim() ||
+            activeBtn.textContent.trim();
+        }
+      }
+    }
+
+    allButtons.forEach((btn) => {
+      btn.addEventListener("click", function () {
+        allButtons.forEach((b) => b.classList.remove("active"));
+        this.classList.add("active");
+
+        if (dropdownFilterTab && dropdownFilterTab.contains(this)) {
+          const displayText = dropdownFilterTab.querySelector(
+            ".dropdown-custom-text span",
+          );
+          const itemSpan = this.querySelector("span");
+
+          if (displayText) {
+            displayText.textContent = itemSpan
+              ? itemSpan.textContent.trim()
+              : this.textContent.trim();
+          }
+
+          const menu = dropdownFilterTab.querySelector(".dropdown-custom-menu");
+          const dropdownBtn = dropdownFilterTab.querySelector(
+            ".dropdown-custom-btn",
+          );
+          menu?.classList.remove("dropdown--active");
+          dropdownBtn?.classList.remove("--active");
+        }
+
+        const type = this.dataset.type;
+        const items = result.querySelectorAll(".filter-item");
+
+        gsap
+          .timeline()
+          .to(result, { autoAlpha: 0, duration: 0.3 })
+          .call(() => {
+            items.forEach((item) => {
+              if (type === "all") {
+                item.style.display = "";
+              } else {
+                item.style.display = item.classList.contains(type)
+                  ? ""
+                  : "none";
+              }
+            });
+          })
+          .to(result, { autoAlpha: 1, duration: 0.3 });
+      });
+    });
+  });
+}
 const init = () => {
   gsap.registerPlugin(ScrollTrigger);
   // dropdownPhoneCode();
@@ -1689,6 +1790,7 @@ const init = () => {
   panel();
   modalBooking();
   swiperDestination();
+  createFilterTabDropdown();
 };
 document.addEventListener("DOMContentLoaded", () => {
   init();
