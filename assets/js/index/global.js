@@ -1,3 +1,214 @@
+export async function dropdownPhoneCode() {
+  const phoneDropdown = document.querySelector(
+    ".dropdown-custom-select.select-phone-code",
+  );
+  if (!phoneDropdown) return;
+
+  const phoneBtn = phoneDropdown.querySelector(".dropdown-custom-btn");
+  const phoneMenu = phoneDropdown.querySelector(".dropdown-custom-menu");
+  const phoneFlagIcon = phoneDropdown.querySelector(".flag-icon");
+  const phoneDialText = phoneDropdown.querySelector(".dial-code");
+
+  const phoneInput = document.querySelector('input[name="phone"]');
+
+  let countries = [];
+
+  try {
+    const res = await fetch(
+      "https://cdn.jsdelivr.net/npm/world-countries@5/dist/countries.json",
+    );
+    const data = await res.json();
+
+    countries = data
+      .map((c) => ({
+        name: c.name?.common || "",
+        code: c.cca2 || "",
+        dialCode: c.idd?.root ? c.idd.root + (c.idd.suffixes?.[0] || "") : "",
+        flag: c.cca2 ? `https://flagcdn.com/${c.cca2.toLowerCase()}.svg` : "",
+      }))
+      .filter((c) => c.name && c.dialCode && c.flag)
+      .sort((a, b) => a.name.localeCompare(b.name));
+
+    phoneMenu.innerHTML = "";
+
+    countries.forEach((country) => {
+      const item = document.createElement("div");
+      item.className = "dropdown-custom-item color-black";
+      item.dataset.code = country.code;
+      item.dataset.dial = country.dialCode;
+      item.dataset.flag = country.flag;
+      item.dataset.name = country.name;
+
+      item.innerHTML = `
+        <img src="${country.flag}" alt="${country.name}" class="item-flag" />
+        <span class="hover-underline-black">${country.name}</span>
+        <span class="item-dial">${country.dialCode}</span>
+      `;
+      phoneMenu.appendChild(item);
+    });
+  } catch (err) {
+    console.error("Load countries failed:", err);
+    return;
+  }
+
+  // Mặc định Vietnam
+  const defaultItem = phoneMenu.querySelector(
+    '.dropdown-custom-item[data-code="VN"]',
+  );
+  if (defaultItem) {
+    selectCode(defaultItem, false);
+  }
+
+  phoneBtn.addEventListener("click", function (e) {
+    e.stopPropagation();
+    closeDropdown();
+    phoneMenu.classList.toggle("dropdown--active");
+    phoneBtn.classList.toggle("--active");
+  });
+
+  document.addEventListener("click", function () {
+    closeDropdown();
+  });
+
+  phoneMenu.addEventListener("click", function (e) {
+    const item = e.target.closest(".dropdown-custom-item");
+    if (!item) return;
+    e.stopPropagation();
+    selectCode(item, true);
+    closeDropdown();
+  });
+
+  function selectCode(item, syncPhoneValue) {
+    const name = item.dataset.name;
+    const dial = item.dataset.dial;
+    const flag = item.dataset.flag;
+
+    phoneFlagIcon.src = flag;
+    phoneFlagIcon.alt = name;
+    phoneDialText.textContent = dial;
+    phoneDropdown.classList.add("selected");
+
+    if (syncPhoneValue) {
+      const currentValue = phoneInput.value.replace(/^\+\d+\s?/, "");
+      phoneInput.value = `${dial} ${currentValue}`.trim();
+    }
+  }
+
+  function closeDropdown() {
+    phoneMenu.classList.remove("dropdown--active");
+    phoneBtn.classList.remove("--active");
+  }
+}
+export async function dropdownRegion() {
+  const dropdown = document.querySelector(
+    ".dropdown-custom-select.select-region",
+  );
+  if (!dropdown) return;
+
+  const btnDropdown = dropdown.querySelector(".dropdown-custom-btn");
+  const dropdownMenu = dropdown.querySelector(".dropdown-custom-menu");
+  const displayText = dropdown.querySelector(".dropdown-custom-text");
+
+  const phoneInputWrap = document
+    .querySelector('input[name="phone"]')
+    .closest(".field-item");
+  const flagIcon = phoneInputWrap.querySelector(".flag-icon");
+  const phoneInput = phoneInputWrap.querySelector('input[name="phone"]');
+
+  let countries = [];
+
+  try {
+    const res = await fetch(
+      "https://cdn.jsdelivr.net/npm/world-countries@5/dist/countries.json",
+    );
+    const data = await res.json();
+
+    countries = data
+      .map((c) => ({
+        name: c.name?.common || "",
+        code: c.cca2 || "",
+        dialCode: c.idd?.root ? c.idd.root + (c.idd.suffixes?.[0] || "") : "",
+        flag: c.cca2 ? `https://flagcdn.com/${c.cca2.toLowerCase()}.svg` : "",
+      }))
+      .filter((c) => c.name && c.dialCode && c.flag)
+      .sort((a, b) => a.name.localeCompare(b.name));
+
+    dropdownMenu.innerHTML = "";
+
+    countries.forEach((country) => {
+      const item = document.createElement("div");
+      item.className = "dropdown-custom-item color-black";
+      item.dataset.code = country.code;
+      item.dataset.dial = country.dialCode;
+      item.dataset.flag = country.flag;
+
+      const span = document.createElement("span");
+      span.className = "hover-underline-black";
+      span.textContent = country.name;
+
+      item.appendChild(span);
+      dropdownMenu.appendChild(item);
+    });
+  } catch (err) {
+    console.error("Load countries failed:", err);
+    return;
+  }
+
+  // Set mặc định: Vietnam
+  const defaultItem = dropdownMenu.querySelector(
+    '.dropdown-custom-item[data-code="VN"]',
+  );
+  if (defaultItem) {
+    selectCountry(defaultItem);
+  }
+
+  btnDropdown.addEventListener("click", function (e) {
+    e.stopPropagation();
+    closeDropdown();
+    dropdownMenu.classList.toggle("dropdown--active");
+    btnDropdown.classList.toggle("--active");
+  });
+
+  document.addEventListener("click", function () {
+    closeDropdown();
+  });
+
+  dropdownMenu.addEventListener("click", function (e) {
+    const item = e.target.closest(".dropdown-custom-item");
+    if (!item) return;
+
+    e.stopPropagation();
+    selectCountry(item);
+    closeDropdown();
+  });
+
+  function selectCountry(item) {
+    const optionText = item.querySelector("span").textContent.trim();
+    const span = displayText.querySelector("span");
+
+    if (span) {
+      span.textContent = optionText;
+    } else {
+      displayText.textContent = optionText;
+    }
+
+    dropdown.classList.add("selected");
+
+    const dial = item.dataset.dial;
+    const flag = item.dataset.flag;
+
+    flagIcon.src = flag;
+    flagIcon.alt = optionText;
+
+    const currentValue = phoneInput.value.replace(/^\+\d+\s?/, "");
+    phoneInput.value = `${dial} ${currentValue}`.trim();
+  }
+
+  function closeDropdown() {
+    dropdownMenu.classList.remove("dropdown--active");
+    btnDropdown.classList.remove("--active");
+  }
+}
 export function customDropdown() {
   const dropdowns = document.querySelectorAll(
     ".dropdown-custom, .dropdown-custom-select",

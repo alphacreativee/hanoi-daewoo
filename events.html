@@ -437,9 +437,13 @@
                         <div class="content-box-right">
                             <form action="">
                                 <div class="list-field step" data-step="1">
+                                    <h4
+                                        class="field-item full b2-font font-body color-black text-uppercase fw-semibold">
+                                        EVENT DETAILS
+                                    </h4>
                                     <div class="field-item full">
                                         <div class="label">Event Type<span>*</span></div>
-                                        <div class="dropdown-custom-select z-3" style="z-index: 3">
+                                        <div class="dropdown-custom-select z-3" style="z-index: 5">
                                             <div class="dropdown-custom-btn">
                                                 <div class="value-select dropdown-custom-text color-black">
                                                     <span>Choose your event</span>
@@ -459,27 +463,99 @@
                                             </div>
                                         </div>
                                     </div>
-                                    <div class="field-item">
+                                    <!-- <div class="field-item">
                                         <input type="number" name="attendees" placeholder=" " class="b1-font" />
                                         <label for="attendees" class="b1-font">Number of Attendees<span>*</span></label>
                                     </div>
                                     <div class="field-item">
                                         <input type="number" name="bedroom" placeholder=" " class="b1-font" />
                                         <label for="bedroom" class="b1-font">Number of Bedrooms<span>*</span></label>
-                                    </div>
+                                    </div> -->
                                     <div class="field-item date">
                                         <input type="text" name="arrivalDate" id="arrivalDate" placeholder=" "
                                             class="b1-font" />
-                                        <label for="arrivalDate" class="b1-font">Preferred Arrival
-                                            Date<span>*</span></label>
+                                        <label for="arrivalDate" class="b1-font">Starting Date of
+                                            Event*<span>*</span></label>
                                     </div>
-                                    <div class="field-item date">
+
+                                    <div class="field-item ">
+                                        <div class="label">Duration of Event<span>*</span></div>
+                                        <div class="dropdown-custom-select z-3" style="z-index: 5">
+                                            <div class="dropdown-custom-btn">
+                                                <div class="value-select dropdown-custom-text color-black">
+                                                    <span>Select</span>
+                                                </div>
+                                                <img src="./assets/images/use/icon-arrow-select.svg" alt="" />
+                                            </div>
+                                            <div class="dropdown-custom-menu">
+                                                <div class="dropdown-custom-item color-black ">
+                                                    <span class="hover-underline-black">Half day</span>
+                                                </div>
+                                                <div class="dropdown-custom-item color-black">
+                                                    <span class="hover-underline-black">Full day</span>
+                                                </div>
+
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="field-item full">
+                                        <div class="label">Event Requiments*<span>*</span></div>
+                                        <div class="dropdown-custom-select z-3" style="z-index: 5">
+                                            <div class="dropdown-custom-btn">
+                                                <div class="value-select dropdown-custom-text color-black">
+                                                    <span>Select</span>
+                                                </div>
+                                                <img src="./assets/images/use/icon-arrow-select.svg" alt="" />
+                                            </div>
+                                            <div class="dropdown-custom-menu">
+                                                <div class="dropdown-custom-item color-black ">
+                                                    <span class="hover-underline-black">Lobby</span>
+                                                </div>
+                                                <div class="dropdown-custom-item color-black">
+                                                    <span class="hover-underline-black">Deluxe Room</span>
+                                                </div>
+
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="field-item full">
+                                        <div class="label">Type of Room<span>*</span></div>
+                                        <div class="dropdown-custom-select z-3" style="z-index: 5">
+                                            <div class="dropdown-custom-btn">
+                                                <div class="value-select dropdown-custom-text color-black">
+                                                    <span>Select</span>
+                                                </div>
+                                                <img src="./assets/images/use/icon-arrow-select.svg" alt="" />
+                                            </div>
+                                            <div class="dropdown-custom-menu">
+                                                <div class="dropdown-custom-item color-black ">
+                                                    <span class="hover-underline-black">Lobby</span>
+                                                </div>
+                                                <div class="dropdown-custom-item color-black">
+                                                    <span class="hover-underline-black">Deluxe Room</span>
+                                                </div>
+
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="field-item full">
+                                        <input type="number" name="numberofguests" placeholder=" " class="b1-font" />
+                                        <label for="numberofguests" class="b1-font">Number of
+                                            Guests<span>*</span></label>
+                                    </div>
+                                    <div class="field-item full">
+                                        <input type="number" name="numberofguestsNight" placeholder=" "
+                                            class="b1-font" />
+                                        <label for="numberofguestsNight" class="b1-font">Number of Guest Room Per
+                                            Night<span>*</span></label>
+                                    </div>
+                                    <!-- <div class="field-item date">
                                         <input type="text" name="departureDate" id="departureDate" placeholder=" "
                                             class="b1-font" />
                                         <label for="departureDate" class="b1-font">Preferred Departure
                                             Date<span>*</span></label>
-                                    </div>
-                                    <div class="field-item checkbox">
+                                    </div> -->
+                                    <!-- <div class="field-item checkbox">
                                         <div class="static-label b3-font fw-normal color-black">Are your dates flexible?
                                         </div>
                                         <div class="checkbox-list b3-font fw-normal color-black">
@@ -517,10 +593,36 @@
                                         <div class="attach-note b0-font fw-normal">The following file types are
                                             accepted: .doc, .docx, .pdf, .xls, and .xlsx. Maximum file size: 5MB. Upload
                                             up to 3 files.</div>
-                                    </div>
+                                    </div> -->
                                     <button type="button" class="btn-next btn-global text-uppercase">next step</button>
                                 </div>
                                 <div class="list-field step" data-step="2" style="display: none;">
+                                    <h4
+                                        class="field-item full b2-font font-body color-black text-uppercase fw-semibold">
+                                        CONTACT
+                                        INFORMATION</h4>
+                                    <div class="field-item ">
+                                        <div class="label">Title<span>*</span></div>
+                                        <div class="dropdown-custom-select z-3" style="z-index: 5">
+                                            <div class="dropdown-custom-btn">
+                                                <div class="value-select dropdown-custom-text color-black">
+                                                    <span>Select a choice</span>
+                                                </div>
+                                                <img src="./assets/images/use/icon-arrow-select.svg" alt="" />
+                                            </div>
+                                            <div class="dropdown-custom-menu">
+                                                <div class="dropdown-custom-item color-black ">
+                                                    <span class="hover-underline-black">Mr.</span>
+                                                </div>
+                                                <div class="dropdown-custom-item color-black">
+                                                    <span class="hover-underline-black">Mrs.</span>
+                                                </div>
+                                                <div class="dropdown-custom-item color-black">
+                                                    <span class="hover-underline-black">Ms.</span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
                                     <div class="field-item">
                                         <input type="text" name="firstname" placeholder=" " class="b1-font" />
                                         <label for="firstname" class="b1-font">First Name<span>*</span></label>
@@ -530,20 +632,48 @@
                                         <label for="lastname" class="b1-font">Last Name<span>*</span></label>
                                     </div>
                                     <div class="field-item">
-                                        <input type="tel" name="phone" placeholder=" " class="b1-font" />
-                                        <label for="phone" class="b1-font">Telephone<span>*</span></label>
-                                    </div>
-                                    <div class="field-item">
                                         <input type="email" name="email" placeholder=" " class="b1-font" />
                                         <label for="email" class="b1-font">Email<span>*</span></label>
                                     </div>
-                                    <div class="field-item full">
-                                        <input type="text" name="company" placeholder=" " class="b1-font" />
-                                        <label for="company" class="b1-font">Company name</label>
+
+                                    <div class="field-item ">
+                                        <div class="label">Country/Region of Residence<span>*</span></div>
+                                        <div class="dropdown-custom-select z-3 select-region" style="z-index: 5">
+                                            <div class="dropdown-custom-btn">
+                                                <div class="value-select dropdown-custom-text color-black">
+                                                    <span>Select</span>
+                                                </div>
+                                                <img src="./assets/images/use/icon-arrow-select.svg" alt="" />
+                                            </div>
+                                            <div class="dropdown-custom-menu">
+
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="field-item auto-phone">
+                                        <img src="" alt="" class="flag-icon">
+                                        <input type="tel" name="phone" placeholder=" " class="b1-font" />
+                                        <label for="phone" class="b1-font">Telephone<span>*</span></label>
                                     </div>
                                     <div class="field-item full">
                                         <textarea name="message" rows="4" placeholder=" "></textarea>
-                                        <label for="message" class="b1-font">Message</label>
+                                        <label for="message" class="b1-font">Type additional details or questions
+                                            below</label>
+                                    </div>
+                                    <div class="field-item checkbox full">
+                                        <input type="checkbox" id="check-1" name="check-1" />
+                                        <label for="check-1" class="content b3-font color-black font-body">
+                                            I agree to the transfer of my personal information across multiple
+                                            jurisdictions.
+                                        </label>
+                                    </div>
+                                    <div class="field-item checkbox full">
+                                        <input type="checkbox" id="check-1" name="check-1" />
+                                        <label for="check-1" class="content b3-font color-black font-body">
+                                            I have read and accepted the <a href="" target="_blank">Privacy Policy</a>.
+                                            By submitting this form, I agree to the <a href="" target="_blank"> Terms &
+                                                Conditions</a>
+                                        </label>
                                     </div>
                                     <div class="btn-wrapper">
                                         <button type="button" class="btn-back btn-global text-uppercase">

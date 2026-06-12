@@ -1,4 +1,6 @@
 import {
+  dropdownRegion,
+  dropdownPhoneCode,
   customDropdown,
   createFilterTab,
   sliderParallax,
@@ -1262,7 +1264,6 @@ function formBookingEvent() {
   if ($("#modalBookingEvents").length < 1) return;
 
   const defaultStart = moment().startOf("day");
-  const defaultEnd = moment().startOf("day").add(1, "day");
 
   const localeConfig = {
     format: "DD/MM/YYYY",
@@ -1295,19 +1296,15 @@ function formBookingEvent() {
   $('input[name="arrivalDate"]').daterangepicker(
     {
       opens: "right",
-      drops: getDrops(),
+      drops: "center",
       autoApply: true,
-      singleDatePicker: false,
-      linkedCalendars: true,
+      singleDatePicker: true,
       minDate: moment().startOf("day"),
-      minSpan: { days: 1 },
       startDate: defaultStart,
-      endDate: defaultEnd,
       locale: localeConfig,
     },
-    function (start, end) {
+    function (start) {
       $('input[name="arrivalDate"]').val(start.format("DD/MM/YYYY"));
-      $('input[name="departureDate"]').val(end.format("DD/MM/YYYY"));
     },
   );
 
@@ -1315,26 +1312,16 @@ function formBookingEvent() {
   const picker = $('input[name="arrivalDate"]').data("daterangepicker");
   picker.updateElement = function () {
     $('input[name="arrivalDate"]').val(this.startDate.format("DD/MM/YYYY"));
-    $('input[name="departureDate"]').val(this.endDate.format("DD/MM/YYYY"));
   };
 
   // Set giá trị mặc định
   $('input[name="arrivalDate"]').val(defaultStart.format("DD/MM/YYYY"));
-  $('input[name="departureDate"]').val(defaultEnd.format("DD/MM/YYYY"));
-
-  // Click endDate → mở picker của startDate
-  $('input[name="departureDate"]').on("click", function () {
-    $('input[name="arrivalDate"]').data("daterangepicker").show();
-  });
 
   // Re-calc drops khi focus
-  $('input[name="arrivalDate"], input[name="departureDate"]').on(
-    "focus",
-    function () {
-      const picker = $('input[name="arrivalDate"]').data("daterangepicker");
-      if (picker) picker.drops = getDrops();
-    },
-  );
+  $('input[name="arrivalDate"]').on("focus", function () {
+    const picker = $('input[name="arrivalDate"]').data("daterangepicker");
+    if (picker) picker.drops = getDrops();
+  });
 
   // change step
   const form = $("#modalBookingEvents form");
@@ -1668,8 +1655,11 @@ function swiperDestination() {
     slidesOffsetAfter: 16,
   });
 }
+
 const init = () => {
   gsap.registerPlugin(ScrollTrigger);
+  // dropdownPhoneCode();
+  dropdownRegion();
   customDropdown();
   createFilterTab();
   headerScroll();
