@@ -173,26 +173,29 @@
                 <h3 class="heading-2 font-heading color-black">Choose Your Venue</h3>
                 <div class="venus-container">
                     <div class="venus-top">
-                        <div class="d-flex justify-content-between align-items-center">
-                            <div class="venus-td">
+                        <div class="d-flex justify-content-between align-items-flex-start">
+                            <div class="venus-td first-col">
                                 <div class="text b2-font font-body color-black text-uppercase fw-semibold">Venus</div>
-                                <!-- <div class="dropdown-custom z-3" style="z-index: 5">
-                                    <div class="dropdown-custom-btn">
-                                        <div class="value-select dropdown-custom-text color-black">
-                                            <span>M2</span>
+                                <div class="filter-section">
+                                    <div class="dropdown-custom-select z-3 filter-tab" style="z-index: 5">
+                                        <div class="dropdown-custom-btn">
+                                            <div class="value-select dropdown-custom-text color-black">
+                                                <span>M2</span>
+                                            </div>
+                                            <img src="./assets/images/use/icon-arrow-select.svg" alt="" />
                                         </div>
-                                        <img src="./assets/images/use/icon-arrow-select.svg" alt="" />
-                                    </div>
-                                    <div class="dropdown-custom-menu">
-                                        <div class="dropdown-custom-item color-black ">
-                                            <span class="hover-underline-black">Wedding</span>
+                                        <div class="dropdown-custom-menu">
+                                            <div class="dropdown-custom-item color-black active" data-type="m2">
+                                                <span class="hover-underline-black">M2</span>
+                                            </div>
+                                            <div class="dropdown-custom-item color-black" data-type="feet">
+                                                <span class="hover-underline-black">FEET</span>
+                                            </div>
                                         </div>
-                                       
                                     </div>
-                                </div> -->
+                                </div>
                             </div>
                             <div class="venus-grid">
-
                                 <div class="venus-td">
                                     <div class="text b2-font font-body color-black text-uppercase fw-semibold">Venus
                                     </div>
@@ -243,11 +246,12 @@
                                     </div>
                                 </div>
                             </div>
-
                         </div>
                     </div>
-                    <div class="venus-filter">
-                        <div class="filter-section">
+
+                    <!-- M2 -->
+                    <div class="venus-filter m2">
+                        <div class="filter-section" data-target="#resultLobbyM2">
                             <div class="dropdown-custom-select z-3 filter-tab" style="z-index: 5">
                                 <div class="dropdown-custom-btn">
                                     <div class="value-select dropdown-custom-text color-black">
@@ -268,129 +272,478 @@
                                 </div>
                             </div>
                         </div>
+                    </div>
 
-                        <div class="filter-section-result">
-                            <div class="filter-item lobby-level">
-                                <!-- nội dung item Lobby Level -->
-                                <div class="accordion" id="accordionExample">
-                                    <div class="accordion-item">
-                                        <h2 class="accordion-header" id="headingOne">
-                                            <button class="accordion-button" type="button" data-bs-toggle="collapse"
-                                                data-bs-target="#collapseOne" aria-expanded="true"
-                                                aria-controls="collapseOne">
-                                                <div class="venus-row">
-                                                    <div class="d-flex justify-content-between align-items-center">
+                    <div id="resultLobbyM2" class="filter-section-result">
+                        <div class="filter-item lobby-level">
+                            <div class="accordion" id="accordionExampleM2">
+                                <div class="accordion-item">
+                                    <h2 class="accordion-header" id="headingOneM2">
+                                        <button class="accordion-button" type="button" data-bs-toggle="collapse"
+                                            data-bs-target="#collapseOneM2" aria-expanded="true"
+                                            aria-controls="collapseOneM2">
+                                            <div class="venus-row">
+                                                <div class="d-flex justify-content-between align-items-center">
+                                                    <div class="venus-td-item">
+                                                        <div class="name heading-3 font-heading color-black">Grand
+                                                            Ballroom</div>
+                                                    </div>
+                                                    <div class="venus-grid">
                                                         <div class="venus-td-item">
-                                                            <div class="name heading-3 font-heading color-black">Grand
-                                                                Ballroom</div>
+                                                            <div class="text font-body b1-font color-black">17.2 x 32.5
+                                                                x 7.8</div>
                                                         </div>
-                                                        <div class="venus-grid">
-
-                                                            <div class="venus-td-item">
-                                                                <div class="text font-body b1-font color-black">
-                                                                    17.2 x 32.5 x 7.8 </div>
-                                                            </div>
-                                                            <div class="venus-td-item">
-                                                                <div class="text font-body b1-font color-black">
-                                                                    559</div>
-                                                            </div>
-                                                            <div class="venus-td-item">
-                                                                <div class="text font-body b1-font color-black">
-                                                                    450</div>
-                                                            </div>
-                                                            <div class="venus-td-item">
-                                                                <div class="text font-body b1-font color-black">
-                                                                    600</div>
-                                                            </div>
-                                                            <div class="venus-td-item">
-                                                                <div class="text font-body b1-font color-black">
-                                                                    420</div>
-                                                            </div>
-                                                            <div class="venus-td-item">
-                                                                <div class="text font-body b1-font color-black">
-                                                                    600</div>
-                                                            </div>
-                                                            <div class="venus-td-item">
-                                                                <div class="text font-body b1-font color-black">
-                                                                    N/A</div>
+                                                        <div class="venus-td-item">
+                                                            <div class="text font-body b1-font color-black">559</div>
+                                                        </div>
+                                                        <div class="venus-td-item">
+                                                            <div class="text font-body b1-font color-black">450</div>
+                                                        </div>
+                                                        <div class="venus-td-item">
+                                                            <div class="text font-body b1-font color-black">600</div>
+                                                        </div>
+                                                        <div class="venus-td-item">
+                                                            <div class="text font-body b1-font color-black">420</div>
+                                                        </div>
+                                                        <div class="venus-td-item">
+                                                            <div class="text font-body b1-font color-black">600</div>
+                                                        </div>
+                                                        <div class="venus-td-item">
+                                                            <div class="text font-body b1-font color-black">N/A</div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </button>
+                                    </h2>
+                                    <div id="collapseOneM2" class="accordion-collapse collapse show"
+                                        aria-labelledby="headingOneM2" data-bs-parent="#accordionExampleM2">
+                                        <div class="accordion-body">
+                                            <div class="venus-body">
+                                                <div class="col-left">
+                                                    <div class="slider-wrapper wrapper-slider-parallax">
+                                                        <div class="swiper" slider-parallax slider-arrow
+                                                            slider-pagination>
+                                                            <div class="swiper-wrapper">
+                                                                <div class="swiper-slide">
+                                                                    <div class="image">
+                                                                        <img src="./assets/images/draf/deluxe-1.jpg"
+                                                                            alt="" />
+                                                                    </div>
+                                                                </div>
+                                                                <div class="swiper-slide">
+                                                                    <div class="image">
+                                                                        <img src="./assets/images/draf/deluxe-2.jpg"
+                                                                            alt="" />
+                                                                    </div>
+                                                                </div>
+                                                                <div class="swiper-slide">
+                                                                    <div class="image">
+                                                                        <img src="./assets/images/draf/deluxe-3.jpg"
+                                                                            alt="" />
+                                                                    </div>
+                                                                </div>
                                                             </div>
                                                         </div>
+                                                        <div class="swiper-arrows">
+                                                            <div class="arrow-prev swiper-arrow">
+                                                                <svg width="9" height="33" viewBox="0 0 9 33"
+                                                                    fill="none" xmlns="http://www.w3.org/2000/svg">
+                                                                    <path opacity="1"
+                                                                        d="M8.55859 0.223633L0.558594 16.2236L8.55859 32.2236"
+                                                                        stroke="currentColor" />
+                                                                </svg>
+                                                            </div>
+                                                            <div class="arrow-next swiper-arrow">
+                                                                <svg width="9" height="33" viewBox="0 0 9 33"
+                                                                    fill="none" xmlns="http://www.w3.org/2000/svg">
+                                                                    <path
+                                                                        d="M0.447266 0.223633L8.44726 16.2236L0.447267 32.2236"
+                                                                        stroke="currentColor" />
+                                                                </svg>
+                                                            </div>
+                                                        </div>
+                                                        <div class="slider-pagination"></div>
+                                                    </div>
+                                                </div>
+                                                <div class="col-right">
+                                                    <div class="description">
+                                                        With 7.8m-high ceilings, glittering chandeliers and a
+                                                        pillar-free design, our capacious Grand Ballroom provides a
+                                                        sophisticated setting for large-scale social and corporate
+                                                        events. It is also suitable for hosting more intimate occasions,
+                                                        with moveable walls converting this flexible space into four
+                                                        smaller rooms.
                                                     </div>
 
                                                 </div>
-                                            </button>
-                                        </h2>
-                                        <div id="collapseOne" class="accordion-collapse collapse show"
-                                            aria-labelledby="headingOne" data-bs-parent="#accordionExample">
-                                            <div class="accordion-body">
-                                                <strong>This is the first item's accordion body.</strong> It is shown by
-                                                default, until the collapse plugin adds the appropriate classes that we
-                                                use to style each element. These classes control the overall appearance,
-                                                as well as the showing and hiding via CSS transitions. You can modify
-                                                any of this with custom CSS or overriding our default variables. It's
-                                                also worth noting that just about any HTML can go within the
-                                                <code>.accordion-body</code>, though the transition does limit overflow.
                                             </div>
+
                                         </div>
                                     </div>
-                                    <div class="accordion-item">
-                                        <h2 class="accordion-header" id="headingTwo">
-                                            <button class="accordion-button collapsed" type="button"
-                                                data-bs-toggle="collapse" data-bs-target="#collapseTwo"
-                                                aria-expanded="false" aria-controls="collapseTwo">
-                                                Accordion Item #2
-                                            </button>
-                                        </h2>
-                                        <div id="collapseTwo" class="accordion-collapse collapse"
-                                            aria-labelledby="headingTwo" data-bs-parent="#accordionExample">
-                                            <div class="accordion-body">
-                                                <strong>This is the second item's accordion body.</strong> It is hidden
-                                                by default, until the collapse plugin adds the appropriate classes that
-                                                we use to style each element. These classes control the overall
-                                                appearance, as well as the showing and hiding via CSS transitions. You
-                                                can modify any of this with custom CSS or overriding our default
-                                                variables. It's also worth noting that just about any HTML can go within
-                                                the <code>.accordion-body</code>, though the transition does limit
-                                                overflow.
+                                </div>
+                                <div class="accordion-item">
+                                    <h2 class="accordion-header" id="headingTwoM2">
+                                        <button class="accordion-button collapsed" type="button"
+                                            data-bs-toggle="collapse" data-bs-target="#collapseTwoM2"
+                                            aria-expanded="false" aria-controls="collapseTwoM2">
+                                            <div class="venus-row">
+                                                <div class="d-flex justify-content-between align-items-center">
+                                                    <div class="venus-td-item">
+                                                        <div class="name heading-3 font-heading color-black">Lotus</div>
+                                                    </div>
+                                                    <div class="venus-grid">
+                                                        <div class="venus-td-item">
+                                                            <div class="text font-body b1-font color-black">17.2 x 32.5
+                                                                x 7.8</div>
+                                                        </div>
+                                                        <div class="venus-td-item">
+                                                            <div class="text font-body b1-font color-black">559</div>
+                                                        </div>
+                                                        <div class="venus-td-item">
+                                                            <div class="text font-body b1-font color-black">450</div>
+                                                        </div>
+                                                        <div class="venus-td-item">
+                                                            <div class="text font-body b1-font color-black">600</div>
+                                                        </div>
+                                                        <div class="venus-td-item">
+                                                            <div class="text font-body b1-font color-black">420</div>
+                                                        </div>
+                                                        <div class="venus-td-item">
+                                                            <div class="text font-body b1-font color-black">600</div>
+                                                        </div>
+                                                        <div class="venus-td-item">
+                                                            <div class="text font-body b1-font color-black">N/A</div>
+                                                        </div>
+                                                    </div>
+                                                </div>
                                             </div>
-                                        </div>
-                                    </div>
-                                    <div class="accordion-item">
-                                        <h2 class="accordion-header" id="headingThree">
-                                            <button class="accordion-button collapsed" type="button"
-                                                data-bs-toggle="collapse" data-bs-target="#collapseThree"
-                                                aria-expanded="false" aria-controls="collapseThree">
-                                                Accordion Item #3
-                                            </button>
-                                        </h2>
-                                        <div id="collapseThree" class="accordion-collapse collapse"
-                                            aria-labelledby="headingThree" data-bs-parent="#accordionExample">
-                                            <div class="accordion-body">
-                                                <strong>This is the third item's accordion body.</strong> It is hidden
-                                                by default, until the collapse plugin adds the appropriate classes that
-                                                we use to style each element. These classes control the overall
-                                                appearance, as well as the showing and hiding via CSS transitions. You
-                                                can modify any of this with custom CSS or overriding our default
-                                                variables. It's also worth noting that just about any HTML can go within
-                                                the <code>.accordion-body</code>, though the transition does limit
-                                                overflow.
+                                        </button>
+                                    </h2>
+                                    <div id="collapseTwoM2" class="accordion-collapse collapse"
+                                        aria-labelledby="headingTwoM2" data-bs-parent="#accordionExampleM2">
+                                        <div class="accordion-body">
+                                            <div class="venus-body">
+                                                <div class="col-left">
+                                                    <div class="slider-wrapper wrapper-slider-parallax">
+                                                        <div class="swiper" slider-parallax slider-arrow
+                                                            slider-pagination>
+                                                            <div class="swiper-wrapper">
+                                                                <div class="swiper-slide">
+                                                                    <div class="image">
+                                                                        <img src="./assets/images/draf/deluxe-3.jpg"
+                                                                            alt="" />
+                                                                    </div>
+                                                                </div>
+                                                                <div class="swiper-slide">
+                                                                    <div class="image">
+                                                                        <img src="./assets/images/draf/deluxe-2.jpg"
+                                                                            alt="" />
+                                                                    </div>
+                                                                </div>
+                                                                <div class="swiper-slide">
+                                                                    <div class="image">
+                                                                        <img src="./assets/images/draf/deluxe-1.jpg"
+                                                                            alt="" />
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                        <div class="swiper-arrows">
+                                                            <div class="arrow-prev swiper-arrow">
+                                                                <svg width="9" height="33" viewBox="0 0 9 33"
+                                                                    fill="none" xmlns="http://www.w3.org/2000/svg">
+                                                                    <path opacity="1"
+                                                                        d="M8.55859 0.223633L0.558594 16.2236L8.55859 32.2236"
+                                                                        stroke="currentColor" />
+                                                                </svg>
+                                                            </div>
+                                                            <div class="arrow-next swiper-arrow">
+                                                                <svg width="9" height="33" viewBox="0 0 9 33"
+                                                                    fill="none" xmlns="http://www.w3.org/2000/svg">
+                                                                    <path
+                                                                        d="M0.447266 0.223633L8.44726 16.2236L0.447267 32.2236"
+                                                                        stroke="currentColor" />
+                                                                </svg>
+                                                            </div>
+                                                        </div>
+                                                        <div class="slider-pagination"></div>
+                                                    </div>
+                                                </div>
+                                                <div class="col-right">
+                                                    <div class="description">
+                                                        With 7.8m-high ceilings, glittering chandeliers and a
+                                                        pillar-free design, our capacious Grand Ballroom provides a
+                                                        sophisticated setting for large-scale social and corporate
+                                                        events. It is also suitable for hosting more intimate occasions,
+                                                        with moveable walls converting this flexible space into four
+                                                        smaller rooms.
+                                                    </div>
+
+                                                </div>
                                             </div>
                                         </div>
                                     </div>
                                 </div>
+
                             </div>
+                        </div>
 
-                            <div class="filter-item function-rooms">
-                                <!-- nội dung item Function Rooms -->
-                                <p>Meeting Room A</p>
+                        <div class="filter-item function-rooms">
+                            <p>Meeting Room A</p>
+                        </div>
+
+                        <div class="filter-item floor-3">
+                            <p>Conference Room 301</p>
+                        </div>
+                    </div>
+
+                    <!-- FEET -->
+                    <div class="venus-filter feet">
+                        <div class="filter-section" data-target="#resultLobbyFeet">
+                            <div class="dropdown-custom-select z-3 filter-tab" style="z-index: 5">
+                                <div class="dropdown-custom-btn">
+                                    <div class="value-select dropdown-custom-text color-black">
+                                        <span>LOBBY LEVEL </span>
+                                    </div>
+                                    <img src="./assets/images/use/icon-arrow-select.svg" alt="" />
+                                </div>
+                                <div class="dropdown-custom-menu">
+                                    <div class="dropdown-custom-item color-black active" data-type="lobby-level">
+                                        <span class="hover-underline-black">LOBBY LEVEL</span>
+                                    </div>
+                                    <div class="dropdown-custom-item color-black" data-type="function-rooms">
+                                        <span class="hover-underline-black">FUNCTION ROOMS</span>
+                                    </div>
+                                    <div class="dropdown-custom-item color-black" data-type="floor-3">
+                                        <span class="hover-underline-black">3rd FLOOR</span>
+                                    </div>
+                                </div>
                             </div>
+                        </div>
+                    </div>
 
-                            <div class="filter-item floor-3">
-                                <!-- nội dung item 3rd Floor -->
-                                <p>Conference Room 301</p>
+                    <div id="resultLobbyFeet" class="filter-section-result">
+                        <div class="filter-item lobby-level">
+                            <div class="accordion" id="accordionExampleFeet">
+                                <div class="accordion-item">
+                                    <h2 class="accordion-header" id="headingOneFeet">
+                                        <button class="accordion-button" type="button" data-bs-toggle="collapse"
+                                            data-bs-target="#collapseOneFeet" aria-expanded="true"
+                                            aria-controls="collapseOneFeet">
+                                            <div class="venus-row">
+                                                <div class="d-flex justify-content-between align-items-center">
+                                                    <div class="venus-td-item">
+                                                        <div class="name heading-3 font-heading color-black">Grand
+                                                            Ballroom</div>
+                                                    </div>
+                                                    <div class="venus-grid">
+                                                        <div class="venus-td-item">
+                                                            <div class="text font-body b1-font color-black">17.2 x 32.5
+                                                                x 7.8</div>
+                                                        </div>
+                                                        <div class="venus-td-item">
+                                                            <div class="text font-body b1-font color-black">559</div>
+                                                        </div>
+                                                        <div class="venus-td-item">
+                                                            <div class="text font-body b1-font color-black">450</div>
+                                                        </div>
+                                                        <div class="venus-td-item">
+                                                            <div class="text font-body b1-font color-black">600</div>
+                                                        </div>
+                                                        <div class="venus-td-item">
+                                                            <div class="text font-body b1-font color-black">420</div>
+                                                        </div>
+                                                        <div class="venus-td-item">
+                                                            <div class="text font-body b1-font color-black">600</div>
+                                                        </div>
+                                                        <div class="venus-td-item">
+                                                            <div class="text font-body b1-font color-black">N/A</div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </button>
+                                    </h2>
+                                    <div id="collapseOneFeet" class="accordion-collapse collapse show"
+                                        aria-labelledby="headingOneFeet" data-bs-parent="#accordionExampleFeet">
+                                        <div class="accordion-body">
+                                            <div class="venus-body">
+                                                <div class="col-left">
+                                                    <div class="slider-wrapper wrapper-slider-parallax">
+                                                        <div class="swiper" slider-parallax slider-arrow
+                                                            slider-pagination>
+                                                            <div class="swiper-wrapper">
+                                                                <div class="swiper-slide">
+                                                                    <div class="image">
+                                                                        <img src="./assets/images/draf/deluxe-1.jpg"
+                                                                            alt="" />
+                                                                    </div>
+                                                                </div>
+                                                                <div class="swiper-slide">
+                                                                    <div class="image">
+                                                                        <img src="./assets/images/draf/deluxe-2.jpg"
+                                                                            alt="" />
+                                                                    </div>
+                                                                </div>
+                                                                <div class="swiper-slide">
+                                                                    <div class="image">
+                                                                        <img src="./assets/images/draf/deluxe-3.jpg"
+                                                                            alt="" />
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                        <div class="swiper-arrows">
+                                                            <div class="arrow-prev swiper-arrow">
+                                                                <svg width="9" height="33" viewBox="0 0 9 33"
+                                                                    fill="none" xmlns="http://www.w3.org/2000/svg">
+                                                                    <path opacity="1"
+                                                                        d="M8.55859 0.223633L0.558594 16.2236L8.55859 32.2236"
+                                                                        stroke="currentColor" />
+                                                                </svg>
+                                                            </div>
+                                                            <div class="arrow-next swiper-arrow">
+                                                                <svg width="9" height="33" viewBox="0 0 9 33"
+                                                                    fill="none" xmlns="http://www.w3.org/2000/svg">
+                                                                    <path
+                                                                        d="M0.447266 0.223633L8.44726 16.2236L0.447267 32.2236"
+                                                                        stroke="currentColor" />
+                                                                </svg>
+                                                            </div>
+                                                        </div>
+                                                        <div class="slider-pagination"></div>
+                                                    </div>
+                                                </div>
+                                                <div class="col-right">
+                                                    <div class="description">
+                                                        With 7.8m-high ceilings, glittering chandeliers and a
+                                                        pillar-free design, our capacious Grand Ballroom provides a
+                                                        sophisticated setting for large-scale social and corporate
+                                                        events. It is also suitable for hosting more intimate occasions,
+                                                        with moveable walls converting this flexible space into four
+                                                        smaller rooms.
+                                                    </div>
+
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="accordion-item">
+                                    <h2 class="accordion-header" id="headingTwoFeet">
+                                        <button class="accordion-button collapsed" type="button"
+                                            data-bs-toggle="collapse" data-bs-target="#collapseTwoFeet"
+                                            aria-expanded="false" aria-controls="collapseTwoFeet">
+                                            <div class="venus-row">
+                                                <div class="d-flex justify-content-between align-items-center">
+                                                    <div class="venus-td-item">
+                                                        <div class="name heading-3 font-heading color-black">Grand
+                                                            Ballroom</div>
+                                                    </div>
+                                                    <div class="venus-grid">
+                                                        <div class="venus-td-item">
+                                                            <div class="text font-body b1-font color-black">17.2 x 32.5
+                                                                x 7.8</div>
+                                                        </div>
+                                                        <div class="venus-td-item">
+                                                            <div class="text font-body b1-font color-black">559</div>
+                                                        </div>
+                                                        <div class="venus-td-item">
+                                                            <div class="text font-body b1-font color-black">450</div>
+                                                        </div>
+                                                        <div class="venus-td-item">
+                                                            <div class="text font-body b1-font color-black">600</div>
+                                                        </div>
+                                                        <div class="venus-td-item">
+                                                            <div class="text font-body b1-font color-black">420</div>
+                                                        </div>
+                                                        <div class="venus-td-item">
+                                                            <div class="text font-body b1-font color-black">600</div>
+                                                        </div>
+                                                        <div class="venus-td-item">
+                                                            <div class="text font-body b1-font color-black">N/A</div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </button>
+                                    </h2>
+                                    <div id="collapseTwoFeet" class="accordion-collapse collapse"
+                                        aria-labelledby="headingTwoFeet" data-bs-parent="#accordionExampleFeet">
+                                        <div class="accordion-body">
+                                            <div class="venus-body">
+                                                <div class="col-left">
+                                                    <div class="slider-wrapper wrapper-slider-parallax">
+                                                        <div class="swiper" slider-parallax slider-arrow
+                                                            slider-pagination>
+                                                            <div class="swiper-wrapper">
+                                                                <div class="swiper-slide">
+                                                                    <div class="image">
+                                                                        <img src="./assets/images/draf/deluxe-1.jpg"
+                                                                            alt="" />
+                                                                    </div>
+                                                                </div>
+                                                                <div class="swiper-slide">
+                                                                    <div class="image">
+                                                                        <img src="./assets/images/draf/deluxe-2.jpg"
+                                                                            alt="" />
+                                                                    </div>
+                                                                </div>
+                                                                <div class="swiper-slide">
+                                                                    <div class="image">
+                                                                        <img src="./assets/images/draf/deluxe-3.jpg"
+                                                                            alt="" />
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                        <div class="swiper-arrows">
+                                                            <div class="arrow-prev swiper-arrow">
+                                                                <svg width="9" height="33" viewBox="0 0 9 33"
+                                                                    fill="none" xmlns="http://www.w3.org/2000/svg">
+                                                                    <path opacity="1"
+                                                                        d="M8.55859 0.223633L0.558594 16.2236L8.55859 32.2236"
+                                                                        stroke="currentColor" />
+                                                                </svg>
+                                                            </div>
+                                                            <div class="arrow-next swiper-arrow">
+                                                                <svg width="9" height="33" viewBox="0 0 9 33"
+                                                                    fill="none" xmlns="http://www.w3.org/2000/svg">
+                                                                    <path
+                                                                        d="M0.447266 0.223633L8.44726 16.2236L0.447267 32.2236"
+                                                                        stroke="currentColor" />
+                                                                </svg>
+                                                            </div>
+                                                        </div>
+                                                        <div class="slider-pagination"></div>
+                                                    </div>
+                                                </div>
+                                                <div class="col-right">
+                                                    <div class="description">
+                                                        With 7.8m-high ceilings, glittering chandeliers and a
+                                                        pillar-free design, our capacious Grand Ballroom provides a
+                                                        sophisticated setting for large-scale social and corporate
+                                                        events. It is also suitable for hosting more intimate occasions,
+                                                        with moveable walls converting this flexible space into four
+                                                        smaller rooms.
+                                                    </div>
+
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
                             </div>
+                        </div>
 
+                        <div class="filter-item function-rooms">
+                            <p>Meeting Room A</p>
+                        </div>
 
+                        <div class="filter-item floor-3">
+                            <p>Conference Room 301</p>
                         </div>
                     </div>
                 </div>

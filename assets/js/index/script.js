@@ -1757,9 +1757,203 @@ function createFilterTabDropdown() {
     });
   });
 }
+function createUnitFilter() {
+  const unitDropdown = document.querySelector(
+    ".venus-td .filter-section .dropdown-custom-select.filter-tab",
+  );
+  if (!unitDropdown) return;
+
+  const items = unitDropdown.querySelectorAll(
+    ".dropdown-custom-item[data-type]",
+  );
+  const displayText = unitDropdown.querySelector(".dropdown-custom-text span");
+  const menu = unitDropdown.querySelector(".dropdown-custom-menu");
+  const btn = unitDropdown.querySelector(".dropdown-custom-btn");
+
+  function getPairs() {
+    const pairs = [];
+    document.querySelectorAll(".venus-filter").forEach((el) => {
+      const filterSection = el.querySelector(".filter-section");
+      const targetSelector = filterSection?.dataset.target;
+      const result = targetSelector
+        ? document.querySelector(targetSelector)
+        : null;
+      pairs.push({
+        type: el.classList.contains("m2") ? "m2" : "feet",
+        el,
+        result,
+      });
+    });
+    return pairs;
+  }
+
+  function showUnit(type) {
+    const pairs = getPairs();
+    const allEls = pairs.flatMap((p) => [p.el, p.result].filter(Boolean));
+
+    gsap
+      .timeline()
+      .to(allEls, { autoAlpha: 0, duration: 0.2 })
+      .call(() => {
+        pairs.forEach(({ el, result, type: pType }) => {
+          const show = pType === type;
+          el.style.display = show ? "" : "none";
+          if (result) result.style.display = show ? "" : "none";
+        });
+      })
+      .to(
+        allEls.filter((_, i) => true),
+        { autoAlpha: 1, duration: 0.2 },
+      )
+      .invalidate(); // đảm bảo recalc display sau khi set inline
+  }
+
+  btn.addEventListener("click", function (e) {
+    e.stopPropagation();
+    menu.classList.toggle("dropdown--active");
+    btn.classList.toggle("--active");
+  });
+
+  document.addEventListener("click", function () {
+    menu.classList.remove("dropdown--active");
+    btn.classList.remove("--active");
+  });
+
+  items.forEach((item) => {
+    item.addEventListener("click", function (e) {
+      e.stopPropagation();
+
+      items.forEach((i) => i.classList.remove("active"));
+      this.classList.add("active");
+
+      const itemSpan = this.querySelector("span");
+      if (displayText) {
+        displayText.textContent = itemSpan
+          ? itemSpan.textContent.trim()
+          : this.textContent.trim();
+      }
+
+      showUnit(this.dataset.type);
+
+      menu.classList.remove("dropdown--active");
+      btn.classList.remove("--active");
+    });
+  });
+
+  const activeItem =
+    unitDropdown.querySelector(".dropdown-custom-item.active[data-type]") ||
+    items[0];
+  if (activeItem) {
+    // Init không cần animate, set trực tiếp
+    const pairs = getPairs();
+    pairs.forEach(({ el, result, type }) => {
+      const show = type === activeItem.dataset.type;
+      el.style.display = show ? "" : "none";
+      if (result) result.style.display = show ? "" : "none";
+    });
+  }
+}
+
+function createVenueFilterDropdown() {
+  document
+    .querySelectorAll(".filter-section[data-target]")
+    .forEach((filterSection) => {
+      const targetSelector = filterSection.dataset.target;
+      const result = document.querySelector(targetSelector);
+      if (!result) return;
+
+      const dropdownFilterTab = filterSection.querySelector(
+        ".dropdown-custom-select.filter-tab",
+      );
+      if (!dropdownFilterTab) return;
+
+      const items = dropdownFilterTab.querySelectorAll(
+        ".dropdown-custom-item[data-type]",
+      );
+      if (!items.length) return;
+
+      const displayText = dropdownFilterTab.querySelector(
+        ".dropdown-custom-text span",
+      );
+      const menu = dropdownFilterTab.querySelector(".dropdown-custom-menu");
+      const btn = dropdownFilterTab.querySelector(".dropdown-custom-btn");
+
+      btn.addEventListener("click", function (e) {
+        e.stopPropagation();
+        menu.classList.toggle("dropdown--active");
+        btn.classList.toggle("--active");
+      });
+
+      document.addEventListener("click", function () {
+        menu.classList.remove("dropdown--active");
+        btn.classList.remove("--active");
+      });
+
+      const activeItem =
+        dropdownFilterTab.querySelector(
+          ".dropdown-custom-item.active[data-type]",
+        ) || items[0];
+
+      if (activeItem) {
+        const activeType = activeItem.dataset.type;
+        result.querySelectorAll(".filter-item").forEach((item) => {
+          item.style.display = item.classList.contains(activeType)
+            ? ""
+            : "none";
+        });
+
+        const itemSpan = activeItem.querySelector("span");
+        if (displayText) {
+          displayText.textContent = itemSpan
+            ? itemSpan.textContent.trim()
+            : activeItem.textContent.trim();
+        }
+      }
+
+      items.forEach((item) => {
+        item.addEventListener("click", function (e) {
+          e.stopPropagation();
+
+          items.forEach((i) => i.classList.remove("active"));
+          this.classList.add("active");
+
+          const itemSpan = this.querySelector("span");
+          if (displayText) {
+            displayText.textContent = itemSpan
+              ? itemSpan.textContent.trim()
+              : this.textContent.trim();
+          }
+
+          const type = this.dataset.type;
+          const filterItems = result.querySelectorAll(".filter-item");
+
+          gsap
+            .timeline()
+            .to(result, { autoAlpha: 0, duration: 0.3 })
+            .call(() => {
+              filterItems.forEach((fItem) => {
+                fItem.style.display = fItem.classList.contains(type)
+                  ? ""
+                  : "none";
+              });
+            })
+            .to(result, { autoAlpha: 1, duration: 0.3 });
+
+          menu.classList.remove("dropdown--active");
+          btn.classList.remove("--active");
+        });
+      });
+    });
+}
+
+createUnitFilter();
+createVenueFilterDropdown();
+
+// Init
+
 const init = () => {
   gsap.registerPlugin(ScrollTrigger);
-  // dropdownPhoneCode();
+
   dropdownRegion();
   customDropdown();
   createFilterTab();

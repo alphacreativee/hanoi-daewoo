@@ -13,6 +13,16 @@
       margin-bottom: 60px;
     }
   }
+  &-body {
+    display: flex;
+    .col-left,
+    .col-right {
+      width: 50%;
+    }
+    .col-right {
+      padding: 48px;
+    }
+  }
   &-top {
     padding: 0 60px;
     margin-bottom: 48px;
@@ -28,6 +38,51 @@
     align-items: center;
     justify-content: space-between;
     gap: 24px;
+    &.first-col {
+      flex-direction: row;
+      align-items: flex-start;
+
+      .filter-section {
+        .dropdown-custom-select {
+          position: relative;
+        }
+        .dropdown-custom-menu {
+          position: absolute;
+          background-color: #f0ebe4;
+          // background-color: red;
+          top: 100%;
+
+          left: -16px;
+          margin-top: 16px;
+          opacity: 0;
+          visibility: hidden;
+          transition: all 0.4s ease;
+          display: flex;
+          flex-direction: column;
+          gap: 8px;
+          padding: 16px 24px;
+          z-index: 6;
+          &.dropdown--active {
+            opacity: 1;
+            visibility: visible;
+          }
+        }
+        .dropdown-custom-btn {
+          display: flex;
+          align-items: center;
+          gap: 16px;
+        }
+        .value-select,
+        .dropdown-custom-item {
+          font-size: 14px;
+          line-height: 24px;
+          color: var(--color-black);
+          letter-spacing: 3%;
+          font-weight: 600;
+          text-transform: uppercase;
+        }
+      }
+    }
     &-item {
       text-align: center;
       .name {
@@ -45,6 +100,7 @@
     }
   }
   &-filter {
+    margin-bottom: 32px;
     .filter-section {
       background-color: rgba(179, 156, 121, 0.2);
       padding: 16px 60px;
@@ -107,5 +163,18 @@
     .accordion-button::after {
       display: none;
     }
+  }
+  .accordion-body {
+    padding: 0;
+    background-color: #f2f2f2;
+  }
+  .accordion-button:not(.collapsed) {
+    color: transparent;
+    background-color: var(--color-white);
+    box-shadow: none;
+  }
+  .accordion-button:focus {
+    border-color: none;
+    box-shadow: none;
   }
 }

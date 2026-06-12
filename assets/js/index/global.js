@@ -211,7 +211,7 @@ export async function dropdownRegion() {
 }
 export function customDropdown() {
   const dropdowns = document.querySelectorAll(
-    ".dropdown-custom, .dropdown-custom-select",
+    ".dropdown-custom:not(.filter-tab), .dropdown-custom-select:not(.filter-tab)",
   );
   if (!dropdowns.length) return;
   dropdowns.forEach((dropdown) => {
