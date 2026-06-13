@@ -1965,7 +1965,7 @@ const init = () => {
   readMore();
   imageZoom();
   sliderDining();
-  accommodationSlider();
+  // accommodationSlider();
   eventSlider();
   animationText();
   animationAccommodationCard();

@@ -1,3 +1,5 @@
+import { reinitAccommodationSlider } from "../../main/js/slider.min.js";
+
 export async function dropdownPhoneCode() {
   const phoneDropdown = document.querySelector(
     ".dropdown-custom-select.select-phone-code",
@@ -303,46 +305,59 @@ export function createFilterTab() {
 
     if (!result) return;
 
+    const isSelectTab = section.classList.contains("select-tab");
     const buttons = section.querySelectorAll(".filter-button[data-type]");
 
-    // Chỉ cần check và filter lần đầu nếu có button active
+    const applyFilter = (type) => {
+      const items = result.querySelectorAll(".filter-item");
+
+      items.forEach((item) => {
+        let show;
+        if (type === "all") {
+          show = isSelectTab ? item.classList.contains("all") : true;
+        } else {
+          show = item.classList.contains(type);
+        }
+        item.style.display = show ? "" : "none";
+      });
+
+      // Reinit slider cho các filter-item đang hiện
+      items.forEach((item) => {
+        if (item.style.display === "none") return;
+
+        const sliderEl = item.querySelector(".accommodations-slider");
+        if (sliderEl) reinitAccommodationSlider(sliderEl);
+
+        // Reinit nested parallax slider bên trong item
+        item.querySelectorAll("[slider-parallax]").forEach((el) => {
+          reinitParallaxSlider(el);
+        });
+      });
+    };
+
+    // Filter lần đầu nếu có button active
     const activeBtn = section.querySelector(".filter-button.active");
     if (activeBtn) {
       const activeType = activeBtn.dataset.type;
-      if (activeType !== "all") {
-        result.querySelectorAll(".filter-item").forEach((item) => {
-          item.style.display = item.classList.contains(activeType)
-            ? ""
-            : "none";
-        });
+      if (activeType !== "all" || isSelectTab) {
+        applyFilter(activeType);
       }
     }
 
     buttons.forEach((btn) => {
       btn.addEventListener("click", function () {
-        // Update active state
         section
           .querySelectorAll(".filter-button")
           .forEach((b) => b.classList.remove("active"));
         this.classList.add("active");
 
         const type = this.dataset.type;
-        const items = result.querySelectorAll(".filter-item");
 
-        // Animate fade out -> filter -> fade in
         gsap
           .timeline()
           .to(result, { autoAlpha: 0, duration: 0.3 })
           .call(() => {
-            items.forEach((item) => {
-              if (type === "all") {
-                item.style.display = "";
-              } else {
-                item.style.display = item.classList.contains(type)
-                  ? ""
-                  : "none";
-              }
-            });
+            applyFilter(type);
           })
           .to(result, { autoAlpha: 1, duration: 0.3 });
       });
@@ -353,126 +368,131 @@ export function createFilterTab() {
 export function sliderParallax() {
   if ($("[slider-parallax]").length < 1) return;
 
-  var interleaveOffset = 0.8;
-
   $("[slider-parallax]").each(function () {
-    const swiperEl = this;
-    const $swiper = $(this);
+    initOneParallaxSlider(this);
+  });
+}
 
-    const hasAutoplay =
-      window.innerWidth < 992
-        ? false
-        : swiperEl.hasAttribute("slider-autoplay");
+function initOneParallaxSlider(swiperEl) {
+  var interleaveOffset = 0.8;
+  const $swiper = $(swiperEl);
 
-    const hasNoDrag = swiperEl.hasAttribute("slider-no-drag");
-    const hasChangeLabel = swiperEl.hasAttribute("slider-change-label");
+  const hasAutoplay =
+    window.innerWidth < 992 ? false : swiperEl.hasAttribute("slider-autoplay");
 
-    const $wrapper = $swiper.closest(".wrapper-slider-parallax");
-    const $sliderTitle = $wrapper.find(".slider-title");
-    const nextBtn = $wrapper.find(".arrow-next")[0];
-    const prevBtn = $wrapper.find(".arrow-prev")[0];
-    const $pagination = $wrapper.find(".slider-pagination");
+  const hasNoDrag = swiperEl.hasAttribute("slider-no-drag");
+  const hasChangeLabel = swiperEl.hasAttribute("slider-change-label");
 
-    const hasArrow =
-      swiperEl.hasAttribute("slider-arrow") && nextBtn && prevBtn;
+  const $wrapper = $swiper.closest(".wrapper-slider-parallax");
+  const $sliderTitle = $wrapper.find(".slider-title");
+  const nextBtn = $wrapper.find(".arrow-next")[0];
+  const prevBtn = $wrapper.find(".arrow-prev")[0];
+  const $pagination = $wrapper.find(".slider-pagination");
 
-    const swiper = new Swiper(swiperEl, {
-      slidesPerView: 1,
-      init: true,
-      loop: true,
-      speed: 1500,
-      watchSlidesProgress: true,
+  const hasArrow = swiperEl.hasAttribute("slider-arrow") && nextBtn && prevBtn;
 
-      keyboard: !hasNoDrag,
-      // mousewheel: !hasNoDrag,
-      grabCursor: !hasNoDrag,
-      allowTouchMove: hasNoDrag ? false : true,
+  const swiper = new Swiper(swiperEl, {
+    slidesPerView: 1,
+    init: true,
+    loop: true,
+    speed: 1500,
+    watchSlidesProgress: true,
 
-      pagination: {
-        el: $pagination[0],
-        dynamicBullets: true,
-        clickable: true,
-        dynamicMainBullets: 1,
+    keyboard: !hasNoDrag,
+    grabCursor: !hasNoDrag,
+    allowTouchMove: hasNoDrag ? false : true,
+
+    pagination: {
+      el: $pagination[0],
+      dynamicBullets: true,
+      clickable: true,
+      dynamicMainBullets: 1,
+    },
+
+    autoplay: hasAutoplay
+      ? {
+          delay: 4000,
+          disableOnInteraction: true,
+        }
+      : false,
+
+    navigation: hasArrow
+      ? {
+          nextEl: nextBtn,
+          prevEl: prevBtn,
+        }
+      : false,
+    on: {
+      init(swiper) {
+        if (hasChangeLabel) updateLabel(swiper);
       },
 
-      autoplay: hasAutoplay
-        ? {
-            delay: 4000,
-            disableOnInteraction: true,
-          }
-        : false,
+      slideChange(swiper) {
+        if (hasChangeLabel) updateLabel(swiper);
+      },
 
-      navigation: hasArrow
-        ? {
-            nextEl: nextBtn,
-            prevEl: prevBtn,
-          }
-        : false,
-      on: {
-        init(swiper) {
-          if (hasChangeLabel) updateLabel(swiper);
-        },
+      progress: function (swiper) {
+        swiper.slides.forEach(function (slide) {
+          const slideProgress = slide.progress || 0;
+          const innerOffset = swiper.width * interleaveOffset;
+          const innerTranslate = slideProgress * innerOffset;
 
-        slideChange(swiper) {
-          if (hasChangeLabel) updateLabel(swiper);
-        },
-
-        progress: function (swiper) {
-          swiper.slides.forEach(function (slide) {
-            const slideProgress = slide.progress || 0;
-            const innerOffset = swiper.width * interleaveOffset;
-            const innerTranslate = slideProgress * innerOffset;
-
-            if (!isNaN(innerTranslate)) {
-              const slideInner = slide.querySelector(".image");
-              if (slideInner) {
-                slideInner.style.transform = `translate3d(${innerTranslate}px, 0, 0)`;
-              }
-            }
-          });
-        },
-
-        touchStart: function (swiper) {
-          swiper.slides.forEach(function (slide) {
-            slide.style.transition = "";
-          });
-        },
-
-        setTransition: function (swiper, speed) {
-          const easing = "cubic-bezier(0.25, 0.1, 0.25, 1)";
-
-          swiper.slides.forEach(function (slide) {
-            slide.style.transition = `${speed}ms ${easing}`;
-
+          if (!isNaN(innerTranslate)) {
             const slideInner = slide.querySelector(".image");
             if (slideInner) {
-              slideInner.style.transition = `${speed}ms ${easing}`;
+              slideInner.style.transform = `translate3d(${innerTranslate}px, 0, 0)`;
             }
-          });
-        },
+          }
+        });
       },
-    });
 
-    function updateLabel(swiper) {
-      const realIndex = swiper.realIndex;
+      touchStart: function (swiper) {
+        swiper.slides.forEach(function (slide) {
+          slide.style.transition = "";
+        });
+      },
 
-      const realSlides = swiper.el.querySelectorAll(
-        ".swiper-slide:not(.swiper-slide-duplicate)",
-      );
+      setTransition: function (swiper, speed) {
+        const easing = "cubic-bezier(0.25, 0.1, 0.25, 1)";
 
-      const total = realSlides.length;
-      const currentSlide = realSlides[realIndex];
-      const title = currentSlide?.dataset?.title || "";
+        swiper.slides.forEach(function (slide) {
+          slide.style.transition = `${speed}ms ${easing}`;
 
-      if ($sliderTitle.length) {
-        $sliderTitle.text(title);
-      }
-
-      // if ($pagination.length) {
-      //   $pagination.text(`${realIndex + 1}/${total}`);
-      // }
-    }
+          const slideInner = slide.querySelector(".image");
+          if (slideInner) {
+            slideInner.style.transition = `${speed}ms ${easing}`;
+          }
+        });
+      },
+    },
   });
+
+  function updateLabel(swiper) {
+    const realIndex = swiper.realIndex;
+
+    const realSlides = swiper.el.querySelectorAll(
+      ".swiper-slide:not(.swiper-slide-duplicate)",
+    );
+
+    const total = realSlides.length;
+    const currentSlide = realSlides[realIndex];
+    const title = currentSlide?.dataset?.title || "";
+
+    if ($sliderTitle.length) {
+      $sliderTitle.text(title);
+    }
+  }
+
+  swiperEl.swiperInstance = swiper;
+}
+
+// Destroy + reinit 1 parallax slider cụ thể
+export function reinitParallaxSlider(swiperEl) {
+  if (swiperEl.swiperInstance) {
+    swiperEl.swiperInstance.destroy(true, true);
+    swiperEl.swiperInstance = null;
+  }
+  initOneParallaxSlider(swiperEl);
 }
 
 export function initGuestSelector() {
