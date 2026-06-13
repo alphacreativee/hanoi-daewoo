@@ -3723,12 +3723,12 @@ body {
   flex-shrink: 0;
 }
 .roomAmenities .amenities-bottom {
-  padding-bottom: 180px;
+  padding-bottom: 156px;
   position: relative;
 }
 @media (max-width: 991px) {
   .roomAmenities .amenities-bottom {
-    padding-bottom: 150px;
+    padding-bottom: 124px;
   }
 }
 .roomAmenities .amenities-bottom .slider-wrapper {
@@ -3737,7 +3737,7 @@ body {
 .roomAmenities .amenities-bottom::after {
   content: "";
   width: 100%;
-  height: calc(100% - 180px);
+  height: calc(100% - 156px);
   bottom: 0;
   left: 0;
   position: absolute;
@@ -3749,7 +3749,7 @@ body {
     left: -16px;
     bottom: 50%;
     transform: translateY(50%);
-    height: calc(100% - 128px);
+    height: calc(100% - 100px);
   }
 }
 .roomAmenities .amenities-bottom .swiper {
@@ -3767,6 +3767,9 @@ body {
   .roomAmenities [slider-parallax] .swiper-arrow.arrow-prev {
     left: 0;
   }
+}
+.roomAmenities .slider-title {
+  display: none;
 }
 
 .list-detail-box {

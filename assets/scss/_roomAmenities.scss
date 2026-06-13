@@ -40,10 +40,10 @@
     }
 
     &-bottom {
-      padding-bottom: 180px;
+      padding-bottom: 156px;
       position: relative;
       @media (max-width: 991px) {
-        padding-bottom: 150px;
+        padding-bottom: 124px;
       }
       .slider-wrapper {
         z-index: 3;
@@ -52,7 +52,7 @@
       &::after {
         content: "";
         width: 100%;
-        height: calc(100% - 180px);
+        height: calc(100% - 156px);
         bottom: 0;
         left: 0;
         position: absolute;
@@ -62,7 +62,7 @@
           left: -16px;
           bottom: 50%;
           transform: translateY(50%);
-          height: calc(100% - 128px);
+          height: calc(100% - 100px);
         }
       }
 
@@ -83,5 +83,8 @@
     [slider-parallax] .swiper-arrow.arrow-prev {
       left: 0;
     }
+  }
+  .slider-title {
+    display: none;
   }
 }
