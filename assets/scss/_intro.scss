@@ -18,6 +18,17 @@
   &.intro-recruitment {
     .intro-item .number {
       font-size: 80px;
+      @media (max-width: 991px) {
+        font-size: 50px;
+      }
+    }
+    .intro-list {
+      @media (max-width: 991px) {
+        flex-wrap: wrap;
+        align-items: center;
+        justify-content: center;
+        gap: 20px;
+      }
     }
   }
 

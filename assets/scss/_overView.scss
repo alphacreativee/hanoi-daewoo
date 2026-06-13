@@ -12,9 +12,17 @@
   &.recruitment-detail {
     .overview-container {
       gap: 0;
-
+      @media (max-width: 991px) {
+        gap: 48px 0;
+      }
       .content-right {
         padding-left: calc(100% / 5);
+        @media (max-width: 991px) {
+          padding-left: 0px;
+          .title {
+            min-height: 24px;
+          }
+        }
       }
     }
   }

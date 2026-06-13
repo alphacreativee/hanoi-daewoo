@@ -6,6 +6,9 @@
   .gallery {
     &-head {
       margin-bottom: 60px;
+      @media (max-width: 991px) {
+        margin-bottom: 32px;
+      }
       .title {
         margin-bottom: 40px;
         @media (max-width: 991px) {

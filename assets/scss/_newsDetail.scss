@@ -4,14 +4,21 @@
 
     display: grid;
     grid-template-columns: 1fr 3fr;
-
+    @media (max-width: 991px) {
+      padding: 64px 16px 0;
+      display: flex;
+      flex-direction: column-reverse;
+      gap: 48px;
+    }
     .col-left {
       padding: 24px;
       background-color: var(--color-white);
       height: max-content;
       position: sticky;
       top: 140px;
-
+      @media (max-width: 991px) {
+        position: static;
+      }
       &__item {
         padding: 25px 0;
         border-bottom: 1px solid rgba(118, 120, 122, 0.2);
@@ -59,7 +66,9 @@
 
     .col-right {
       padding-left: 80px;
-
+      @media (max-width: 991px) {
+        padding-left: 0;
+      }
       .date {
         margin-bottom: 8px;
       }
