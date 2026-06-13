@@ -1,4 +1,11 @@
 .moreInfo {
+  &.des-detail {
+    .moreInfo-container {
+      @media (max-width: 991px) {
+        padding-top: 64px !important;
+      }
+    }
+  }
   &.related-offers {
     .moreInfo-container {
       @media (max-width: 991px) {

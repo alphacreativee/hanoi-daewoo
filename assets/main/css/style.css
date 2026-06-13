@@ -2521,6 +2521,11 @@ body {
 }
 
 @media (max-width: 991px) {
+  .moreInfo.des-detail .moreInfo-container {
+    padding-top: 64px !important;
+  }
+}
+@media (max-width: 991px) {
   .moreInfo.related-offers .moreInfo-container {
     padding-top: 0;
   }
