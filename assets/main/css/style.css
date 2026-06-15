@@ -1647,19 +1647,19 @@ body {
 
 .toolbar-mobile {
   position: fixed;
-  bottom: 32px;
+  bottom: 0;
   z-index: 100;
   left: 0;
   right: 0;
-}
-.toolbar-mobile.change-bgc-button button {
-  background-color: var(--color-blue);
-  color: var(--color-white);
+  padding: 10px;
+  background-color: var(--color-white);
+  border-top: 1px solid rgba(0, 0, 0, 0.2);
 }
 .toolbar-mobile button {
-  max-width: calc(100% - 32px);
+  max-width: 100%;
   width: 100%;
-  background-color: var(--color-white);
+  background-color: var(--color-blue);
+  color: var(--color-white);
   padding: 10px 20px;
   font-size: 13px;
   line-height: 24px;
@@ -2184,6 +2184,11 @@ body {
 .footer-container {
   background-color: var(--color-dark-blue);
   color: var(--color-white);
+}
+@media (max-width: 991px) {
+  .footer-container {
+    padding-bottom: 72px;
+  }
 }
 @media (max-width: 991px) {
   .footer-bct {

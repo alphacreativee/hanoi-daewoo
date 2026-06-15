@@ -1021,7 +1021,7 @@ const init = () => {
   animationItemsSection();
   wonderGallery();
   swiperThreeCol();
-  toolbarMobile();
+  // toolbarMobile();
 };
 document.addEventListener("DOMContentLoaded", () => {
   init();
