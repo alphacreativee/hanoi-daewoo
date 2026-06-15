@@ -481,7 +481,7 @@ body {
   visibility: hidden;
   transition: all 0.3s ease;
   transform: translateY(-100%);
-  z-index: 3;
+  z-index: 7;
 }
 .booking-form .select-people .select-box.is-bottom {
   top: 100%;
