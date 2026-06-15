@@ -28,6 +28,9 @@
     top: 120px;
     max-width: 33%;
     width: 100%;
+    @media (max-width: 1200px) and (min-width: 992px) {
+      left: 80px;
+    }
     @media (max-width: 991px) {
       position: static;
       top: 0;
@@ -76,6 +79,9 @@
     align-items: flex-end;
     gap: 32px;
     cursor: pointer;
+    @media (max-width: 1200px) and (min-width: 992px) {
+      right: 80px;
+    }
     .dining-title {
       opacity: 0.5;
       transition: all 0.3s ease;

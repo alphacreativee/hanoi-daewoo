@@ -461,6 +461,10 @@ function eventSlider() {
     breakpoints: {
       991: {
         slidesPerView: 2,
+        spaceBetween: 24,
+      },
+      1025: {
+        slidesPerView: 2,
         spaceBetween: 40,
       },
     },

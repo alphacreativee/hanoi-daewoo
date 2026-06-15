@@ -76,6 +76,9 @@ body {
   background-color: var(--color-white);
   max-width: calc(calc(8 / 12) * 100%);
   width: 100%;
+  @media (max-width: 1200px) and (min-width: 992px) {
+    max-width: calc(calc(100% - 160px));
+  }
   @media (max-width: 991px) {
     position: fixed;
     transition: all 0.3s ease;
