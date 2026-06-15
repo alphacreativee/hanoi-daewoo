@@ -924,26 +924,24 @@ function wonderGallery() {
 }
 function swiperThreeCol() {
   if (!$(".swiper-three-col").length) return;
-
+  const isMobile = window.innerWidth <= 991;
   const slides = $(".swiper-three-col .swiper-slide").length;
-  const perView = $(".swiper-three-col").data("per-view") || 3;
+  const perView = isMobile ? 1 : $(".swiper-three-col").data("per-view") || 3;
   const spaceBetween = $(".swiper-three-col").data("space-between") || 30;
 
   let swiper;
 
   function initSwiper() {
-    const isMobile = window.innerWidth <= 991;
+    // if (isMobile) {
+    //   if (swiper) swiper.destroy(true, true);
+    //   swiper = null;
+    //   document
+    //     .querySelector(".main-swiper .swiper-nav")
+    //     ?.classList.add("hidden");
+    //   return;
+    // }
 
-    if (isMobile) {
-      if (swiper) swiper.destroy(true, true);
-      swiper = null;
-      document
-        .querySelector(".main-swiper .swiper-nav")
-        ?.classList.add("hidden");
-      return;
-    }
-
-    if (swiper) swiper.destroy(true, true);
+    // if (swiper) swiper.destroy(true, true);
 
     swiper = new Swiper(".swiper-three-col", {
       slidesPerView: perView,
@@ -951,6 +949,7 @@ function swiperThreeCol() {
       pagination: {
         el: ".main-swiper .swiper-pagination",
         type: "progressbar",
+        enabled: !isMobile,
       },
       navigation: {
         nextEl: ".main-swiper .swiper-button-next",

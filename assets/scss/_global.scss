@@ -19,7 +19,7 @@ body {
   background-color: var(--color-white);
   transition: all 0.4s ease;
   &:hover {
-    background-color: var(--color-blue);
+    background-color: var(--color-gold);
     color: var(--color-white);
   }
 
@@ -1525,6 +1525,10 @@ body {
     align-items: center;
     gap: 48px;
     margin-top: 60px;
+    @media (max-width: 991px) {
+      margin-top: 24px;
+      justify-content: center;
+    }
     &.hidden {
       display: none;
     }
@@ -1539,6 +1543,9 @@ body {
     bottom: 0;
     height: 1px;
     background-color: rgba(0, 0, 0, 0.2);
+    @media (max-width: 991px) {
+      display: none;
+    }
     .swiper-pagination-progressbar-fill {
       background-color: var(--color-black);
     }
