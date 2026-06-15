@@ -2,6 +2,9 @@
   &-container {
     background-color: var(--color-dark-blue);
     color: var(--color-white);
+    @media (max-width: 991px) {
+      padding-bottom: 72px;
+    }
   }
   &-bct {
     @media (max-width: 991px) {

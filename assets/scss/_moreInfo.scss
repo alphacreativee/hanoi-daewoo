@@ -87,6 +87,7 @@
           z-index: 2;
           width: 90%;
           transition: transform 0.6s ease;
+
           @media (max-width: 991px) {
             transform: translate(-50%, -50%);
           }
@@ -95,6 +96,15 @@
 
             opacity: 0;
             transition: opacity 0.6s ease;
+            @media (max-width: 1200px) and (min-width: 992px) {
+              display: flex;
+              display: -webkit-box;
+              -webkit-line-clamp: 4;
+              -webkit-box-orient: vertical;
+              overflow: hidden;
+              text-overflow: ellipsis;
+              word-break: break-word;
+            }
             @media (max-width: 991px) {
               opacity: 1;
             }
@@ -148,10 +158,10 @@
       }
     }
   }
-  .swiper-wrapper {
-    @media (max-width: 991px) {
-      flex-direction: column;
-      gap: 24px;
-    }
-  }
+  // .swiper-wrapper {
+  //   @media (max-width: 991px) {
+  //     flex-direction: column;
+  //     gap: 24px;
+  //   }
+  // }
 }

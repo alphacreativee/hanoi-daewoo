@@ -5,7 +5,7 @@
     transform 0.3s ease;
 
   --header-top-height: 104px;
-  @media (max-width: 991px) {
+  @media (max-width: 1200px) {
     --header-top-height: 0px;
   }
   .logo-mobile-group {
@@ -193,8 +193,10 @@
   .header {
     &-top {
       padding: 12px 0;
-      border-bottom: 1px solid var(--color-white);
-
+      border-bottom: 1px solid rgba(255, 255, 255, 0.5);
+      @media (max-width: 1200px) and (min-width: 992px) {
+        display: none !important;
+      }
       &-logo {
         a {
           display: inline-block;
@@ -211,6 +213,11 @@
       align-items: center;
       gap: 0 40px;
       transition: background-color 0.3s ease;
+      &--center {
+        @media (max-width: 1200px) and (min-width: 991px) {
+          display: none !important;
+        }
+      }
       @media (max-width: 991px) {
         padding: 16px;
         height: auto;
@@ -218,6 +225,9 @@
       &-logo--mobile {
         width: 60px;
         aspect-ratio: 1;
+        @media (max-width: 1200px) and (min-width: 992px) {
+          display: block !important;
+        }
         & > a {
           display: block;
           width: 100%;

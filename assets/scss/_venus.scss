@@ -47,6 +47,11 @@
     }
     .col-right {
       padding: 48px;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      align-items: flex-start;
+      gap: 48px;
     }
   }
   &-top {

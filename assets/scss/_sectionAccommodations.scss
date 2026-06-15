@@ -10,6 +10,9 @@
   &-container {
     padding: 120px 40px;
     background-color: #f2f2f2;
+    @media (max-width: 1200px) and (min-width: 992px) {
+      padding: 120px 80px;
+    }
     @media (max-width: 991px) {
       padding: 64px 0px;
       .section-title {
@@ -122,6 +125,9 @@
       .swiper {
         width: 100%;
         aspect-ratio: 845 / 560;
+        @media (max-width: 1200px) and (min-width: 992px) {
+          aspect-ratio: 845 / 700;
+        }
       }
 
       .swiper-arrow.arrow-next {
@@ -156,6 +162,9 @@
 
       display: flex;
       flex-direction: column;
+      @media (max-width: 1200px) and (min-width: 992px) {
+        padding: 32px;
+      }
       @media (max-width: 991px) {
         position: static;
         width: 100%;
@@ -167,6 +176,9 @@
       .info {
         margin-top: 16px;
         gap: 32px;
+        @media (max-width: 1200px) and (min-width: 992px) {
+          gap: 16px;
+        }
         @media (max-width: 991px) {
           gap: 8px 16px;
         }
@@ -190,6 +202,15 @@
       .desc {
         margin-top: 24px;
         margin-bottom: 40px;
+        @media (max-width: 1200px) and (min-width: 991px) {
+          display: -webkit-box;
+          -webkit-line-clamp: 3;
+          -webkit-box-orient: vertical;
+          overflow: hidden;
+          text-overflow: ellipsis;
+          word-break: break-word;
+          margin-bottom: 24px;
+        }
         @media (max-width: 991px) {
           margin-bottom: 24px;
         }
