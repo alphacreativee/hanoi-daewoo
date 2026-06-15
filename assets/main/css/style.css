@@ -5234,6 +5234,11 @@ body {
 }
 .venus-body .col-right {
   padding: 48px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 48px;
 }
 .venus-top {
   padding: 0 60px;
