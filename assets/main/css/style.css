@@ -739,8 +739,8 @@ body {
 
 @media (max-width: 991px) {
   .wrapper-slider-parallax .swiper-arrow {
-    color: var(--color-black);
-    border-color: var(--color-black);
+    color: var(--color-white);
+    border-color: var(--color-white);
   }
 }
 
@@ -2479,6 +2479,10 @@ body {
   width: 100%;
   height: 100dvh;
 }
+.hero.no-opacity::before {
+  content: unset;
+  display: none;
+}
 .hero::before {
   content: "";
   position: absolute;
@@ -2614,11 +2618,6 @@ body {
 @media (max-width: 991px) {
   .moreInfo.des-detail .moreInfo-container {
     padding-top: 64px !important;
-  }
-}
-@media (max-width: 991px) {
-  .moreInfo.related-offers .moreInfo-container {
-    padding-top: 0;
   }
 }
 .moreInfo.related-offers .item-image {
@@ -2998,6 +2997,11 @@ body {
 .accommodations-main {
   margin-top: 60px;
 }
+@media (max-width: 991px) {
+  .accommodations-main {
+    margin-top: 32px;
+  }
+}
 .accommodations-main .filter-list-button {
   gap: 40px;
   margin-bottom: 46px;
@@ -3265,7 +3269,6 @@ body {
     overflow-x: scroll;
     padding-right: 16px;
     padding-left: 16px;
-    justify-content: start !important;
   }
   .accommodationPage .filter-list-button::-webkit-scrollbar {
     display: none;
@@ -3337,7 +3340,7 @@ body {
   .accommodationCard .card-content {
     max-width: 100%;
     margin: 0;
-    padding: 24px;
+    padding: 24px 24px 0;
   }
 }
 .accommodationCard .title {
@@ -3374,6 +3377,11 @@ body {
 .accommodationCard .desc {
   margin-top: 24px;
   margin-bottom: 40px;
+}
+@media (max-width: 991px) {
+  .accommodationCard .desc {
+    margin-bottom: 32px;
+  }
 }
 .accommodationCard .cta {
   gap: 40px;
@@ -3784,7 +3792,7 @@ body {
     margin: 0 16px;
     grid-template-columns: 1fr;
     gap: 48px;
-    padding: 16px;
+    padding: 24px 16px;
   }
 }
 .overview-container .content-left .desc {
@@ -3908,12 +3916,12 @@ body {
 }
 
 .roomAmenities {
-  padding: 80px 40px 0;
+  padding: 80px 0px 0;
 }
 @media (max-width: 1200px) and (min-width: 992px) {
   .roomAmenities {
-    padding-left: 80px;
-    padding-right: 80px;
+    padding-left: 0px;
+    padding-right: 0px;
   }
 }
 @media (max-width: 991px) {
@@ -4040,6 +4048,11 @@ body {
 .list-detail .desc {
   margin-bottom: 40px;
 }
+@media (max-width: 991px) {
+  .list-detail .desc {
+    margin-bottom: 32px;
+  }
+}
 .list-detail .table-info {
   display: flex;
   flex-direction: column;
@@ -4073,6 +4086,11 @@ body {
   align-items: center;
   gap: 40px;
   justify-content: space-between;
+}
+@media (max-width: 991px) {
+  .list-detail .list-btn {
+    padding-top: 32px;
+  }
 }
 .list-detail .list-btn-item {
   display: flex;

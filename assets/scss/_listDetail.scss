@@ -26,6 +26,9 @@
   }
   .desc {
     margin-bottom: 40px;
+    @media (max-width: 991px) {
+      margin-bottom: 32px;
+    }
   }
   .table-info {
     display: flex;
@@ -63,6 +66,9 @@
     align-items: center;
     gap: 40px;
     justify-content: space-between;
+    @media (max-width: 991px) {
+      padding-top: 32px;
+    }
     &-item {
       display: flex;
       align-items: center;
