@@ -409,7 +409,7 @@ body {
   bottom: 40px;
   left: 50%;
   transform: translateX(-50%);
-  z-index: 2;
+  z-index: 6;
   background-color: var(--color-white);
   max-width: 66.6666666667%;
   width: 100%;
@@ -4568,6 +4568,12 @@ body {
 .gallery-modal {
   padding: 120px 40px;
 }
+@media (max-width: 1200px) and (min-width: 992px) {
+  .gallery-modal {
+    padding-left: 80px;
+    padding-right: 80px;
+  }
+}
 @media (max-width: 991px) {
   .gallery-modal {
     padding: 64px 16px;
@@ -4575,6 +4581,14 @@ body {
 }
 .gallery-modal .gallery-head {
   margin-bottom: 60px;
+}
+@media (max-width: 1200px) and (min-width: 992px) {
+  .gallery-modal .gallery-head .description {
+    max-width: 80%;
+    width: 100%;
+    margin-left: auto;
+    margin-right: auto;
+  }
 }
 @media (max-width: 991px) {
   .gallery-modal .gallery-head {
