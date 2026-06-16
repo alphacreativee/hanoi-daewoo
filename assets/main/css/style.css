@@ -3711,6 +3711,11 @@ body {
     margin-bottom: 48px;
   }
 }
+@media (max-width: 1200px) and (min-width: 992px) {
+  .overview.overview-detail .overview-container .content-right {
+    padding-right: 0px;
+  }
+}
 .overview-container {
   background-color: var(--color-white);
   margin: 0 40px;
@@ -3960,6 +3965,11 @@ body {
   padding: 80px;
   background-color: var(--color-white);
   height: 100%;
+}
+@media (max-width: 1200px) and (min-width: 992px) {
+  .list-detail-box {
+    padding: 48px;
+  }
 }
 @media (max-width: 991px) {
   .list-detail-box {

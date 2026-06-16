@@ -3,6 +3,9 @@
     padding: 80px;
     background-color: var(--color-white);
     height: 100%;
+    @media (max-width: 1200px) and (min-width: 992px) {
+      padding: 48px;
+    }
     @media (max-width: 991px) {
       padding: 24px 24px 48px;
     }
