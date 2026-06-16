@@ -2632,7 +2632,7 @@ body {
   width: 90%;
   transition: transform 0.6s ease;
 }
-@media (max-width: 991px) {
+@media (max-width: 1200px) {
   .moreInfo-list__item .item-content {
     transform: translate(-50%, -50%);
   }
@@ -2653,6 +2653,11 @@ body {
     word-break: break-word;
   }
 }
+@media (max-width: 1200px) and (min-width: 992px) {
+  .moreInfo-list__item .item-content .desc {
+    opacity: 1;
+  }
+}
 @media (max-width: 991px) {
   .moreInfo-list__item .item-content .desc {
     opacity: 1;
@@ -2668,7 +2673,7 @@ body {
   transition: all 0.5s ease;
   opacity: 0;
 }
-@media (max-width: 991px) {
+@media (max-width: 1200px) {
   .moreInfo-list__item .item-cta {
     opacity: 1;
     bottom: 24px;
@@ -3192,6 +3197,11 @@ body {
 .accommodationPage .section-title {
   padding: 0 40px;
 }
+@media (max-width: 1200px) and (min-width: 992px) {
+  .accommodationPage .section-title {
+    padding: 0 80px;
+  }
+}
 @media (max-width: 991px) {
   .accommodationPage .section-title {
     padding: 0 16px;
@@ -3234,6 +3244,11 @@ body {
   gap: 60px 40px;
   padding: 0 40px;
 }
+@media (max-width: 1200px) and (min-width: 992px) {
+  .accommodationPage .filter-section-result {
+    padding: 0 80px;
+  }
+}
 @media (max-width: 991px) {
   .accommodationPage .filter-section-result {
     padding: 0 16px;
@@ -3262,6 +3277,12 @@ body {
   align-items: center;
   text-align: center;
   max-width: 66.6666666667%;
+}
+@media (max-width: 1200px) and (min-width: 992px) {
+  .accommodationCard .card-content {
+    margin: 24px 16px 0;
+    max-width: 100%;
+  }
 }
 @media (max-width: 991px) {
   .accommodationCard .card-content {
@@ -3699,6 +3720,11 @@ body {
   grid-template-columns: repeat(2, 1fr);
   gap: 8.3333333333%;
 }
+@media (max-width: 1200px) and (min-width: 992px) {
+  .overview-container {
+    margin: 0 80px;
+  }
+}
 @media (max-width: 991px) {
   .overview-container {
     margin: 0 16px;
@@ -3830,6 +3856,12 @@ body {
 .roomAmenities {
   padding: 80px 40px 0;
 }
+@media (max-width: 1200px) and (min-width: 992px) {
+  .roomAmenities {
+    padding-left: 80px;
+    padding-right: 80px;
+  }
+}
 @media (max-width: 991px) {
   .roomAmenities {
     padding: 24px 16px 0;
@@ -3888,6 +3920,12 @@ body {
   left: 0;
   position: absolute;
   background-color: var(--color-white);
+}
+@media (max-width: 1200px) and (min-width: 991px) {
+  .roomAmenities .amenities-bottom::after {
+    width: calc(100% + 80px);
+    left: -40px;
+  }
 }
 @media (max-width: 991px) {
   .roomAmenities .amenities-bottom::after {
@@ -3998,6 +4036,11 @@ body {
   gap: 20px;
   padding: 80px 40px 120px;
   position: relative;
+}
+@media (max-width: 1200px) and (min-width: 922px) {
+  .wonderfulGallery-container {
+    padding: 120px 80px;
+  }
 }
 @media (max-width: 991px) {
   .wonderfulGallery-container {

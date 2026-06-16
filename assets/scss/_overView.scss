@@ -55,6 +55,9 @@
     display: grid;
     grid-template-columns: repeat(2, 1fr);
     gap: calc(100% / 12);
+    @media (max-width: 1200px) and (min-width: 992px) {
+      margin: 0 80px;
+    }
     @media (max-width: 991px) {
       margin: 0 16px;
       grid-template-columns: 1fr;
