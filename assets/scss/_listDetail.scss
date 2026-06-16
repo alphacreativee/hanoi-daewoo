@@ -3,6 +3,9 @@
     padding: 80px;
     background-color: var(--color-white);
     height: 100%;
+    @media (max-width: 1200px) and (min-width: 992px) {
+      padding: 48px;
+    }
     @media (max-width: 991px) {
       padding: 24px 24px 48px;
     }
@@ -23,6 +26,9 @@
   }
   .desc {
     margin-bottom: 40px;
+    @media (max-width: 991px) {
+      margin-bottom: 32px;
+    }
   }
   .table-info {
     display: flex;
@@ -60,6 +66,9 @@
     align-items: center;
     gap: 40px;
     justify-content: space-between;
+    @media (max-width: 991px) {
+      padding-top: 32px;
+    }
     &-item {
       display: flex;
       align-items: center;

@@ -20,7 +20,7 @@
       overflow-x: scroll;
       padding-right: 16px;
       padding-left: 16px;
-      justify-content: start !important;
+      // justify-content: start !important;
       &::-webkit-scrollbar {
         display: none;
       }
@@ -91,7 +91,7 @@
       @media (max-width: 991px) {
         max-width: 100%;
         margin: 0;
-        padding: 24px;
+        padding: 24px 24px 0;
       }
     }
   }
@@ -130,6 +130,9 @@
   .desc {
     margin-top: 24px;
     margin-bottom: 40px;
+    @media (max-width: 991px) {
+      margin-bottom: 32px;
+    }
   }
 
   .cta {
