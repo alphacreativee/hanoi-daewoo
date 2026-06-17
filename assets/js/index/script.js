@@ -412,8 +412,8 @@ function eventSlider() {
   if (!document.querySelector(".event-swiper")) return;
 
   var swiperEvent = new Swiper(".event-swiper", {
-    slidesPerView: 2,
-    spaceBetween: 40,
+    slidesPerView: 1,
+    spaceBetween: 16,
     speed: 1000,
     pagination: {
       el: ".event-right .swiper-pagination",
@@ -422,6 +422,16 @@ function eventSlider() {
     navigation: {
       nextEl: ".event-right .swiper-button-next",
       prevEl: ".event-right .swiper-button-prev",
+    },
+    breakpoints: {
+      991: {
+        slidesPerView: 2,
+        spaceBetween: 24,
+      },
+      1025: {
+        slidesPerView: 2,
+        spaceBetween: 40,
+      },
     },
     on: {
       init(swiper) {
