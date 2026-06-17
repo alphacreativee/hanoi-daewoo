@@ -47,6 +47,10 @@
     &-bottom {
       padding-bottom: 156px;
       position: relative;
+      @media (max-width: 1200px) and (min-width: 992px) {
+        padding-left: 80px;
+        padding-right: 80px;
+      }
       @media (max-width: 991px) {
         padding-bottom: 124px;
       }

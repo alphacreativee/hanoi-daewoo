@@ -4057,6 +4057,12 @@ body {
   padding-bottom: 156px;
   position: relative;
 }
+@media (max-width: 1200px) and (min-width: 992px) {
+  .roomAmenities .amenities-bottom {
+    padding-left: 80px;
+    padding-right: 80px;
+  }
+}
 @media (max-width: 991px) {
   .roomAmenities .amenities-bottom {
     padding-bottom: 124px;
@@ -4518,6 +4524,11 @@ body {
   grid-template-columns: repeat(3, 1fr);
   gap: 20px;
   padding: 0 40px;
+}
+@media (max-width: 1200px) and (min-width: 992px) {
+  .offers-container .filter-section-result {
+    padding: 0 80px;
+  }
 }
 @media (max-width: 991px) {
   .offers-container .filter-section-result {
