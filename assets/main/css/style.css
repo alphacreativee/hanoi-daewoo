@@ -428,11 +428,19 @@ body {
     position: fixed;
     transition: all 0.3s ease;
     z-index: 123;
-    bottom: 0;
+    bottom: 0px;
     left: 0;
     right: 0;
     transform: translate(0%);
     max-width: 100%;
+    opacity: 0;
+    visibility: hidden;
+    transition: all 0.3s ease;
+    padding: 32px 12px 20px;
+  }
+  .booking-form.active {
+    opacity: 1;
+    visibility: visible;
   }
 }
 .booking-form-container {
@@ -440,7 +448,7 @@ body {
 }
 @media (max-width: 991px) {
   .booking-form-container {
-    padding: 64px 12px 20px;
+    padding: 0;
   }
 }
 .booking-form-container form {

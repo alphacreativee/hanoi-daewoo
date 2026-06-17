@@ -994,14 +994,13 @@ function toolbarMobile() {
   if (!$(".toolbar-mobile").length || window.innerWidth > 992) return;
 
   const toolbar = document.querySelector(".toolbar-mobile");
-  const hero = document.querySelector(".hero");
-
-  ScrollTrigger.create({
-    trigger: hero,
-    start: "bottom bottom-=32",
-    // markers: true,
-    onEnter: () => toolbar.classList.add("change-bgc-button"),
-    onLeaveBack: () => toolbar.classList.remove("change-bgc-button"),
+  const bookingForm = document.querySelector(".hero .booking-form");
+  const iconClose = document.querySelector(".booking-form .icon-close");
+  toolbar.addEventListener("click", () => {
+    bookingForm.classList.toggle("active");
+  });
+  iconClose.addEventListener("click", () => {
+    bookingForm.classList.remove("active");
   });
 }
 const init = () => {
@@ -1025,7 +1024,7 @@ const init = () => {
   animationItemsSection();
   wonderGallery();
   swiperThreeCol();
-  // toolbarMobile();
+  toolbarMobile();
 };
 document.addEventListener("DOMContentLoaded", () => {
   init();
