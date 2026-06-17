@@ -1,5 +1,9 @@
 .list-boxGallery {
   padding: 120px 40px 0;
+  @media (max-width: 1200px) and (min-width: 992px) {
+    padding-left: 80px;
+    padding-right: 80px;
+  }
   @media (max-width: 991px) {
     padding-left: 16px;
     padding-right: 16px;

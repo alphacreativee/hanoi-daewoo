@@ -7,6 +7,9 @@
   padding: 40px;
   position: relative;
   z-index: 4;
+  @media (max-width: 1200px) and (min-width: 992px) {
+    max-width: calc(100% - 160px);
+  }
   @media (max-width: 991px) {
     max-width: calc(100% - 32px);
     padding: 16px 16px 32px;
