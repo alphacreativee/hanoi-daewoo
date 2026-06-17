@@ -4516,12 +4516,12 @@ body {
   border-radius: unset !important;
   display: grid;
   grid-template-columns: repeat(2, 1fr);
-  gap: 24px;
+  column-gap: 24px;
 }
 @media (max-width: 991px) {
   .sectionAccordion .accordion-button {
     grid-template-columns: 1fr;
-    gap: 12px;
+    column-gap: 12px;
   }
 }
 .sectionAccordion .accordion-button:not(.collapsed) + .icon .icon-plus {
