@@ -1700,3 +1700,12 @@ body {
     }
   }
 }
+
+
+.section-booking{
+  margin-top: 60px;
+
+  @media (max-width: 991px){
+    padding-top: 76px;
+  }
+}
