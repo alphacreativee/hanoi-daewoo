@@ -23,7 +23,7 @@
       content: "";
       width: 0.5px;
       height: 100%;
-      background-color: var(--color-black);
+      background-color: var(--color-gold);
       top: 0;
       left: 50%;
       transform: translateX(-50%);
@@ -58,6 +58,9 @@
           left: 0;
           top: 50%;
           transform: translateY(-50%);
+          @media (max-width: 991px) {
+            transform: translateY(calc(-50% - 6px));
+          }
         }
       }
     }
