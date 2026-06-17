@@ -337,6 +337,10 @@ body {
 .btn-global.bg-blue:hover {
   background-color: var(--color-gold);
 }
+.btn-global[disabled] {
+  pointer-events: none;
+  cursor: not-allowed;
+}
 .btn-global.aloading {
   pointer-events: none;
   position: relative;
