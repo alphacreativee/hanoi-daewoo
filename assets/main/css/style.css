@@ -2144,6 +2144,8 @@ body {
     justify-content: center;
     align-items: center;
     padding: 8px 20px;
+    background-color: var(--color-blue);
+    color: var(--color-white);
   }
 }
 #header .header-main--popup__bottom ul {

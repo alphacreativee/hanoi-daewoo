@@ -439,12 +439,15 @@
             .header-book {
               width: 100%;
               margin-top: 24px;
+
               a {
                 width: 100%;
                 display: flex;
                 justify-content: center;
                 align-items: center;
                 padding: 8px 20px;
+                background-color: var(--color-blue);
+                color: var(--color-white);
               }
             }
           }
