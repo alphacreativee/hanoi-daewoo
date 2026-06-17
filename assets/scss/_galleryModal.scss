@@ -1,11 +1,23 @@
 .gallery-modal {
   padding: 120px 40px;
+  @media (max-width: 1200px) and (min-width: 992px) {
+    padding-left: 80px;
+    padding-right: 80px;
+  }
   @media (max-width: 991px) {
     padding: 64px 16px;
   }
   .gallery {
     &-head {
       margin-bottom: 60px;
+      .description {
+        @media (max-width: 1200px) and (min-width: 992px) {
+          max-width: 80%;
+          width: 100%;
+          margin-left: auto;
+          margin-right: auto;
+        }
+      }
       @media (max-width: 991px) {
         margin-bottom: 32px;
       }

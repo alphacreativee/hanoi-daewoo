@@ -557,7 +557,7 @@ function header() {
     duration: 0.3,
     delay: 0.1,
   })
-    .from(".header-main--popup > ul > li", {
+    .from(".header-main--popup > ul > li, .main-sub-menu  ", {
       x: -20,
       opacity: 0,
       stagger: 0.08,

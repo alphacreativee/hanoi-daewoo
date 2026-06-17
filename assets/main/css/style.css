@@ -413,7 +413,7 @@ body {
   bottom: 40px;
   left: 50%;
   transform: translateX(-50%);
-  z-index: 2;
+  z-index: 6;
   background-color: var(--color-white);
   max-width: 66.6666666667%;
   width: 100%;
@@ -2075,7 +2075,7 @@ body {
   display: flex;
   flex-direction: column;
 }
-@media (max-width: 991px) {
+@media (max-width: 1200px) {
   #header .header-main--popup {
     padding: 32px 24px;
   }
@@ -4572,6 +4572,12 @@ body {
 .gallery-modal {
   padding: 120px 40px;
 }
+@media (max-width: 1200px) and (min-width: 992px) {
+  .gallery-modal {
+    padding-left: 80px;
+    padding-right: 80px;
+  }
+}
 @media (max-width: 991px) {
   .gallery-modal {
     padding: 64px 16px;
@@ -4579,6 +4585,14 @@ body {
 }
 .gallery-modal .gallery-head {
   margin-bottom: 60px;
+}
+@media (max-width: 1200px) and (min-width: 992px) {
+  .gallery-modal .gallery-head .description {
+    max-width: 80%;
+    width: 100%;
+    margin-left: auto;
+    margin-right: auto;
+  }
 }
 @media (max-width: 991px) {
   .gallery-modal .gallery-head {
@@ -5036,6 +5050,12 @@ body {
 .position-hiring {
   padding: 0 40px 120px;
 }
+@media (max-width: 1200px) and (min-width: 992px) {
+  .position-hiring {
+    padding-left: 80px;
+    padding-right: 80px;
+  }
+}
 @media (max-width: 991px) {
   .position-hiring {
     padding: 0;
@@ -5054,6 +5074,11 @@ body {
 .position-hiring__container {
   padding: 60px 116px;
   background-color: var(--color-white);
+}
+@media (max-width: 1200px) and (min-width: 992px) {
+  .position-hiring__container {
+    padding: 60px 40px;
+  }
 }
 @media (max-width: 991px) {
   .position-hiring__container {
@@ -5082,6 +5107,12 @@ body {
   grid-template-columns: repeat(3, 1fr) 150px 150px;
   padding-bottom: 20px;
 }
+@media (max-width: 1200px) and (min-width: 992px) {
+  .position-hiring__main .position-filter {
+    grid-template-columns: repeat(3, 1fr) 100px 100px;
+    gap: 20px;
+  }
+}
 @media (max-width: 991px) {
   .position-hiring__main .position-filter {
     width: var(--width);
@@ -5100,9 +5131,18 @@ body {
   padding: 20px 0;
   border-top: 1px solid rgba(118, 120, 122, 0.2);
 }
+@media (max-width: 1200px) and (min-width: 992px) {
+  .position-hiring__main .position-list__item {
+    grid-template-columns: repeat(3, 1fr) 100px 100px;
+    gap: 20px;
+    align-items: flex-start;
+  }
+}
 @media (max-width: 991px) {
   .position-hiring__main .position-list__item {
     grid-template-columns: repeat(3, 1fr) 120px 120px;
+    gap: 20px;
+    align-items: flex-start;
   }
 }
 .position-hiring__main .position-list__item .name {
@@ -5443,12 +5483,31 @@ body {
   margin: 0 auto 120px;
   padding: 60px 0;
 }
+@media (max-width: 1200px) and (min-width: 992px) {
+  .venus {
+    max-width: 100%;
+    --width: 1500px;
+    margin-bottom: 80px;
+    padding: 80px 0;
+  }
+}
 @media (max-width: 991px) {
   .venus {
     max-width: 100%;
     --width: 1500px;
     margin-bottom: 64px;
     padding: 64px 0;
+  }
+}
+@media (max-width: 1200px) and (min-width: 992px) {
+  .venus-container {
+    overflow-x: scroll;
+    width: 100vw;
+    max-width: 100vw;
+    -webkit-overflow-scrolling: touch;
+  }
+  .venus-container::-webkit-scrollbar {
+    display: none;
   }
 }
 @media (max-width: 991px) {
@@ -5465,7 +5524,7 @@ body {
 .venus-row {
   width: 100%;
 }
-@media (max-width: 991px) {
+@media (max-width: 1200px) {
   .venus-row > div {
     justify-content: unset !important;
     gap: 24px !important;
@@ -5505,7 +5564,7 @@ body {
     margin-bottom: 16px;
   }
 }
-@media (max-width: 991px) {
+@media (max-width: 1200px) {
   .venus-top > div {
     justify-content: unset !important;
     gap: 24px !important;
@@ -5515,6 +5574,11 @@ body {
   display: grid;
   grid-template-columns: repeat(7, minmax(120px, 1fr));
   gap: 24px;
+}
+@media (max-width: 1200px) and (min-width: 992px) {
+  .venus-grid {
+    grid-template-columns: repeat(7, 160px);
+  }
 }
 @media (max-width: 991px) {
   .venus-grid {
@@ -5531,6 +5595,13 @@ body {
 .venus-td.first-col {
   flex-direction: row;
   align-items: flex-start;
+}
+@media (max-width: 1200px) and (min-width: 992px) {
+  .venus-td.first-col {
+    min-width: 200px;
+    gap: 16px;
+    justify-content: unset;
+  }
 }
 @media (max-width: 991px) {
   .venus-td.first-col {
@@ -5572,6 +5643,13 @@ body {
 .venus-td-item .name {
   text-align: left;
 }
+@media (max-width: 1200px) and (min-width: 992px) {
+  .venus-td-item .name {
+    min-width: 200px;
+    gap: 16px;
+    justify-content: unset;
+  }
+}
 @media (max-width: 991px) {
   .venus-td-item .name {
     white-space: nowrap;
@@ -5590,7 +5668,7 @@ body {
 .venus-filter {
   margin-bottom: 32px;
 }
-@media (max-width: 991px) {
+@media (max-width: 1200px) {
   .venus-filter {
     width: var(--width);
   }
