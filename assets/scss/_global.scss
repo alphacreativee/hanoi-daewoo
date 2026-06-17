@@ -32,6 +32,11 @@ body {
     }
   }
 
+  &[disabled] {
+    pointer-events: none;
+    cursor: not-allowed;
+  }
+
   &.aloading {
     pointer-events: none;
     position: relative;

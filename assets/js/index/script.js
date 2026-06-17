@@ -1695,8 +1695,153 @@ function modalBooking() {
         },
       });
     }
+
+    // Form Events
+    if (currentForm.data("form") === "events") {
+      const submitBtn = currentForm.find("button[type='submit']");
+      const note = currentForm.find(".note");
+
+      const formData = new FormData();
+
+      formData.append("action", "submit_event");
+
+      formData.append(
+        "event_type",
+        currentForm
+          .find(".dropdown-custom-select.event_type")
+          .find(".dropdown-custom-text")
+          .text()
+          .trim(),
+      );
+
+      formData.append(
+        "arrival_date",
+        currentForm.find('[name="arrivalDate"]').val(),
+      );
+
+      formData.append(
+        "event_duration",
+        currentForm
+          .find(".dropdown-custom-select.event_duration")
+          .find(".dropdown-custom-text")
+          .text()
+          .trim(),
+      );
+
+      formData.append(
+        "event_requirements",
+        currentForm
+          .find(".dropdown-custom-select.event_requirements")
+          .find(".dropdown-custom-text")
+          .text()
+          .trim(),
+      );
+
+      formData.append(
+        "room_type",
+        currentForm
+          .find(".dropdown-custom-select.room_type")
+          .find(".dropdown-custom-text")
+          .text()
+          .trim(),
+      );
+
+      formData.append(
+        "number_of_guests",
+        currentForm.find('[name="numberofguests"]').val(),
+      );
+
+      formData.append(
+        "guest_rooms_per_night",
+        currentForm.find('[name="numberofguestsNight"]').val(),
+      );
+
+      // Contact Information
+      formData.append(
+        "title",
+        currentForm
+          .find(".dropdown-custom-select.title-name")
+          .find(".dropdown-custom-text")
+          .text()
+          .trim(),
+      );
+
+      formData.append(
+        "first_name",
+        currentForm.find('[name="firstname"]').val(),
+      );
+
+      formData.append("last_name", currentForm.find('[name="lastname"]').val());
+
+      formData.append("email", currentForm.find('[name="email"]').val());
+
+      formData.append(
+        "country",
+        currentForm
+          .find(".select-region .dropdown-custom-text span")
+          .text()
+          .trim(),
+      );
+
+      formData.append("phone", currentForm.find('[name="phone"]').val());
+
+      formData.append("message", currentForm.find('[name="message"]').val());
+
+      formData.append("email_recipient", submitBtn.attr("email-recipient"));
+
+      $.ajax({
+        url: ajaxUrl,
+        type: "POST",
+        data: formData,
+        processData: false,
+        contentType: false,
+
+        beforeSend() {
+          submitBtn.addClass("aloading");
+        },
+
+        success(response) {
+          if (response.success) {
+            currentForm[0].reset();
+
+            currentForm.find(".dropdown-custom-select").removeClass("selected");
+
+            currentForm
+              .find(".dropdown-custom-text span")
+              .text("Select option");
+
+            note.fadeIn();
+
+            submitBtn.prop("disabled", true);
+          }
+        },
+
+        complete() {
+          submitBtn.removeClass("aloading");
+        },
+      });
+    }
   });
 }
+
+function initEventCheckboxValidation() {
+  const form = $('.modal-booking form[data-form="events"]');
+
+  if (!form.length) return;
+
+  const submitBtn = form.find(".btn-submit");
+  const checkboxes = form.find('.field-item.checkbox input[type="checkbox"]');
+
+  submitBtn.prop("disabled", true);
+
+  checkboxes.on("change", function () {
+    const allChecked =
+      checkboxes.filter(":checked").length === checkboxes.length;
+
+    submitBtn.prop("disabled", !allChecked);
+  });
+}
+
 function swiperDestination() {
   if ($(".swiper-destination").length < 1 || window.innerWidth > 992) return;
   const swiper = new Swiper(".swiper-destination", {
@@ -2247,6 +2392,7 @@ const init = () => {
   bookingFormRedirect();
   filterPositionHiring();
   formBookingWeddings();
+  initEventCheckboxValidation();
 };
 document.addEventListener("DOMContentLoaded", () => {
   init();
