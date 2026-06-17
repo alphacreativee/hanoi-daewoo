@@ -85,7 +85,9 @@
 
       &:hover {
         color: var(--color-gold);
-
+        @media (max-width: 1200px) {
+          color: var(--color-black);
+        }
         & + .icon {
           color: var(--color-gold);
         }

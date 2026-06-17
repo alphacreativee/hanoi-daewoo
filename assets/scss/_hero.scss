@@ -23,6 +23,9 @@
     opacity: 0.5;
     z-index: 2;
     pointer-events: none;
+    @media (max-width: 1200px) {
+      pointer-events: auto;
+    }
   }
 
   &.has-slider {
