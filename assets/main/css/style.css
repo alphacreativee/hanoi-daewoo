@@ -2071,7 +2071,7 @@ body {
   display: flex;
   flex-direction: column;
 }
-@media (max-width: 991px) {
+@media (max-width: 1200px) {
   #header .header-main--popup {
     padding: 32px 24px;
   }
