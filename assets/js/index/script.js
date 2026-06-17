@@ -2353,6 +2353,19 @@ function formBookingWeddings() {
     $("#modalBookingWeddings .step-number .current").text(step);
   }
 }
+function toolbarMobile() {
+  if (!$(".toolbar-mobile").length || window.innerWidth > 992) return;
+
+  const toolbar = document.querySelector(".toolbar-mobile");
+  const bookingForm = document.querySelector(".hero .booking-form");
+  const iconClose = document.querySelector(".booking-form .icon-close");
+  toolbar.addEventListener("click", () => {
+    bookingForm.classList.toggle("active");
+  });
+  iconClose.addEventListener("click", () => {
+    bookingForm.classList.remove("active");
+  });
+}
 const init = () => {
   gsap.registerPlugin(ScrollTrigger);
 
@@ -2393,6 +2406,7 @@ const init = () => {
   filterPositionHiring();
   formBookingWeddings();
   initEventCheckboxValidation();
+  toolbarMobile();
 };
 document.addEventListener("DOMContentLoaded", () => {
   init();
