@@ -1955,7 +1955,7 @@ body {
 }
 @media (max-width: 991px) {
   #header .header-main {
-    padding: 16px;
+    padding: 8px 16px;
     height: auto;
   }
 }
@@ -3201,7 +3201,7 @@ body {
 }
 .boxGallery .box-content .info {
   margin-top: 16px;
-  gap: 32px;
+  gap: 16px 24px;
 }
 @media (max-width: 1200px) and (min-width: 992px) {
   .boxGallery .box-content .info {
@@ -3334,7 +3334,7 @@ body {
 }
 @media (max-width: 991px) {
   .accommodationPage .filter-section {
-    top: 92px;
+    top: 76px;
   }
 }
 .accommodationPage .filter-section-result {
@@ -4840,7 +4840,7 @@ body {
     padding-left: 0;
     padding-right: 0;
     margin-bottom: 14px;
-    top: 92px;
+    top: 76px;
   }
 }
 .galleryTab .filter-list-button {

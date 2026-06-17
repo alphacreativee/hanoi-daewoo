@@ -177,7 +177,7 @@
       }
       .info {
         margin-top: 16px;
-        gap: 32px;
+        gap: 16px 24px;
         @media (max-width: 1200px) and (min-width: 992px) {
           gap: 16px;
         }
