@@ -158,13 +158,13 @@ function heroSection() {
   });
 }
 function readMore() {
-  const btnViewMore = document.querySelector(".intro .btn-read-more");
+  const btnViewMore = document.querySelector(".overview-detail .btn-read-more");
   if (!btnViewMore) return;
 
-  const moreContent = document.querySelector(".intro-description-more");
+  const moreContent = document.querySelector(".overview-detail .desc-more");
   if (!moreContent) return;
 
-  const introRight = document.querySelector(".intro-right");
+  const introRight = document.querySelector(".overview-detail .content-right ");
 
   const textMore = btnViewMore.dataset.readMore;
   const textLess = btnViewMore.dataset.readLess;
@@ -206,7 +206,7 @@ function readMore() {
     if (!isOpen) {
       // OPEN
       moreContent.classList.add("is-open");
-      // introRight?.classList.add("sticky-col");
+      introRight?.classList.add("sticky-col");
       const fullHeight = moreContent.scrollHeight;
       moreContent.style.overflow = "hidden";
       moreContent.style.transition = `height ${duration}ms ease`;
@@ -217,15 +217,16 @@ function readMore() {
       }, duration);
 
       btnViewMore.textContent = textLess;
+      btnViewMore.style.marginTop = "24px";
     } else {
       // CLOSE
-      // introRight?.classList.remove("sticky-col");
+      introRight?.classList.remove("sticky-col");
       const currentHeight = moreContent.scrollHeight;
       moreContent.style.height = currentHeight + "px";
       moreContent.offsetHeight;
       moreContent.style.transition = `height ${duration}ms ease`;
       moreContent.style.height = "0";
-
+      btnViewMore.style.marginTop = "0";
       setTimeout(() => {
         moreContent.classList.remove("is-open");
       }, duration);
@@ -426,12 +427,12 @@ function eventSlider() {
     breakpoints: {
       991: {
         slidesPerView: 2,
-        spaceBetween: 24
+        spaceBetween: 24,
       },
       1025: {
         slidesPerView: 2,
-        spaceBetween: 40
-      }
+        spaceBetween: 40,
+      },
     },
     on: {
       init(swiper) {
@@ -1847,40 +1848,40 @@ function modalBooking() {
         currentForm
           .find(".dropdown-custom-select.event_type .dropdown-custom-text span")
           .text()
-          .trim()
+          .trim(),
       );
 
       formData.append(
         "attendees",
-        currentForm.find('[name="attendees"]').val()
+        currentForm.find('[name="attendees"]').val(),
       );
 
       formData.append("bedroom", currentForm.find('[name="bedroom"]').val());
 
       formData.append(
         "arrival_date",
-        currentForm.find('[name="arrivalDate"]').val()
+        currentForm.find('[name="arrivalDate"]').val(),
       );
 
       formData.append(
         "departure_date",
-        currentForm.find('[name="departureDate"]').val()
+        currentForm.find('[name="departureDate"]').val(),
       );
 
       formData.append(
         "date_flexible",
-        currentForm.find('[name="date_flexible"]:checked').val()
+        currentForm.find('[name="date_flexible"]:checked').val(),
       );
 
       formData.append(
         "meeting_space",
-        currentForm.find('[name="meeting_space"]:checked').val()
+        currentForm.find('[name="meeting_space"]:checked').val(),
       );
 
       // Contact Information
       formData.append(
         "first_name",
-        currentForm.find('[name="firstname"]').val()
+        currentForm.find('[name="firstname"]').val(),
       );
 
       formData.append("last_name", currentForm.find('[name="lastname"]').val());
@@ -1929,7 +1930,7 @@ function modalBooking() {
 
         complete() {
           submitBtn.removeClass("aloading");
-        }
+        },
       });
     }
   });
@@ -1937,7 +1938,7 @@ function modalBooking() {
 
 function initEventCheckboxValidation() {
   const form = $(
-    '.modal-booking form[data-form="events"], .modal-booking form[data-form="weddings"]'
+    '.modal-booking form[data-form="events"], .modal-booking form[data-form="weddings"]',
   );
 
   if (!form.length) return;
