@@ -47,6 +47,9 @@
       grid-template-columns: repeat(3, 1fr);
       gap: 20px;
       padding: 0 40px;
+      @media (max-width: 1200px) and (min-width: 992px) {
+        padding: 0 80px;
+      }
       @media (max-width: 991px) {
         grid-template-columns: 1fr;
         gap: 24px;

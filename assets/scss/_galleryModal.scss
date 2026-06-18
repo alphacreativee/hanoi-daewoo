@@ -234,6 +234,10 @@
 .galleryTab {
   background-color: var(--color-white);
   padding: 110px 40px 120px;
+  @media (max-width: 1200px) and (min-width: 992px) {
+    padding-left: 80px;
+    padding-right: 80px;
+  }
   @media (max-width: 991px) {
     padding: 54px 0px 64px;
   }
