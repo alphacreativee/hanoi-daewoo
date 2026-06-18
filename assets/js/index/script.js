@@ -427,12 +427,12 @@ function eventSlider() {
     breakpoints: {
       991: {
         slidesPerView: 2,
-        spaceBetween: 24,
+        spaceBetween: 24
       },
       1025: {
         slidesPerView: 2,
-        spaceBetween: 40,
-      },
+        spaceBetween: 40
+      }
     },
     on: {
       init(swiper) {
@@ -1720,7 +1720,7 @@ function modalBooking() {
         "event_type",
         currentForm
           .find(".dropdown-custom-select.event_type")
-          .find(".dropdown-custom-text span")
+          .find(".dropdown-custom-text")
           .text()
           .trim()
       );
@@ -1846,42 +1846,42 @@ function modalBooking() {
       formData.append(
         "event_type",
         currentForm
-          .find(".dropdown-custom-select.event_type .dropdown-custom-text span")
+          .find(".dropdown-custom-select.event_type .dropdown-custom-text")
           .text()
-          .trim(),
+          .trim()
       );
 
       formData.append(
         "attendees",
-        currentForm.find('[name="attendees"]').val(),
+        currentForm.find('[name="attendees"]').val()
       );
 
       formData.append("bedroom", currentForm.find('[name="bedroom"]').val());
 
       formData.append(
         "arrival_date",
-        currentForm.find('[name="arrivalDate"]').val(),
+        currentForm.find('[name="arrivalDate"]').val()
       );
 
       formData.append(
         "departure_date",
-        currentForm.find('[name="departureDate"]').val(),
+        currentForm.find('[name="departureDate"]').val()
       );
 
       formData.append(
         "date_flexible",
-        currentForm.find('[name="date_flexible"]:checked').val(),
+        currentForm.find('[name="date_flexible"]:checked').val()
       );
 
       formData.append(
         "meeting_space",
-        currentForm.find('[name="meeting_space"]:checked').val(),
+        currentForm.find('[name="meeting_space"]:checked').val()
       );
 
       // Contact Information
       formData.append(
         "first_name",
-        currentForm.find('[name="firstname"]').val(),
+        currentForm.find('[name="firstname"]').val()
       );
 
       formData.append("last_name", currentForm.find('[name="lastname"]').val());
@@ -1930,7 +1930,139 @@ function modalBooking() {
 
         complete() {
           submitBtn.removeClass("aloading");
+        }
+      });
+    }
+
+    // Form Dining
+    if (currentForm.data("form") === "dining") {
+      const submitBtn = currentForm.find("button[type='submit']");
+      const note = currentForm.find(".note");
+
+      const formData = new FormData();
+
+      formData.append("action", "submit_dining");
+
+      formData.append(
+        "restaurant_id",
+        currentForm
+          .find(".dropdown-custom-select.restaurant .dropdown-custom-text")
+          .data("dining")
+      );
+
+      formData.append(
+        "first_name",
+        currentForm.find('[name="firstname"]').val()
+      );
+
+      formData.append("last_name", currentForm.find('[name="lastname"]').val());
+
+      formData.append("phone", currentForm.find('[name="phone"]').val());
+
+      formData.append("email", currentForm.find('[name="email"]').val());
+
+      formData.append("adult", currentForm.find('[name="adult"]').val());
+
+      formData.append("children", currentForm.find('[name="children"]').val());
+
+      formData.append("date", currentForm.find('[name="date"]').val());
+
+      formData.append(
+        "time",
+        currentForm
+          .find(
+            ".field-item .dropdown-custom-select.time .dropdown-custom-text"
+          )
+          .text()
+          .trim()
+      );
+
+      formData.append("message", currentForm.find('[name="message"]').val());
+
+      formData.append("email_recipient", submitBtn.attr("email-recipient"));
+
+      $.ajax({
+        url: ajaxUrl,
+        type: "POST",
+        data: formData,
+        processData: false,
+        contentType: false,
+
+        beforeSend() {
+          submitBtn.addClass("aloading");
         },
+
+        success(response) {
+          if (response.success) {
+            currentForm[0].reset();
+
+            note.fadeIn();
+
+            submitBtn.prop("disabled", true);
+          } else {
+            console.error(response.data?.message);
+          }
+        },
+
+        error(xhr, status, error) {
+          console.error(error);
+        },
+
+        complete() {
+          submitBtn.removeClass("aloading");
+        }
+      });
+    }
+
+    // Form Contact
+    if (currentForm.data("form") === "contact") {
+      const submitBtn = currentForm.find("button[type='submit']");
+      const note = currentForm.find(".note");
+
+      const formData = new FormData();
+
+      formData.append("action", "submit_contact");
+
+      formData.append("name", currentForm.find('[name="fullname"]').val());
+
+      formData.append("phone", currentForm.find('[name="phone"]').val());
+
+      formData.append("email", currentForm.find('[name="email"]').val());
+
+      formData.append("message", currentForm.find('[name="message"]').val());
+
+      formData.append("email_recipient", submitBtn.attr("email-recipient"));
+
+      $.ajax({
+        url: ajaxUrl,
+        type: "POST",
+        data: formData,
+        processData: false,
+        contentType: false,
+
+        beforeSend() {
+          submitBtn.addClass("aloading");
+        },
+
+        success(response) {
+          if (response.success) {
+            currentForm[0].reset();
+
+            note.fadeIn();
+
+            submitBtn.prop("disabled", true);
+          } else {
+            console.error(response.data?.message);
+          }
+        },
+
+        error(xhr, status, error) {
+          console.error(error);
+        },
+
+        complete() {
+          submitBtn.removeClass("aloading");
+        }
       });
     }
   });
@@ -1938,7 +2070,7 @@ function modalBooking() {
 
 function initEventCheckboxValidation() {
   const form = $(
-    '.modal-booking form[data-form="events"], .modal-booking form[data-form="weddings"]',
+    '.modal-booking form[data-form="events"], .modal-booking form[data-form="weddings"]'
   );
 
   if (!form.length) return;
