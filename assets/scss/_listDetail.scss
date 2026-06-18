@@ -10,7 +10,12 @@
       padding: 24px 24px 48px;
     }
   }
-
+  &-item {
+    min-height: 700px;
+    @media (max-width: 991px) {
+      min-height: auto;
+    }
+  }
   &-image {
     width: 100%;
     height: 100%;

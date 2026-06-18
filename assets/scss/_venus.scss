@@ -60,6 +60,11 @@
     .col-right {
       width: 50%;
     }
+    .col-left {
+      @media (max-width: 991px) {
+        width: 100vw;
+      }
+    }
     .col-right {
       padding: 48px;
       display: flex;
