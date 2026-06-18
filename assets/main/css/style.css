@@ -4148,6 +4148,14 @@ body {
     padding: 24px 24px 48px;
   }
 }
+.list-detail-item {
+  min-height: 700px;
+}
+@media (max-width: 991px) {
+  .list-detail-item {
+    min-height: auto;
+  }
+}
 .list-detail-image {
   width: 100%;
   height: 100%;
@@ -5676,6 +5684,11 @@ body {
 .venus-body .col-left,
 .venus-body .col-right {
   width: 50%;
+}
+@media (max-width: 991px) {
+  .venus-body .col-left {
+    width: 100vw;
+  }
 }
 .venus-body .col-right {
   padding: 48px;
