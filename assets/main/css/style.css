@@ -2929,6 +2929,16 @@ body {
     flex-direction: column;
   }
 }
+@media (max-width: 991px) {
+  .intro.no-img .intro-list.events {
+    flex-direction: row;
+  }
+}
+@media (max-width: 991px) {
+  .intro.no-img .intro-list.events li {
+    width: calc((100% - 20px) / 2);
+  }
+}
 .intro.intro-recruitment .intro-item .number {
   font-size: 80px;
 }
@@ -3875,11 +3885,11 @@ body {
 }
 .overview-container .content-left .info {
   margin-top: 15px;
-  gap: 32px;
+  gap: 12px 32px;
 }
 @media (max-width: 991px) {
   .overview-container .content-left .info {
-    gap: 24px;
+    gap: 12px 24px;
   }
 }
 .overview-container .content-left .info li {
@@ -4636,7 +4646,7 @@ body {
 .sectionAccordion .accordion-body .content {
   display: grid;
   grid-template-columns: repeat(2, 1fr);
-  gap: 24px;
+  gap: 0 24px;
 }
 @media (max-width: 991px) {
   .sectionAccordion .accordion-body .content {

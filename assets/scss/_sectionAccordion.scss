@@ -109,7 +109,7 @@
       .content {
         display: grid;
         grid-template-columns: repeat(2, 1fr);
-        gap: 24px;
+        gap: 0 24px;
         @media (max-width: 991px) {
           grid-template-columns: 1fr;
           gap: 0;

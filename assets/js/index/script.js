@@ -426,12 +426,12 @@ function eventSlider() {
     breakpoints: {
       991: {
         slidesPerView: 2,
-        spaceBetween: 24,
+        spaceBetween: 24
       },
       1025: {
         slidesPerView: 2,
-        spaceBetween: 40,
-      },
+        spaceBetween: 40
+      }
     },
     on: {
       init(swiper) {
@@ -1831,11 +1831,114 @@ function modalBooking() {
         }
       });
     }
+
+    // Form Weddings
+    if (currentForm.data("form") === "weddings") {
+      const submitBtn = currentForm.find("button[type='submit']");
+      const note = currentForm.find(".note");
+
+      const formData = new FormData();
+
+      formData.append("action", "submit_wedding");
+
+      // Event Information
+      formData.append(
+        "event_type",
+        currentForm
+          .find(".dropdown-custom-select.event_type .dropdown-custom-text span")
+          .text()
+          .trim()
+      );
+
+      formData.append(
+        "attendees",
+        currentForm.find('[name="attendees"]').val()
+      );
+
+      formData.append("bedroom", currentForm.find('[name="bedroom"]').val());
+
+      formData.append(
+        "arrival_date",
+        currentForm.find('[name="arrivalDate"]').val()
+      );
+
+      formData.append(
+        "departure_date",
+        currentForm.find('[name="departureDate"]').val()
+      );
+
+      formData.append(
+        "date_flexible",
+        currentForm.find('[name="date_flexible"]:checked').val()
+      );
+
+      formData.append(
+        "meeting_space",
+        currentForm.find('[name="meeting_space"]:checked').val()
+      );
+
+      // Contact Information
+      formData.append(
+        "first_name",
+        currentForm.find('[name="firstname"]').val()
+      );
+
+      formData.append("last_name", currentForm.find('[name="lastname"]').val());
+
+      formData.append("email", currentForm.find('[name="email"]').val());
+
+      formData.append("phone", currentForm.find('[name="phone"]').val());
+
+      formData.append("company", currentForm.find('[name="company"]').val());
+
+      formData.append("message", currentForm.find('[name="message"]').val());
+
+      formData.append("email_recipient", submitBtn.attr("email-recipient"));
+
+      // Upload files
+      const files = $("#fileInput")[0]?.files || [];
+
+      for (let i = 0; i < files.length; i++) {
+        formData.append("attachments[]", files[i]);
+      }
+
+      $.ajax({
+        url: ajaxUrl,
+        type: "POST",
+        data: formData,
+        processData: false,
+        contentType: false,
+
+        beforeSend() {
+          submitBtn.addClass("aloading");
+        },
+
+        success(response) {
+          if (response.success) {
+            currentForm[0].reset();
+
+            $("#fileList").empty();
+
+            currentForm.find(".dropdown-custom-select").removeClass("selected");
+
+            note.fadeIn();
+
+            submitBtn.prop("disabled", true);
+          }
+        },
+
+        complete() {
+          submitBtn.removeClass("aloading");
+        }
+      });
+    }
   });
 }
 
 function initEventCheckboxValidation() {
-  const form = $('.modal-booking form[data-form="events"]');
+  const form = $(
+    '.modal-booking form[data-form="events"], .modal-booking form[data-form="weddings"]'
+  );
 
   if (!form.length) return;
 

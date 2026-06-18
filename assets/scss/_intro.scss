@@ -18,6 +18,18 @@
         gap: 20px;
         flex-direction: column;
       }
+
+      &.events {
+        @media (max-width: 991px) {
+          flex-direction: row;
+        }
+
+        li {
+          @media (max-width: 991px) {
+            width: calc(calc(100% - 20px) / 2);
+          }
+        }
+      }
     }
   }
 
