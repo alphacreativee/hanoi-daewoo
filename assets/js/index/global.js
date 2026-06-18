@@ -254,12 +254,8 @@ export function customDropdown() {
                 displayText.setAttribute(attr.name, attr.value);
               }
             });
-
-            console.log("add");
           } else {
             displayText.textContent = optionText;
-
-            console.log("không add");
           }
         } else {
           const currentImgEl = valueSelect.querySelector("img");
