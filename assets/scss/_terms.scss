@@ -1,9 +1,15 @@
 .terms-content {
   padding: 120px 0;
+  @media (max-width: 1200px) and (min-width: 992px) {
+    padding: 120px 80px;
+  }
   @media (max-width: 991px) {
     padding: 64px 16px;
   }
 
+  .intro-title {
+    text-align: left;
+  }
   .page-content {
     h1,
     h2,
@@ -16,6 +22,7 @@
       line-height: 26px;
       font-weight: 600;
       color: var(--color-black);
+      margin-bottom: 24px;
     }
     p {
       font-family: var(--font-body);

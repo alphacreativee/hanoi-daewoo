@@ -5945,10 +5945,18 @@ body {
 .terms-content {
   padding: 120px 0;
 }
+@media (max-width: 1200px) and (min-width: 992px) {
+  .terms-content {
+    padding: 120px 80px;
+  }
+}
 @media (max-width: 991px) {
   .terms-content {
     padding: 64px 16px;
   }
+}
+.terms-content .intro-title {
+  text-align: left;
 }
 .terms-content .page-content h1,
 .terms-content .page-content h2,
@@ -5961,6 +5969,7 @@ body {
   line-height: 26px;
   font-weight: 600;
   color: var(--color-black);
+  margin-bottom: 24px;
 }
 .terms-content .page-content p {
   font-family: var(--font-body);
