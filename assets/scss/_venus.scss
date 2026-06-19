@@ -62,7 +62,7 @@
     }
     .col-left {
       @media (max-width: 991px) {
-        width: 100vw;
+        width: calc(100vw - 32px);
       }
     }
     .col-right {

@@ -5687,7 +5687,7 @@ body {
 }
 @media (max-width: 991px) {
   .venus-body .col-left {
-    width: 100vw;
+    width: calc(100vw - 32px);
   }
 }
 .venus-body .col-right {
