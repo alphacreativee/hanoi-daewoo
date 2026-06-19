@@ -2070,7 +2070,7 @@ function modalBooking() {
 
 function initEventCheckboxValidation() {
   const form = $(
-    '.modal-booking form[data-form="events"], .modal-booking form[data-form="weddings"]'
+    '.modal-booking form[data-form="events"], .modal-booking form[data-form="weddings"], .modal-booking form[data-form="dining"], .modal-booking form[data-form="contact"]'
   );
 
   if (!form.length) return;
@@ -2628,6 +2628,18 @@ function toolbarMobile() {
     bookingForm.classList.remove("active");
   });
 }
+
+function activeModalBooking() {
+  if ($(".modal-booking").length < 1) return;
+
+  const params = new URLSearchParams(window.location.search);
+
+  if (params.get("openmodal") === "true") {
+
+    new bootstrap.Modal($(".modal-booking")[0]).show();
+  }
+}
+
 const init = () => {
   gsap.registerPlugin(ScrollTrigger);
 
@@ -2670,6 +2682,7 @@ const init = () => {
   initEventCheckboxValidation();
   toolbarMobile();
   panel();
+  activeModalBooking();
 };
 document.addEventListener("DOMContentLoaded", () => {
   init();
