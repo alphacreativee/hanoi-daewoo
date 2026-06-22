@@ -2621,12 +2621,18 @@ function toolbarMobile() {
   const toolbar = document.querySelector(".toolbar-mobile");
   const bookingForm = document.querySelector(".hero .booking-form");
   const iconClose = document.querySelector(".booking-form .icon-close");
+
   toolbar.addEventListener("click", () => {
     bookingForm.classList.toggle("active");
   });
-  iconClose.addEventListener("click", () => {
-    bookingForm.classList.remove("active");
-  });
+
+  // Kiểm tra null trước khi gắn event
+  if (iconClose) {
+    iconClose.addEventListener("click", (e) => {
+      e.stopPropagation();
+      bookingForm.classList.remove("active");
+    });
+  }
 }
 
 function activeModalBooking() {
