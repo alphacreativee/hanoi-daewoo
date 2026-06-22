@@ -4,7 +4,7 @@ import {
   customDropdown,
   createFilterTab,
   sliderParallax,
-  initGuestSelector
+  initGuestSelector,
 } from "../../main/js/global.min.js";
 ("use strict");
 $ = jQuery;
@@ -41,9 +41,9 @@ function getTime() {
       "Tháng 9",
       "Tháng 10",
       "Tháng 11",
-      "Tháng 12"
+      "Tháng 12",
     ],
-    firstDay: 1
+    firstDay: 1,
   };
 
   function getDrops() {
@@ -62,12 +62,12 @@ function getTime() {
       minSpan: { days: 1 },
       startDate: defaultStart,
       endDate: defaultEnd,
-      locale: localeConfig
+      locale: localeConfig,
     },
     function (start, end) {
       $('input[name="startDate"]').val(start.format("DD/MM/YYYY"));
       $('input[name="endDate"]').val(end.format("DD/MM/YYYY"));
-    }
+    },
   );
 
   // ← Monkey-patch updateElement để picker không bao giờ tự ghi range vào input
@@ -108,8 +108,8 @@ function headerScroll() {
       start: "top -10px",
       end: "+=100",
       onEnter: () => header.classList.add("header-theme-light-active"),
-      onLeaveBack: () => header.classList.remove("header-theme-light-active")
-    }
+      onLeaveBack: () => header.classList.remove("header-theme-light-active"),
+    },
   });
 
   // return trigger;
@@ -139,21 +139,21 @@ function heroSection() {
       preloadImages: true,
       parallax: true,
       lazy: {
-        loadPrevNext: true
+        loadPrevNext: true,
       },
       allowTouchMove: false,
       simulateTouch: false,
       mousewheel: false,
       navigation: {
         nextEl: ".hero .swiper-button-next",
-        prevEl: ".hero .swiper-button-prev"
+        prevEl: ".hero .swiper-button-prev",
       },
       on: {
         init: function () {
           let $this = this;
           $($this.slides[$this.activeIndex]);
-        }
-      }
+        },
+      },
     });
   });
 }
@@ -251,16 +251,16 @@ function imageZoom() {
       scrollTrigger: {
         trigger: imageZoom,
         start: "top 70%",
-        end: "top 70%"
-      }
-    }
+        end: "top 70%",
+      },
+    },
   );
 }
 function sliderDining() {
   if (!document.querySelector(".dining-swiper")) return;
 
   const titleService = document.querySelectorAll(
-    ".dining-list-title .dining-title"
+    ".dining-list-title .dining-title",
   );
   let activeElms = titleService[0];
 
@@ -280,8 +280,8 @@ function sliderDining() {
     on: {
       slideChange: function () {
         setActiveTitle(this.realIndex);
-      }
-    }
+      },
+    },
   });
 
   setActiveTitle(0);
@@ -316,9 +316,9 @@ function animationText() {
       scrollTrigger: {
         trigger: el,
         start: "top 65%",
-        once: true
+        once: true,
         // markers: true,
-      }
+      },
     });
 
     const animFrom = { y: 20, opacity: 0 };
@@ -326,7 +326,7 @@ function animationText() {
       y: 0,
       opacity: 1,
       duration: 0.6,
-      ease: "power2.out"
+      ease: "power2.out",
     };
 
     if (tlTextOne.length) tl.fromTo(tlTextOne, animFrom, animTo);
@@ -354,7 +354,7 @@ function accommodationSlider() {
         slide.querySelectorAll(".ac-text-two"),
         slide.querySelectorAll(".ac-text-three"),
         slide.querySelectorAll(".ac-text-four"),
-        slide.querySelectorAll(".ac-text-five")
+        slide.querySelectorAll(".ac-text-five"),
       ];
       groups.forEach((group) => {
         if (group.length) gsap.set(group, { y: 20, opacity: 0 });
@@ -396,7 +396,7 @@ function accommodationSlider() {
             once: true,
             onEnter: () => {
               animateSlideText(swiper.slides[swiper.activeIndex]);
-            }
+            },
           });
         },
         slideChangeTransitionStart(swiper) {
@@ -404,8 +404,8 @@ function accommodationSlider() {
         },
         slideChangeTransitionEnd(swiper) {
           animateSlideText(swiper.slides[swiper.activeIndex]);
-        }
-      }
+        },
+      },
     });
   });
 }
@@ -418,21 +418,21 @@ function eventSlider() {
     speed: 1000,
     pagination: {
       el: ".event-right .swiper-pagination",
-      type: "progressbar"
+      type: "progressbar",
     },
     navigation: {
       nextEl: ".event-right .swiper-button-next",
-      prevEl: ".event-right .swiper-button-prev"
+      prevEl: ".event-right .swiper-button-prev",
     },
     breakpoints: {
       991: {
         slidesPerView: 2,
-        spaceBetween: 24
+        spaceBetween: 24,
       },
       1025: {
         slidesPerView: 2,
-        spaceBetween: 40
-      }
+        spaceBetween: 40,
+      },
     },
     on: {
       init(swiper) {
@@ -440,8 +440,8 @@ function eventSlider() {
       },
       slideChange(swiper) {
         updateFraction(swiper);
-      }
-    }
+      },
+    },
   });
 
   function updateFraction(swiper) {
@@ -482,9 +482,9 @@ function animationAccommodationCard() {
           y: 0,
           opacity: 1,
           duration: 0.6,
-          ease: "power2.out"
+          ease: "power2.out",
         });
-      }
+      },
     });
 
     const tl = gsap.timeline({ paused: true });
@@ -499,7 +499,7 @@ function animationAccommodationCard() {
       trigger: card.querySelector(".card-content"),
       start: "top 65%",
       once: true,
-      onEnter: () => tl.play()
+      onEnter: () => tl.play(),
     });
   });
 }
@@ -530,9 +530,9 @@ function animationWeddingItem() {
           y: 0,
           opacity: 1,
           duration: 0.8,
-          ease: "power2.out"
+          ease: "power2.out",
         });
-      }
+      },
     });
 
     // Animate content dùng stagger thay vì timeline
@@ -546,9 +546,9 @@ function animationWeddingItem() {
           opacity: 1,
           duration: 0.7,
           ease: "power2.out",
-          stagger: 0.15 // delay nhẹ giữa các el, không bị overlap cứng
+          stagger: 0.15, // delay nhẹ giữa các el, không bị overlap cứng
         });
-      }
+      },
     });
   });
 }
@@ -561,29 +561,29 @@ function header() {
 
   const tl = gsap.timeline({
     paused: true,
-    defaults: { ease: "power2.out" }
+    defaults: { ease: "power2.out" },
   });
 
   tl.from(".header-main--popup__top .logo", {
     x: -20,
     opacity: 0,
     duration: 0.3,
-    delay: 0.1
+    delay: 0.1,
   })
     .from(".header-main--popup > ul > li, .main-sub-menu  ", {
       x: -20,
       opacity: 0,
       stagger: 0.08,
-      duration: 0.4
+      duration: 0.4,
     })
     .from(
       ".header-main--popup__bottom",
       {
         x: -20,
         opacity: 0,
-        duration: 0.3
+        duration: 0.3,
       },
-      "-=0.2"
+      "-=0.2",
     );
 
   function getScrollbarWidth() {
@@ -637,7 +637,7 @@ function header() {
 
   document.addEventListener("click", (e) => {
     const clickedHamburger = [...btnHambuger].some((btn) =>
-      btn.contains(e.target)
+      btn.contains(e.target),
     );
 
     if (
@@ -681,7 +681,7 @@ function animationItemsSection() {
       y: MOVE_Y,
       opacity: 0,
       force3D: true,
-      willChange: "transform, opacity"
+      willChange: "transform, opacity",
     });
 
     // ── Mobile: mỗi item tự trigger khi scroll tới ──
@@ -693,9 +693,9 @@ function animationItemsSection() {
             trigger: item, // trigger theo từng item
             start: "top 83%",
             toggleActions: "play none none none",
-            once: true
+            once: true,
             // markers: true,
-          }
+          },
         });
 
         tl.to(
@@ -704,18 +704,18 @@ function animationItemsSection() {
             y: 0,
             duration: TRANSFORM_DURATION,
             ease: "power3.out",
-            force3D: true
+            force3D: true,
           },
-          0
+          0,
         ).to(
           item,
           {
             opacity: 1,
             duration: OPACITY_DURATION,
             ease: "power2.out",
-            clearProps: "willChange"
+            clearProps: "willChange",
           },
-          0
+          0,
         );
       });
 
@@ -728,8 +728,8 @@ function animationItemsSection() {
         trigger: section,
         start: "top 65%",
         toggleActions: "play none none none",
-        once: true
-      }
+        once: true,
+      },
     });
 
     tl.to(
@@ -739,9 +739,9 @@ function animationItemsSection() {
         duration: TRANSFORM_DURATION,
         stagger: ITEM_STAGGER,
         ease: "power3.out",
-        force3D: true
+        force3D: true,
       },
-      0
+      0,
     ).to(
       items,
       {
@@ -749,9 +749,9 @@ function animationItemsSection() {
         duration: OPACITY_DURATION,
         stagger: ITEM_STAGGER,
         ease: "power2.out",
-        clearProps: "willChange"
+        clearProps: "willChange",
       },
-      0
+      0,
     );
   });
 }
@@ -766,7 +766,7 @@ function animationItemRow() {
     const listDFour = item.querySelector(".list-detail-four");
 
     const contentEls = [listDOne, listDTwo, listDThree, listDFour].filter(
-      Boolean
+      Boolean,
     );
 
     gsap.set(contentEls, { y: 20, opacity: 0 });
@@ -783,7 +783,7 @@ function animationItemRow() {
       trigger: item.querySelector(".list-detail-box"),
       start: "top 50%",
       once: true,
-      onEnter: () => tl.play()
+      onEnter: () => tl.play(),
     });
   });
 }
@@ -811,10 +811,10 @@ function bookAtable() {
         "Tháng 9",
         "Tháng 10",
         "Tháng 11",
-        "Tháng 12"
+        "Tháng 12",
       ],
-      firstDay: 1
-    }
+      firstDay: 1,
+    },
   });
 }
 function wonderGallery() {
@@ -835,7 +835,7 @@ function wonderGallery() {
     document.head.appendChild(styleEl);
 
     const textContent = document.querySelector(
-      ".wonderfulGallery .content-text .title"
+      ".wonderfulGallery .content-text .title",
     );
 
     if (textContent) {
@@ -857,13 +857,13 @@ function wonderGallery() {
           if (textContent) {
             gsap.set(textContent, { opacity: 1, y: 0 });
           }
-        }
-      }
+        },
+      },
     });
 
     tl.to(container, {
       "--line-height": "100%",
-      ease: "none"
+      ease: "none",
     });
 
     if (textContent) {
@@ -873,9 +873,9 @@ function wonderGallery() {
           opacity: 1,
           y: 0,
           duration: 0.3,
-          ease: "power2.out"
+          ease: "power2.out",
         },
-        "<13%"
+        "<13%",
       );
     }
   }
@@ -891,24 +891,24 @@ function wonderGallery() {
       scrollTrigger: {
         trigger: item,
         start: "top 80%",
-        once: true
-      }
+        once: true,
+      },
     });
 
     tl.to(image, {
       y: 0,
       opacity: 1,
       duration: 0.6,
-      ease: "power2.out"
+      ease: "power2.out",
     }).to(
       text,
       {
         y: 0,
         opacity: 1,
         duration: 0.3,
-        ease: "power2.out"
+        ease: "power2.out",
       },
-      "-=0.4"
+      "-=0.4",
     );
   });
 }
@@ -939,11 +939,11 @@ function swiperThreeCol() {
       pagination: {
         el: ".main-swiper .swiper-pagination",
         type: "progressbar",
-        enabled: !isMobile
+        enabled: !isMobile,
       },
       navigation: {
         nextEl: ".main-swiper .swiper-button-next",
-        prevEl: ".main-swiper .swiper-button-prev"
+        prevEl: ".main-swiper .swiper-button-prev",
       },
       on: {
         init(swiper) {
@@ -952,8 +952,8 @@ function swiperThreeCol() {
         },
         slideChange(swiper) {
           updateFraction(swiper);
-        }
-      }
+        },
+      },
     });
 
     if (slides <= perView) {
@@ -1019,8 +1019,8 @@ function initParallaxSwiper(swiperEl, options = {}) {
           }
         });
       },
-      ...(options.on || {})
-    }
+      ...(options.on || {}),
+    },
   });
 }
 
@@ -1102,11 +1102,11 @@ function galleryLightbox() {
     swiperLightbox = initParallaxSwiper(swiperEl, {
       navigation: {
         nextEl: lightbox.querySelector(".swiper-button-next"),
-        prevEl: lightbox.querySelector(".swiper-button-prev")
+        prevEl: lightbox.querySelector(".swiper-button-prev"),
       },
       pagination: {
         el: lightbox.querySelector(".swiper-fraction"),
-        type: "fraction"
+        type: "fraction",
       },
       initialSlide: startIndex,
       on: {
@@ -1116,8 +1116,8 @@ function galleryLightbox() {
         slideChange(swiper) {
           if (isInitializing) return;
           updateTitle(swiper);
-        }
-      }
+        },
+      },
     });
   }
 
@@ -1161,7 +1161,7 @@ function galleryTabLightbox() {
 
   const swiperEl = lightbox.querySelector(".swiper-lightbox");
   const titleEl = lightbox.querySelector(
-    ".swiper-nav-inner .swiper-slide-title"
+    ".swiper-nav-inner .swiper-slide-title",
   );
   const fractionEl = lightbox.querySelector(".swiper-fraction");
   let swiperLightbox = null;
@@ -1169,7 +1169,7 @@ function galleryTabLightbox() {
   function updateTitle(swiper) {
     if (!titleEl) return;
     const realSlides = swiperEl.querySelectorAll(
-      ".swiper-slide:not(.swiper-slide-duplicate)"
+      ".swiper-slide:not(.swiper-slide-duplicate)",
     );
     const title = realSlides[swiper.realIndex]?.dataset?.title || "";
 
@@ -1216,11 +1216,11 @@ function galleryTabLightbox() {
     swiperLightbox = initParallaxSwiper(swiperEl, {
       navigation: {
         nextEl: lightbox.querySelector(".swiper-button-next"),
-        prevEl: lightbox.querySelector(".swiper-button-prev")
+        prevEl: lightbox.querySelector(".swiper-button-prev"),
       },
       pagination: {
         el: fractionEl,
-        type: "fraction"
+        type: "fraction",
       },
       on: {
         init(swiper) {
@@ -1228,8 +1228,8 @@ function galleryTabLightbox() {
         },
         slideChange(swiper) {
           updateTitle(swiper);
-        }
-      }
+        },
+      },
     });
   }
 
@@ -1243,7 +1243,7 @@ function galleryTabLightbox() {
         visibleItems = [...section.querySelectorAll(".filter-item")];
       } else {
         visibleItems = [
-          ...section.querySelectorAll(`.filter-item.${activeType}`)
+          ...section.querySelectorAll(`.filter-item.${activeType}`),
         ];
       }
 
@@ -1293,9 +1293,9 @@ function formBookingEvent() {
       "Tháng 9",
       "Tháng 10",
       "Tháng 11",
-      "Tháng 12"
+      "Tháng 12",
     ],
-    firstDay: 1
+    firstDay: 1,
   };
 
   function getDrops() {
@@ -1311,11 +1311,11 @@ function formBookingEvent() {
       singleDatePicker: true,
       minDate: moment().startOf("day"),
       startDate: defaultStart,
-      locale: localeConfig
+      locale: localeConfig,
     },
     function (start) {
       $('input[name="arrivalDate"]').val(start.format("DD/MM/YYYY"));
-    }
+    },
   );
 
   // ← Monkey-patch updateElement để picker không bao giờ tự ghi range vào input
@@ -1427,7 +1427,7 @@ function uploadFile() {
 
     if (oversizedFile) {
       alert(
-        `${oversizedFile.name} exceeds the maximum size of ${MAX_FILE_SIZE_MB}MB.`
+        `${oversizedFile.name} exceeds the maximum size of ${MAX_FILE_SIZE_MB}MB.`,
       );
       resetFiles();
       return;
@@ -1469,7 +1469,7 @@ function panel() {
     panels.forEach((panel) => {
       gsap.set(
         panel.querySelectorAll(".panel-title, .panel-desc, .panel-btn"),
-        { opacity: 0, y: 20, pointerEvents: "none" }
+        { opacity: 0, y: 20, pointerEvents: "none" },
       );
     });
 
@@ -1484,8 +1484,8 @@ function panel() {
           stagger: 0.1,
           duration: 0.6,
           ease: "power2.out",
-          overwrite: true
-        }
+          overwrite: true,
+        },
       );
     }
 
@@ -1496,7 +1496,7 @@ function panel() {
         pointerEvents: "none",
         duration: 0.4,
         ease: "power2.in",
-        overwrite: true
+        overwrite: true,
       });
     }
 
@@ -1509,13 +1509,13 @@ function panel() {
           .fromTo(
             panel.querySelector(".panel-image"),
             { clipPath: "inset(0 0 0% 0)" },
-            { clipPath: "inset(0 0 100% 0)", ease: "none", duration: 1 }
+            { clipPath: "inset(0 0 100% 0)", ease: "none", duration: 1 },
           )
           .fromTo(
             panels[index + 1].querySelector("img"),
             { scale: 1.35 },
             { scale: 1, duration: 1.3, ease: "power2.out" },
-            "<"
+            "<",
           )
           .to({}, { duration: 0.6 }, "<+=0.5");
       }
@@ -1534,12 +1534,12 @@ function panel() {
         triggerPoints.push({
           type: "out",
           panelIndex: index,
-          progress: (fadeOutTime + 0.25) / total
+          progress: (fadeOutTime + 0.25) / total,
         });
         triggerPoints.push({
           type: "in",
           panelIndex: index + 1,
-          progress: (clipStartTime + 0.5) / total
+          progress: (clipStartTime + 0.5) / total,
         });
         clipEndPoints.push((clipStartTime + 1) / total);
       }
@@ -1565,7 +1565,7 @@ function panel() {
         panels.forEach((panel) => {
           gsap.set(
             panel.querySelectorAll(".panel-title, .panel-desc, .panel-btn"),
-            { opacity: 0, y: 20, pointerEvents: "none" }
+            { opacity: 0, y: 20, pointerEvents: "none" },
           );
         });
         animateTextIn(panels[0]);
@@ -1604,11 +1604,11 @@ function panel() {
             if (progress >= point.progress) currentIndex = i + 1;
           });
         headings.forEach((h, i) =>
-          h.classList.toggle("active", i === currentIndex)
+          h.classList.toggle("active", i === currentIndex),
         );
 
         lastProgress = progress;
-      }
+      },
     });
   });
 }
@@ -1623,7 +1623,7 @@ function modalBooking() {
 
     const inputRequired = form.find(".field-item input.required");
     const selectRequired = form.find(
-      ".field-item .dropdown-custom-select.required"
+      ".field-item .dropdown-custom-select.required",
     );
 
     let isValid = true;
@@ -1665,7 +1665,7 @@ function modalBooking() {
       formData.append("email", currentForm.find('[name="email"]').val());
       formData.append(
         "portfolio",
-        currentForm.find('[name="portfolio"]').val()
+        currentForm.find('[name="portfolio"]').val(),
       );
 
       formData.append("email_recipient", submitBtn.attr("email-recipient"));
@@ -1703,7 +1703,7 @@ function modalBooking() {
 
         complete() {
           submitBtn.removeClass("aloading");
-        }
+        },
       });
     }
 
@@ -1722,12 +1722,12 @@ function modalBooking() {
           .find(".dropdown-custom-select.event_type")
           .find(".dropdown-custom-text")
           .text()
-          .trim()
+          .trim(),
       );
 
       formData.append(
         "arrival_date",
-        currentForm.find('[name="arrivalDate"]').val()
+        currentForm.find('[name="arrivalDate"]').val(),
       );
 
       formData.append(
@@ -1736,7 +1736,7 @@ function modalBooking() {
           .find(".dropdown-custom-select.event_duration")
           .find(".dropdown-custom-text")
           .text()
-          .trim()
+          .trim(),
       );
 
       formData.append(
@@ -1745,7 +1745,7 @@ function modalBooking() {
           .find(".dropdown-custom-select.event_requirements")
           .find(".dropdown-custom-text")
           .text()
-          .trim()
+          .trim(),
       );
 
       formData.append(
@@ -1754,17 +1754,17 @@ function modalBooking() {
           .find(".dropdown-custom-select.room_type")
           .find(".dropdown-custom-text")
           .text()
-          .trim()
+          .trim(),
       );
 
       formData.append(
         "number_of_guests",
-        currentForm.find('[name="numberofguests"]').val()
+        currentForm.find('[name="numberofguests"]').val(),
       );
 
       formData.append(
         "guest_rooms_per_night",
-        currentForm.find('[name="numberofguestsNight"]').val()
+        currentForm.find('[name="numberofguestsNight"]').val(),
       );
 
       // Contact Information
@@ -1774,12 +1774,12 @@ function modalBooking() {
           .find(".dropdown-custom-select.title-name")
           .find(".dropdown-custom-text")
           .text()
-          .trim()
+          .trim(),
       );
 
       formData.append(
         "first_name",
-        currentForm.find('[name="firstname"]').val()
+        currentForm.find('[name="firstname"]').val(),
       );
 
       formData.append("last_name", currentForm.find('[name="lastname"]').val());
@@ -1791,7 +1791,7 @@ function modalBooking() {
         currentForm
           .find(".select-region .dropdown-custom-text span")
           .text()
-          .trim()
+          .trim(),
       );
 
       formData.append("phone", currentForm.find('[name="phone"]').val());
@@ -1829,7 +1829,7 @@ function modalBooking() {
 
         complete() {
           submitBtn.removeClass("aloading");
-        }
+        },
       });
     }
 
@@ -1848,40 +1848,40 @@ function modalBooking() {
         currentForm
           .find(".dropdown-custom-select.event_type .dropdown-custom-text")
           .text()
-          .trim()
+          .trim(),
       );
 
       formData.append(
         "attendees",
-        currentForm.find('[name="attendees"]').val()
+        currentForm.find('[name="attendees"]').val(),
       );
 
       formData.append("bedroom", currentForm.find('[name="bedroom"]').val());
 
       formData.append(
         "arrival_date",
-        currentForm.find('[name="arrivalDate"]').val()
+        currentForm.find('[name="arrivalDate"]').val(),
       );
 
       formData.append(
         "departure_date",
-        currentForm.find('[name="departureDate"]').val()
+        currentForm.find('[name="departureDate"]').val(),
       );
 
       formData.append(
         "date_flexible",
-        currentForm.find('[name="date_flexible"]:checked').val()
+        currentForm.find('[name="date_flexible"]:checked').val(),
       );
 
       formData.append(
         "meeting_space",
-        currentForm.find('[name="meeting_space"]:checked').val()
+        currentForm.find('[name="meeting_space"]:checked').val(),
       );
 
       // Contact Information
       formData.append(
         "first_name",
-        currentForm.find('[name="firstname"]').val()
+        currentForm.find('[name="firstname"]').val(),
       );
 
       formData.append("last_name", currentForm.find('[name="lastname"]').val());
@@ -1930,7 +1930,7 @@ function modalBooking() {
 
         complete() {
           submitBtn.removeClass("aloading");
-        }
+        },
       });
     }
 
@@ -1947,12 +1947,12 @@ function modalBooking() {
         "restaurant_id",
         currentForm
           .find(".dropdown-custom-select.restaurant .dropdown-custom-text")
-          .data("dining")
+          .data("dining"),
       );
 
       formData.append(
         "first_name",
-        currentForm.find('[name="firstname"]').val()
+        currentForm.find('[name="firstname"]').val(),
       );
 
       formData.append("last_name", currentForm.find('[name="lastname"]').val());
@@ -1971,10 +1971,10 @@ function modalBooking() {
         "time",
         currentForm
           .find(
-            ".field-item .dropdown-custom-select.time .dropdown-custom-text"
+            ".field-item .dropdown-custom-select.time .dropdown-custom-text",
           )
           .text()
-          .trim()
+          .trim(),
       );
 
       formData.append("message", currentForm.find('[name="message"]').val());
@@ -2010,7 +2010,7 @@ function modalBooking() {
 
         complete() {
           submitBtn.removeClass("aloading");
-        }
+        },
       });
     }
 
@@ -2062,7 +2062,7 @@ function modalBooking() {
 
         complete() {
           submitBtn.removeClass("aloading");
-        }
+        },
       });
     }
   });
@@ -2070,7 +2070,7 @@ function modalBooking() {
 
 function initEventCheckboxValidation() {
   const form = $(
-    '.modal-booking form[data-form="events"], .modal-booking form[data-form="weddings"], .modal-booking form[data-form="dining"], .modal-booking form[data-form="contact"]'
+    '.modal-booking form[data-form="events"], .modal-booking form[data-form="weddings"], .modal-booking form[data-form="dining"], .modal-booking form[data-form="contact"]',
   );
 
   if (!form.length) return;
@@ -2093,7 +2093,7 @@ function swiperDestination() {
   const swiper = new Swiper(".swiper-destination", {
     slidesPerView: 1.15,
     spaceBetween: 24,
-    slidesOffsetAfter: 16
+    slidesOffsetAfter: 16,
   });
 }
 function createFilterTabDropdown() {
@@ -2117,7 +2117,7 @@ function createFilterTabDropdown() {
 
     // Sửa: .dropdown-custom-select.filter-tab thay vì .dropdown-custom.filter-tab
     const dropdownFilterTab = section.querySelector(
-      ".dropdown-custom-select.filter-tab"
+      ".dropdown-custom-select.filter-tab",
     );
     const dropdownItems = dropdownFilterTab
       ? dropdownFilterTab.querySelectorAll(".dropdown-custom-item[data-type]")
@@ -2127,7 +2127,7 @@ function createFilterTabDropdown() {
     if (!allButtons.length) return;
 
     const activeBtn = section.querySelector(
-      ".filter-button.active[data-type], .dropdown-custom-item.active[data-type]"
+      ".filter-button.active[data-type], .dropdown-custom-item.active[data-type]",
     );
     if (activeBtn) {
       const activeType = activeBtn.dataset.type;
@@ -2141,7 +2141,7 @@ function createFilterTabDropdown() {
 
       if (dropdownFilterTab && dropdownFilterTab.contains(activeBtn)) {
         const displayText = dropdownFilterTab.querySelector(
-          ".dropdown-custom-text span"
+          ".dropdown-custom-text span",
         );
         if (displayText) {
           displayText.textContent =
@@ -2158,7 +2158,7 @@ function createFilterTabDropdown() {
 
         if (dropdownFilterTab && dropdownFilterTab.contains(this)) {
           const displayText = dropdownFilterTab.querySelector(
-            ".dropdown-custom-text span"
+            ".dropdown-custom-text span",
           );
           const itemSpan = this.querySelector("span");
 
@@ -2170,7 +2170,7 @@ function createFilterTabDropdown() {
 
           const menu = dropdownFilterTab.querySelector(".dropdown-custom-menu");
           const dropdownBtn = dropdownFilterTab.querySelector(
-            ".dropdown-custom-btn"
+            ".dropdown-custom-btn",
           );
           menu?.classList.remove("dropdown--active");
           dropdownBtn?.classList.remove("--active");
@@ -2200,12 +2200,12 @@ function createFilterTabDropdown() {
 }
 function createUnitFilter() {
   const unitDropdown = document.querySelector(
-    ".venus-td .filter-section .dropdown-custom-select.filter-tab"
+    ".venus-td .filter-section .dropdown-custom-select.filter-tab",
   );
   if (!unitDropdown) return;
 
   const items = unitDropdown.querySelectorAll(
-    ".dropdown-custom-item[data-type]"
+    ".dropdown-custom-item[data-type]",
   );
   const displayText = unitDropdown.querySelector(".dropdown-custom-text span");
   const menu = unitDropdown.querySelector(".dropdown-custom-menu");
@@ -2222,7 +2222,7 @@ function createUnitFilter() {
       pairs.push({
         type: el.classList.contains("m2") ? "m2" : "feet",
         el,
-        result
+        result,
       });
     });
     return pairs;
@@ -2244,7 +2244,7 @@ function createUnitFilter() {
       })
       .to(
         allEls.filter((_, i) => true),
-        { autoAlpha: 1, duration: 0.2 }
+        { autoAlpha: 1, duration: 0.2 },
       )
       .invalidate(); // đảm bảo recalc display sau khi set inline
   }
@@ -2304,17 +2304,17 @@ function createVenueFilterDropdown() {
       if (!result) return;
 
       const dropdownFilterTab = filterSection.querySelector(
-        ".dropdown-custom-select.filter-tab"
+        ".dropdown-custom-select.filter-tab",
       );
       if (!dropdownFilterTab) return;
 
       const items = dropdownFilterTab.querySelectorAll(
-        ".dropdown-custom-item[data-type]"
+        ".dropdown-custom-item[data-type]",
       );
       if (!items.length) return;
 
       const displayText = dropdownFilterTab.querySelector(
-        ".dropdown-custom-text span"
+        ".dropdown-custom-text span",
       );
       const menu = dropdownFilterTab.querySelector(".dropdown-custom-menu");
       const btn = dropdownFilterTab.querySelector(".dropdown-custom-btn");
@@ -2332,7 +2332,7 @@ function createVenueFilterDropdown() {
 
       const activeItem =
         dropdownFilterTab.querySelector(
-          ".dropdown-custom-item.active[data-type]"
+          ".dropdown-custom-item.active[data-type]",
         ) || items[0];
 
       if (activeItem) {
@@ -2465,7 +2465,7 @@ function filterPositionHiring() {
 
       complete() {
         positionList.classList.remove("aloading");
-      }
+      },
     });
   };
 
@@ -2507,9 +2507,9 @@ function formBookingWeddings() {
       "Tháng 9",
       "Tháng 10",
       "Tháng 11",
-      "Tháng 12"
+      "Tháng 12",
     ],
-    firstDay: 1
+    firstDay: 1,
   };
 
   function getDrops(fieldId) {
@@ -2528,7 +2528,7 @@ function formBookingWeddings() {
         singleDatePicker: true,
         minDate: minDateFn(),
         startDate: defaultDate,
-        locale: localeConfig
+        locale: localeConfig,
       },
       function (start) {
         $input.val(start.format("DD/MM/YYYY"));
@@ -2536,7 +2536,7 @@ function formBookingWeddings() {
         // Nếu là arrivalDate, cập nhật minDate của departureDate
         if (inputName === "arrivalDate") {
           const departurePicker = $('input[name="departureDate"]').data(
-            "daterangepicker"
+            "daterangepicker",
           );
           if (departurePicker) {
             const newMin = start.clone().add(1, "days");
@@ -2545,7 +2545,7 @@ function formBookingWeddings() {
             // Reset departureDate nếu đang chọn ngày <= arrivalDate
             const currentDeparture = moment(
               $('input[name="departureDate"]').val(),
-              "DD/MM/YYYY"
+              "DD/MM/YYYY",
             );
             if (currentDeparture.isSameOrBefore(start)) {
               departurePicker.setStartDate(newMin);
@@ -2553,7 +2553,7 @@ function formBookingWeddings() {
             }
           }
         }
-      }
+      },
     );
 
     // Monkey-patch updateElement
@@ -2570,14 +2570,14 @@ function formBookingWeddings() {
       const picker = $input.data("daterangepicker");
       if (picker)
         picker.drops = getDrops(
-          inputName === "arrivalDate" ? "arrivalDate" : "departureDate"
+          inputName === "arrivalDate" ? "arrivalDate" : "departureDate",
         );
     });
   }
 
   initDatePicker("arrivalDate", defaultStart, () => moment().startOf("day"));
   initDatePicker("departureDate", defaultEnd, () =>
-    defaultStart.clone().add(1, "days")
+    defaultStart.clone().add(1, "days"),
   );
 
   // change step
@@ -2609,7 +2609,7 @@ function formBookingWeddings() {
         $(
           "form[data-form='weddings'] .event_type .dropdown-custom-item[data-type='" +
             dataType +
-            "']"
+            "']",
         ).trigger("click");
       })
       .modal("show");
@@ -2621,12 +2621,18 @@ function toolbarMobile() {
   const toolbar = document.querySelector(".toolbar-mobile");
   const bookingForm = document.querySelector(".hero .booking-form");
   const iconClose = document.querySelector(".booking-form .icon-close");
+
   toolbar.addEventListener("click", () => {
     bookingForm.classList.toggle("active");
   });
-  iconClose.addEventListener("click", () => {
-    bookingForm.classList.remove("active");
-  });
+
+  // Kiểm tra null trước khi gắn event
+  if (iconClose) {
+    iconClose.addEventListener("click", (e) => {
+      e.stopPropagation();
+      bookingForm.classList.remove("active");
+    });
+  }
 }
 
 function activeModalBooking() {
@@ -2635,7 +2641,6 @@ function activeModalBooking() {
   const params = new URLSearchParams(window.location.search);
 
   if (params.get("openmodal") === "true") {
-
     new bootstrap.Modal($(".modal-booking")[0]).show();
   }
 }
