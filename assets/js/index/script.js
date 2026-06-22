@@ -2635,9 +2635,92 @@ function activeModalBooking() {
   const params = new URLSearchParams(window.location.search);
 
   if (params.get("openmodal") === "true") {
-
     new bootstrap.Modal($(".modal-booking")[0]).show();
   }
+}
+
+function formNewsletter() {
+  if ($("#form-newsletter").length < 1) return;
+
+  $("#form-newsletter").on("submit", function (e) {
+    e.preventDefault();
+
+    const thisForm = $(this);
+    const emailField = thisForm.find("input[type='email']");
+    const buttonSubmit = thisForm.find("button[type='submit']");
+
+    thisForm.find(".field-item").removeClass("error");
+    $(
+      ".footer-newsletter .form-message .success, .footer-newsletter .form-message .error"
+    ).hide();
+
+    if (!emailField.length) {
+      console.error("Không tìm thấy input email.");
+      return;
+    }
+
+    const email = emailField.val()?.trim() || "";
+
+    // Kiểm tra rỗng
+    if (!email) {
+      thisForm.find(".field-item").addClass("error");
+      return;
+    }
+
+    // Kiểm tra định dạng email
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+
+    if (!emailRegex.test(email)) {
+      thisForm.find(".field-item").addClass("error");
+      return;
+    }
+
+    $.ajax({
+      type: "POST",
+      url: ajaxUrl,
+      dataType: "json",
+      data: {
+        action: "daewoo_receive_newsletter",
+        email: email
+      },
+
+      beforeSend: function () {
+        buttonSubmit.addClass("aloading").prop("disabled", true);
+      },
+
+      success: function (res) {
+        if (res.success) {
+          thisForm[0].reset();
+
+          $(".footer-newsletter .form-message .success").fadeIn();
+
+          setTimeout(() => {
+            $(".footer-newsletter .form-message .success").fadeOut();
+          }, 7000);
+        } else {
+          $(".footer-newsletter .form-message .error").fadeIn();
+
+          setTimeout(() => {
+            $(".footer-newsletter .form-message .error").fadeOut();
+          }, 7000);
+        }
+      },
+
+      error: function (xhr, status, error) {
+        console.error("Lỗi khi gửi form:", error);
+
+        $(".footer-newsletter .form-message .error").fadeIn();
+
+        setTimeout(() => {
+          $(".footer-newsletter .form-message .error").fadeOut();
+        }, 7000);
+      },
+
+      complete: function () {
+        buttonSubmit.removeClass("aloading").prop("disabled", false);
+      }
+    });
+  });
 }
 
 const init = () => {
@@ -2683,6 +2766,7 @@ const init = () => {
   toolbarMobile();
   panel();
   activeModalBooking();
+  formNewsletter();
 };
 document.addEventListener("DOMContentLoaded", () => {
   init();
