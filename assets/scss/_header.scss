@@ -401,6 +401,14 @@
           }
 
           li {
+            a {
+              &.active {
+                span:before {
+                  transform: scaleX(1);
+                  transform-origin: bottom left;
+                }
+              }
+            }
             &.menu-item-has-children {
               & > a {
                 display: flex;

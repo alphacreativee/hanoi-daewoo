@@ -3,6 +3,7 @@ import {
   createFilterTab,
   sliderParallax,
   initGuestSelector,
+  formNewsletter
 } from "../../main/js/global.min.js";
 ("use strict");
 $ = jQuery;
@@ -39,9 +40,9 @@ function getTime() {
       "Tháng 9",
       "Tháng 10",
       "Tháng 11",
-      "Tháng 12",
+      "Tháng 12"
     ],
-    firstDay: 1,
+    firstDay: 1
   };
 
   function getDrops() {
@@ -60,12 +61,12 @@ function getTime() {
       minSpan: { days: 1 },
       startDate: defaultStart,
       endDate: defaultEnd,
-      locale: localeConfig,
+      locale: localeConfig
     },
     function (start, end) {
       $('input[name="startDate"]').val(start.format("DD/MM/YYYY"));
       $('input[name="endDate"]').val(end.format("DD/MM/YYYY"));
-    },
+    }
   );
 
   const picker = $('input[name="startDate"]').data("daterangepicker");
@@ -95,7 +96,7 @@ function getTime() {
             .html($rightNext.html()) // copy icon từ right
             .on("click", function () {
               $rightNext.trigger("click");
-            }),
+            })
         );
 
       // Hide right sau khi đã lấy xong
@@ -134,8 +135,8 @@ function headerScroll() {
       start: "top -10px",
       end: "+=100",
       onEnter: () => header.classList.add("header-theme-light-active"),
-      onLeaveBack: () => header.classList.remove("header-theme-light-active"),
-    },
+      onLeaveBack: () => header.classList.remove("header-theme-light-active")
+    }
   });
 
   // return trigger;
@@ -165,21 +166,21 @@ function heroSection() {
       preloadImages: true,
       parallax: true,
       lazy: {
-        loadPrevNext: true,
+        loadPrevNext: true
       },
       allowTouchMove: false,
       simulateTouch: false,
       mousewheel: false,
       navigation: {
         nextEl: ".hero .swiper-button-next",
-        prevEl: ".hero .swiper-button-prev",
+        prevEl: ".hero .swiper-button-prev"
       },
       on: {
         init: function () {
           let $this = this;
           $($this.slides[$this.activeIndex]);
-        },
-      },
+        }
+      }
     });
   });
 }
@@ -276,16 +277,16 @@ function imageZoom() {
       scrollTrigger: {
         trigger: imageZoom,
         start: "top 70%",
-        end: "top 70%",
-      },
-    },
+        end: "top 70%"
+      }
+    }
   );
 }
 function sliderDining() {
   if (!document.querySelector(".dining-swiper")) return;
 
   const titleService = document.querySelectorAll(
-    ".dining-list-title .dining-title",
+    ".dining-list-title .dining-title"
   );
   let activeElms = titleService[0];
 
@@ -311,8 +312,8 @@ function sliderDining() {
       on: {
         slideChange: function () {
           setActiveTitle(this.realIndex);
-        },
-      },
+        }
+      }
     });
 
     if (!isMobile) {
@@ -350,9 +351,9 @@ function animationText() {
       scrollTrigger: {
         trigger: el,
         start: "top 65%",
-        once: true,
+        once: true
         // markers: true,
-      },
+      }
     });
 
     const animFrom = { y: 20, opacity: 0 };
@@ -360,7 +361,7 @@ function animationText() {
       y: 0,
       opacity: 1,
       duration: 0.6,
-      ease: "power2.out",
+      ease: "power2.out"
     };
 
     if (tlTextOne.length) tl.fromTo(tlTextOne, animFrom, animTo);
@@ -388,7 +389,7 @@ function accommodationSlider() {
         slide.querySelectorAll(".ac-text-two"),
         slide.querySelectorAll(".ac-text-three"),
         slide.querySelectorAll(".ac-text-four"),
-        slide.querySelectorAll(".ac-text-five"),
+        slide.querySelectorAll(".ac-text-five")
       ];
       groups.forEach((group) => {
         if (group.length) gsap.set(group, { y: 20, opacity: 0 });
@@ -430,7 +431,7 @@ function accommodationSlider() {
             once: true,
             onEnter: () => {
               animateSlideText(swiper.slides[swiper.activeIndex]);
-            },
+            }
           });
         },
         slideChangeTransitionStart(swiper) {
@@ -438,8 +439,8 @@ function accommodationSlider() {
         },
         slideChangeTransitionEnd(swiper) {
           animateSlideText(swiper.slides[swiper.activeIndex]);
-        },
-      },
+        }
+      }
     });
   });
 }
@@ -452,21 +453,21 @@ function eventSlider() {
     speed: 1000,
     pagination: {
       el: ".event-right .swiper-pagination",
-      type: "progressbar",
+      type: "progressbar"
     },
     navigation: {
       nextEl: ".event-right .swiper-button-next",
-      prevEl: ".event-right .swiper-button-prev",
+      prevEl: ".event-right .swiper-button-prev"
     },
     breakpoints: {
       991: {
         slidesPerView: 2,
-        spaceBetween: 24,
+        spaceBetween: 24
       },
       1025: {
         slidesPerView: 2,
-        spaceBetween: 40,
-      },
+        spaceBetween: 40
+      }
     },
     on: {
       init(swiper) {
@@ -474,8 +475,8 @@ function eventSlider() {
       },
       slideChange(swiper) {
         updateFraction(swiper);
-      },
-    },
+      }
+    }
   });
 
   function updateFraction(swiper) {
@@ -517,9 +518,9 @@ function animationWeddingItem() {
           y: 0,
           opacity: 1,
           duration: 0.8,
-          ease: "power2.out",
+          ease: "power2.out"
         });
-      },
+      }
     });
 
     // Animate content dùng stagger thay vì timeline
@@ -533,9 +534,9 @@ function animationWeddingItem() {
           opacity: 1,
           duration: 0.7,
           ease: "power2.out",
-          stagger: 0.15, // delay nhẹ giữa các el, không bị overlap cứng
+          stagger: 0.15 // delay nhẹ giữa các el, không bị overlap cứng
         });
-      },
+      }
     });
   });
 }
@@ -548,29 +549,29 @@ function header() {
 
   const tl = gsap.timeline({
     paused: true,
-    defaults: { ease: "power2.out" },
+    defaults: { ease: "power2.out" }
   });
 
   tl.from(".header-main--popup__top .logo", {
     x: -20,
     opacity: 0,
     duration: 0.3,
-    delay: 0.1,
+    delay: 0.1
   })
     .from(".header-main--popup > ul > li, .main-sub-menu  ", {
       x: -20,
       opacity: 0,
       stagger: 0.08,
-      duration: 0.4,
+      duration: 0.4
     })
     .from(
       ".header-main--popup__bottom",
       {
         x: -20,
         opacity: 0,
-        duration: 0.3,
+        duration: 0.3
       },
-      "-=0.2",
+      "-=0.2"
     );
 
   function getScrollbarWidth() {
@@ -624,7 +625,7 @@ function header() {
 
   document.addEventListener("click", (e) => {
     const clickedHamburger = [...btnHambuger].some((btn) =>
-      btn.contains(e.target),
+      btn.contains(e.target)
     );
 
     if (
@@ -668,7 +669,7 @@ function animationItemsSection() {
       y: MOVE_Y,
       opacity: 0,
       force3D: true,
-      willChange: "transform, opacity",
+      willChange: "transform, opacity"
     });
 
     // ── Mobile: mỗi item tự trigger khi scroll tới ──
@@ -680,9 +681,9 @@ function animationItemsSection() {
             trigger: item, // trigger theo từng item
             start: "top 83%",
             toggleActions: "play none none none",
-            once: true,
+            once: true
             // markers: true,
-          },
+          }
         });
 
         tl.to(
@@ -691,18 +692,18 @@ function animationItemsSection() {
             y: 0,
             duration: TRANSFORM_DURATION,
             ease: "power3.out",
-            force3D: true,
+            force3D: true
           },
-          0,
+          0
         ).to(
           item,
           {
             opacity: 1,
             duration: OPACITY_DURATION,
             ease: "power2.out",
-            clearProps: "willChange",
+            clearProps: "willChange"
           },
-          0,
+          0
         );
       });
 
@@ -715,8 +716,8 @@ function animationItemsSection() {
         trigger: section,
         start: "top 65%",
         toggleActions: "play none none none",
-        once: true,
-      },
+        once: true
+      }
     });
 
     tl.to(
@@ -726,9 +727,9 @@ function animationItemsSection() {
         duration: TRANSFORM_DURATION,
         stagger: ITEM_STAGGER,
         ease: "power3.out",
-        force3D: true,
+        force3D: true
       },
-      0,
+      0
     ).to(
       items,
       {
@@ -736,9 +737,9 @@ function animationItemsSection() {
         duration: OPACITY_DURATION,
         stagger: ITEM_STAGGER,
         ease: "power2.out",
-        clearProps: "willChange",
+        clearProps: "willChange"
       },
-      0,
+      0
     );
   });
 }
@@ -753,7 +754,7 @@ function animationItemRow() {
     const listDFour = item.querySelector(".list-detail-four");
 
     const contentEls = [listDOne, listDTwo, listDThree, listDFour].filter(
-      Boolean,
+      Boolean
     );
 
     gsap.set(contentEls, { y: 20, opacity: 0 });
@@ -770,7 +771,7 @@ function animationItemRow() {
       trigger: item.querySelector(".list-detail-box"),
       start: "top 50%",
       once: true,
-      onEnter: () => tl.play(),
+      onEnter: () => tl.play()
     });
   });
 }
@@ -794,7 +795,7 @@ function wonderGallery() {
     document.head.appendChild(styleEl);
 
     const textContent = document.querySelector(
-      ".wonderfulGallery .content-text .title",
+      ".wonderfulGallery .content-text .title"
     );
 
     if (textContent) {
@@ -813,13 +814,13 @@ function wonderGallery() {
           if (textContent) {
             gsap.set(textContent, { opacity: 1, y: 0 });
           }
-        },
-      },
+        }
+      }
     });
 
     tl.to(container, {
       "--line-height": "100%",
-      ease: "none",
+      ease: "none"
     });
 
     if (textContent && !isMobile) {
@@ -829,9 +830,9 @@ function wonderGallery() {
           opacity: 1,
           y: 0,
           duration: 0.3,
-          ease: "power2.out",
+          ease: "power2.out"
         },
-        "<13%",
+        "<13%"
       );
     }
   }
@@ -852,7 +853,7 @@ function wonderGallery() {
             y: 0,
             opacity: 1,
             duration: 0.6,
-            ease: "power2.out",
+            ease: "power2.out"
           })
           .to(
             text,
@@ -860,9 +861,9 @@ function wonderGallery() {
               y: 0,
               opacity: 1,
               duration: 0.3,
-              ease: "power2.out",
+              ease: "power2.out"
             },
-            "-=0.4",
+            "-=0.4"
           );
         return;
       }
@@ -872,31 +873,31 @@ function wonderGallery() {
         scrollTrigger: {
           trigger: item,
           start: "top 80%",
-          once: true,
-        },
+          once: true
+        }
       });
 
       tl.to(image, {
         y: 0,
         opacity: 1,
         duration: 0.6,
-        ease: "power2.out",
+        ease: "power2.out"
       }).to(
         text,
         {
           y: 0,
           opacity: 1,
           duration: 0.3,
-          ease: "power2.out",
+          ease: "power2.out"
         },
-        "-=0.4",
+        "-=0.4"
       );
     });
   }
 
   if (isMobile) {
     const textContent = document.querySelector(
-      ".wonderfulGallery .content-text .title",
+      ".wonderfulGallery .content-text .title"
     );
 
     if (textContent) {
@@ -912,9 +913,9 @@ function wonderGallery() {
             ease: "power2.out",
             onComplete: () => {
               animateMediaItems();
-            },
+            }
           });
-        },
+        }
       });
     } else {
       animateMediaItems();
@@ -953,11 +954,11 @@ function swiperThreeCol() {
       pagination: {
         el: ".main-swiper .swiper-pagination",
         type: "progressbar",
-        enabled: !isMobile,
+        enabled: !isMobile
       },
       navigation: {
         nextEl: ".main-swiper .swiper-button-next",
-        prevEl: ".main-swiper .swiper-button-prev",
+        prevEl: ".main-swiper .swiper-button-prev"
       },
       on: {
         init(swiper) {
@@ -966,8 +967,8 @@ function swiperThreeCol() {
         },
         slideChange(swiper) {
           updateFraction(swiper);
-        },
-      },
+        }
+      }
     });
 
     if (slides <= perView) {
@@ -1025,6 +1026,7 @@ const init = () => {
   wonderGallery();
   swiperThreeCol();
   toolbarMobile();
+  formNewsletter();
 };
 document.addEventListener("DOMContentLoaded", () => {
   init();

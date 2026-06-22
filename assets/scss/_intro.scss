@@ -89,6 +89,12 @@
   }
   &-desc {
     text-align: center;
+
+    p {
+      &:not(:first-child) {
+        margin-top: 12px;
+      }
+    }
   }
   &-img {
     display: flex;
