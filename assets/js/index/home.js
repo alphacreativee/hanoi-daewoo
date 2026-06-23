@@ -22,28 +22,137 @@ function getTime() {
   const defaultStart = moment().startOf("day");
   const defaultEnd = moment().startOf("day").add(1, "day");
 
-  const localeConfig = {
-    format: "DD/MM/YYYY",
-    separator: " - ",
-    applyLabel: "Áp dụng",
-    cancelLabel: "Huỷ",
-    daysOfWeek: ["CN", "T2", "T3", "T4", "T5", "T6", "T7"],
-    monthNames: [
-      "Tháng 1",
-      "Tháng 2",
-      "Tháng 3",
-      "Tháng 4",
-      "Tháng 5",
-      "Tháng 6",
-      "Tháng 7",
-      "Tháng 8",
-      "Tháng 9",
-      "Tháng 10",
-      "Tháng 11",
-      "Tháng 12"
-    ],
-    firstDay: 1
+  const locales = {
+    en: {
+      format: "DD/MM/YYYY",
+      separator: " - ",
+      applyLabel: "Apply",
+      cancelLabel: "Cancel",
+      daysOfWeek: ["Su", "Mo", "Tu", "We", "Th", "Fr", "Sa"],
+      monthNames: [
+        "January",
+        "February",
+        "March",
+        "April",
+        "May",
+        "June",
+        "July",
+        "August",
+        "September",
+        "October",
+        "November",
+        "December"
+      ],
+      firstDay: 1
+    },
+
+    vi: {
+      format: "DD/MM/YYYY",
+      separator: " - ",
+      applyLabel: "Áp dụng",
+      cancelLabel: "Huỷ",
+      daysOfWeek: ["CN", "T2", "T3", "T4", "T5", "T6", "T7"],
+      monthNames: [
+        "Tháng 1",
+        "Tháng 2",
+        "Tháng 3",
+        "Tháng 4",
+        "Tháng 5",
+        "Tháng 6",
+        "Tháng 7",
+        "Tháng 8",
+        "Tháng 9",
+        "Tháng 10",
+        "Tháng 11",
+        "Tháng 12"
+      ],
+      firstDay: 1
+    },
+
+    ko: {
+      format: "DD/MM/YYYY",
+      separator: " - ",
+      applyLabel: "적용",
+      cancelLabel: "취소",
+      daysOfWeek: ["일", "월", "화", "수", "목", "금", "토"],
+      monthNames: [
+        "1월",
+        "2월",
+        "3월",
+        "4월",
+        "5월",
+        "6월",
+        "7월",
+        "8월",
+        "9월",
+        "10월",
+        "11월",
+        "12월"
+      ],
+      firstDay: 1
+    },
+
+    ja: {
+      format: "DD/MM/YYYY",
+      separator: " - ",
+      applyLabel: "適用",
+      cancelLabel: "キャンセル",
+      daysOfWeek: ["日", "月", "火", "水", "木", "金", "土"],
+      monthNames: [
+        "1月",
+        "2月",
+        "3月",
+        "4月",
+        "5月",
+        "6月",
+        "7月",
+        "8月",
+        "9月",
+        "10月",
+        "11月",
+        "12月"
+      ],
+      firstDay: 1
+    },
+
+    zh: {
+      format: "DD/MM/YYYY",
+      separator: " - ",
+      applyLabel: "应用",
+      cancelLabel: "取消",
+      daysOfWeek: ["日", "一", "二", "三", "四", "五", "六"],
+      monthNames: [
+        "一月",
+        "二月",
+        "三月",
+        "四月",
+        "五月",
+        "六月",
+        "七月",
+        "八月",
+        "九月",
+        "十月",
+        "十一月",
+        "十二月"
+      ],
+      firstDay: 1
+    }
   };
+
+  let currentLang = "en";
+  const htmlLang = $("html").attr("lang") || "";
+
+  if (htmlLang.startsWith("vi")) {
+    currentLang = "vi";
+  } else if (htmlLang.startsWith("ko")) {
+    currentLang = "ko";
+  } else if (htmlLang.startsWith("ja")) {
+    currentLang = "ja";
+  } else if (htmlLang.startsWith("zh")) {
+    currentLang = "zh";
+  }
+
+  const localeConfig = locales[currentLang] || locales.en;
 
   function getDrops() {
     const rect = document.getElementById("startDate").getBoundingClientRect();
@@ -71,14 +180,13 @@ function getTime() {
 
   const picker = $('input[name="startDate"]').data("daterangepicker");
 
-  // Monkey-patch updateElement
   picker.updateElement = function () {
     $('input[name="startDate"]').val(this.startDate.format("DD/MM/YYYY"));
     $('input[name="endDate"]').val(this.endDate.format("DD/MM/YYYY"));
   };
 
-  // Patch renderCalendar để hook sau mỗi lần render
   const originalRender = picker.renderCalendar.bind(picker);
+
   picker.renderCalendar = function (side) {
     originalRender(side);
 
@@ -86,37 +194,40 @@ function getTime() {
       const $container = $(this.container);
       const $rightNext = $container.find(".drp-calendar.right th.next");
 
-      // Bind click vào vùng header của left calendar để trigger next
       $container
         .find(".drp-calendar.left .calendar-table thead tr:first-child")
-        .off("click.mobilenext")
+        .find("th.next.mobile-next")
+        .remove();
+
+      $container
+        .find(".drp-calendar.left .calendar-table thead tr:first-child")
         .append(
           $("<th>")
-            .addClass("next available")
-            .html($rightNext.html()) // copy icon từ right
+            .addClass("next available mobile-next")
+            .html($rightNext.html())
             .on("click", function () {
               $rightNext.trigger("click");
             })
         );
 
-      // Hide right sau khi đã lấy xong
       $container.find(".drp-calendar.right").hide();
     }
   };
 
-  // Set giá trị mặc định
   $('input[name="startDate"]').val(defaultStart.format("DD/MM/YYYY"));
+
   $('input[name="endDate"]').val(defaultEnd.format("DD/MM/YYYY"));
 
-  // Click endDate → mở picker của startDate
   $('input[name="endDate"]').on("click", function () {
     $('input[name="startDate"]').data("daterangepicker").show();
   });
 
-  // Re-calc drops khi focus
   $('input[name="startDate"], input[name="endDate"]').on("focus", function () {
     const picker = $('input[name="startDate"]').data("daterangepicker");
-    if (picker) picker.drops = getDrops();
+
+    if (picker) {
+      picker.drops = getDrops();
+    }
   });
 }
 
