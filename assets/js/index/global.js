@@ -301,6 +301,85 @@ export function customDropdown() {
   }
 }
 
+// export function createFilterTab() {
+//   document.querySelectorAll(".filter-section").forEach((section) => {
+//     let result;
+
+//     const targetSelector = section.dataset.target;
+//     if (targetSelector) {
+//       result = document.querySelector(targetSelector);
+//     } else {
+//       result = section.querySelector(".filter-section-result");
+//       if (!result) {
+//         result = section.nextElementSibling;
+//         if (!result?.classList.contains("filter-section-result")) return;
+//       }
+//     }
+
+//     if (!result) return;
+
+//     const isSelectTab = section.classList.contains("select-tab");
+//     const buttons = section.querySelectorAll(".filter-button[data-type]");
+
+//     const applyFilter = (type) => {
+//       const items = result.querySelectorAll(".filter-item");
+
+//       items.forEach((item) => {
+//         let show;
+//         if (type === "all") {
+//           show = isSelectTab ? item.classList.contains("all") : true;
+//         } else {
+//           show = item.classList.contains(type);
+//         }
+//         item.style.display = show ? "" : "none";
+//       });
+
+//       // Reinit slider cho các filter-item đang hiện
+//       items.forEach((item) => {
+//         if (item.style.display === "none") return;
+
+//         const sliderEl = item.querySelector(".accommodations-slider");
+//         if (sliderEl) reinitAccommodationSlider(sliderEl);
+
+//         // Reinit nested parallax slider bên trong item
+//         item.querySelectorAll("[slider-parallax]").forEach((el) => {
+//           reinitParallaxSlider(el);
+//         });
+//       });
+//     };
+
+//     // Filter lần đầu nếu có button active
+//     const activeBtn = section.querySelector(".filter-button.active");
+//     if (activeBtn) {
+//       const activeType = activeBtn.dataset.type;
+//       if (activeType !== "all" || isSelectTab) {
+//         applyFilter(activeType);
+//       }
+//     }
+
+//     buttons.forEach((btn) => {
+//       btn.addEventListener("click", function () {
+//         section
+//           .querySelectorAll(".filter-button")
+//           .forEach((b) => b.classList.remove("active"));
+//         this.classList.add("active");
+
+//         const type = this.dataset.type;
+
+//         gsap
+//           .timeline()
+//           .to(result, { autoAlpha: 0, duration: 0.3 })
+//           .call(() => {
+//             applyFilter(type);
+//           })
+//           .to(result, { autoAlpha: 1, duration: 0.3 });
+//       });
+//     });
+//   });
+// }
+// ============================================================
+// FILTER TAB
+// ============================================================
 export function createFilterTab() {
   document.querySelectorAll(".filter-section").forEach((section) => {
     let result;
@@ -341,7 +420,6 @@ export function createFilterTab() {
         const sliderEl = item.querySelector(".accommodations-slider");
         if (sliderEl) reinitAccommodationSlider(sliderEl);
 
-        // Reinit nested parallax slider bên trong item
         item.querySelectorAll("[slider-parallax]").forEach((el) => {
           reinitParallaxSlider(el);
         });
@@ -371,6 +449,7 @@ export function createFilterTab() {
           .to(result, { autoAlpha: 0, duration: 0.3 })
           .call(() => {
             applyFilter(type);
+            reinitScrollAnimations(result); // ✅ reinit tất cả scroll animations
           })
           .to(result, { autoAlpha: 1, duration: 0.3 });
       });
@@ -378,6 +457,320 @@ export function createFilterTab() {
   });
 }
 
+// ============================================================
+// REINIT SCROLL ANIMATIONS (entry point duy nhất)
+// ============================================================
+function reinitScrollAnimations(container) {
+  // Kill tất cả ScrollTrigger đang gắn với các element bên trong container
+  ScrollTrigger.getAll()
+    .filter((st) => st.trigger && container.contains(st.trigger))
+    .forEach((st) => st.kill());
+
+  reinitCardAnimations(container);
+  reinitItemsSectionAnimations(container);
+
+  // Refresh 1 lần duy nhất sau khi đã reinit tất cả
+  ScrollTrigger.refresh();
+}
+
+// ============================================================
+// REINIT ACCOMMODATION CARD ANIMATIONS
+// ============================================================
+function reinitCardAnimations(container) {
+  const cards = container.querySelectorAll(
+    ".filter-item:not([style*='display: none']) .accommodationCard",
+  );
+
+  if (!cards.length) return;
+
+  cards.forEach((card) => {
+    const media = card.querySelector(".card-media");
+    const title = card.querySelector(".card-content .title");
+    const info = card.querySelector(".card-content .info");
+    const desc = card.querySelector(".card-content .desc");
+    const cta = card.querySelector(".card-content .cta");
+    const contentEls = [title, info, desc, cta].filter(Boolean);
+
+    if (!media) return;
+
+    // Reset về trạng thái ban đầu
+    gsap.set(media, { y: 20, opacity: 0 });
+    gsap.set(contentEls, { y: 20, opacity: 0 });
+
+    // Tạo lại ScrollTrigger cho media
+    ScrollTrigger.create({
+      trigger: media,
+      start: "top 65%",
+      once: true,
+      onEnter: () => {
+        gsap.to(media, {
+          y: 0,
+          opacity: 1,
+          duration: 0.6,
+          ease: "power2.out",
+        });
+      },
+    });
+
+    // Tạo lại ScrollTrigger cho content
+    if (contentEls.length) {
+      const tl = gsap.timeline({ paused: true });
+      contentEls.forEach((el) => {
+        tl.fromTo(
+          el,
+          { y: 20, opacity: 0 },
+          { y: 0, opacity: 1, duration: 0.6, ease: "power2.out" },
+          "-=0.4",
+        );
+      });
+
+      ScrollTrigger.create({
+        trigger: card.querySelector(".card-content"),
+        start: "top 65%",
+        once: true,
+        onEnter: () => tl.play(),
+      });
+    }
+  });
+}
+
+// ============================================================
+// REINIT ITEMS SECTION ANIMATIONS
+// ============================================================
+function reinitItemsSectionAnimations(container) {
+  const isMobile = $(window).width() < 992;
+
+  const MOVE_Y = 20;
+  const TRANSFORM_DURATION = 0.8;
+  const OPACITY_DURATION = 0.6;
+  const ITEM_STAGGER = 0.2;
+
+  const sections = container.querySelectorAll("[section-fade-each-item]");
+  if (!sections.length) return;
+
+  sections.forEach((section) => {
+    const items = section.querySelectorAll("[data-fade-item]");
+    if (!items.length) return;
+
+    // Reset về trạng thái ban đầu
+    gsap.set(items, {
+      y: MOVE_Y,
+      opacity: 0,
+      force3D: true,
+      willChange: "transform, opacity",
+    });
+
+    // ── Mobile: mỗi item tự trigger khi scroll tới ──
+    if (isMobile) {
+      items.forEach((item) => {
+        const tl = gsap.timeline({
+          scrollTrigger: {
+            trigger: item,
+            start: "top 83%",
+            toggleActions: "play none none none",
+            once: true,
+          },
+        });
+
+        tl.to(
+          item,
+          {
+            y: 0,
+            duration: TRANSFORM_DURATION,
+            ease: "power3.out",
+            force3D: true,
+          },
+          0,
+        ).to(
+          item,
+          {
+            opacity: 1,
+            duration: OPACITY_DURATION,
+            ease: "power2.out",
+            clearProps: "willChange",
+          },
+          0,
+        );
+      });
+
+      return;
+    }
+
+    // ── Desktop: stagger toàn bộ items cùng lúc ──
+    const tl = gsap.timeline({
+      scrollTrigger: {
+        trigger: section,
+        start: "top 65%",
+        toggleActions: "play none none none",
+        once: true,
+      },
+    });
+
+    tl.to(
+      items,
+      {
+        y: 0,
+        duration: TRANSFORM_DURATION,
+        stagger: ITEM_STAGGER,
+        ease: "power3.out",
+        force3D: true,
+      },
+      0,
+    ).to(
+      items,
+      {
+        opacity: 1,
+        duration: OPACITY_DURATION,
+        stagger: ITEM_STAGGER,
+        ease: "power2.out",
+        clearProps: "willChange",
+      },
+      0,
+    );
+  });
+}
+
+// ============================================================
+// ANIMATION ACCOMMODATION CARD (lần đầu load trang)
+// ============================================================
+export function animationAccommodationCard() {
+  const cards = document.querySelectorAll(".accommodationCard");
+  if (!cards.length) return;
+
+  gsap.registerPlugin(ScrollTrigger);
+
+  cards.forEach((card) => {
+    const media = card.querySelector(".card-media");
+    const title = card.querySelector(".card-content .title");
+    const info = card.querySelector(".card-content .info");
+    const desc = card.querySelector(".card-content .desc");
+    const cta = card.querySelector(".card-content .cta");
+    const contentEls = [title, info, desc, cta].filter(Boolean);
+
+    gsap.set(media, { y: 20, opacity: 0 });
+    gsap.set(contentEls, { y: 20, opacity: 0 });
+
+    ScrollTrigger.create({
+      trigger: media,
+      start: "top 65%",
+      once: true,
+      onEnter: () => {
+        gsap.to(media, {
+          y: 0,
+          opacity: 1,
+          duration: 0.6,
+          ease: "power2.out",
+        });
+      },
+    });
+
+    const tl = gsap.timeline({ paused: true });
+    contentEls.forEach((el) => {
+      tl.fromTo(
+        el,
+        { y: 20, opacity: 0 },
+        { y: 0, opacity: 1, duration: 0.6, ease: "power2.out" },
+        "-=0.4",
+      );
+    });
+
+    ScrollTrigger.create({
+      trigger: card.querySelector(".card-content"),
+      start: "top 65%",
+      once: true,
+      onEnter: () => tl.play(),
+    });
+  });
+}
+
+// ============================================================
+// ANIMATION ITEMS SECTION (lần đầu load trang)
+// ============================================================
+export function animationItemsSection() {
+  const isMobile = $(window).width() < 992;
+
+  const MOVE_Y = 20;
+  const TRANSFORM_DURATION = 0.8;
+  const OPACITY_DURATION = 0.6;
+  const ITEM_STAGGER = 0.2;
+
+  gsap.utils.toArray("[section-fade-each-item]").forEach((section) => {
+    const items = section.querySelectorAll("[data-fade-item]");
+
+    gsap.set(items, {
+      y: MOVE_Y,
+      opacity: 0,
+      force3D: true,
+      willChange: "transform, opacity",
+    });
+
+    if (isMobile) {
+      items.forEach((item) => {
+        const tl = gsap.timeline({
+          scrollTrigger: {
+            trigger: item,
+            start: "top 83%",
+            toggleActions: "play none none none",
+            once: true,
+          },
+        });
+
+        tl.to(
+          item,
+          {
+            y: 0,
+            duration: TRANSFORM_DURATION,
+            ease: "power3.out",
+            force3D: true,
+          },
+          0,
+        ).to(
+          item,
+          {
+            opacity: 1,
+            duration: OPACITY_DURATION,
+            ease: "power2.out",
+            clearProps: "willChange",
+          },
+          0,
+        );
+      });
+
+      return;
+    }
+
+    const tl = gsap.timeline({
+      scrollTrigger: {
+        trigger: section,
+        start: "top 65%",
+        toggleActions: "play none none none",
+        once: true,
+      },
+    });
+
+    tl.to(
+      items,
+      {
+        y: 0,
+        duration: TRANSFORM_DURATION,
+        stagger: ITEM_STAGGER,
+        ease: "power3.out",
+        force3D: true,
+      },
+      0,
+    ).to(
+      items,
+      {
+        opacity: 1,
+        duration: OPACITY_DURATION,
+        stagger: ITEM_STAGGER,
+        ease: "power2.out",
+        clearProps: "willChange",
+      },
+      0,
+    );
+  });
+}
 export function sliderParallax() {
   if ($("[slider-parallax]").length < 1) return;
 
