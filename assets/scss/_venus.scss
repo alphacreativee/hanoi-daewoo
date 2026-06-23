@@ -64,6 +64,9 @@
       @media (max-width: 991px) {
         width: calc(100vw - 32px);
       }
+      .swiper-slide {
+        height: auto;
+      }
     }
     .col-right {
       padding: 48px;
@@ -124,6 +127,7 @@
       .filter-section {
         .dropdown-custom-select {
           position: relative;
+          cursor: pointer;
         }
         .dropdown-custom-menu {
           position: absolute;
@@ -191,6 +195,7 @@
       }
       .dropdown-custom-select {
         position: relative;
+        cursor: pointer;
       }
       .dropdown-custom-menu {
         position: absolute;
