@@ -4278,6 +4278,11 @@ body {
 .list-detail-image .swiper {
   aspect-ratio: 823/600;
 }
+@media (min-width: 992px) {
+  .list-detail-image .swiper-slide {
+    width: 100% !important;
+  }
+}
 @media (max-width: 767px) {
   .list-detail-image .swiper {
     aspect-ratio: 375/322;
@@ -5886,6 +5891,9 @@ body {
     width: calc(100vw - 32px);
   }
 }
+.venus-body .col-left .swiper-slide {
+  height: auto;
+}
 .venus-body .col-right {
   padding: 48px;
   display: flex;
@@ -5952,6 +5960,7 @@ body {
 }
 .venus-td.first-col .filter-section .dropdown-custom-select {
   position: relative;
+  cursor: pointer;
 }
 .venus-td.first-col .filter-section .dropdown-custom-menu {
   position: absolute;
@@ -6024,6 +6033,7 @@ body {
 }
 .venus-filter .filter-section .dropdown-custom-select {
   position: relative;
+  cursor: pointer;
 }
 .venus-filter .filter-section .dropdown-custom-menu {
   position: absolute;
