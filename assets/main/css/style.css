@@ -4278,6 +4278,11 @@ body {
 .list-detail-image .swiper {
   aspect-ratio: 823/600;
 }
+@media (min-width: 992px) {
+  .list-detail-image .swiper-slide {
+    width: 100% !important;
+  }
+}
 @media (max-width: 767px) {
   .list-detail-image .swiper {
     aspect-ratio: 375/322;

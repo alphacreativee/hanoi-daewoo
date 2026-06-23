@@ -37,7 +37,11 @@
 
     .swiper {
       aspect-ratio: 823 / 600;
-
+      &-slide {
+        @media (min-width: 992px) {
+          width: 100% !important;
+        }
+      }
       @media (max-width: 767px) {
         aspect-ratio: 375 / 322;
       }

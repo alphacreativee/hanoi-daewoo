@@ -2,7 +2,7 @@ import { reinitAccommodationSlider } from "../../main/js/slider.min.js";
 
 export async function dropdownPhoneCode() {
   const phoneDropdown = document.querySelector(
-    ".dropdown-custom-select.select-phone-code"
+    ".dropdown-custom-select.select-phone-code",
   );
   if (!phoneDropdown) return;
 
@@ -17,7 +17,7 @@ export async function dropdownPhoneCode() {
 
   try {
     const res = await fetch(
-      "https://cdn.jsdelivr.net/npm/world-countries@5/dist/countries.json"
+      "https://cdn.jsdelivr.net/npm/world-countries@5/dist/countries.json",
     );
     const data = await res.json();
 
@@ -26,7 +26,7 @@ export async function dropdownPhoneCode() {
         name: c.name?.common || "",
         code: c.cca2 || "",
         dialCode: c.idd?.root ? c.idd.root + (c.idd.suffixes?.[0] || "") : "",
-        flag: c.cca2 ? `https://flagcdn.com/${c.cca2.toLowerCase()}.svg` : ""
+        flag: c.cca2 ? `https://flagcdn.com/${c.cca2.toLowerCase()}.svg` : "",
       }))
       .filter((c) => c.name && c.dialCode && c.flag)
       .sort((a, b) => a.name.localeCompare(b.name));
@@ -55,7 +55,7 @@ export async function dropdownPhoneCode() {
 
   // Mặc định Vietnam
   const defaultItem = phoneMenu.querySelector(
-    '.dropdown-custom-item[data-code="VN"]'
+    '.dropdown-custom-item[data-code="VN"]',
   );
   if (defaultItem) {
     selectCode(defaultItem, false);
@@ -103,7 +103,7 @@ export async function dropdownPhoneCode() {
 }
 export async function dropdownRegion() {
   const dropdown = document.querySelector(
-    ".dropdown-custom-select.select-region"
+    ".dropdown-custom-select.select-region",
   );
   if (!dropdown) return;
 
@@ -121,7 +121,7 @@ export async function dropdownRegion() {
 
   try {
     const res = await fetch(
-      "https://cdn.jsdelivr.net/npm/world-countries@5/dist/countries.json"
+      "https://cdn.jsdelivr.net/npm/world-countries@5/dist/countries.json",
     );
     const data = await res.json();
 
@@ -130,7 +130,7 @@ export async function dropdownRegion() {
         name: c.name?.common || "",
         code: c.cca2 || "",
         dialCode: c.idd?.root ? c.idd.root + (c.idd.suffixes?.[0] || "") : "",
-        flag: c.cca2 ? `https://flagcdn.com/${c.cca2.toLowerCase()}.svg` : ""
+        flag: c.cca2 ? `https://flagcdn.com/${c.cca2.toLowerCase()}.svg` : "",
       }))
       .filter((c) => c.name && c.dialCode && c.flag)
       .sort((a, b) => a.name.localeCompare(b.name));
@@ -158,7 +158,7 @@ export async function dropdownRegion() {
 
   // Set mặc định: Vietnam
   const defaultItem = dropdownMenu.querySelector(
-    '.dropdown-custom-item[data-code="VN"]'
+    '.dropdown-custom-item[data-code="VN"]',
   );
   if (defaultItem) {
     selectCountry(defaultItem);
@@ -213,7 +213,7 @@ export async function dropdownRegion() {
 }
 export function customDropdown() {
   const dropdowns = document.querySelectorAll(
-    ".dropdown-custom:not(.filter-tab), .dropdown-custom-select:not(.filter-tab)"
+    ".dropdown-custom:not(.filter-tab), .dropdown-custom-select:not(.filter-tab)",
   );
   if (!dropdowns.length) return;
   dropdowns.forEach((dropdown) => {
@@ -410,7 +410,7 @@ function initOneParallaxSlider(swiperEl) {
     loop: true,
     speed: 1500,
     watchSlidesProgress: true,
-
+    roundLengths: true,
     keyboard: !hasNoDrag,
     grabCursor: !hasNoDrag,
     allowTouchMove: hasNoDrag ? false : true,
@@ -419,20 +419,20 @@ function initOneParallaxSlider(swiperEl) {
       el: $pagination[0],
       dynamicBullets: true,
       clickable: true,
-      dynamicMainBullets: 1
+      dynamicMainBullets: 1,
     },
 
     autoplay: hasAutoplay
       ? {
           delay: 4000,
-          disableOnInteraction: true
+          disableOnInteraction: true,
         }
       : false,
 
     navigation: hasArrow
       ? {
           nextEl: nextBtn,
-          prevEl: prevBtn
+          prevEl: prevBtn,
         }
       : false,
     on: {
@@ -476,15 +476,15 @@ function initOneParallaxSlider(swiperEl) {
             slideInner.style.transition = `${speed}ms ${easing}`;
           }
         });
-      }
-    }
+      },
+    },
   });
 
   function updateLabel(swiper) {
     const realIndex = swiper.realIndex;
 
     const realSlides = swiper.el.querySelectorAll(
-      ".swiper-slide:not(.swiper-slide-duplicate)"
+      ".swiper-slide:not(.swiper-slide-duplicate)",
     );
 
     const total = realSlides.length;
@@ -597,7 +597,7 @@ export function formNewsletter() {
 
     thisForm.find(".field-item").removeClass("error");
     $(
-      ".footer-newsletter .form-message .success, .footer-newsletter .form-message .error"
+      ".footer-newsletter .form-message .success, .footer-newsletter .form-message .error",
     ).hide();
 
     if (!emailField.length) {
@@ -627,7 +627,7 @@ export function formNewsletter() {
       dataType: "json",
       data: {
         action: "daewoo_receive_newsletter",
-        email: email
+        email: email,
       },
 
       beforeSend: function () {
@@ -664,7 +664,7 @@ export function formNewsletter() {
 
       complete: function () {
         buttonSubmit.removeClass("aloading").prop("disabled", false);
-      }
+      },
     });
   });
 }
