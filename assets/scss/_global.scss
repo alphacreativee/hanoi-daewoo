@@ -1546,6 +1546,9 @@ body {
       gap: 8px;
       padding: 16px 24px;
       z-index: 6;
+      max-height: 200px;
+      overflow-y: scroll;
+
       &.dropdown--active {
         opacity: 1;
         visibility: visible;
