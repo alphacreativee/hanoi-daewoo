@@ -5890,9 +5890,20 @@ body {
   .venus-body .col-left {
     width: calc(100vw - 32px);
   }
+  .venus-body .col-left .slider-wrapper {
+    height: 100%;
+  }
+  .venus-body .col-left .slider-wrapper .swiper {
+    height: 100%;
+  }
 }
 .venus-body .col-left .swiper-slide {
   height: auto;
+}
+@media (max-width: 991px) {
+  .venus-body .col-left .swiper-slide {
+    height: 100%;
+  }
 }
 .venus-body .col-right {
   padding: 48px;
@@ -5901,6 +5912,14 @@ body {
   justify-content: space-between;
   align-items: flex-start;
   gap: 48px;
+}
+@media (max-width: 991px) {
+  .venus-body .col-right {
+    padding: 32px;
+  }
+  .venus-body .col-right .description {
+    max-width: 75%;
+  }
 }
 .venus-top {
   padding: 0 60px;

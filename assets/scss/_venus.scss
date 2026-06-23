@@ -63,9 +63,18 @@
     .col-left {
       @media (max-width: 991px) {
         width: calc(100vw - 32px);
+        .slider-wrapper {
+          height: 100%;
+          .swiper {
+            height: 100%;
+          }
+        }
       }
       .swiper-slide {
         height: auto;
+        @media (max-width: 991px) {
+          height: 100%;
+        }
       }
     }
     .col-right {
@@ -75,6 +84,12 @@
       justify-content: space-between;
       align-items: flex-start;
       gap: 48px;
+      @media (max-width: 991px) {
+        padding: 32px;
+        .description {
+          max-width: 75%;
+        }
+      }
     }
   }
   &-top {
