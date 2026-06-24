@@ -2,7 +2,7 @@ import { reinitAccommodationSlider } from "../../main/js/slider.min.js";
 
 export async function dropdownPhoneCode() {
   const phoneDropdown = document.querySelector(
-    ".dropdown-custom-select.select-phone-code",
+    ".dropdown-custom-select.select-phone-code"
   );
   if (!phoneDropdown) return;
 
@@ -17,7 +17,7 @@ export async function dropdownPhoneCode() {
 
   try {
     const res = await fetch(
-      "https://cdn.jsdelivr.net/npm/world-countries@5/dist/countries.json",
+      "https://cdn.jsdelivr.net/npm/world-countries@5/dist/countries.json"
     );
     const data = await res.json();
 
@@ -26,7 +26,7 @@ export async function dropdownPhoneCode() {
         name: c.name?.common || "",
         code: c.cca2 || "",
         dialCode: c.idd?.root ? c.idd.root + (c.idd.suffixes?.[0] || "") : "",
-        flag: c.cca2 ? `https://flagcdn.com/${c.cca2.toLowerCase()}.svg` : "",
+        flag: c.cca2 ? `https://flagcdn.com/${c.cca2.toLowerCase()}.svg` : ""
       }))
       .filter((c) => c.name && c.dialCode && c.flag)
       .sort((a, b) => a.name.localeCompare(b.name));
@@ -55,7 +55,7 @@ export async function dropdownPhoneCode() {
 
   // Mặc định Vietnam
   const defaultItem = phoneMenu.querySelector(
-    '.dropdown-custom-item[data-code="VN"]',
+    '.dropdown-custom-item[data-code="VN"]'
   );
   if (defaultItem) {
     selectCode(defaultItem, false);
@@ -103,7 +103,7 @@ export async function dropdownPhoneCode() {
 }
 export async function dropdownRegion() {
   const dropdown = document.querySelector(
-    ".dropdown-custom-select.select-region",
+    ".dropdown-custom-select.select-region"
   );
   if (!dropdown) return;
 
@@ -121,7 +121,7 @@ export async function dropdownRegion() {
 
   try {
     const res = await fetch(
-      "https://cdn.jsdelivr.net/npm/world-countries@5/dist/countries.json",
+      "https://cdn.jsdelivr.net/npm/world-countries@5/dist/countries.json"
     );
     const data = await res.json();
 
@@ -130,7 +130,7 @@ export async function dropdownRegion() {
         name: c.name?.common || "",
         code: c.cca2 || "",
         dialCode: c.idd?.root ? c.idd.root + (c.idd.suffixes?.[0] || "") : "",
-        flag: c.cca2 ? `https://flagcdn.com/${c.cca2.toLowerCase()}.svg` : "",
+        flag: c.cca2 ? `https://flagcdn.com/${c.cca2.toLowerCase()}.svg` : ""
       }))
       .filter((c) => c.name && c.dialCode && c.flag)
       .sort((a, b) => a.name.localeCompare(b.name));
@@ -158,7 +158,7 @@ export async function dropdownRegion() {
 
   // Set mặc định: Vietnam
   const defaultItem = dropdownMenu.querySelector(
-    '.dropdown-custom-item[data-code="VN"]',
+    '.dropdown-custom-item[data-code="VN"]'
   );
   if (defaultItem) {
     selectCountry(defaultItem);
@@ -213,7 +213,7 @@ export async function dropdownRegion() {
 }
 export function customDropdown() {
   const dropdowns = document.querySelectorAll(
-    ".dropdown-custom:not(.filter-tab), .dropdown-custom-select:not(.filter-tab)",
+    ".dropdown-custom:not(.filter-tab), .dropdown-custom-select:not(.filter-tab)"
   );
   if (!dropdowns.length) return;
   dropdowns.forEach((dropdown) => {
@@ -478,7 +478,7 @@ function reinitScrollAnimations(container) {
 // ============================================================
 function reinitCardAnimations(container) {
   const cards = container.querySelectorAll(
-    ".filter-item:not([style*='display: none']) .accommodationCard",
+    ".filter-item:not([style*='display: none']) .accommodationCard"
   );
 
   if (!cards.length) return;
@@ -507,9 +507,9 @@ function reinitCardAnimations(container) {
           y: 0,
           opacity: 1,
           duration: 0.6,
-          ease: "power2.out",
+          ease: "power2.out"
         });
-      },
+      }
     });
 
     // Tạo lại ScrollTrigger cho content
@@ -520,7 +520,7 @@ function reinitCardAnimations(container) {
           el,
           { y: 20, opacity: 0 },
           { y: 0, opacity: 1, duration: 0.6, ease: "power2.out" },
-          "-=0.4",
+          "-=0.4"
         );
       });
 
@@ -528,7 +528,7 @@ function reinitCardAnimations(container) {
         trigger: card.querySelector(".card-content"),
         start: "top 65%",
         once: true,
-        onEnter: () => tl.play(),
+        onEnter: () => tl.play()
       });
     }
   });
@@ -557,7 +557,7 @@ function reinitItemsSectionAnimations(container) {
       y: MOVE_Y,
       opacity: 0,
       force3D: true,
-      willChange: "transform, opacity",
+      willChange: "transform, opacity"
     });
 
     // ── Mobile: mỗi item tự trigger khi scroll tới ──
@@ -568,8 +568,8 @@ function reinitItemsSectionAnimations(container) {
             trigger: item,
             start: "top 83%",
             toggleActions: "play none none none",
-            once: true,
-          },
+            once: true
+          }
         });
 
         tl.to(
@@ -578,18 +578,18 @@ function reinitItemsSectionAnimations(container) {
             y: 0,
             duration: TRANSFORM_DURATION,
             ease: "power3.out",
-            force3D: true,
+            force3D: true
           },
-          0,
+          0
         ).to(
           item,
           {
             opacity: 1,
             duration: OPACITY_DURATION,
             ease: "power2.out",
-            clearProps: "willChange",
+            clearProps: "willChange"
           },
-          0,
+          0
         );
       });
 
@@ -602,8 +602,8 @@ function reinitItemsSectionAnimations(container) {
         trigger: section,
         start: "top 65%",
         toggleActions: "play none none none",
-        once: true,
-      },
+        once: true
+      }
     });
 
     tl.to(
@@ -613,9 +613,9 @@ function reinitItemsSectionAnimations(container) {
         duration: TRANSFORM_DURATION,
         stagger: ITEM_STAGGER,
         ease: "power3.out",
-        force3D: true,
+        force3D: true
       },
-      0,
+      0
     ).to(
       items,
       {
@@ -623,9 +623,9 @@ function reinitItemsSectionAnimations(container) {
         duration: OPACITY_DURATION,
         stagger: ITEM_STAGGER,
         ease: "power2.out",
-        clearProps: "willChange",
+        clearProps: "willChange"
       },
-      0,
+      0
     );
   });
 }
@@ -675,20 +675,20 @@ function initOneParallaxSlider(swiperEl) {
       el: $pagination[0],
       dynamicBullets: true,
       clickable: true,
-      dynamicMainBullets: 1,
+      dynamicMainBullets: 1
     },
 
     autoplay: hasAutoplay
       ? {
           delay: 4000,
-          disableOnInteraction: true,
+          disableOnInteraction: true
         }
       : false,
 
     navigation: hasArrow
       ? {
           nextEl: nextBtn,
-          prevEl: prevBtn,
+          prevEl: prevBtn
         }
       : false,
     on: {
@@ -732,15 +732,15 @@ function initOneParallaxSlider(swiperEl) {
             slideInner.style.transition = `${speed}ms ${easing}`;
           }
         });
-      },
-    },
+      }
+    }
   });
 
   function updateLabel(swiper) {
     const realIndex = swiper.realIndex;
 
     const realSlides = swiper.el.querySelectorAll(
-      ".swiper-slide:not(.swiper-slide-duplicate)",
+      ".swiper-slide:not(.swiper-slide-duplicate)"
     );
 
     const total = realSlides.length;
@@ -853,7 +853,7 @@ export function formNewsletter() {
 
     thisForm.find(".field-item").removeClass("error");
     $(
-      ".footer-newsletter .form-message .success, .footer-newsletter .form-message .error",
+      ".footer-newsletter .form-message .success, .footer-newsletter .form-message .error"
     ).hide();
 
     if (!emailField.length) {
@@ -883,7 +883,7 @@ export function formNewsletter() {
       dataType: "json",
       data: {
         action: "daewoo_receive_newsletter",
-        email: email,
+        email: email
       },
 
       beforeSend: function () {
@@ -920,7 +920,222 @@ export function formNewsletter() {
 
       complete: function () {
         buttonSubmit.removeClass("aloading").prop("disabled", false);
-      },
+      }
     });
+  });
+}
+
+export function getTime() {
+  if ($(".booking-form").length < 1) return;
+
+  const defaultStart = moment().startOf("day");
+  const defaultEnd = moment().startOf("day").add(1, "day");
+
+  const locales = {
+    en: {
+      format: "DD/MM/YYYY",
+      separator: " - ",
+      applyLabel: "Apply",
+      cancelLabel: "Cancel",
+      daysOfWeek: ["Su", "Mo", "Tu", "We", "Th", "Fr", "Sa"],
+      monthNames: [
+        "January",
+        "February",
+        "March",
+        "April",
+        "May",
+        "June",
+        "July",
+        "August",
+        "September",
+        "October",
+        "November",
+        "December"
+      ],
+      firstDay: 1
+    },
+
+    vi: {
+      format: "DD/MM/YYYY",
+      separator: " - ",
+      applyLabel: "Áp dụng",
+      cancelLabel: "Huỷ",
+      daysOfWeek: ["CN", "T2", "T3", "T4", "T5", "T6", "T7"],
+      monthNames: [
+        "Tháng 1",
+        "Tháng 2",
+        "Tháng 3",
+        "Tháng 4",
+        "Tháng 5",
+        "Tháng 6",
+        "Tháng 7",
+        "Tháng 8",
+        "Tháng 9",
+        "Tháng 10",
+        "Tháng 11",
+        "Tháng 12"
+      ],
+      firstDay: 1
+    },
+
+    ko: {
+      format: "DD/MM/YYYY",
+      separator: " - ",
+      applyLabel: "적용",
+      cancelLabel: "취소",
+      daysOfWeek: ["일", "월", "화", "수", "목", "금", "토"],
+      monthNames: [
+        "1월",
+        "2월",
+        "3월",
+        "4월",
+        "5월",
+        "6월",
+        "7월",
+        "8월",
+        "9월",
+        "10월",
+        "11월",
+        "12월"
+      ],
+      firstDay: 1
+    },
+
+    ja: {
+      format: "DD/MM/YYYY",
+      separator: " - ",
+      applyLabel: "適用",
+      cancelLabel: "キャンセル",
+      daysOfWeek: ["日", "月", "火", "水", "木", "金", "土"],
+      monthNames: [
+        "1月",
+        "2月",
+        "3月",
+        "4月",
+        "5月",
+        "6月",
+        "7月",
+        "8月",
+        "9月",
+        "10月",
+        "11月",
+        "12月"
+      ],
+      firstDay: 1
+    },
+
+    zh: {
+      format: "DD/MM/YYYY",
+      separator: " - ",
+      applyLabel: "应用",
+      cancelLabel: "取消",
+      daysOfWeek: ["日", "一", "二", "三", "四", "五", "六"],
+      monthNames: [
+        "一月",
+        "二月",
+        "三月",
+        "四月",
+        "五月",
+        "六月",
+        "七月",
+        "八月",
+        "九月",
+        "十月",
+        "十一月",
+        "十二月"
+      ],
+      firstDay: 1
+    }
+  };
+
+  let currentLang = "en";
+  const htmlLang = $("html").attr("lang") || "";
+
+  if (htmlLang.startsWith("vi")) {
+    currentLang = "vi";
+  } else if (htmlLang.startsWith("ko")) {
+    currentLang = "ko";
+  } else if (htmlLang.startsWith("ja")) {
+    currentLang = "ja";
+  } else if (htmlLang.startsWith("zh")) {
+    currentLang = "zh";
+  }
+
+  const localeConfig = locales[currentLang] || locales.en;
+
+  function getDrops() {
+    const rect = document.getElementById("startDate").getBoundingClientRect();
+    return window.innerHeight - rect.bottom < 350 ? "up" : "down";
+  }
+
+  $('input[name="startDate"]').daterangepicker(
+    {
+      opens: window.innerWidth <= 992 ? "left" : "right",
+      drops: getDrops(),
+      autoApply: true,
+      singleDatePicker: false,
+      linkedCalendars: true,
+      minDate: moment().startOf("day"),
+      minSpan: { days: 1 },
+      startDate: defaultStart,
+      endDate: defaultEnd,
+      locale: localeConfig
+    },
+    function (start, end) {
+      $('input[name="startDate"]').val(start.format("DD/MM/YYYY"));
+      $('input[name="endDate"]').val(end.format("DD/MM/YYYY"));
+    }
+  );
+
+  const picker = $('input[name="startDate"]').data("daterangepicker");
+
+  picker.updateElement = function () {
+    $('input[name="startDate"]').val(this.startDate.format("DD/MM/YYYY"));
+    $('input[name="endDate"]').val(this.endDate.format("DD/MM/YYYY"));
+  };
+
+  const originalRender = picker.renderCalendar.bind(picker);
+
+  picker.renderCalendar = function (side) {
+    originalRender(side);
+
+    if (window.innerWidth <= 992 && side === "right") {
+      const $container = $(this.container);
+      const $rightNext = $container.find(".drp-calendar.right th.next");
+
+      $container
+        .find(".drp-calendar.left .calendar-table thead tr:first-child")
+        .find("th.next.mobile-next")
+        .remove();
+
+      $container
+        .find(".drp-calendar.left .calendar-table thead tr:first-child")
+        .append(
+          $("<th>")
+            .addClass("next available mobile-next")
+            .html($rightNext.html())
+            .on("click", function () {
+              $rightNext.trigger("click");
+            })
+        );
+
+      $container.find(".drp-calendar.right").hide();
+    }
+  };
+
+  $('input[name="startDate"]').val(defaultStart.format("DD/MM/YYYY"));
+
+  $('input[name="endDate"]').val(defaultEnd.format("DD/MM/YYYY"));
+
+  $('input[name="endDate"]').on("click", function () {
+    $('input[name="startDate"]').data("daterangepicker").show();
+  });
+
+  $('input[name="startDate"], input[name="endDate"]').on("focus", function () {
+    const picker = $('input[name="startDate"]').data("daterangepicker");
+
+    if (picker) {
+      picker.drops = getDrops();
+    }
   });
 }

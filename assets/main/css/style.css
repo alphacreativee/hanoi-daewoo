@@ -496,6 +496,7 @@ body {
   font-weight: 600;
   text-transform: uppercase;
   transition: all 0.3s ease;
+  color: var(--color-black);
 }
 @media (max-width: 991px) {
   .booking-form .booking-item button {
@@ -2215,6 +2216,13 @@ body {
   align-items: center;
   gap: 8px;
   cursor: pointer;
+  flex-shrink: 0;
+}
+#header .header-lang .lang-icon {
+  min-width: 20px;
+}
+#header .header-lang .icon {
+  min-width: 9px;
 }
 #header .header-lang span {
   font-size: 14px;
@@ -2635,6 +2643,11 @@ body {
 .hero.has-slider {
   height: 100dvh;
 }
+@media (max-width: 767px) {
+  .hero.has-slider {
+    height: 700px;
+  }
+}
 .hero.short-banner {
   height: 640px;
 }
@@ -2664,6 +2677,11 @@ body {
     max-height: 100dvh;
   }
 }
+@media (max-width: 767px) {
+  .hero {
+    max-height: 700px;
+  }
+}
 .hero__image {
   width: 100%;
   height: 100dvh !important;
@@ -2671,6 +2689,12 @@ body {
 @media (max-width: 991px) {
   .hero__image {
     max-height: 100dvh;
+  }
+}
+@media (max-width: 767px) {
+  .hero__image {
+    max-height: 700px;
+    height: 700px !important;
   }
 }
 .hero__image img {
@@ -2684,6 +2708,12 @@ body {
 @media (max-width: 991px) {
   .hero__image img {
     max-height: 100dvh;
+  }
+}
+@media (max-width: 767px) {
+  .hero__image img {
+    max-height: 700px;
+    height: 700px !important;
   }
 }
 .hero__content {
@@ -3014,6 +3044,25 @@ body {
 @media (max-width: 991px) {
   .intro.no-img .intro-list.events li {
     width: calc((100% - 20px) / 2);
+  }
+}
+@media (max-width: 1500px) {
+  .intro.intro-events .intro-inner {
+    max-width: 100%;
+  }
+}
+.intro.intro-events .intro-desc {
+  margin: 0 auto;
+}
+@media (min-width: 992px) {
+  .intro.intro-events .intro-desc {
+    max-width: 66%;
+  }
+}
+@media (max-width: 1150px) and (min-width: 992px) {
+  .intro.intro-events .intro-list {
+    max-width: 70%;
+    margin: 0 auto;
   }
 }
 .intro.intro-recruitment .intro-item .number {
