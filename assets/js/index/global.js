@@ -672,14 +672,13 @@ function reinitItemsSectionAnimations(container) {
 
 export function sliderParallax() {
   if ($("[slider-parallax]").length < 1) return;
-
   $("[slider-parallax]").each(function () {
     initOneParallaxSlider(this);
   });
 }
 
 function initOneParallaxSlider(swiperEl) {
-  var interleaveOffset = 0.8;
+  var interleaveOffset = 0.9;
   const $swiper = $(swiperEl);
 
   const hasAutoplay =
@@ -696,10 +695,13 @@ function initOneParallaxSlider(swiperEl) {
 
   const hasArrow = swiperEl.hasAttribute("slider-arrow") && nextBtn && prevBtn;
 
+  const slideCount = swiperEl.querySelectorAll(".swiper-slide").length;
+  const shouldLoop = slideCount > 1;
+
   const swiper = new Swiper(swiperEl, {
     slidesPerView: 1,
     init: true,
-    loop: true,
+    loop: shouldLoop,
     speed: 1500,
     watchSlidesProgress: true,
     roundLengths: true,
@@ -727,42 +729,34 @@ function initOneParallaxSlider(swiperEl) {
           prevEl: prevBtn,
         }
       : false,
+
     on: {
       init(swiper) {
         if (hasChangeLabel) updateLabel(swiper);
+        applyParallax(swiper); // ✅ apply ngay khi init
       },
 
       slideChange(swiper) {
         if (hasChangeLabel) updateLabel(swiper);
       },
 
-      progress: function (swiper) {
-        swiper.slides.forEach(function (slide) {
-          const slideProgress = slide.progress || 0;
-          const innerOffset = swiper.width * interleaveOffset;
-          const innerTranslate = slideProgress * innerOffset;
-
-          if (!isNaN(innerTranslate)) {
-            const slideInner = slide.querySelector(".image");
-            if (slideInner) {
-              slideInner.style.transform = `translate3d(${innerTranslate}px, 0, 0)`;
-            }
-          }
-        });
+      // ✅ Dùng setTranslate thay vì progress — chính xác hơn khi loop
+      setTranslate: function (swiper) {
+        applyParallax(swiper);
       },
 
       touchStart: function (swiper) {
         swiper.slides.forEach(function (slide) {
           slide.style.transition = "";
+          const slideInner = slide.querySelector(".image");
+          if (slideInner) slideInner.style.transition = "";
         });
       },
 
       setTransition: function (swiper, speed) {
         const easing = "cubic-bezier(0.25, 0.1, 0.25, 1)";
-
         swiper.slides.forEach(function (slide) {
           slide.style.transition = `${speed}ms ${easing}`;
-
           const slideInner = slide.querySelector(".image");
           if (slideInner) {
             slideInner.style.transition = `${speed}ms ${easing}`;
@@ -772,17 +766,40 @@ function initOneParallaxSlider(swiperEl) {
     },
   });
 
+  // ✅ Tính parallax dựa trên vị trí thực của từng slide
+  function applyParallax(swiper) {
+    swiper.slides.forEach(function (slide) {
+      const slideInner = slide.querySelector(".image");
+      if (!slideInner) return;
+
+      // Lấy offset thực của slide so với viewport swiper
+      const slideOffset = slide.swiperSlideOffset;
+      const translate = swiper.translate || 0;
+
+      // Vị trí thực của slide trong viewport
+      const realPosition = slideOffset + translate;
+
+      // Tính parallax translate
+      const innerTranslate =
+        (realPosition / swiper.width) * swiper.width * interleaveOffset * -1;
+
+      // Clamp để không vượt quá màn hình
+      const clamped = Math.max(
+        -swiper.width * interleaveOffset,
+        Math.min(swiper.width * interleaveOffset, innerTranslate),
+      );
+
+      slideInner.style.transform = `translate3d(${clamped}px, 0, 0)`;
+    });
+  }
+
   function updateLabel(swiper) {
     const realIndex = swiper.realIndex;
-
     const realSlides = swiper.el.querySelectorAll(
       ".swiper-slide:not(.swiper-slide-duplicate)",
     );
-
-    const total = realSlides.length;
     const currentSlide = realSlides[realIndex];
     const title = currentSlide?.dataset?.title || "";
-
     if ($sliderTitle.length) {
       $sliderTitle.text(title);
     }
