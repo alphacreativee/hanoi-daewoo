@@ -449,28 +449,24 @@ export function createFilterTab() {
           .to(result, { autoAlpha: 0, duration: 0.3 })
           .call(() => {
             applyFilter(type);
-            reinitScrollAnimations(result); // ✅ reinit tất cả scroll animations
+            reinitScrollAnimations(result);
           })
-          .to(result, { autoAlpha: 1, duration: 0.3 });
+          .to(result, { autoAlpha: 1, duration: 0.3 })
+          .call(() => {
+            // ✅ Refresh sau khi fade in xong — DOM đã render đúng vị trí
+            ScrollTrigger.refresh();
+          });
       });
     });
   });
 }
 
 // ============================================================
-// REINIT SCROLL ANIMATIONS (entry point duy nhất)
+// HELPER: check element có trong viewport không
 // ============================================================
-function reinitScrollAnimations(container) {
-  // Kill tất cả ScrollTrigger đang gắn với các element bên trong container
-  ScrollTrigger.getAll()
-    .filter((st) => st.trigger && container.contains(st.trigger))
-    .forEach((st) => st.kill());
-
-  reinitCardAnimations(container);
-  reinitItemsSectionAnimations(container);
-
-  // Refresh 1 lần duy nhất sau khi đã reinit tất cả
-  ScrollTrigger.refresh();
+function isInViewport(el, threshold = 0.65) {
+  const rect = el.getBoundingClientRect();
+  return rect.top < window.innerHeight * threshold;
 }
 
 // ============================================================
@@ -493,28 +489,15 @@ function reinitCardAnimations(container) {
 
     if (!media) return;
 
-    // Reset về trạng thái ban đầu
     gsap.set(media, { y: 20, opacity: 0 });
     gsap.set(contentEls, { y: 20, opacity: 0 });
 
-    // Tạo lại ScrollTrigger cho media
-    ScrollTrigger.create({
-      trigger: media,
-      start: "top 65%",
-      once: true,
-      onEnter: () => {
-        gsap.to(media, {
-          y: 0,
-          opacity: 1,
-          duration: 0.6,
-          ease: "power2.out"
-        });
-      }
-    });
+    const animateMedia = () => {
+      gsap.to(media, { y: 0, opacity: 1, duration: 0.6, ease: "power2.out" });
+    };
 
-    // Tạo lại ScrollTrigger cho content
-    if (contentEls.length) {
-      const tl = gsap.timeline({ paused: true });
+    const animateContent = () => {
+      const tl = gsap.timeline();
       contentEls.forEach((el) => {
         tl.fromTo(
           el,
@@ -523,13 +506,46 @@ function reinitCardAnimations(container) {
           "-=0.4"
         );
       });
+    };
 
+    // ✅ Nếu đã trong viewport thì play ngay, không cần chờ scroll
+    if (isInViewport(media)) {
+      animateMedia();
+    } else {
       ScrollTrigger.create({
-        trigger: card.querySelector(".card-content"),
+        trigger: media,
         start: "top 65%",
         once: true,
-        onEnter: () => tl.play()
+        onEnter: animateMedia
       });
+    }
+
+    if (contentEls.length) {
+      const contentTrigger = card.querySelector(".card-content");
+      if (isInViewport(contentTrigger)) {
+        animateContent();
+      } else {
+        ScrollTrigger.create({
+          trigger: contentTrigger,
+          start: "top 65%",
+          once: true,
+          onEnter: animateContent
+        });
+      }
+    }
+
+    if (contentEls.length) {
+      const contentTrigger = card.querySelector(".card-content");
+      if (isInViewport(contentTrigger)) {
+        animateContent();
+      } else {
+        ScrollTrigger.create({
+          trigger: contentTrigger,
+          start: "top 65%",
+          once: true,
+          onEnter: animateContent
+        });
+      }
     }
   });
 }
@@ -552,7 +568,6 @@ function reinitItemsSectionAnimations(container) {
     const items = section.querySelectorAll("[data-fade-item]");
     if (!items.length) return;
 
-    // Reset về trạng thái ban đầu
     gsap.set(items, {
       y: MOVE_Y,
       opacity: 0,
@@ -560,73 +575,108 @@ function reinitItemsSectionAnimations(container) {
       willChange: "transform, opacity"
     });
 
-    // ── Mobile: mỗi item tự trigger khi scroll tới ──
-    if (isMobile) {
-      items.forEach((item) => {
-        const tl = gsap.timeline({
-          scrollTrigger: {
-            trigger: item,
-            start: "top 83%",
-            toggleActions: "play none none none",
-            once: true
-          }
-        });
-
-        tl.to(
-          item,
+    const animateItems = (targets, stagger = 0) => {
+      gsap
+        .timeline()
+        .to(
+          targets,
           {
             y: 0,
             duration: TRANSFORM_DURATION,
+            stagger,
             ease: "power3.out",
             force3D: true
           },
           0
-        ).to(
-          item,
+        )
+        .to(
+          targets,
           {
             opacity: 1,
             duration: OPACITY_DURATION,
+            stagger,
             ease: "power2.out",
             clearProps: "willChange"
           },
           0
         );
+    };
+
+    if (isMobile) {
+      items.forEach((item) => {
+        // ✅ Check viewport
+        if (isInViewport(item, 0.83)) {
+          animateItems(item);
+        } else {
+          const tl = gsap.timeline({
+            scrollTrigger: {
+              trigger: item,
+              start: "top 83%",
+              toggleActions: "play none none none",
+              once: true
+            }
+          });
+
+          tl.to(
+            item,
+            {
+              y: 0,
+              duration: TRANSFORM_DURATION,
+              ease: "power3.out",
+              force3D: true
+            },
+            0
+          ).to(
+            item,
+            {
+              opacity: 1,
+              duration: OPACITY_DURATION,
+              ease: "power2.out",
+              clearProps: "willChange"
+            },
+            0
+          );
+        }
       });
 
       return;
     }
 
-    // ── Desktop: stagger toàn bộ items cùng lúc ──
-    const tl = gsap.timeline({
-      scrollTrigger: {
-        trigger: section,
-        start: "top 65%",
-        toggleActions: "play none none none",
-        once: true
-      }
-    });
+    // ✅ Desktop: check section có trong viewport không
+    if (isInViewport(section)) {
+      animateItems(items, ITEM_STAGGER);
+    } else {
+      const tl = gsap.timeline({
+        scrollTrigger: {
+          trigger: section,
+          start: "top 65%",
+          toggleActions: "play none none none",
+          once: true
+        }
+      });
 
-    tl.to(
-      items,
-      {
-        y: 0,
-        duration: TRANSFORM_DURATION,
-        stagger: ITEM_STAGGER,
-        ease: "power3.out",
-        force3D: true
-      },
-      0
-    ).to(
-      items,
-      {
-        opacity: 1,
-        duration: OPACITY_DURATION,
-        stagger: ITEM_STAGGER,
-        ease: "power2.out",
-        clearProps: "willChange"
-      },
-      0
-    );
+      tl.to(
+        items,
+        {
+          y: 0,
+          duration: TRANSFORM_DURATION,
+          stagger: ITEM_STAGGER,
+          ease: "power3.out",
+          force3D: true
+        },
+        0
+      ).to(
+        items,
+        {
+          opacity: 1,
+          duration: OPACITY_DURATION,
+          stagger: ITEM_STAGGER,
+          ease: "power2.out",
+          clearProps: "willChange"
+        },
+        0
+      );
+    }
   });
 }
 

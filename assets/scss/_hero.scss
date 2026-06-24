@@ -4,7 +4,7 @@
   height: 100dvh;
   &.no-opacity {
     &::before {
-      background: transparent;
+      background: transparent !important;
     }
   }
   &::before {
