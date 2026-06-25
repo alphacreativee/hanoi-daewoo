@@ -187,6 +187,7 @@ body {
       font-weight: 600;
       text-transform: uppercase;
       transition: all 0.3s ease;
+      color: var(--color-black);
       @media (max-width: 991px) {
         width: 100%;
       }

@@ -33,6 +33,28 @@
     }
   }
 
+  &.intro-events {
+    .intro-inner {
+      @media (max-width: 1500px) {
+        max-width: 100%;
+      }
+    }
+
+    .intro-desc {
+      margin: 0 auto;
+      @media (min-width: 992px) {
+        max-width: 66%;
+      }
+    }
+
+    .intro-list {
+      @media (max-width: 1150px) and (min-width: 992px) {
+        max-width: 70%;
+        margin: 0 auto;
+      }
+    }
+  }
+
   &.intro-recruitment {
     .intro-item .number {
       font-size: 80px;

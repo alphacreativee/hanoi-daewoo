@@ -6,6 +6,7 @@ import {
   sliderParallax,
   initGuestSelector,
   formNewsletter,
+  getTime,
 } from "../../main/js/global.min.js";
 ("use strict");
 $ = jQuery;
@@ -17,82 +18,6 @@ gsap.ticker.add((time) => {
 });
 
 gsap.ticker.lagSmoothing(0);
-
-function getTime() {
-  if ($(".booking-form").length < 1) return;
-
-  const defaultStart = moment().startOf("day");
-  const defaultEnd = moment().startOf("day").add(1, "day");
-
-  const localeConfig = {
-    format: "DD/MM/YYYY",
-    separator: " - ",
-    applyLabel: "Áp dụng",
-    cancelLabel: "Huỷ",
-    daysOfWeek: ["CN", "T2", "T3", "T4", "T5", "T6", "T7"],
-    monthNames: [
-      "Tháng 1",
-      "Tháng 2",
-      "Tháng 3",
-      "Tháng 4",
-      "Tháng 5",
-      "Tháng 6",
-      "Tháng 7",
-      "Tháng 8",
-      "Tháng 9",
-      "Tháng 10",
-      "Tháng 11",
-      "Tháng 12",
-    ],
-    firstDay: 1,
-  };
-
-  function getDrops() {
-    const rect = document.getElementById("startDate").getBoundingClientRect();
-    return window.innerHeight - rect.bottom < 350 ? "up" : "down";
-  }
-
-  $('input[name="startDate"]').daterangepicker(
-    {
-      opens: "right",
-      drops: getDrops(),
-      autoApply: true,
-      singleDatePicker: false,
-      linkedCalendars: true,
-      minDate: moment().startOf("day"),
-      minSpan: { days: 1 },
-      startDate: defaultStart,
-      endDate: defaultEnd,
-      locale: localeConfig,
-    },
-    function (start, end) {
-      $('input[name="startDate"]').val(start.format("DD/MM/YYYY"));
-      $('input[name="endDate"]').val(end.format("DD/MM/YYYY"));
-    },
-  );
-
-  // ← Monkey-patch updateElement để picker không bao giờ tự ghi range vào input
-  const picker = $('input[name="startDate"]').data("daterangepicker");
-  picker.updateElement = function () {
-    $('input[name="startDate"]').val(this.startDate.format("DD/MM/YYYY"));
-    $('input[name="endDate"]').val(this.endDate.format("DD/MM/YYYY"));
-  };
-
-  // Set giá trị mặc định
-  $('input[name="startDate"]').val(defaultStart.format("DD/MM/YYYY"));
-  $('input[name="endDate"]').val(defaultEnd.format("DD/MM/YYYY"));
-
-  // Click endDate → mở picker của startDate
-  $('input[name="endDate"]').on("click", function () {
-    $('input[name="startDate"]').data("daterangepicker").show();
-  });
-
-  // Re-calc drops khi focus
-  $('input[name="startDate"], input[name="endDate"]').on("focus", function () {
-    const picker = $('input[name="startDate"]').data("daterangepicker");
-    if (picker) picker.drops = getDrops();
-  });
-}
 
 function headerScroll() {
   const header = document.getElementById("header");
@@ -788,15 +713,34 @@ function animationItemRow() {
     });
   });
 }
-function bookAtable() {
+export function bookAtable() {
   if (!$("#dateBookTable").length) return;
-  $("#dateBookTable").daterangepicker({
-    singleDatePicker: true,
-    showDropdowns: true, // hiện dropdown tháng/năm
-    autoApply: true, // tự động apply khi chọn ngày
-    drops: "up",
-    locale: {
-      format: "DD/MM/YYYY", // định dạng ngày hiển thị
+
+  const locales = {
+    en: {
+      format: "DD/MM/YYYY",
+      applyLabel: "Apply",
+      cancelLabel: "Cancel",
+      daysOfWeek: ["Su", "Mo", "Tu", "We", "Th", "Fr", "Sa"],
+      monthNames: [
+        "January",
+        "February",
+        "March",
+        "April",
+        "May",
+        "June",
+        "July",
+        "August",
+        "September",
+        "October",
+        "November",
+        "December",
+      ],
+      firstDay: 1,
+    },
+
+    vi: {
+      format: "DD/MM/YYYY",
       applyLabel: "Áp dụng",
       cancelLabel: "Huỷ",
       daysOfWeek: ["CN", "T2", "T3", "T4", "T5", "T6", "T7"],
@@ -816,6 +760,114 @@ function bookAtable() {
       ],
       firstDay: 1,
     },
+
+    ko: {
+      format: "DD/MM/YYYY",
+      applyLabel: "적용",
+      cancelLabel: "취소",
+      daysOfWeek: ["일", "월", "화", "수", "목", "금", "토"],
+      monthNames: [
+        "1월",
+        "2월",
+        "3월",
+        "4월",
+        "5월",
+        "6월",
+        "7월",
+        "8월",
+        "9월",
+        "10월",
+        "11월",
+        "12월",
+      ],
+      firstDay: 1,
+    },
+
+    ja: {
+      format: "DD/MM/YYYY",
+      applyLabel: "適用",
+      cancelLabel: "キャンセル",
+      daysOfWeek: ["日", "月", "火", "水", "木", "金", "土"],
+      monthNames: [
+        "1月",
+        "2月",
+        "3月",
+        "4月",
+        "5月",
+        "6月",
+        "7月",
+        "8月",
+        "9月",
+        "10月",
+        "11月",
+        "12月",
+      ],
+      firstDay: 1,
+    },
+
+    zh: {
+      format: "DD/MM/YYYY",
+      applyLabel: "应用",
+      cancelLabel: "取消",
+      daysOfWeek: ["日", "一", "二", "三", "四", "五", "六"],
+      monthNames: [
+        "一月",
+        "二月",
+        "三月",
+        "四月",
+        "五月",
+        "六月",
+        "七月",
+        "八月",
+        "九月",
+        "十月",
+        "十一月",
+        "十二月",
+      ],
+      firstDay: 1,
+    },
+  };
+
+  let currentLang = "en";
+  const htmlLang = $("html").attr("lang") || "";
+
+  if (htmlLang.startsWith("vi")) {
+    currentLang = "vi";
+  } else if (htmlLang.startsWith("ko")) {
+    currentLang = "ko";
+  } else if (htmlLang.startsWith("ja")) {
+    currentLang = "ja";
+  } else if (htmlLang.startsWith("zh")) {
+    currentLang = "zh";
+  }
+
+  const localeConfig = locales[currentLang] || locales.en;
+
+  function getDrops() {
+    const rect = document
+      .getElementById("dateBookTable")
+      .getBoundingClientRect();
+
+    return window.innerHeight - rect.bottom < 350 ? "up" : "down";
+  }
+
+  $("#dateBookTable").daterangepicker({
+    singleDatePicker: true,
+    showDropdowns: false,
+    autoApply: true,
+    minDate: moment().startOf("day"),
+    startDate: moment().startOf("day"),
+    opens: window.innerWidth <= 992 ? "left" : "right",
+    drops: getDrops(),
+    locale: localeConfig,
+  });
+
+  $("#dateBookTable").on("focus", function () {
+    const picker = $(this).data("daterangepicker");
+
+    if (picker) {
+      picker.drops = getDrops();
+    }
   });
 }
 function wonderGallery() {
@@ -1277,28 +1329,137 @@ function formBookingEvent() {
 
   const defaultStart = moment().startOf("day");
 
-  const localeConfig = {
-    format: "DD/MM/YYYY",
-    separator: " - ",
-    applyLabel: "Áp dụng",
-    cancelLabel: "Huỷ",
-    daysOfWeek: ["CN", "T2", "T3", "T4", "T5", "T6", "T7"],
-    monthNames: [
-      "Tháng 1",
-      "Tháng 2",
-      "Tháng 3",
-      "Tháng 4",
-      "Tháng 5",
-      "Tháng 6",
-      "Tháng 7",
-      "Tháng 8",
-      "Tháng 9",
-      "Tháng 10",
-      "Tháng 11",
-      "Tháng 12",
-    ],
-    firstDay: 1,
+  const locales = {
+    en: {
+      format: "DD/MM/YYYY",
+      separator: " - ",
+      applyLabel: "Apply",
+      cancelLabel: "Cancel",
+      daysOfWeek: ["Su", "Mo", "Tu", "We", "Th", "Fr", "Sa"],
+      monthNames: [
+        "January",
+        "February",
+        "March",
+        "April",
+        "May",
+        "June",
+        "July",
+        "August",
+        "September",
+        "October",
+        "November",
+        "December",
+      ],
+      firstDay: 1,
+    },
+
+    vi: {
+      format: "DD/MM/YYYY",
+      separator: " - ",
+      applyLabel: "Áp dụng",
+      cancelLabel: "Huỷ",
+      daysOfWeek: ["CN", "T2", "T3", "T4", "T5", "T6", "T7"],
+      monthNames: [
+        "Tháng 1",
+        "Tháng 2",
+        "Tháng 3",
+        "Tháng 4",
+        "Tháng 5",
+        "Tháng 6",
+        "Tháng 7",
+        "Tháng 8",
+        "Tháng 9",
+        "Tháng 10",
+        "Tháng 11",
+        "Tháng 12",
+      ],
+      firstDay: 1,
+    },
+
+    ko: {
+      format: "DD/MM/YYYY",
+      separator: " - ",
+      applyLabel: "적용",
+      cancelLabel: "취소",
+      daysOfWeek: ["일", "월", "화", "수", "목", "금", "토"],
+      monthNames: [
+        "1월",
+        "2월",
+        "3월",
+        "4월",
+        "5월",
+        "6월",
+        "7월",
+        "8월",
+        "9월",
+        "10월",
+        "11월",
+        "12월",
+      ],
+      firstDay: 1,
+    },
+
+    ja: {
+      format: "DD/MM/YYYY",
+      separator: " - ",
+      applyLabel: "適用",
+      cancelLabel: "キャンセル",
+      daysOfWeek: ["日", "月", "火", "水", "木", "金", "土"],
+      monthNames: [
+        "1月",
+        "2月",
+        "3月",
+        "4月",
+        "5月",
+        "6月",
+        "7月",
+        "8月",
+        "9月",
+        "10月",
+        "11月",
+        "12月",
+      ],
+      firstDay: 1,
+    },
+
+    zh: {
+      format: "DD/MM/YYYY",
+      separator: " - ",
+      applyLabel: "应用",
+      cancelLabel: "取消",
+      daysOfWeek: ["日", "一", "二", "三", "四", "五", "六"],
+      monthNames: [
+        "一月",
+        "二月",
+        "三月",
+        "四月",
+        "五月",
+        "六月",
+        "七月",
+        "八月",
+        "九月",
+        "十月",
+        "十一月",
+        "十二月",
+      ],
+      firstDay: 1,
+    },
   };
+
+  let currentLang = "en";
+  const htmlLang = $("html").attr("lang") || "";
+
+  if (htmlLang.startsWith("vi")) {
+    currentLang = "vi";
+  } else if (htmlLang.startsWith("ko")) {
+    currentLang = "ko";
+  } else if (htmlLang.startsWith("ja")) {
+    currentLang = "ja";
+  } else if (htmlLang.startsWith("zh")) {
+    currentLang = "zh";
+  }
+
+  const localeConfig = locales[currentLang] || locales.en;
 
   function getDrops() {
     const rect = document.getElementById("arrivalDate").getBoundingClientRect();
@@ -2612,98 +2773,173 @@ function formBookingWeddings() {
   if ($("#modalBookingWeddings").length < 1) return;
 
   const defaultStart = moment().startOf("day");
-  const defaultEnd = moment().startOf("day").add(1, "days");
 
-  const localeConfig = {
-    format: "DD/MM/YYYY",
-    separator: " - ",
-    applyLabel: "Áp dụng",
-    cancelLabel: "Huỷ",
-    daysOfWeek: ["CN", "T2", "T3", "T4", "T5", "T6", "T7"],
-    monthNames: [
-      "Tháng 1",
-      "Tháng 2",
-      "Tháng 3",
-      "Tháng 4",
-      "Tháng 5",
-      "Tháng 6",
-      "Tháng 7",
-      "Tháng 8",
-      "Tháng 9",
-      "Tháng 10",
-      "Tháng 11",
-      "Tháng 12",
-    ],
-    firstDay: 1,
+  const locales = {
+    en: {
+      format: "DD/MM/YYYY",
+      separator: " - ",
+      applyLabel: "Apply",
+      cancelLabel: "Cancel",
+      daysOfWeek: ["Su", "Mo", "Tu", "We", "Th", "Fr", "Sa"],
+      monthNames: [
+        "January",
+        "February",
+        "March",
+        "April",
+        "May",
+        "June",
+        "July",
+        "August",
+        "September",
+        "October",
+        "November",
+        "December",
+      ],
+      firstDay: 1,
+    },
+
+    vi: {
+      format: "DD/MM/YYYY",
+      separator: " - ",
+      applyLabel: "Áp dụng",
+      cancelLabel: "Huỷ",
+      daysOfWeek: ["CN", "T2", "T3", "T4", "T5", "T6", "T7"],
+      monthNames: [
+        "Tháng 1",
+        "Tháng 2",
+        "Tháng 3",
+        "Tháng 4",
+        "Tháng 5",
+        "Tháng 6",
+        "Tháng 7",
+        "Tháng 8",
+        "Tháng 9",
+        "Tháng 10",
+        "Tháng 11",
+        "Tháng 12",
+      ],
+      firstDay: 1,
+    },
+
+    ko: {
+      format: "DD/MM/YYYY",
+      separator: " - ",
+      applyLabel: "적용",
+      cancelLabel: "취소",
+      daysOfWeek: ["일", "월", "화", "수", "목", "금", "토"],
+      monthNames: [
+        "1월",
+        "2월",
+        "3월",
+        "4월",
+        "5월",
+        "6월",
+        "7월",
+        "8월",
+        "9월",
+        "10월",
+        "11월",
+        "12월",
+      ],
+      firstDay: 1,
+    },
+
+    ja: {
+      format: "DD/MM/YYYY",
+      separator: " - ",
+      applyLabel: "適用",
+      cancelLabel: "キャンセル",
+      daysOfWeek: ["日", "月", "火", "水", "木", "金", "土"],
+      monthNames: [
+        "1月",
+        "2月",
+        "3月",
+        "4月",
+        "5月",
+        "6月",
+        "7月",
+        "8月",
+        "9月",
+        "10月",
+        "11月",
+        "12月",
+      ],
+      firstDay: 1,
+    },
+
+    zh: {
+      format: "DD/MM/YYYY",
+      separator: " - ",
+      applyLabel: "应用",
+      cancelLabel: "取消",
+      daysOfWeek: ["日", "一", "二", "三", "四", "五", "六"],
+      monthNames: [
+        "一月",
+        "二月",
+        "三月",
+        "四月",
+        "五月",
+        "六月",
+        "七月",
+        "八月",
+        "九月",
+        "十月",
+        "十一月",
+        "十二月",
+      ],
+      firstDay: 1,
+    },
   };
 
-  function getDrops(fieldId) {
-    const rect = document.getElementById(fieldId).getBoundingClientRect();
+  let currentLang = "en";
+  const htmlLang = $("html").attr("lang") || "";
+
+  if (htmlLang.startsWith("vi")) {
+    currentLang = "vi";
+  } else if (htmlLang.startsWith("ko")) {
+    currentLang = "ko";
+  } else if (htmlLang.startsWith("ja")) {
+    currentLang = "ja";
+  } else if (htmlLang.startsWith("zh")) {
+    currentLang = "zh";
+  }
+
+  const localeConfig = locales[currentLang] || locales.en;
+
+  function getDrops() {
+    const rect = document.getElementById("arrivalDate").getBoundingClientRect();
     return window.innerHeight - rect.bottom < 350 ? "up" : "down";
   }
 
-  function initDatePicker(inputName, defaultDate, minDateFn) {
-    const $input = $(`input[name="${inputName}"]`);
-
-    $input.daterangepicker(
-      {
-        opens: "right",
-        drops: "center",
-        autoApply: true,
-        singleDatePicker: true,
-        minDate: minDateFn(),
-        startDate: defaultDate,
-        locale: localeConfig,
-      },
-      function (start) {
-        $input.val(start.format("DD/MM/YYYY"));
-
-        // Nếu là arrivalDate, cập nhật minDate của departureDate
-        if (inputName === "arrivalDate") {
-          const departurePicker = $('input[name="departureDate"]').data(
-            "daterangepicker",
-          );
-          if (departurePicker) {
-            const newMin = start.clone().add(1, "days");
-            departurePicker.minDate = newMin;
-
-            // Reset departureDate nếu đang chọn ngày <= arrivalDate
-            const currentDeparture = moment(
-              $('input[name="departureDate"]').val(),
-              "DD/MM/YYYY",
-            );
-            if (currentDeparture.isSameOrBefore(start)) {
-              departurePicker.setStartDate(newMin);
-              $('input[name="departureDate"]').val(newMin.format("DD/MM/YYYY"));
-            }
-          }
-        }
-      },
-    );
-
-    // Monkey-patch updateElement
-    const picker = $input.data("daterangepicker");
-    picker.updateElement = function () {
-      $input.val(this.startDate.format("DD/MM/YYYY"));
-    };
-
-    // Set giá trị mặc định
-    $input.val(defaultDate.format("DD/MM/YYYY"));
-
-    // Re-calc drops khi focus
-    $input.on("focus", function () {
-      const picker = $input.data("daterangepicker");
-      if (picker)
-        picker.drops = getDrops(
-          inputName === "arrivalDate" ? "arrivalDate" : "departureDate",
-        );
-    });
-  }
-
-  initDatePicker("arrivalDate", defaultStart, () => moment().startOf("day"));
-  initDatePicker("departureDate", defaultEnd, () =>
-    defaultStart.clone().add(1, "days"),
+  $('input[name="arrivalDate"]').daterangepicker(
+    {
+      opens: "right",
+      drops: "center",
+      autoApply: true,
+      singleDatePicker: true,
+      minDate: moment().startOf("day"),
+      startDate: defaultStart,
+      locale: localeConfig,
+    },
+    function (start) {
+      $('input[name="arrivalDate"]').val(start.format("DD/MM/YYYY"));
+    },
   );
+
+  // ← Monkey-patch updateElement để picker không bao giờ tự ghi range vào input
+  const picker = $('input[name="arrivalDate"]').data("daterangepicker");
+  picker.updateElement = function () {
+    $('input[name="arrivalDate"]').val(this.startDate.format("DD/MM/YYYY"));
+  };
+
+  // Set giá trị mặc định
+  $('input[name="arrivalDate"]').val(defaultStart.format("DD/MM/YYYY"));
+
+  // Re-calc drops khi focus
+  $('input[name="arrivalDate"]').on("focus", function () {
+    const picker = $('input[name="arrivalDate"]').data("daterangepicker");
+    if (picker) picker.drops = getDrops();
+  });
 
   // change step
   const form = $("#modalBookingWeddings form");
@@ -2781,9 +3017,10 @@ function createUnitSwitcher() {
   const unitItems = unitDropdown.querySelectorAll(
     ".dropdown-custom-item[data-type]",
   );
-  const changeValueEl = venusContainer.querySelector(".change-value-select");
+  const changeValueEls = venusContainer.querySelectorAll(
+    ".change-value-select",
+  );
 
-  // Map unit -> HTML text
   const unitLabelMap = {
     m2: "m<sup>2</sup>",
     feet: "ft<sup>2</sup>",
@@ -2791,6 +3028,12 @@ function createUnitSwitcher() {
 
   const getFiltersByUnit = (unit) =>
     venusContainer.querySelectorAll(`.venus-filter.${unit}`);
+
+  function setChangeValue(unit) {
+    changeValueEls.forEach((el) => {
+      el.innerHTML = unitLabelMap[unit] || unit;
+    });
+  }
 
   // Init
   const activeUnit = unitDropdown.querySelector(
@@ -2816,9 +3059,7 @@ function createUnitSwitcher() {
       }
     });
 
-    if (changeValueEl) {
-      changeValueEl.innerHTML = unitLabelMap[currentUnit] || currentUnit;
-    }
+    setChangeValue(currentUnit);
   }
 
   // Click
@@ -2833,9 +3074,8 @@ function createUnitSwitcher() {
         ".dropdown-custom-text span",
       );
       if (displayText) {
-        displayText.textContent =
-          this.querySelector("span")?.textContent.trim() ||
-          this.textContent.trim();
+        displayText.innerHTML =
+          this.querySelector("span")?.innerHTML.trim() || this.innerHTML.trim();
       }
 
       const menu = unitDropdown.querySelector(".dropdown-custom-menu");
@@ -2843,10 +3083,7 @@ function createUnitSwitcher() {
       menu?.classList.remove("dropdown--active");
       dropdownBtn?.classList.remove("--active");
 
-      // Cập nhật .change-value-select với sup
-      if (changeValueEl) {
-        changeValueEl.innerHTML = unitLabelMap[unit] || unit;
-      }
+      setChangeValue(unit);
 
       venusContainer.querySelectorAll(".venus-filter").forEach((f) => {
         f.style.display = "none";
