@@ -6059,9 +6059,17 @@ body {
   align-items: center;
   gap: 12px;
 }
+@media (max-width: 1200px) and (min-width: 992px) {
+  .venus-td-item:first-child {
+    min-width: 221px;
+    gap: 16px;
+    justify-content: unset;
+  }
+}
 @media (max-width: 991px) {
   .venus-td-item:first-child {
-    justify-content: center;
+    white-space: nowrap;
+    min-width: 221px;
   }
 }
 .venus-td-item:first-child img {
@@ -6081,7 +6089,6 @@ body {
 @media (max-width: 991px) {
   .venus-td-item .name {
     white-space: nowrap;
-    width: 200px;
   }
 }
 .venus-td-item .text {
