@@ -532,10 +532,13 @@ body {
     align-items: center;
     justify-content: center;
 
+    width: 100px !important;
+
     .swiper-pagination-bullet {
       background: var(--color-white);
       width: 10px;
       height: 10px;
+      flex-shrink: 0;
       opacity: 0.5;
     }
 

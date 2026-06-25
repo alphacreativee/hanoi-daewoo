@@ -773,12 +773,14 @@ body {
   display: flex;
   align-items: center;
   justify-content: center;
+  width: 100px !important;
 }
 [slider-parallax] .slider-pagination .swiper-pagination-bullet,
 .wrapper-slider-parallax .slider-pagination .swiper-pagination-bullet {
   background: var(--color-white);
   width: 10px;
   height: 10px;
+  flex-shrink: 0;
   opacity: 0.5;
 }
 [slider-parallax] .slider-pagination .swiper-pagination-bullet-active,
