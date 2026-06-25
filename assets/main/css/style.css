@@ -2121,6 +2121,11 @@ body {
   flex-direction: column;
 }
 @media (max-width: 1200px) {
+  #header .header-main--popup__top {
+    padding-bottom: 24px;
+  }
+}
+@media (max-width: 1200px) {
   #header .header-main--popup {
     padding: 32px 24px;
   }
@@ -2132,13 +2137,19 @@ body {
     display: flex;
     flex-direction: column;
     gap: 16px;
-    margin-top: 32px;
-    height: calc(100vh - 160px);
+    margin-top: 8px;
+    height: calc(100dvh - 300px);
     overflow-y: scroll;
-    padding-bottom: 16px;
+    padding-bottom: 30px;
   }
   #header .header-main--popup .main-sub-menu::-webkit-scrollbar {
-    display: none;
+    width: 2px;
+  }
+  #header .header-main--popup .main-sub-menu::-webkit-scrollbar-track {
+    background: transparent;
+  }
+  #header .header-main--popup .main-sub-menu::-webkit-scrollbar-thumb {
+    background: rgba(118, 120, 122, 0.2);
   }
   #header .header-main--popup .main-sub-menu ul {
     margin-top: 0;
@@ -3061,7 +3072,7 @@ body {
 }
 @media (max-width: 1150px) and (min-width: 992px) {
   .intro.intro-events .intro-list {
-    max-width: 70%;
+    max-width: 100%;
     margin: 0 auto;
   }
 }
@@ -3108,7 +3119,7 @@ body {
   text-align: center;
 }
 .intro-item .number {
-  font-size: 100px;
+  font-size: 80px;
   line-height: 1.4;
   font-family: var(--font-heading);
   color: var(--color-gold);
@@ -4146,22 +4157,45 @@ body {
     justify-content: space-between;
   }
 }
+.overview.recruitment-detail .content-left h1,
+.overview.recruitment-detail .content-left h2,
+.overview.recruitment-detail .content-left h3,
 .overview.recruitment-detail .content-left h4,
 .overview.recruitment-detail .content-left h5,
 .overview.recruitment-detail .content-left h6 {
-  font-size: 14px;
-  line-height: 24px;
+  font-size: 16px;
+  line-height: 28px;
   font-weight: 600;
   margin-bottom: 12px;
 }
-.overview.recruitment-detail .content-left h4:not(:first-child),
-.overview.recruitment-detail .content-left h5:not(:first-child),
-.overview.recruitment-detail .content-left h6:not(:first-child) {
-  margin-top: 24px;
+.overview.recruitment-detail .content-left p:not(:first-child) {
+  margin: 24px 0 12px;
+}
+.overview.recruitment-detail .content-left p:last-child {
+  margin-bottom: 0;
 }
 .overview.recruitment-detail .content-left ul {
   padding-left: 24px;
   list-style: disc;
+}
+.overview.recruitment-detail .content-left a {
+  position: relative;
+}
+.overview.recruitment-detail .content-left a::before {
+  content: "";
+  position: absolute;
+  width: 100%;
+  height: 1px;
+  background-color: var(--color-black);
+  bottom: 0;
+  left: 0;
+  transform: scaleX(0);
+  transform-origin: bottom right;
+  transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+.overview.recruitment-detail .content-left a:hover::before {
+  transform: scaleX(1);
+  transform-origin: bottom left;
 }
 .overview.recruitment-detail .content-right {
   height: max-content;
@@ -5539,6 +5573,7 @@ body {
 }
 .position-hiring__main .position-list__item .btn-popup {
   width: max-content;
+  height: max-content;
   margin-left: auto;
 }
 .position-hiring .dropdown-custom-select {
@@ -5707,7 +5742,8 @@ body {
   transform: scale(1.03);
 }
 .card-news__media {
-  width: 660/500;
+  width: 100%;
+  aspect-ratio: 660/500;
   overflow: hidden;
 }
 .card-news__media img {

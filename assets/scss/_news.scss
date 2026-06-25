@@ -16,7 +16,8 @@
     }
   }
   &__media {
-    width: 660 / 500;
+    width: 100%;
+    aspect-ratio: 660 / 500;
     overflow: hidden;
 
     img {

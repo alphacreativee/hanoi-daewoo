@@ -362,8 +362,16 @@
 
         display: flex;
         flex-direction: column;
+
+        &__top {
+          @media (max-width: 1200px) {
+            padding-bottom: 24px;
+          }
+        }
+
         @media (max-width: 1200px) {
           padding: 32px 24px;
+
           .logo img {
             width: 80px;
             height: 80px;
@@ -372,13 +380,23 @@
             display: flex;
             flex-direction: column;
             gap: 16px;
-            margin-top: 32px;
-            height: calc(100vh - 160px);
+            margin-top: 8px;
+            height: calc(100dvh - 300px);
             overflow-y: scroll;
-            padding-bottom: 16px;
+            padding-bottom: 30px;
+
             &::-webkit-scrollbar {
-              display: none;
+              width: 2px;
             }
+
+            &::-webkit-scrollbar-track {
+              background: transparent;
+            }
+
+            &::-webkit-scrollbar-thumb {
+              background: rgba(118, 120, 122, 0.2);
+            }
+
             ul {
               margin-top: 0;
             }
