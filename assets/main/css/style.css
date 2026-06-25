@@ -6036,7 +6036,7 @@ body {
 }
 @media (max-width: 991px) {
   .venus-grid {
-    grid-template-columns: repeat(7, 160px);
+    grid-template-columns: 130px repeat(6, 120px);
   }
 }
 .venus-td {
@@ -6052,14 +6052,14 @@ body {
 }
 @media (max-width: 1200px) and (min-width: 992px) {
   .venus-td.first-col {
-    min-width: 200px;
+    min-width: 221px;
     gap: 16px;
     justify-content: unset;
   }
 }
 @media (max-width: 991px) {
   .venus-td.first-col {
-    min-width: 200px;
+    min-width: 221px;
     gap: 16px;
     justify-content: unset;
   }
@@ -6100,6 +6100,19 @@ body {
   align-items: center;
   gap: 12px;
 }
+@media (max-width: 1200px) and (min-width: 992px) {
+  .venus-td-item:first-child {
+    min-width: 221px;
+    gap: 16px;
+    justify-content: unset;
+  }
+}
+@media (max-width: 991px) {
+  .venus-td-item:first-child {
+    white-space: nowrap;
+    min-width: 221px;
+  }
+}
 .venus-td-item:first-child img {
   transform: translateY(4px);
   transition: transform 0.3s ease;
@@ -6109,7 +6122,7 @@ body {
 }
 @media (max-width: 1200px) and (min-width: 992px) {
   .venus-td-item .name {
-    min-width: 200px;
+    min-width: 221px;
     gap: 16px;
     justify-content: unset;
   }
@@ -6117,7 +6130,6 @@ body {
 @media (max-width: 991px) {
   .venus-td-item .name {
     white-space: nowrap;
-    width: 200px;
   }
 }
 .venus-td-item .text {
