@@ -174,8 +174,11 @@
     }
     &-item {
       text-align: center;
+      display: flex;
+      align-items: center;
       .name {
         text-align: left;
+
         @media (max-width: 1200px) and (min-width: 992px) {
           min-width: 200px;
           gap: 16px;
@@ -245,7 +248,7 @@
         color: var(--color-black);
         letter-spacing: 3%;
         font-weight: 600;
-        text-transform: uppercase;
+        // text-transform: uppercase;
         @media (max-width: 991px) {
           font-size: 12px;
           line-height: 20px;
@@ -315,7 +318,7 @@
     color: var(--color-black);
     letter-spacing: 3%;
     font-weight: 600;
-    text-transform: uppercase;
+    // text-transform: uppercase;
     @media (max-width: 991px) {
       font-size: 12px;
       line-height: 20px;

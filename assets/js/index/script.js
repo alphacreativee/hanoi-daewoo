@@ -2259,6 +2259,108 @@ function swiperDestination() {
     slidesOffsetAfter: 16
   });
 }
+// function createFilterTabDropdown() {
+//   document.querySelectorAll(".venus-filter").forEach((section) => {
+//     let result;
+
+//     const targetSelector = section.dataset.target;
+//     if (targetSelector) {
+//       result = document.querySelector(targetSelector);
+//     } else {
+//       result = section.querySelector(".filter-section-result");
+//       if (!result) {
+//         result = section.nextElementSibling;
+//         if (!result?.classList.contains("filter-section-result")) return;
+//       }
+//     }
+
+//     if (!result) return;
+
+//     const normalButtons = section.querySelectorAll(".filter-button[data-type]");
+
+//     // Sửa: .dropdown-custom-select.filter-tab thay vì .dropdown-custom.filter-tab
+//     const dropdownFilterTab = section.querySelector(
+//       ".dropdown-custom-select.filter-tab",
+//     );
+//     const dropdownItems = dropdownFilterTab
+//       ? dropdownFilterTab.querySelectorAll(".dropdown-custom-item[data-type]")
+//       : [];
+
+//     const allButtons = [...normalButtons, ...dropdownItems];
+//     if (!allButtons.length) return;
+
+//     const activeBtn = section.querySelector(
+//       ".filter-button.active[data-type], .dropdown-custom-item.active[data-type]",
+//     );
+//     if (activeBtn) {
+//       const activeType = activeBtn.dataset.type;
+//       if (activeType !== "all") {
+//         result.querySelectorAll(".filter-item").forEach((item) => {
+//           item.style.display = item.classList.contains(activeType)
+//             ? ""
+//             : "none";
+//         });
+//       }
+
+//       if (dropdownFilterTab && dropdownFilterTab.contains(activeBtn)) {
+//         const displayText = dropdownFilterTab.querySelector(
+//           ".dropdown-custom-text span",
+//         );
+//         if (displayText) {
+//           displayText.textContent =
+//             activeBtn.querySelector("span")?.textContent.trim() ||
+//             activeBtn.textContent.trim();
+//         }
+//       }
+//     }
+
+//     allButtons.forEach((btn) => {
+//       btn.addEventListener("click", function () {
+//         allButtons.forEach((b) => b.classList.remove("active"));
+//         this.classList.add("active");
+
+//         if (dropdownFilterTab && dropdownFilterTab.contains(this)) {
+//           const displayText = dropdownFilterTab.querySelector(
+//             ".dropdown-custom-text span",
+//           );
+//           const itemSpan = this.querySelector("span");
+
+//           if (displayText) {
+//             displayText.textContent = itemSpan
+//               ? itemSpan.textContent.trim()
+//               : this.textContent.trim();
+//           }
+
+//           const menu = dropdownFilterTab.querySelector(".dropdown-custom-menu");
+//           const dropdownBtn = dropdownFilterTab.querySelector(
+//             ".dropdown-custom-btn",
+//           );
+//           menu?.classList.remove("dropdown--active");
+//           dropdownBtn?.classList.remove("--active");
+//         }
+
+//         const type = this.dataset.type;
+//         const items = result.querySelectorAll(".filter-item");
+
+//         gsap
+//           .timeline()
+//           .to(result, { autoAlpha: 0, duration: 0.3 })
+//           .call(() => {
+//             items.forEach((item) => {
+//               if (type === "all") {
+//                 item.style.display = "";
+//               } else {
+//                 item.style.display = item.classList.contains(type)
+//                   ? ""
+//                   : "none";
+//               }
+//             });
+//           })
+//           .to(result, { autoAlpha: 1, duration: 0.3 });
+//       });
+//     });
+//   });
+// }
 function createFilterTabDropdown() {
   document.querySelectorAll(".venus-filter").forEach((section) => {
     let result;
@@ -2278,7 +2380,6 @@ function createFilterTabDropdown() {
 
     const normalButtons = section.querySelectorAll(".filter-button[data-type]");
 
-    // Sửa: .dropdown-custom-select.filter-tab thay vì .dropdown-custom.filter-tab
     const dropdownFilterTab = section.querySelector(
       ".dropdown-custom-select.filter-tab"
     );
@@ -2288,6 +2389,28 @@ function createFilterTabDropdown() {
 
     const allButtons = [...normalButtons, ...dropdownItems];
     if (!allButtons.length) return;
+
+    // Lấy .change-value-select trong cùng venus-container
+    const venusContainer = section.closest(".venus-container");
+    const changeValueEl = venusContainer?.querySelector(".change-value-select");
+
+    function updateChangeValue(type) {
+      if (!changeValueEl) return;
+      const unitDropdown = venusContainer.querySelector(
+        ".venus-td .filter-section .dropdown-custom-select.filter-tab"
+      );
+      const activeUnitItem = unitDropdown?.querySelector(
+        `.dropdown-custom-item[data-type="${type}"]`
+      );
+      // Chỉ update nếu type khớp với unit (m2/feet), không phải filter level
+      const activeUnit = unitDropdown?.querySelector(
+        ".dropdown-custom-item.active[data-type]"
+      );
+      if (activeUnit) {
+        changeValueEl.innerHTML =
+          activeUnit.dataset.label || activeUnit.dataset.type;
+      }
+    }
 
     const activeBtn = section.querySelector(
       ".filter-button.active[data-type], .dropdown-custom-item.active[data-type]"
@@ -2307,9 +2430,9 @@ function createFilterTabDropdown() {
           ".dropdown-custom-text span"
         );
         if (displayText) {
-          displayText.textContent =
-            activeBtn.querySelector("span")?.textContent.trim() ||
-            activeBtn.textContent.trim();
+          displayText.innerHTML =
+            activeBtn.querySelector("span")?.innerHTML.trim() ||
+            activeBtn.innerHTML.trim();
         }
       }
     }
@@ -2326,9 +2449,9 @@ function createFilterTabDropdown() {
           const itemSpan = this.querySelector("span");
 
           if (displayText) {
-            displayText.textContent = itemSpan
-              ? itemSpan.textContent.trim()
-              : this.textContent.trim();
+            displayText.innerHTML = itemSpan
+              ? itemSpan.innerHTML.trim()
+              : this.innerHTML.trim();
           }
 
           const menu = dropdownFilterTab.querySelector(".dropdown-custom-menu");
@@ -2882,7 +3005,114 @@ function activeModalBooking() {
     new bootstrap.Modal($(".modal-booking")[0]).show();
   }
 }
+function createUnitSwitcher() {
+  const venusContainer = document.querySelector(".venus-container");
+  if (!venusContainer) return;
 
+  const unitDropdown = venusContainer.querySelector(
+    ".venus-top .dropdown-custom-select.filter-tab"
+  );
+  if (!unitDropdown) return;
+
+  const unitItems = unitDropdown.querySelectorAll(
+    ".dropdown-custom-item[data-type]"
+  );
+  const changeValueEl = venusContainer.querySelector(".change-value-select");
+
+  // Map unit -> HTML text
+  const unitLabelMap = {
+    m2: "m<sup>2</sup>",
+    feet: "ft<sup>2</sup>"
+  };
+
+  const getFiltersByUnit = (unit) =>
+    venusContainer.querySelectorAll(`.venus-filter.${unit}`);
+
+  // Init
+  const activeUnit = unitDropdown.querySelector(
+    ".dropdown-custom-item.active[data-type]"
+  );
+  if (activeUnit) {
+    const currentUnit = activeUnit.dataset.type;
+
+    venusContainer.querySelectorAll(".venus-filter").forEach((f) => {
+      f.style.display = "none";
+    });
+    venusContainer.querySelectorAll(".filter-section-result").forEach((r) => {
+      r.style.display = "none";
+    });
+
+    getFiltersByUnit(currentUnit).forEach((f) => {
+      f.style.display = "";
+      const targetSelector = f.querySelector(".filter-section[data-target]")
+        ?.dataset.target;
+      if (targetSelector) {
+        const result = document.querySelector(targetSelector);
+        if (result) result.style.display = "";
+      }
+    });
+
+    if (changeValueEl) {
+      changeValueEl.innerHTML = unitLabelMap[currentUnit] || currentUnit;
+    }
+  }
+
+  // Click
+  unitItems.forEach((item) => {
+    item.addEventListener("click", function () {
+      const unit = this.dataset.type;
+
+      unitItems.forEach((i) => i.classList.remove("active"));
+      this.classList.add("active");
+
+      const displayText = unitDropdown.querySelector(
+        ".dropdown-custom-text span"
+      );
+      if (displayText) {
+        displayText.textContent =
+          this.querySelector("span")?.textContent.trim() ||
+          this.textContent.trim();
+      }
+
+      const menu = unitDropdown.querySelector(".dropdown-custom-menu");
+      const dropdownBtn = unitDropdown.querySelector(".dropdown-custom-btn");
+      menu?.classList.remove("dropdown--active");
+      dropdownBtn?.classList.remove("--active");
+
+      // Cập nhật .change-value-select với sup
+      if (changeValueEl) {
+        changeValueEl.innerHTML = unitLabelMap[unit] || unit;
+      }
+
+      venusContainer.querySelectorAll(".venus-filter").forEach((f) => {
+        f.style.display = "none";
+      });
+      venusContainer.querySelectorAll(".filter-section-result").forEach((r) => {
+        r.style.display = "none";
+      });
+
+      const filtersToShow = getFiltersByUnit(unit);
+      filtersToShow.forEach((f) => {
+        f.style.display = "";
+        const targetSelector = f.querySelector(".filter-section[data-target]")
+          ?.dataset.target;
+        if (targetSelector) {
+          const result = document.querySelector(targetSelector);
+          if (result) {
+            gsap
+              .timeline()
+              .set(result, { display: "" })
+              .fromTo(
+                result,
+                { autoAlpha: 0 },
+                { autoAlpha: 1, duration: 0.4 }
+              );
+          }
+        }
+      });
+    });
+  });
+}
 const init = () => {
   gsap.registerPlugin(ScrollTrigger);
 
@@ -2927,6 +3157,7 @@ const init = () => {
   panel();
   activeModalBooking();
   formNewsletter();
+  createUnitSwitcher();
 };
 document.addEventListener("DOMContentLoaded", () => {
   init();
