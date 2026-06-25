@@ -3183,12 +3183,6 @@ body {
   object-fit: cover;
   transform: scale(1.2);
 }
-@media (min-width: 1500px) {
-  .image-zoom .image-zoom-inner img {
-    object-position: center;
-  }
-}
-
 @media (max-width: 991px) {
   .accommodations .swiper-wrapper {
     align-items: stretch;

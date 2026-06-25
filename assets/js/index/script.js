@@ -2650,7 +2650,6 @@ function formBookingWeddings() {
   if ($("#modalBookingWeddings").length < 1) return;
 
   const defaultStart = moment().startOf("day");
-  const defaultEnd = moment().startOf("day").add(1, "days");
 
   const locales = {
     en: {
@@ -2784,77 +2783,40 @@ function formBookingWeddings() {
 
   const localeConfig = locales[currentLang] || locales.en;
 
-  function getDrops(inputName) {
-    const el = document.querySelector(`input[name="${inputName}"]`);
-
-    if (!el) return "down";
-
-    const rect = el.getBoundingClientRect();
-
+  function getDrops() {
+    const rect = document.getElementById("arrivalDate").getBoundingClientRect();
     return window.innerHeight - rect.bottom < 350 ? "up" : "down";
   }
 
-  function initDatePicker(inputName, defaultDate, minDateFn) {
-    const $input = $(`input[name="${inputName}"]`);
-
-    $input.daterangepicker(
-      {
-        opens: window.innerWidth <= 992 ? "left" : "right",
-        drops: getDrops(inputName),
-        autoApply: true,
-        singleDatePicker: true,
-        showDropdowns: false,
-        minDate: minDateFn(),
-        startDate: defaultDate,
-        locale: localeConfig
-      },
-      function (start) {
-        $input.val(start.format("DD/MM/YYYY"));
-
-        if (inputName === "arrivalDate") {
-          const departurePicker = $('input[name="departureDate"]').data(
-            "daterangepicker"
-          );
-
-          if (departurePicker) {
-            const newMin = start.clone().add(1, "days");
-            departurePicker.minDate = newMin;
-
-            const currentDeparture = moment(
-              $('input[name="departureDate"]').val(),
-              "DD/MM/YYYY"
-            );
-
-            if (currentDeparture.isSameOrBefore(start)) {
-              departurePicker.setStartDate(newMin);
-              $('input[name="departureDate"]').val(newMin.format("DD/MM/YYYY"));
-            }
-          }
-        }
-      }
-    );
-
-    const picker = $input.data("daterangepicker");
-
-    picker.updateElement = function () {
-      $input.val(this.startDate.format("DD/MM/YYYY"));
-    };
-
-    $input.val(defaultDate.format("DD/MM/YYYY"));
-
-    $input.on("focus", function () {
-      const picker = $input.data("daterangepicker");
-
-      if (picker) {
-        picker.drops = getDrops(inputName);
-      }
-    });
-  }
-
-  initDatePicker("arrivalDate", defaultStart, () => moment().startOf("day"));
-  initDatePicker("departureDate", defaultEnd, () =>
-    defaultStart.clone().add(1, "days")
+  $('input[name="arrivalDate"]').daterangepicker(
+    {
+      opens: "right",
+      drops: "center",
+      autoApply: true,
+      singleDatePicker: true,
+      minDate: moment().startOf("day"),
+      startDate: defaultStart,
+      locale: localeConfig
+    },
+    function (start) {
+      $('input[name="arrivalDate"]').val(start.format("DD/MM/YYYY"));
+    }
   );
+
+  // ← Monkey-patch updateElement để picker không bao giờ tự ghi range vào input
+  const picker = $('input[name="arrivalDate"]').data("daterangepicker");
+  picker.updateElement = function () {
+    $('input[name="arrivalDate"]').val(this.startDate.format("DD/MM/YYYY"));
+  };
+
+  // Set giá trị mặc định
+  $('input[name="arrivalDate"]').val(defaultStart.format("DD/MM/YYYY"));
+
+  // Re-calc drops khi focus
+  $('input[name="arrivalDate"]').on("focus", function () {
+    const picker = $('input[name="arrivalDate"]').data("daterangepicker");
+    if (picker) picker.drops = getDrops();
+  });
 
   // change step
   const form = $("#modalBookingWeddings form");
