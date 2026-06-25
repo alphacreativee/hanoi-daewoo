@@ -5941,12 +5941,12 @@ body {
 }
 .venus-grid {
   display: grid;
-  grid-template-columns: repeat(7, minmax(130px, 1fr));
-  gap: 24px;
+  grid-template-columns: 130px repeat(6, 120px);
+  gap: 12px;
 }
 @media (max-width: 1200px) and (min-width: 992px) {
   .venus-grid {
-    grid-template-columns: repeat(7, 160px);
+    grid-template-columns: 160px repeat(6, 115px);
   }
 }
 @media (max-width: 991px) {
@@ -6009,8 +6009,15 @@ body {
 }
 .venus-td-item {
   text-align: center;
+}
+.venus-td-item:first-child {
   display: flex;
   align-items: center;
+  gap: 12px;
+}
+.venus-td-item:first-child img {
+  transform: translateY(4px);
+  transition: transform 0.3s ease;
 }
 .venus-td-item .name {
   text-align: left;
@@ -6129,6 +6136,9 @@ body {
   color: transparent;
   background-color: var(--color-white);
   box-shadow: none;
+}
+.venus .accordion-button:not(.collapsed) .venus-td-item:first-child img {
+  transform: translateY(4px) rotate(-180deg);
 }
 .venus .accordion-button:focus {
   border-color: none;
