@@ -6009,6 +6009,8 @@ body {
 }
 .venus-td-item {
   text-align: center;
+  display: flex;
+  align-items: center;
 }
 .venus-td-item .name {
   text-align: left;
@@ -6087,7 +6089,6 @@ body {
   color: var(--color-black);
   letter-spacing: 3%;
   font-weight: 600;
-  text-transform: uppercase;
 }
 @media (max-width: 991px) {
   .venus-filter .filter-section .value-select,
@@ -6159,7 +6160,6 @@ body {
   color: var(--color-black);
   letter-spacing: 3%;
   font-weight: 600;
-  text-transform: uppercase;
 }
 @media (max-width: 991px) {
   .venus .value-select,
