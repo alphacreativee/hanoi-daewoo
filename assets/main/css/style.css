@@ -2139,20 +2139,20 @@ body {
     gap: 16px;
     margin-top: 8px;
     height: calc(100dvh - 300px);
-    overflow-y: scroll;
-    padding-bottom: 30px;
-  }
-  #header .header-main--popup .main-sub-menu::-webkit-scrollbar {
-    width: 2px;
-  }
-  #header .header-main--popup .main-sub-menu::-webkit-scrollbar-track {
-    background: transparent;
-  }
-  #header .header-main--popup .main-sub-menu::-webkit-scrollbar-thumb {
-    background: rgba(118, 120, 122, 0.2);
   }
   #header .header-main--popup .main-sub-menu ul {
     margin-top: 0;
+    overflow-y: scroll;
+    padding-bottom: 300px;
+  }
+  #header .header-main--popup .main-sub-menu ul::-webkit-scrollbar {
+    width: 2px;
+  }
+  #header .header-main--popup .main-sub-menu ul::-webkit-scrollbar-track {
+    background: transparent;
+  }
+  #header .header-main--popup .main-sub-menu ul::-webkit-scrollbar-thumb {
+    background: rgba(118, 120, 122, 0.2);
   }
 }
 #header .header-main--popup.active {
@@ -2197,6 +2197,11 @@ body {
   #header .header-main--popup__bottom {
     border-top: 1px solid var(--color-gray);
     padding-top: 16px;
+    padding-bottom: 24px;
+    width: calc(100% - 48px);
+    background-color: var(--color-white);
+    position: fixed;
+    bottom: 0;
   }
   #header .header-main--popup__bottom .header-book {
     width: 100%;
@@ -6021,12 +6026,12 @@ body {
 }
 .venus-grid {
   display: grid;
-  grid-template-columns: repeat(7, minmax(130px, 1fr));
-  gap: 24px;
+  grid-template-columns: 130px repeat(6, 120px);
+  gap: 12px;
 }
 @media (max-width: 1200px) and (min-width: 992px) {
   .venus-grid {
-    grid-template-columns: repeat(7, 160px);
+    grid-template-columns: 160px repeat(6, 115px);
   }
 }
 @media (max-width: 991px) {
@@ -6089,8 +6094,15 @@ body {
 }
 .venus-td-item {
   text-align: center;
+}
+.venus-td-item:first-child {
   display: flex;
   align-items: center;
+  gap: 12px;
+}
+.venus-td-item:first-child img {
+  transform: translateY(4px);
+  transition: transform 0.3s ease;
 }
 .venus-td-item .name {
   text-align: left;
@@ -6209,6 +6221,9 @@ body {
   color: transparent;
   background-color: var(--color-white);
   box-shadow: none;
+}
+.venus .accordion-button:not(.collapsed) .venus-td-item:first-child img {
+  transform: translateY(4px) rotate(-180deg);
 }
 .venus .accordion-button:focus {
   border-color: none;

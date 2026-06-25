@@ -382,23 +382,25 @@
             gap: 16px;
             margin-top: 8px;
             height: calc(100dvh - 300px);
-            overflow-y: scroll;
-            padding-bottom: 30px;
-
-            &::-webkit-scrollbar {
-              width: 2px;
-            }
-
-            &::-webkit-scrollbar-track {
-              background: transparent;
-            }
-
-            &::-webkit-scrollbar-thumb {
-              background: rgba(118, 120, 122, 0.2);
-            }
 
             ul {
               margin-top: 0;
+
+              overflow-y: scroll;
+              // padding-bottom: 30px;
+              padding-bottom: 300px;
+
+              &::-webkit-scrollbar {
+                width: 2px;
+              }
+
+              &::-webkit-scrollbar-track {
+                background: transparent;
+              }
+
+              &::-webkit-scrollbar-thumb {
+                background: rgba(118, 120, 122, 0.2);
+              }
             }
           }
         }
@@ -462,6 +464,12 @@
           @media (max-width: 991px) {
             border-top: 1px solid var(--color-gray);
             padding-top: 16px;
+            padding-bottom: 24px;
+            width: calc(100% - 48px);
+            background-color: var(--color-white);
+            position: fixed;
+            bottom: 0;
+
             .header-book {
               width: 100%;
               margin-top: 24px;

@@ -108,10 +108,10 @@
   }
   &-grid {
     display: grid;
-    grid-template-columns: repeat(7, minmax(130px, 1fr));
-    gap: 24px;
+    grid-template-columns: 130px repeat(6, 120px);
+    gap: 12px;
     @media (max-width: 1200px) and (min-width: 992px) {
-      grid-template-columns: repeat(7, 160px);
+      grid-template-columns: 160px repeat(6, 115px);
       // width: max-content;
     }
     @media (max-width: 991px) {
@@ -174,8 +174,15 @@
     }
     &-item {
       text-align: center;
-      display: flex;
-      align-items: center;
+      &:first-child {
+        display: flex;
+        align-items: center;
+        gap: 12px;
+        img {
+          transform: translateY(4px);
+          transition: transform 0.3s ease;
+        }
+      }
       .name {
         text-align: left;
 
@@ -287,6 +294,11 @@
     color: transparent;
     background-color: var(--color-white);
     box-shadow: none;
+    .venus-td-item:first-child {
+      img {
+        transform: translateY(4px) rotate(-180deg);
+      }
+    }
   }
   .accordion-button:focus {
     border-color: none;

@@ -2,7 +2,7 @@ import { reinitAccommodationSlider } from "../../main/js/slider.min.js";
 
 export async function dropdownPhoneCode() {
   const phoneDropdown = document.querySelector(
-    ".dropdown-custom-select.select-phone-code"
+    ".dropdown-custom-select.select-phone-code",
   );
   if (!phoneDropdown) return;
 
@@ -17,7 +17,7 @@ export async function dropdownPhoneCode() {
 
   try {
     const res = await fetch(
-      "https://cdn.jsdelivr.net/npm/world-countries@5/dist/countries.json"
+      "https://cdn.jsdelivr.net/npm/world-countries@5/dist/countries.json",
     );
     const data = await res.json();
 
@@ -26,7 +26,7 @@ export async function dropdownPhoneCode() {
         name: c.name?.common || "",
         code: c.cca2 || "",
         dialCode: c.idd?.root ? c.idd.root + (c.idd.suffixes?.[0] || "") : "",
-        flag: c.cca2 ? `https://flagcdn.com/${c.cca2.toLowerCase()}.svg` : ""
+        flag: c.cca2 ? `https://flagcdn.com/${c.cca2.toLowerCase()}.svg` : "",
       }))
       .filter((c) => c.name && c.dialCode && c.flag)
       .sort((a, b) => a.name.localeCompare(b.name));
@@ -55,7 +55,7 @@ export async function dropdownPhoneCode() {
 
   // Mặc định Vietnam
   const defaultItem = phoneMenu.querySelector(
-    '.dropdown-custom-item[data-code="VN"]'
+    '.dropdown-custom-item[data-code="VN"]',
   );
   if (defaultItem) {
     selectCode(defaultItem, false);
@@ -103,7 +103,7 @@ export async function dropdownPhoneCode() {
 }
 export async function dropdownRegion() {
   const dropdown = document.querySelector(
-    ".dropdown-custom-select.select-region"
+    ".dropdown-custom-select.select-region",
   );
   if (!dropdown) return;
 
@@ -121,7 +121,7 @@ export async function dropdownRegion() {
 
   try {
     const res = await fetch(
-      "https://cdn.jsdelivr.net/npm/world-countries@5/dist/countries.json"
+      "https://cdn.jsdelivr.net/npm/world-countries@5/dist/countries.json",
     );
     const data = await res.json();
 
@@ -130,7 +130,7 @@ export async function dropdownRegion() {
         name: c.name?.common || "",
         code: c.cca2 || "",
         dialCode: c.idd?.root ? c.idd.root + (c.idd.suffixes?.[0] || "") : "",
-        flag: c.cca2 ? `https://flagcdn.com/${c.cca2.toLowerCase()}.svg` : ""
+        flag: c.cca2 ? `https://flagcdn.com/${c.cca2.toLowerCase()}.svg` : "",
       }))
       .filter((c) => c.name && c.dialCode && c.flag)
       .sort((a, b) => a.name.localeCompare(b.name));
@@ -158,7 +158,7 @@ export async function dropdownRegion() {
 
   // Set mặc định: Vietnam
   const defaultItem = dropdownMenu.querySelector(
-    '.dropdown-custom-item[data-code="VN"]'
+    '.dropdown-custom-item[data-code="VN"]',
   );
   if (defaultItem) {
     selectCountry(defaultItem);
@@ -213,7 +213,7 @@ export async function dropdownRegion() {
 }
 export function customDropdown() {
   const dropdowns = document.querySelectorAll(
-    ".dropdown-custom:not(.filter-tab), .dropdown-custom-select:not(.filter-tab)"
+    ".dropdown-custom:not(.filter-tab), .dropdown-custom-select:not(.filter-tab)",
   );
   if (!dropdowns.length) return;
   dropdowns.forEach((dropdown) => {
@@ -474,7 +474,7 @@ function isInViewport(el, threshold = 0.65) {
 // ============================================================
 function reinitCardAnimations(container) {
   const cards = container.querySelectorAll(
-    ".filter-item:not([style*='display: none']) .accommodationCard"
+    ".filter-item:not([style*='display: none']) .accommodationCard",
   );
 
   if (!cards.length) return;
@@ -503,7 +503,7 @@ function reinitCardAnimations(container) {
           el,
           { y: 20, opacity: 0 },
           { y: 0, opacity: 1, duration: 0.6, ease: "power2.out" },
-          "-=0.4"
+          "-=0.4",
         );
       });
     };
@@ -516,7 +516,7 @@ function reinitCardAnimations(container) {
         trigger: media,
         start: "top 65%",
         once: true,
-        onEnter: animateMedia
+        onEnter: animateMedia,
       });
     }
 
@@ -529,7 +529,7 @@ function reinitCardAnimations(container) {
           trigger: contentTrigger,
           start: "top 65%",
           once: true,
-          onEnter: animateContent
+          onEnter: animateContent,
         });
       }
     }
@@ -543,7 +543,7 @@ function reinitCardAnimations(container) {
           trigger: contentTrigger,
           start: "top 65%",
           once: true,
-          onEnter: animateContent
+          onEnter: animateContent,
         });
       }
     }
@@ -572,7 +572,7 @@ function reinitItemsSectionAnimations(container) {
       y: MOVE_Y,
       opacity: 0,
       force3D: true,
-      willChange: "transform, opacity"
+      willChange: "transform, opacity",
     });
 
     const animateItems = (targets, stagger = 0) => {
@@ -585,9 +585,9 @@ function reinitItemsSectionAnimations(container) {
             duration: TRANSFORM_DURATION,
             stagger,
             ease: "power3.out",
-            force3D: true
+            force3D: true,
           },
-          0
+          0,
         )
         .to(
           targets,
@@ -596,9 +596,9 @@ function reinitItemsSectionAnimations(container) {
             duration: OPACITY_DURATION,
             stagger,
             ease: "power2.out",
-            clearProps: "willChange"
+            clearProps: "willChange",
           },
-          0
+          0,
         );
     };
 
@@ -613,8 +613,8 @@ function reinitItemsSectionAnimations(container) {
               trigger: item,
               start: "top 83%",
               toggleActions: "play none none none",
-              once: true
-            }
+              once: true,
+            },
           });
 
           tl.to(
@@ -623,18 +623,18 @@ function reinitItemsSectionAnimations(container) {
               y: 0,
               duration: TRANSFORM_DURATION,
               ease: "power3.out",
-              force3D: true
+              force3D: true,
             },
-            0
+            0,
           ).to(
             item,
             {
               opacity: 1,
               duration: OPACITY_DURATION,
               ease: "power2.out",
-              clearProps: "willChange"
+              clearProps: "willChange",
             },
-            0
+            0,
           );
         }
       });
@@ -651,8 +651,8 @@ function reinitItemsSectionAnimations(container) {
           trigger: section,
           start: "top 65%",
           toggleActions: "play none none none",
-          once: true
-        }
+          once: true,
+        },
       });
 
       tl.to(
@@ -662,9 +662,9 @@ function reinitItemsSectionAnimations(container) {
           duration: TRANSFORM_DURATION,
           stagger: ITEM_STAGGER,
           ease: "power3.out",
-          force3D: true
+          force3D: true,
         },
-        0
+        0,
       ).to(
         items,
         {
@@ -672,9 +672,9 @@ function reinitItemsSectionAnimations(container) {
           duration: OPACITY_DURATION,
           stagger: ITEM_STAGGER,
           ease: "power2.out",
-          clearProps: "willChange"
+          clearProps: "willChange",
         },
-        0
+        0,
       );
     }
   });
@@ -727,20 +727,20 @@ function initOneParallaxSlider(swiperEl) {
       el: $pagination[0],
       dynamicBullets: true,
       clickable: true,
-      dynamicMainBullets: 1
+      dynamicMainBullets: 1,
     },
 
     autoplay: hasAutoplay
       ? {
           delay: 4000,
-          disableOnInteraction: true
+          disableOnInteraction: true,
         }
       : false,
 
     navigation: hasArrow
       ? {
           nextEl: nextBtn,
-          prevEl: prevBtn
+          prevEl: prevBtn,
         }
       : false,
 
@@ -776,8 +776,8 @@ function initOneParallaxSlider(swiperEl) {
             slideInner.style.transition = `${speed}ms ${easing}`;
           }
         });
-      }
-    }
+      },
+    },
   });
 
   // ✅ Tính parallax dựa trên vị trí thực của từng slide
@@ -800,7 +800,7 @@ function initOneParallaxSlider(swiperEl) {
       // Clamp để không vượt quá màn hình
       const clamped = Math.max(
         -swiper.width * interleaveOffset,
-        Math.min(swiper.width * interleaveOffset, innerTranslate)
+        Math.min(swiper.width * interleaveOffset, innerTranslate),
       );
 
       slideInner.style.transform = `translate3d(${clamped}px, 0, 0)`;
@@ -810,7 +810,7 @@ function initOneParallaxSlider(swiperEl) {
   function updateLabel(swiper) {
     const realIndex = swiper.realIndex;
     const realSlides = swiper.el.querySelectorAll(
-      ".swiper-slide:not(.swiper-slide-duplicate)"
+      ".swiper-slide:not(.swiper-slide-duplicate)",
     );
     const currentSlide = realSlides[realIndex];
     const title = currentSlide?.dataset?.title || "";
@@ -820,6 +820,18 @@ function initOneParallaxSlider(swiperEl) {
   }
 
   swiperEl.swiperInstance = swiper;
+
+  const accordionParent = swiperEl.closest(".accordion-collapse");
+  if (accordionParent) {
+    accordionParent.addEventListener(
+      "shown.bs.collapse",
+      function () {
+        swiper.update();
+        applyParallax(swiper);
+      },
+      { once: true },
+    );
+  }
 }
 
 // Destroy + reinit 1 parallax slider cụ thể
@@ -920,7 +932,7 @@ export function formNewsletter() {
 
     thisForm.find(".field-item").removeClass("error");
     $(
-      ".footer-newsletter .form-message .success, .footer-newsletter .form-message .error"
+      ".footer-newsletter .form-message .success, .footer-newsletter .form-message .error",
     ).hide();
 
     if (!emailField.length) {
@@ -950,7 +962,7 @@ export function formNewsletter() {
       dataType: "json",
       data: {
         action: "daewoo_receive_newsletter",
-        email: email
+        email: email,
       },
 
       beforeSend: function () {
@@ -987,7 +999,7 @@ export function formNewsletter() {
 
       complete: function () {
         buttonSubmit.removeClass("aloading").prop("disabled", false);
-      }
+      },
     });
   });
 }
@@ -1017,9 +1029,9 @@ export function getTime() {
         "September",
         "October",
         "November",
-        "December"
+        "December",
       ],
-      firstDay: 1
+      firstDay: 1,
     },
 
     vi: {
@@ -1040,9 +1052,9 @@ export function getTime() {
         "Tháng 9",
         "Tháng 10",
         "Tháng 11",
-        "Tháng 12"
+        "Tháng 12",
       ],
-      firstDay: 1
+      firstDay: 1,
     },
 
     ko: {
@@ -1063,9 +1075,9 @@ export function getTime() {
         "9월",
         "10월",
         "11월",
-        "12월"
+        "12월",
       ],
-      firstDay: 1
+      firstDay: 1,
     },
 
     ja: {
@@ -1086,9 +1098,9 @@ export function getTime() {
         "9月",
         "10月",
         "11月",
-        "12月"
+        "12月",
       ],
-      firstDay: 1
+      firstDay: 1,
     },
 
     zh: {
@@ -1109,10 +1121,10 @@ export function getTime() {
         "九月",
         "十月",
         "十一月",
-        "十二月"
+        "十二月",
       ],
-      firstDay: 1
-    }
+      firstDay: 1,
+    },
   };
 
   let currentLang = "en";
@@ -1146,12 +1158,12 @@ export function getTime() {
       minSpan: { days: 1 },
       startDate: defaultStart,
       endDate: defaultEnd,
-      locale: localeConfig
+      locale: localeConfig,
     },
     function (start, end) {
       $('input[name="startDate"]').val(start.format("DD/MM/YYYY"));
       $('input[name="endDate"]').val(end.format("DD/MM/YYYY"));
-    }
+    },
   );
 
   const picker = $('input[name="startDate"]').data("daterangepicker");
@@ -1183,7 +1195,7 @@ export function getTime() {
             .html($rightNext.html())
             .on("click", function () {
               $rightNext.trigger("click");
-            })
+            }),
         );
 
       $container.find(".drp-calendar.right").hide();
