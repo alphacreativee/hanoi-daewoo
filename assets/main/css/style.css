@@ -5915,7 +5915,7 @@ body {
 @media (max-width: 1200px) and (min-width: 992px) {
   .venus {
     max-width: 100%;
-    --width: 1500px;
+    --width: 1300px;
     margin-bottom: 80px;
     padding: 80px 0;
   }
@@ -5923,7 +5923,7 @@ body {
 @media (max-width: 991px) {
   .venus {
     max-width: 100%;
-    --width: 1500px;
+    --width: 1300px;
     margin-bottom: 64px;
     padding: 64px 0;
   }
@@ -6145,6 +6145,20 @@ body {
 }
 .venus-filter {
   margin-bottom: 32px;
+}
+.venus-filter .filter-section {
+  display: flex;
+  justify-content: space-between;
+}
+@media (max-width: 1200px) {
+  .venus-filter .filter-section {
+    width: var(--width);
+    justify-content: unset;
+    gap: 24px;
+  }
+  .venus-filter .filter-section .dropdown-custom-select {
+    width: 221px;
+  }
 }
 @media (max-width: 1200px) {
   .venus-filter {

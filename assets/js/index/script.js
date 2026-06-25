@@ -3158,7 +3158,7 @@ const init = () => {
   panel();
   activeModalBooking();
   formNewsletter();
-  createUnitSwitcher();
+  // createUnitSwitcher();
 };
 document.addEventListener("DOMContentLoaded", () => {
   init();
