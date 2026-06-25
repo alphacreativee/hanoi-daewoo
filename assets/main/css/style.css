@@ -4877,7 +4877,7 @@ body {
   grid-row-end: span 22;
 }
 .gallery-modal .gallery-grid .grid-item:nth-child(8n+2) {
-  grid-row-end: span 34;
+  grid-row-end: span 33;
 }
 .gallery-modal .gallery-grid .grid-item:nth-child(8n+3) {
   grid-row-end: span 22;
@@ -4889,7 +4889,7 @@ body {
   grid-row-end: span 22;
 }
 .gallery-modal .gallery-grid .grid-item:nth-child(8n+6) {
-  grid-row-end: span 34;
+  grid-row-end: span 33;
 }
 .gallery-modal .gallery-grid .grid-item:nth-child(8n+7) {
   grid-row-end: span 22;
