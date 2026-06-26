@@ -7,6 +7,16 @@
       grid-template-columns: 1fr;
       margin: 0 40px 80px;
     }
+
+    &.department {
+      .overview-container {
+        margin: 0 40px;
+
+        @media (max-width: 991px) {
+          margin: 0 16px;
+        }
+      }
+    }
   }
 
   &.recruitment-detail {
