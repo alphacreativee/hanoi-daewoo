@@ -6,13 +6,13 @@
   padding: 60px 0;
   @media (max-width: 1200px) and (min-width: 992px) {
     max-width: 100%;
-    --width: 1500px;
+    --width: 1300px;
     margin-bottom: 80px;
     padding: 80px 0;
   }
   @media (max-width: 991px) {
     max-width: 100%;
-    --width: 1500px;
+    --width: 1300px;
     margin-bottom: 64px;
     padding: 64px 0;
   }
@@ -221,6 +221,18 @@
   }
   &-filter {
     margin-bottom: 32px;
+    .filter-section {
+      display: flex;
+      justify-content: space-between;
+      @media (max-width: 1200px) {
+        width: var(--width);
+        justify-content: unset;
+        gap: 24px;
+        .dropdown-custom-select {
+          width: 221px;
+        }
+      }
+    }
     @media (max-width: 1200px) {
       width: var(--width);
     }
