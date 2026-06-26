@@ -6194,6 +6194,7 @@ body {
   gap: 8px;
   padding: 16px 24px;
   z-index: 6;
+  width: max-content;
 }
 .venus-filter .filter-section .dropdown-custom-menu.dropdown--active {
   opacity: 1;
