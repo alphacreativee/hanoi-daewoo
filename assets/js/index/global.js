@@ -380,6 +380,86 @@ export function customDropdown() {
 // ============================================================
 // FILTER TAB
 // ============================================================
+// export function createFilterTab() {
+//   document.querySelectorAll(".filter-section").forEach((section) => {
+//     let result;
+
+//     const targetSelector = section.dataset.target;
+//     if (targetSelector) {
+//       result = document.querySelector(targetSelector);
+//     } else {
+//       result = section.querySelector(".filter-section-result");
+//       if (!result) {
+//         result = section.nextElementSibling;
+//         if (!result?.classList.contains("filter-section-result")) return;
+//       }
+//     }
+
+//     if (!result) return;
+
+//     const isSelectTab = section.classList.contains("select-tab");
+//     const buttons = section.querySelectorAll(".filter-button[data-type]");
+
+//     const applyFilter = (type) => {
+//       const items = result.querySelectorAll(".filter-item");
+
+//       items.forEach((item) => {
+//         let show;
+//         if (type === "all") {
+//           show = isSelectTab ? item.classList.contains("all") : true;
+//         } else {
+//           show = item.classList.contains(type);
+//         }
+//         item.style.display = show ? "" : "none";
+//       });
+
+//       // Reinit slider cho các filter-item đang hiện
+//       items.forEach((item) => {
+//         if (item.style.display === "none") return;
+
+//         const sliderEl = item.querySelector(".accommodations-slider");
+//         if (sliderEl) reinitAccommodationSlider(sliderEl);
+
+//         item.querySelectorAll("[slider-parallax]").forEach((el) => {
+//           reinitParallaxSlider(el);
+//         });
+//       });
+//     };
+
+//     // Filter lần đầu nếu có button active
+//     const activeBtn = section.querySelector(".filter-button.active");
+//     if (activeBtn) {
+//       const activeType = activeBtn.dataset.type;
+//       if (activeType !== "all" || isSelectTab) {
+//         applyFilter(activeType);
+//       }
+//     }
+
+//     buttons.forEach((btn) => {
+//       btn.addEventListener("click", function () {
+//         section
+//           .querySelectorAll(".filter-button")
+//           .forEach((b) => b.classList.remove("active"));
+//         this.classList.add("active");
+
+//         const type = this.dataset.type;
+
+//         gsap
+//           .timeline()
+//           .to(result, { autoAlpha: 0, duration: 0.3 })
+//           .call(() => {
+//             applyFilter(type);
+//             reinitScrollAnimations(result);
+//           })
+//           .to(result, { autoAlpha: 1, duration: 0.3 })
+//           .call(() => {
+//             // ✅ Refresh sau khi fade in xong — DOM đã render đúng vị trí
+//             ScrollTrigger.refresh();
+//           });
+//       });
+//     });
+//   });
+// }
 export function createFilterTab() {
   document.querySelectorAll(".filter-section").forEach((section) => {
     let result;
@@ -399,6 +479,7 @@ export function createFilterTab() {
 
     const isSelectTab = section.classList.contains("select-tab");
     const buttons = section.querySelectorAll(".filter-button[data-type]");
+    const shouldReinitScroll = section.hasAttribute("data-reinit-scroll"); // 👈
 
     const applyFilter = (type) => {
       const items = result.querySelectorAll(".filter-item");
@@ -413,7 +494,6 @@ export function createFilterTab() {
         item.style.display = show ? "" : "none";
       });
 
-      // Reinit slider cho các filter-item đang hiện
       items.forEach((item) => {
         if (item.style.display === "none") return;
 
@@ -426,7 +506,6 @@ export function createFilterTab() {
       });
     };
 
-    // Filter lần đầu nếu có button active
     const activeBtn = section.querySelector(".filter-button.active");
     if (activeBtn) {
       const activeType = activeBtn.dataset.type;
@@ -449,18 +528,16 @@ export function createFilterTab() {
           .to(result, { autoAlpha: 0, duration: 0.3 })
           .call(() => {
             applyFilter(type);
-            reinitScrollAnimations(result);
+            if (shouldReinitScroll) reinitScrollAnimations(result); // 👈
           })
           .to(result, { autoAlpha: 1, duration: 0.3 })
           .call(() => {
-            // ✅ Refresh sau khi fade in xong — DOM đã render đúng vị trí
             ScrollTrigger.refresh();
           });
       });
     });
   });
 }
-
 // ============================================================
 // HELPER: check element có trong viewport không
 // ============================================================

@@ -8,6 +8,14 @@
     padding: 24px 16px 0;
   }
 
+  &.has-padding-top {
+    padding-top: 120px;
+
+    @media (max-width: 991px) {
+      padding: 48px 16px 0;
+    }
+  }
+
   .amenities {
     &-top {
       .title {
