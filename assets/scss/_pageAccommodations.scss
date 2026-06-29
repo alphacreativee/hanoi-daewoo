@@ -20,13 +20,14 @@
       overflow-x: scroll;
       padding-right: 16px;
       padding-left: 16px;
-      // justify-content: start !important;
+      justify-content: start !important;
       &::-webkit-scrollbar {
         display: none;
       }
     }
     .filter-button {
       cursor: pointer;
+      white-space: nowrap;
     }
   }
 

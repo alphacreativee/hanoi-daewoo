@@ -1140,7 +1140,7 @@ function galleryLightbox() {
     items.forEach((item) => {
       const img = item.querySelector("img");
       const src = img?.getAttribute("src") || "";
-      const title = item.dataset.title || "Gallery Image";
+      const title = item.dataset.title || " ";
 
       const slide = document.createElement("div");
       slide.className = "swiper-slide overflow-hidden";

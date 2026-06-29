@@ -3504,6 +3504,7 @@ body {
     overflow-x: scroll;
     padding-right: 16px;
     padding-left: 16px;
+    justify-content: start !important;
   }
   .accommodationPage .filter-list-button::-webkit-scrollbar {
     display: none;
@@ -3511,6 +3512,7 @@ body {
 }
 .accommodationPage .filter-list-button .filter-button {
   cursor: pointer;
+  white-space: nowrap;
 }
 .accommodationPage .filter-section {
   padding: 10px 0;
