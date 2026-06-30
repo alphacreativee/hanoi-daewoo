@@ -1140,7 +1140,7 @@ function galleryLightbox() {
     items.forEach((item) => {
       const img = item.querySelector("img");
       const src = img?.getAttribute("src") || "";
-      const title = item.dataset.title || "Gallery Image";
+      const title = item.dataset.title || " ";
 
       const slide = document.createElement("div");
       slide.className = "swiper-slide overflow-hidden";
@@ -3239,6 +3239,49 @@ function formWedding() {
   });
 }
 
+function galleryLa() {
+  if (
+    !document.querySelector(".gallery-la-swiper-desktop") &&
+    window.innerWidth < 991
+  )
+    return;
+  const slider = new Swiper(".gallery-la-swiper-desktop", {
+    effect: "fade",
+    loop: false,
+    speed: 800,
+    slidesPerView: 1,
+    pagination: {
+      el: ".gallery-slider .swiper-pagination",
+      type: "fraction",
+      clickable: true
+    },
+    navigation: {
+      prevEl: ".gallery-slider .swiper-button-prev",
+      nextEl: ".gallery-slider .swiper-button-next"
+    }
+  });
+}
+function galleryLaMobile() {
+  if (
+    !document.querySelector(".gallery-la-swiper-mobile") &&
+    window.innerWidth > 992
+  )
+    return;
+  const slider = new Swiper(".gallery-la-swiper-mobile", {
+    speed: 800,
+    slidesPerView: 1,
+    spaceBetween: 30,
+    pagination: {
+      el: ".gallery-slider-mobile .swiper-pagination",
+      type: "fraction",
+      clickable: true
+    },
+    navigation: {
+      prevEl: ".gallery-slider-mobile .swiper-button-prev",
+      nextEl: ".gallery-slider-mobile .swiper-button-next"
+    }
+  });
+}
 const init = () => {
   gsap.registerPlugin(ScrollTrigger);
 
@@ -3285,6 +3328,8 @@ const init = () => {
   activeModalBooking();
   formNewsletter();
   createUnitSwitcher();
+  galleryLa();
+  galleryLaMobile();
 };
 document.addEventListener("DOMContentLoaded", () => {
   init();

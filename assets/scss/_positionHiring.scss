@@ -80,6 +80,7 @@
         }
         .name {
           transition: all 0.4s ease;
+          padding-right: 24px;
 
           &:hover {
             color: var(--color-gold);
