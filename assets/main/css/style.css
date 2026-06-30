@@ -6415,3 +6415,117 @@ body {
   transform-origin: bottom right;
   transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
 }
+
+.gallery-la {
+  padding: 120px 40px;
+}
+@media (max-width: 1200px) and (min-width: 992px) {
+  .gallery-la {
+    padding: 120px 80px;
+  }
+}
+@media (max-width: 991px) {
+  .gallery-la {
+    padding: 64px 16px;
+  }
+}
+.gallery-la .gallery-head {
+  margin-bottom: 60px;
+}
+@media (max-width: 1200px) and (min-width: 992px) {
+  .gallery-la .gallery-head {
+    margin-bottom: 40px;
+  }
+}
+@media (max-width: 991px) {
+  .gallery-la .gallery-head {
+    margin-bottom: 24px;
+  }
+}
+.gallery-la .gallery-grid {
+  display: grid;
+  grid-gap: 12px;
+  grid-template-columns: repeat(3, 1fr);
+  grid-auto-rows: 2px;
+}
+@media (max-width: 991px) {
+  .gallery-la .gallery-grid {
+    grid-template-columns: 1fr;
+  }
+}
+.gallery-la .gallery-grid .grid-item {
+  overflow: hidden;
+}
+.gallery-la .gallery-grid .grid-item:nth-child(8n+1) {
+  grid-row-end: span 22;
+}
+.gallery-la .gallery-grid .grid-item:nth-child(8n+2) {
+  grid-row-end: span 33;
+}
+.gallery-la .gallery-grid .grid-item:nth-child(8n+3) {
+  grid-row-end: span 22;
+}
+.gallery-la .gallery-grid .grid-item:nth-child(8n+4) {
+  grid-row-end: span 22;
+}
+.gallery-la .gallery-grid .grid-item:nth-child(8n+5) {
+  grid-row-end: span 22;
+}
+.gallery-la .gallery-grid .grid-item:nth-child(8n+6) {
+  grid-row-end: span 33;
+}
+.gallery-la .gallery-grid .grid-item:nth-child(8n+7) {
+  grid-row-end: span 22;
+}
+.gallery-la .gallery-grid .grid-item:nth-child(8n+8) {
+  grid-row-end: span 22;
+}
+.gallery-la .gallery-grid .grid-item img,
+.gallery-la .gallery-grid .grid-item picture {
+  width: 100%;
+  height: 100%;
+}
+.gallery-la .gallery-grid .grid-item img {
+  object-fit: cover;
+}
+.gallery-la .swiper-custom-arrow {
+  position: static;
+  margin: 0;
+  height: max-content;
+}
+.gallery-la .swiper-custom-arrow::after {
+  content: unset;
+  font-size: 0;
+}
+.gallery-la .swiper-custom-arrow svg {
+  color: var(--color-black);
+}
+.gallery-la .swiper-pagination {
+  position: static;
+  width: max-content;
+  font-size: 13px;
+  line-height: 24px;
+  font-weight: 600;
+}
+.gallery-la .swiper-custom {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 16px;
+  margin-top: 32px;
+}
+@media (max-width: 991px) {
+  .gallery-la .swiper-custom {
+    margin-top: 24px;
+  }
+}
+.gallery-la .image {
+  width: 100%;
+  aspect-ratio: 440/480;
+}
+.gallery-la .image img,
+.gallery-la .image picture {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
