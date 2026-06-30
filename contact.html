@@ -26,6 +26,10 @@
       rel="stylesheet"
       href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"
     />
+    <link
+      href="https://cdn.maptiler.com/maptiler-sdk-js/v3.0.1/maptiler-sdk.css"
+      rel="stylesheet"
+    />
 
     <!-- end meta -->
     <!-- link custom css page -->
@@ -86,6 +90,14 @@
 
     .googlemap-link:hover {
       color: #b39c79;
+    }
+
+    .maptiler-control-container .maplibregl-ctrl-attrib {
+      display: none !important;
+    }
+
+    .maplibregl-ctrl {
+      display: none !important;
     }
   </style>
 
@@ -461,33 +473,39 @@
     <script src="./assets/libs/daterangepicker.min.js"></script>
     <script src="./assets/libs/lightpick.min.js"></script>
     <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+    <script src="https://cdn.maptiler.com/maptiler-sdk-js/v3.0.1/maptiler-sdk.umd.min.js"></script>
     <!-- import custom js -->
     <script type="module" src="./assets/main/js/script.min.js"></script>
 
     <script>
-      const map = L.map("hotel-map", {
-        scrollWheelZoom: false
-      }).setView([21.030932122198905, 105.81203795971277], 16);
-
-      L.tileLayer(
-        "https://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}{r}.png"
-      ).addTo(map);
-
-      const hotelIcon = L.icon({
-        iconUrl: "./assets/images/use/map-pin.svg",
-        iconSize: [48, 55],
-        iconAnchor: [24, 55],
-        popupAnchor: [0, -55]
+      maptilersdk.config.apiKey = "qTNjBMwiItjcau5NJccU";
+      const currentLang = document.documentElement.lang || "vi";
+      const map = new maptilersdk.Map({
+        container: "hotel-map",
+        style: maptilersdk.MapStyle.DATAVIZ,
+        center: [105.81203795971277, 21.030932122198905],
+        zoom: 17,
+        language:
+          currentLang === "vi"
+            ? maptilersdk.Language.LOCAL
+            : maptilersdk.Language.ENGLISH
       });
-
-      L.marker([21.030932122198905, 105.81203795971277], { icon: hotelIcon })
-        .addTo(map)
-        .bindTooltip("HANOI DAEWOO HOTEL", {
-          permanent: true,
-          direction: "left",
-          offset: [-15, 0],
-          className: "hotel-tooltip"
-        });
+      map.scrollZoom.disable();
+      const markerEl = document.createElement("div");
+      markerEl.innerHTML = ` <img src="./assets/images/use/map-pin.svg" width="48" height="55" > `;
+      const tooltipText =
+        currentLang === "vi" ? "KHÁCH SẠN DAEWOO HÀ NỘI" : "HANOI DAEWOO HOTEL";
+      new maptilersdk.Marker({
+        element: markerEl,
+        anchor: "bottom"
+      })
+        .setLngLat([105.81203795971277, 21.030932122198905])
+        .setPopup(
+          new maptilersdk.Popup({ offset: 25 })
+            .setText(tooltipText)
+            .addClassName("hotel-tooltip")
+        )
+        .addTo(map);
     </script>
     <!-- end import custom js -->
   </body>

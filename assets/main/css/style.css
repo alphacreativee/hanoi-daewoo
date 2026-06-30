@@ -3523,6 +3523,7 @@ body {
 @media (max-width: 991px) {
   .accommodationPage .filter-section {
     top: 76px;
+    margin: 50px 0 24px 0;
   }
 }
 .accommodationPage .filter-section-result {
