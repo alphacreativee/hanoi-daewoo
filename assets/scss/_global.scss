@@ -218,7 +218,7 @@ body {
       position: absolute;
       top: 0;
       left: 0;
-      width: 200px;
+      min-width: 200px;
       background-color: var(--color-white);
       margin-top: -29px;
       padding: 24px;
@@ -292,6 +292,9 @@ body {
       font-family: var(--font-body);
       color: var(--color-gray-2);
       font-weight: 500;
+
+      display: block;
+      min-width: max-content;
     }
   }
 }
