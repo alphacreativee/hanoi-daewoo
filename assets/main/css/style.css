@@ -1342,25 +1342,6 @@ body {
   grid-template-columns: 1fr 1fr;
   gap: 24px 16px;
 }
-.modal-booking .list-field.step .field-item.auto-phone {
-  position: relative;
-}
-.modal-booking .list-field.step .field-item.auto-phone .dropdown-custom-select {
-  position: absolute;
-  width: max-content;
-  border: none;
-}
-.modal-booking .list-field.step .field-item.auto-phone .flag-icon {
-  width: 19px;
-  height: 13px;
-  position: absolute;
-  top: 50%;
-  left: 24px;
-  transform: translateY(-50%);
-}
-.modal-booking .list-field.step .field-item.auto-phone input {
-  padding-left: 45px;
-}
 .modal-booking .list-field.step .field-item.checkbox.one-choice {
   flex-direction: column;
   align-items: flex-start;
@@ -1418,6 +1399,25 @@ body {
   .modal-booking .list-field .field-item {
     grid-column: 1/3;
   }
+}
+.modal-booking .list-field .field-item.auto-phone {
+  position: relative;
+}
+.modal-booking .list-field .field-item.auto-phone .dropdown-custom-select {
+  position: absolute;
+  width: max-content;
+  border: none;
+}
+.modal-booking .list-field .field-item.auto-phone .flag-icon {
+  width: 19px;
+  height: 13px;
+  position: absolute;
+  top: 50%;
+  left: 24px;
+  transform: translateY(-50%);
+}
+.modal-booking .list-field .field-item.auto-phone input {
+  padding-left: 45px;
 }
 .modal-booking .list-field .field-item.checkbox {
   display: flex;
@@ -1531,6 +1531,122 @@ body {
 }
 .modal-booking .list-field .field-item.full {
   grid-column: 1/-1;
+}
+.modal-booking .list-field .field-item.box-type-field {
+  border: 1px solid rgba(0, 0, 0, 0.2);
+  padding: 12px 0 8px;
+}
+.modal-booking .list-field .field-item.box-type-field > label {
+  top: 0;
+  transform: translateY(-50%);
+  background-color: var(--color-white);
+  padding: 0 8px;
+  font-size: 12px;
+  line-height: 14px;
+  pointer-events: none;
+  position: absolute;
+  z-index: 2;
+}
+.modal-booking .list-field .field-item.box-type-field .check-list {
+  display: flex;
+  flex-direction: column;
+  padding: 0 24px;
+  max-height: 160px;
+  overflow-y: scroll;
+}
+.modal-booking .list-field .field-item.box-type-field .box-type-item {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 24px;
+  min-height: 51px;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.2);
+}
+.modal-booking .list-field .field-item.box-type-field .box-type-item:last-child {
+  border-bottom: none;
+}
+.modal-booking .list-field .field-item.box-type-field .box-type-option {
+  position: static;
+  transform: none;
+  pointer-events: auto;
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  flex: 1 1 auto;
+  min-width: 0;
+  color: var(--color-black);
+  background-color: transparent;
+  padding: 0;
+}
+.modal-booking .list-field .field-item.box-type-field .box-type-option span {
+  color: var(--color-black);
+}
+.modal-booking .list-field .field-item.box-type-field input[type=checkbox] {
+  appearance: none;
+  width: 21px;
+  height: 21px;
+  min-width: 21px;
+  min-height: 21px;
+  padding: 0;
+  border: 1px solid var(--color-black);
+  cursor: pointer;
+  position: relative;
+}
+.modal-booking .list-field .field-item.box-type-field input[type=checkbox]:checked::before {
+  opacity: 1;
+  visibility: visible;
+}
+.modal-booking .list-field .field-item.box-type-field input[type=checkbox]::before {
+  content: "";
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 13px;
+  height: 13px;
+  background-image: url("../../images/icons/icon-tick.svg");
+  background-repeat: no-repeat;
+  background-position: center;
+  opacity: 0;
+  visibility: hidden;
+  transition: all 0.2s ease;
+}
+.modal-booking .list-field .field-item.box-type-field .box-quantity {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  flex: 0 0 auto;
+}
+.modal-booking .list-field .field-item.box-type-field .box-quantity label {
+  position: static;
+  transform: none;
+  pointer-events: auto;
+  color: rgba(0, 0, 0, 0.2);
+  background-color: transparent;
+  padding: 0;
+}
+.modal-booking .list-field .field-item.box-type-field .box-quantity input {
+  width: 98px;
+  height: 27px;
+  padding: 0 12px;
+  text-align: center;
+}
+@media (max-width: 575px) {
+  .modal-booking .list-field .field-item.box-type-field {
+    padding: 16px 0 8px;
+  }
+  .modal-booking .list-field .field-item.box-type-field .box-type-item {
+    gap: 12px;
+  }
+  .modal-booking .list-field .field-item.box-type-field .box-type-option {
+    gap: 10px;
+  }
+  .modal-booking .list-field .field-item.box-type-field .box-quantity {
+    gap: 8px;
+  }
+  .modal-booking .list-field .field-item.box-type-field .box-quantity input {
+    width: 72px;
+  }
 }
 .modal-booking .list-field .field-item textarea {
   width: 100%;
@@ -2636,6 +2752,19 @@ body {
   position: relative;
   width: 100%;
   height: 100dvh;
+}
+.hero.hero-vimeo {
+  height: auto;
+  padding-top: 60px;
+}
+@media (max-width: 991px) {
+  .hero.hero-vimeo {
+    padding-top: 76px;
+  }
+}
+.hero-video__vimeo {
+  padding-top: 56%;
+  position: relative;
 }
 .hero.no-opacity::before {
   background: transparent !important;
@@ -3972,6 +4101,11 @@ body {
   grid-template-columns: 1fr;
   margin: 0 40px 80px;
 }
+@media (max-width: 991px) {
+  .overview.full .overview-container {
+    margin: 0 16px;
+  }
+}
 .overview.full.department .overview-container {
   margin: 0 40px;
 }
@@ -4338,6 +4472,22 @@ body {
   display: none;
 }
 
+.list-detail.has-spacing-top {
+  padding-top: 120px;
+}
+@media (max-width: 991px) {
+  .list-detail.has-spacing-top {
+    padding-top: 80px;
+  }
+}
+.list-detail.has-spacing-top h2.title {
+  margin-bottom: 80px;
+}
+@media (max-width: 991px) {
+  .list-detail.has-spacing-top h2.title {
+    margin-bottom: 40px;
+  }
+}
 .list-detail-box {
   padding: 80px;
   background-color: var(--color-white);
@@ -4412,6 +4562,9 @@ body {
   padding: 24px 0;
   border-top: 1px solid rgba(0, 0, 0, 0.2);
   border-bottom: 1px solid rgba(0, 0, 0, 0.2);
+}
+.list-detail .table-info em {
+  font-style: italic;
 }
 .list-detail .table-info .table-row {
   display: flex;
@@ -4815,7 +4968,6 @@ body {
 
 .sectionAccordion-container {
   padding: 120px 40px;
-  background-color: var(--color-white);
 }
 @media (max-width: 991px) {
   .sectionAccordion-container {
@@ -5841,7 +5993,7 @@ body {
 }
 @media (max-width: 991px) {
   .newsDetail-container {
-    padding: 64px 16px 0;
+    padding: 120px 16px 0;
     display: flex;
     flex-direction: column-reverse;
     gap: 48px;
