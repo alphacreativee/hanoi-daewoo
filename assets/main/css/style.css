@@ -2367,9 +2367,6 @@ body {
 #header .header-lang .icon svg {
   color: var(--color-white);
 }
-#header .header-lang .value-select {
-  width: 20px;
-}
 #header .header-lang .value-select span {
   color: var(--color-white);
 }
@@ -2382,11 +2379,13 @@ body {
   margin-top: 17.5px;
   background-color: var(--color-white);
   left: -12px;
-  width: 50px;
+  min-width: max-content;
   padding: 12px;
   opacity: 0;
   visibility: hidden;
   transition: all 0.4s ease;
+  display: flex;
+  flex-direction: column;
 }
 #header .header-lang .dropdown-custom-menu.dropdown--active {
   opacity: 1;
