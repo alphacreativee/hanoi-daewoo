@@ -2610,8 +2610,16 @@ body {
 }
 .footer-menu .col-left > ul {
   display: grid;
-  gap: 8px 20px;
-  grid-template-columns: repeat(4, 1fr);
+  gap: 8px 0;
+  grid-template-columns: repeat(5, 1fr);
+}
+.footer-menu .col-left > ul > ul {
+  padding-right: 20px;
+}
+@media (max-width: 480px) {
+  .footer-menu .col-left > ul > ul:nth-child(even) {
+    padding-right: 0;
+  }
 }
 @media (max-width: 991px) {
   .footer-menu .col-left > ul {
@@ -2621,7 +2629,7 @@ body {
 @media (max-width: 480px) {
   .footer-menu .col-left > ul {
     grid-template-columns: repeat(2, 1fr);
-    gap: 12px 20px;
+    gap: 12px 0;
   }
 }
 @media (max-width: 991px) {

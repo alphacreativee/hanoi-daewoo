@@ -135,8 +135,18 @@
 
     .col-left > ul {
       display: grid;
-      gap: 8px 20px;
-      grid-template-columns: repeat(4, 1fr);
+      gap: 8px 0;
+      grid-template-columns: repeat(5, 1fr);
+
+      & > ul {
+        padding-right: 20px;
+
+        @media (max-width: 480px) {
+          &:nth-child(even) {
+            padding-right: 0;
+          }
+        }
+      }
 
       @media (max-width: 991px) {
         grid-template-columns: repeat(3, 1fr);
@@ -144,7 +154,7 @@
 
       @media (max-width: 480px) {
         grid-template-columns: repeat(2, 1fr);
-        gap: 12px 20px;
+        gap: 12px 0;
       }
     }
   }
