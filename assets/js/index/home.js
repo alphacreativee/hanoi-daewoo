@@ -907,6 +907,47 @@ function toolbarMobile() {
     });
   }
 }
+
+function bookingFormRedirect() {
+  const form = document.getElementById("bookingHotel");
+  if (!form) return;
+
+  form.addEventListener("submit", function (e) {
+    e.preventDefault();
+
+    const bookingUrl = form.action || "";
+    if (!bookingUrl) return;
+
+    const checkInRaw = document.querySelector("#startDate")?.value || "";
+    const checkOutRaw = document.querySelector("#endDate")?.value || "";
+
+    if (!checkInRaw || !checkOutRaw) return;
+
+    const checkIn = formatDateToMMDDYYYY(checkInRaw);
+    const checkOut = formatDateToMMDDYYYY(checkOutRaw);
+
+    const adults =
+      document.querySelector(".adult .val")?.textContent.trim() || 1;
+    const children =
+      document.querySelector(".child .val")?.textContent.trim() || 0;
+
+    const url = new URL(bookingUrl);
+
+    url.searchParams.set("check_in", checkIn);
+    url.searchParams.set("check_out", checkOut);
+    url.searchParams.set("filter_adult", adults);
+    url.searchParams.set("filter_child", children);
+
+    window.location.href = url.toString();
+  });
+
+  function formatDateToMMDDYYYY(dateStr) {
+    const [day, month, year] = dateStr.split("/");
+
+    return `${month}/${day}/${year}`;
+  }
+}
+
 const init = () => {
   gsap.registerPlugin(ScrollTrigger);
   customDropdown();
@@ -930,6 +971,7 @@ const init = () => {
   swiperThreeCol();
   toolbarMobile();
   formNewsletter();
+  bookingFormRedirect();
 };
 document.addEventListener("DOMContentLoaded", () => {
   init();
